@@ -112,132 +112,109 @@ display.setDefault("background", 0, 0.4, 0.2)
 	randomNumber1= math.random(1, 20)
 	randomNumber2= math.random(1, 20)
 	randomNumber3= math.random(1, 10)
-						randomNumber4= math.random(1, 10)
-						randomNumber5= math.random(1, 100)
-						randomNumber6= math.random(1, 100)
-
-
-						 if(randomOpreator == 1)then
-				               correctAnswer = randomNumber1 + randomNumber2 
-				               question.text = randomNumber1 .. "+" .. randomNumber2 .. "="
-				        
-				        elseif(randomOpreator== 2)then
-				        if(randomNumber1 < randomNumber2)then
-
-				              correctAnswer = randomNumber2 - randomNumber1
-				            question.text = randomNumber2 .. "-" .. randomNumber1 .. "="
-				        else
-				         correctAnswer = randomNumber1 - randomNumber2
-				            question.text = randomNumber1 .. "-" .. randomNumber2 .. "="
-				        end
-				         
-				        elseif(randomOpreator == 3)then
-				                correctAnswer = randomNumber3 * randomNumber4
-				                question.text = randomNumber3 .. " * " .. randomNumber4 .. "="
-				             
-				         elseif(randomOpreator == 4)then
-				                correctAnswer1 = randomNumber5 * randomNumber6
-				                correctAnswer = correctAnswer * randomNumber5
-				                question.text = randomNumber5 .. " / " .. randomNumber6 .. "="
-
-					    end
-					   end
-
-
-                  local function visible( ... )
-                  heart1.isVisible = true
-                  heart2.isVisible = true
-                  heart3.isVisible = true
-                 end
-				local function HideText( )
-				correct.isVisible = false
-				wrongAnswer.isVisible = false
-				winImage.isVisible = false
-				lostImage.isVisible = false
-				wrongObject.isVisible = false
-				askMe()
-
-			    end
-			    local function  updateTime( ... )
-		        secondLeft = secondLeft - 1
-		        clockText.text = secondLeft ..""
-		        if(secondLeft == 0)then
-		   	  wrongObject.text = ("the answer is ".. correctAnswer)
-		   	  wrongObject.isVisible = true
-		     	secondLeft = totalSecond
-		     	lives = lives - 1
-		    	     	askMe()
-		     	   timer.performWithDelay(2000, HideText)
-
-
-		    	end
-		       end
+	randomNumber4= math.random(1, 10)
+	randomNumber5= math.random(1, 100)
+	randomNumber6= math.random(1, 100)
+	 if(randomOpreator == 1)then
+	    correctAnswer = randomNumber1 + randomNumber2 
+        question.text = randomNumber1 .. "+" .. randomNumber2 .. "="
+		elseif(randomOpreator== 2)then
+        if(randomNumber1 < randomNumber2)then
+		  correctAnswer = randomNumber2 - randomNumber1
+          question.text = randomNumber2 .. "-" .. randomNumber1 .. "="
+       else
+		 correctAnswer = randomNumber1 - randomNumber2
+         question.text = randomNumber1 .. "-" .. randomNumber2 .. "="
+       end		         
+	   elseif(randomOpreator == 3)then
+             correctAnswer = randomNumber3 * randomNumber4
+		     question.text = randomNumber3 .. " * " .. randomNumber4 .. "="      
+	   elseif(randomOpreator == 4)then
+	         correctAnswer1 = randomNumber5 * randomNumber6
+	         correctAnswer = correctAnswer * randomNumber5
+	         question.text = randomNumber5 .. " / " .. randomNumber6 .. "="
+	    end
+	   end
+    local function visible( ... )
+    heart1.isVisible = true
+    heart2.isVisible = true
+    heart3.isVisible = true
+       end
+	local function HideText( )
+	correct.isVisible = false
+	wrongAnswer.isVisible = false
+	winImage.isVisible = false
+	wrongObject.isVisible = false
+	askMe()
+    end
+    local function  updateTime( ... )
+    secondLeft = secondLeft - 1
+    clockText.text = secondLeft ..""
+    if(secondLeft == 0)then
+    wrongObject.text = ("the answer is ".. correctAnswer)
+    wrongObject.isVisible = true
+ 	secondLeft = totalSecond
+	lives = lives - 1
+	askMe()
+    timer.performWithDelay(2000, HideText)
+   	end
+   end
 		       
-			   local function numricListener(event)
-			    if(event.phase=="began") then
-		         local   musicChannel=  audio.play(backgroundMusic, {loops= -1})
-				 elseif(event.phase=="submitted")then
-				    yourAnswer = tonumber(event.target.text)
+   local function numricListener(event)
+		 if(event.phase=="began") then
+	     local   musicChannel=  audio.play(backgroundMusic, {loops= -1})
+		 elseif(event.phase=="submitted")then
+   	     yourAnswer = tonumber(event.target.text)
+		       event.target.text = ""	    
+	    if(yourAnswer == correctAnswer) then
+	       point = point + 1
+           correct.isVisible = true
+		   CorrectSoundCehnnel = audio.play(CorrectSound)
+		   pointText.text = "Point = " .. point
+	       secondLeft = totalSecond
+           timer.performWithDelay(1500, HideText)
+	       if ( point > 4) then
+        -- display you win image
+		    winImage.isVisible=true
+		    point= 0
+		    timer.performWithDelay(100, HideText)
 
-				    event.target.text = ""
-				    
+	      end
+		  else 
 
-				    if(yourAnswer == correctAnswer) then
-				      point = point + 1
-				            correct.isVisible = true
-
-				       CorrectSoundCehnnel = audio.play(CorrectSound)
-
-				      pointText.text = "Point = " .. point
-				      secondLeft = totalSecond
-				      timer.performWithDelay(1500, HideText)
-
-				      if ( point > 4) then
-				        -- display you win image
-				        winImage.isVisible=true
-				      point= 0
-				      timer.performWithDelay(100, HideText)
-
-			          end
-			
-
-				      else 
-
-			           wrongChennel = audio.play(wrongSound)
-					   secondLeft = totalSecond	
-					   wrongObject.text = ("the answer is ".. correctAnswer)
-				 	   timer.performWithDelay(2000, HideText)
-					   wrongObject.isVisible = true  
-				      end
-		              lives = lives - 1
-				      if(lives== 2)then
-			          heart3.isVisible= false
-					  secondLeft= totalSecond					 
-					  elseif(lives == 1)then
-                      lives = lives - 1
-					  heart2.isVisible = false
-					  secondLeft = totalSecond
-					  askMe()
-					 else
-					 heart1.isVisible = false
-					 lostImage.isVisible = true
-				     timer.performWithDelay(500, visible)
-				     end
-				    end   
-			       end
-                    
-                     local   function startTimer()
-                      countDownTimer = timer.performWithDelay(1000, updateTime, 1000)
-				      end
-
-					------------------------------------------------------------------------------------------------------
+		  wrongChennel = audio.play(wrongSound)
+		  secondLeft = totalSecond	
+		  wrongObject.text = ("the answer is ".. correctAnswer)
+		  timer.performWithDelay(2000, HideText)
+		  wrongObject.isVisible = true  
+		   end
+		    lives = lives - 1
+		    if(lives== 2)then
+		    heart3.isVisible= false
+		    secondLeft= totalSecond					 
+		    elseif(lives == 1)then
+            lives = lives - 1
+		    heart2.isVisible = false
+	   	    secondLeft = totalSecond
+		    askMe()
+		    else
+		    heart1.isVisible = false
+		    lostImage.isVisible = true
+		    timer.performWithDelay(500, visible)
+		    askMe()
+		    end
+		   end   
+		  end     
+           local   function startTimer()
+             countDownTimer = timer.performWithDelay(1000, updateTime, 1000)
+		   end
+	------------------------------------------------------------------------------------------------------
 					-- EVENT LISTENERS
 					-------------------------------------------------------------------------------------------------------
-
 					numericField:addEventListener("userInput", numricListener)
 	--------------------------------------------------------------------------------------------------------
-										--calling the event listener 
+									--calling the event listener 
 ----------------------------------------------------------------------------------------------------------------------------
 					startTimer()
-			        askMe()
+			         askMe()
 		        
