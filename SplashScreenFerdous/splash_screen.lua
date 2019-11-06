@@ -118,7 +118,7 @@ function scene:hide( event )
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
     local phase = event.phase
-
+    
     -----------------------------------------------------------------------------------------
 
     -- Called when the scene is on screen (but is about to go off screen).
