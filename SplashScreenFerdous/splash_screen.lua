@@ -2,11 +2,10 @@
 
 
 --
--- splash_screen.lua
--- Created by: Your Name
--- Date: Month Day, Year
--- Description: This is the splash screen of the game. It displays the 
--- company logo that...
+---- Title: splash screen
+-- Name: Ferdous Sediqi
+-- Course: ICS2O
+-- in This this assigment i will make a splash screen that shows the game company logo
 -----------------------------------------------------------------------------------------
 
 -- Use Composer Library
@@ -28,7 +27,7 @@ local scene = composer.newScene( sceneName )
 local companyLogo
 local scrollXSpeed = 1
 local scrollYSpeed = 1
-local jungleSoundsChannel
+local backgroundSound = audio.loadSound("Sounds/simon.wav")
 
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -97,12 +96,14 @@ function scene:show( event )
 
     elseif ( phase == "did" ) then
         -- start the splash screen music
+         backgroundSoundChennal = audio.play(backgroundSound )
+
 
         -- Call the moveBeetleship function as soon as we enter the frame.
         Runtime:addEventListener("enterFrame", logoEntry)
 
         -- Go to the main menu screen after the given time.
-        timer.performWithDelay (3000, gotoMainMenu)
+        timer.performWithDelay (4500, gotoMainMenu)
         
     end
 end

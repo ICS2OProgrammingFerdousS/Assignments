@@ -1,4 +1,7 @@
-
+---- Title: splash screen
+-- Name: Ferdous Sediqi
+-- Course: ICS2O
+-- in This this assigment i will make a splash screen that shows the game company logo
 
  ---- Use Composer Library
 local composer = require( "composer" )
