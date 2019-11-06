@@ -25,9 +25,9 @@ local scene = composer.newScene( sceneName )
 -----------------------------------------------------------------------------------------
  
 -- The local variables for this scene
-local beetleship
-local scrollXSpeed = 10
-local scrollYSpeed = -5
+local companyLogo
+local scrollXSpeed = 1
+local scrollYSpeed = 1
 local jungleSoundsChannel
 
 --------------------------------------------------------------------------------------------
@@ -35,14 +35,18 @@ local jungleSoundsChannel
 --------------------------------------------------------------------------------------------
 
 -- The function that moves the beetleship across the screen
-local function moveBeetleship()
-    beetleship.x = beetleship.x + scrollXSpeed
-    beetleship.y = beetleship.y + scrollYSpeed
+local function logoEntry()
+    companyLogo.isVisible= true
+    companyLogo.xScale = companyLogo.xScale + 0.02 
+    companyLogo.yScale = companyLogo.yScale + 0.02
+
+   
+   
 end
 
 -- The function that will go to the main menu 
 local function gotoMainMenu()
-    composer.gotoScene( "main_menu" )
+    composer.gotoScene("menu")
 end
 
 -----------------------------------------------------------------------------------------
@@ -59,16 +63,18 @@ function scene:create( event )
     display.setDefault("background", 0, 0, 0)
 
     -- Insert the beetleship image
-    beetleship = display.newImageRect("Images/CompanyLogoFerdous@2x.png", 200, 200)
+    companyLogo = display.newImageRect("Images/CompanyLogoFerdous@2x.png", 200, 200)
+    companyLogo.isVisible = false
 
     -- set the initial x and y position of the beetleship
-    beetleship.x = 100
-    beetleship.y = display.contentHeight/2
+    companyLogo.x = 500
+    companyLogo.y = display.contentHeight/2
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( beetleship )
+    sceneGroup:insert( companyLogo )
 
 end -- function scene:create( event )
+
 
 --------------------------------------------------------------------------------------------
 
@@ -93,14 +99,15 @@ function scene:show( event )
         -- start the splash screen music
 
         -- Call the moveBeetleship function as soon as we enter the frame.
-        Runtime:addEventListener("enterFrame", moveBeetleship)
+        Runtime:addEventListener("enterFrame", logoEntry)
 
         -- Go to the main menu screen after the given time.
-        timer.performWithDelay ( 3000, gotoMainMenu)          
+        timer.performWithDelay (3000 )
         
     end
+end
 
-end --function scene:show( event )
+--function scene:show( event )
 
 -----------------------------------------------------------------------------------------
 
