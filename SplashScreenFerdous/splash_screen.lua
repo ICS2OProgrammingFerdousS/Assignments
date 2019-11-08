@@ -16,8 +16,8 @@ sceneName = "splash_screen"
 -------------------------------------------------------------------------------------------------
 --backgroundColor
 ------------------------------------------------------------------------------------------------
-local  bacgroundImage = display.newImageRect("Images/background.png", 2048, 1536)
 
+display.setDefault("background", 0.7, 1, 1)
 
 -----------------------------------------------------------------------------------------
 
@@ -45,8 +45,12 @@ local function logoEntry()
     companyLogo.yScale = companyLogo.yScale + 0.02
    
 end
+
+local function movingLogo()
+    companyLogo.x = companyLogo.x + scrollXSpeed
+    end
 -- The function that will go to the main menu 
-local function gotoMainMenu()
+local function gotoMenu()
     composer.gotoScene( "main_menu" )
 end
 -------------------------------------------------------------------------------
@@ -95,17 +99,13 @@ function scene:show( event )
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
-        timer.performWithDelay (4500, gotoMainMenu)
 
-        -- start the splash screen music
-         backgroundSoundChennal = audio.play(backgroundSound )
-
-
-        -- Call the moveBeetleship function as soon as we enter the frame.
-        Runtime:addEventListener("enterFrame", logoEntry)
-
-        -- Go to the main menu screen after the given time.
-
+ -- start the splash screen music
+   backgroundSoundChennal = audio.play(backgroundSound )
+-- Call the moveBeetleship function as soon as we enter the frame.
+  Runtime:addEventListener("enterFrame", logoEntry )
+ -- Go to the main menu screen after the given time.
+   timer.performWithDelay (4500, gotoMenu)
     end
 end
 
@@ -147,23 +147,19 @@ function scene:destroy( event )
     local sceneGroup = self.view
 
     -----------------------------------------------------------------------------------------
+   end
 
-
-    -- Called prior to the removal of scene's view ("sceneGroup").
-    -- Insert code here to clean up the scene.
-    -- Example: remove display objects, save state, etc.
-end -- function scene:destroy( event )
+    -- function scene:destroy( event )
 
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS
 -----------------------------------------------------------------------------------------
 
--- Adding Event Listeners
+--Adding Event Listeners
 scene:addEventListener( "create", scene )
 scene:addEventListener( "show", scene )
 scene:addEventListener( "hide", scene )
 scene:addEventListener( "destroy", scene )
 
 -----------------------------------------------------------------------------------------
-
 return scene

@@ -6,6 +6,8 @@
  ---- Use Composer Library
 local composer = require( "composer" )
 
+display.setDefault("background", 0.2, 1, 1)
+
 -----------------------------------------------------------------------------------------
 
 -- Use Widget Library
