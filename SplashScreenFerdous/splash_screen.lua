@@ -13,6 +13,11 @@ local composer = require( "composer" )
 
 -- Name the Scene
 sceneName = "splash_screen"
+-------------------------------------------------------------------------------------------------
+--backgroundColor
+------------------------------------------------------------------------------------------------
+local  bacgroundImage = display.newImageRect("Images/background.png", 2048, 1536)
+
 
 -----------------------------------------------------------------------------------------
 
@@ -35,20 +40,16 @@ local backgroundSound = audio.loadSound("Sounds/simon.wav")
 
 -- The function that moves the beetleship across the screen
 local function logoEntry()
-    companyLogo.isVisible= true
+--scalling the image 
     companyLogo.xScale = companyLogo.xScale + 0.02 
     companyLogo.yScale = companyLogo.yScale + 0.02
-
-   
    
 end
-
 -- The function that will go to the main menu 
 local function gotoMainMenu()
-    composer.gotoScene("main_menu")
+    composer.gotoScene( "main_menu" )
 end
-
------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
 
@@ -63,7 +64,6 @@ function scene:create( event )
 
     -- Insert the beetleship image
     companyLogo = display.newImageRect("Images/CompanyLogoFerdous@2x.png", 200, 200)
-    companyLogo.isVisible = false
 
     -- set the initial x and y position of the beetleship
     companyLogo.x = 500
@@ -95,6 +95,8 @@ function scene:show( event )
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
+        timer.performWithDelay (4500, gotoMainMenu)
+
         -- start the splash screen music
          backgroundSoundChennal = audio.play(backgroundSound )
 
@@ -103,8 +105,7 @@ function scene:show( event )
         Runtime:addEventListener("enterFrame", logoEntry)
 
         -- Go to the main menu screen after the given time.
-        timer.performWithDelay (4500, gotoMainMenu)
-        
+
     end
 end
 
@@ -132,6 +133,7 @@ function scene:hide( event )
     elseif ( phase == "did" ) then
         
         -- stop the jungle sounds channel for this screen
+
     end
 
 end --function scene:hide( event )

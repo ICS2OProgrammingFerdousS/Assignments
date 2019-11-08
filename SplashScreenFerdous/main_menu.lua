@@ -20,7 +20,7 @@ local scene = composer.newScene( mainMenu )
  local companyLogo = display.newImageRect("Images/CompanyLogoFerdous@2x.png", 800, 800)
  companyLogo.x = 500
  companyLogo.y = 400
- function scene:show( event )
+  function scene:show( event )
 
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
