@@ -38,7 +38,7 @@ local backgroundSound = audio.loadSound("Sounds/simon.wav")
 -- The function that moves the beetleship across the screen
 local function logoEntry()
 --scalling the image 
-    companyLogo.xScale = companyLogo.xScale + 0.12
+    companyLogo.xScale = companyLogo.xScale + 0.11
     companyLogo.yScale = companyLogo.yScale + 0.12
 end
 
