@@ -1,7 +1,4 @@
 
-
-
---
 ---- Title: splash screen
 -- Name: Ferdous Sediqi
 -- Course: ICS2O
@@ -17,12 +14,12 @@ sceneName = "splash_screen"
 --backgroundColor
 ------------------------------------------------------------------------------------------------
 
-display.setDefault("background", 0.7, 1, 1)
 
 -----------------------------------------------------------------------------------------
 
 -- Create Scene Object
 local scene = composer.newScene( sceneName )
+
 
 ----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
@@ -30,8 +27,8 @@ local scene = composer.newScene( sceneName )
  
 -- The local variables for this scene
 local companyLogo
-local scrollXSpeed = 1
-local scrollYSpeed = 1
+local scrollXSpeed = 100
+local scrollYSpeed = 100
 local backgroundSound = audio.loadSound("Sounds/simon.wav")
 
 --------------------------------------------------------------------------------------------
@@ -42,8 +39,7 @@ local backgroundSound = audio.loadSound("Sounds/simon.wav")
 local function logoEntry()
 --scalling the image 
     companyLogo.xScale = companyLogo.xScale + 0.02 
-    companyLogo.yScale = companyLogo.yScale + 0.02
-   
+    companyLogo.yScale = companyLogo.yScale + 0.02 
 end
 
 local function movingLogo()
@@ -105,7 +101,7 @@ function scene:show( event )
 -- Call the moveBeetleship function as soon as we enter the frame.
   Runtime:addEventListener("enterFrame", logoEntry )
  -- Go to the main menu screen after the given time.
-   timer.performWithDelay (4500, gotoMenu)
+   timer.performWithDelay (4500, hide)
     end
 end
 
@@ -133,6 +129,7 @@ function scene:hide( event )
     elseif ( phase == "did" ) then
         
         -- stop the jungle sounds channel for this screen
+        Runtime:removeEventListener("enterFrame", logoEntry)
 
     end
 

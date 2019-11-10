@@ -6,7 +6,7 @@
  ---- Use Composer Library
 local composer = require( "composer" )
 
-display.setDefault("background", 0.2, 1, 1)
+display.setDefault("background", 200, 200, 200)
 
 -----------------------------------------------------------------------------------------
 
