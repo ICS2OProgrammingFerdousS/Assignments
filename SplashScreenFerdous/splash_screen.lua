@@ -38,8 +38,8 @@ local backgroundSound = audio.loadSound("Sounds/simon.wav")
 -- The function that moves the beetleship across the screen
 local function logoEntry()
 --scalling the image 
-    companyLogo.xScale = companyLogo.xScale + 0.02 
-    companyLogo.yScale = companyLogo.yScale + 0.02 
+    companyLogo.xScale = companyLogo.xScale + 0.12
+    companyLogo.yScale = companyLogo.yScale + 0.12
 end
 
 local function movingLogo()
@@ -101,7 +101,7 @@ function scene:show( event )
 -- Call the moveBeetleship function as soon as we enter the frame.
   Runtime:addEventListener("enterFrame", logoEntry )
  -- Go to the main menu screen after the given time.
-   timer.performWithDelay (4500, hide)
+   timer.performWithDelay (4500)
     end
 end
 
