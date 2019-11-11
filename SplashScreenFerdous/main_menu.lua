@@ -4,22 +4,19 @@
 -- in This this assigment i will make a splash screen that shows the game company logo
 
  ---- Use Composer Library
-local composer = require( "composer" )
+ local composer = require( "composer" )
 
-display.setDefault("background", 0, 0, 0)
+ display.setDefault("background", 0, 0, 0)
 
 -----------------------------------------------------------------------------------------
 
 -- Use Widget Library
-local widget = require( "widget" )
+ local widget = require( "widget" )
 
 -----------------------------------------------------------------------------------------
 
-local scene = composer.newScene( mainMenu )
+  local scene = composer.newScene( mainMenu )
 
-
-
- 
   function scene:show( event )
 
     -- Creating a group that associates objects with the scene
@@ -34,20 +31,16 @@ local scene = composer.newScene( mainMenu )
     -- Called when the scene is still off screen (but is about to come on screen).   
     if ( phase == "will" ) then
 
-        -- The function that will go to the main menu 
-
-    -----------------------------------------------------------------------------------------
-
+    -- The function that will go to the main menu 
+  -----------------------------------------------------------------------------------------
     -- Called when the scene is now on screen.
-    elseif ( phase == "did" ) then
-
-    -- Insert code here to make the scene come alive.
-    -- Example: start timers, begin animation, play audio, etc.     
+    elseif ( phase == "did" ) then     
 
     end
 
-end -- function scene:show( event )
-
+end 
+-------------------------------------------------------------------------------------------
+-- function scene:show( event )
 -----------------------------------------------------------------------------------------
 
 -- The function called when the scene is issued to leave the screen
