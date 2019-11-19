@@ -24,7 +24,7 @@ local composer = require( "composer" )
 
 -- Go to the intro screen
 composer.gotoScene( "splash_screen")
- display.setDefault("background", 0.5, 0.7, 1)
+display.setDefault("background", 0.5, 0.7, 1)
 
 
 

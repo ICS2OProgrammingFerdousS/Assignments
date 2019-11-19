@@ -16,47 +16,43 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 local scene = composer.newScene( mainMenu )
-
-
-
  
-  function scene:show( event )
+function scene:show( event )
 
-    -- Creating a group that associates objects with the scene
+-- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
-    -----------------------------------------------------------------------------------------
-
+-----------------------------------------------------------------------------------------
     local phase = event.phase
 
-    -----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
-    -- Called when the scene is still off screen (but is about to come on screen).   
+-- Called when the scene is still off screen (but is about to come on screen).   
     if ( phase == "will" ) then
 
-        -- The function that will go to the main menu 
+-- The function that will go to the main menu 
 
-    -----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
-    -- Called when the scene is now on screen.
+-- Called when the scene is now on screen.
     elseif ( phase == "did" ) then
 
-    -- Insert code here to make the scene come alive.
-    -- Example: start timers, begin animation, play audio, etc.     
+-- Insert code here to make the scene come alive.
+-- Example: start timers, begin animation, play audio, etc.     
 
     end
 
-end -- function scene:show( event )
+    end -- function scene:show( event )
 
 -----------------------------------------------------------------------------------------
 
 -- The function called when the scene is issued to leave the screen
 function scene:hide( event )
 
-    -- Creating a group that associates objects with the scene
+-- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
-    -----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
     local phase = event.phase
 
@@ -73,7 +69,7 @@ function scene:hide( event )
         -- Called immediately after scene goes off screen.
     end
 
-end -- function scene:hide( event )
+    end -- function scene:hide( event )
 
 -----------------------------------------------------------------------------------------
 
@@ -88,7 +84,6 @@ function scene:destroy( event )
     -- Example: remove display objects, save state, etc.
 
 end -- function scene:destroy( event )
-
 
 scene:addEventListener( "create", scene )
 scene:addEventListener( "show", scene )
