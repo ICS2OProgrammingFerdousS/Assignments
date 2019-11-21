@@ -20,19 +20,20 @@ local soundEffect = audio.loadSound("Sounds/B.wav")
 local soundEffectChannel
 
 -- adding click sound
-local clickSound = audio.loadSound("Sounds/PopSound.wp3.wav")
+--local clickSound = audio.loadSound("Sounds/PopSound.wp3.wav")
+--local clickSoundChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 local transitionOption = ({
         effect="zoomOutInRotate",
-        time = 1000
+        time = 500
 })
 
 local  function BackTransition( )
     composer.gotoScene( "main_menu", transitionOption)
-    local  clickSound = audio.play(clickSound)
+    --clickSoundChannel = audio.play(clickSound)
 end
 
 -----------------------------------------------------------------------------------------
@@ -46,7 +47,7 @@ function scene:create( event )
   -- BACKGROUND AND DISPLAY OBJECTS
     ------------------------------------------------------------------------------------
 -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImageRect("Images/Instructions Screen.png", display.contentWidth, display.contentHeight)
+    bkg_image = display.newImageRect("Images/InstructionsScreenAlex@2x.png", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
@@ -67,8 +68,8 @@ backButton = widget.newButton(
     width = 150,
     height = 70,
 -- Setting Visual Properties
-    defaultFile = "Images/Back Button Unpressed.png",
-    overFile = "Images/Back Button Pressed.png",
+    defaultFile = "Images/BackButtonUnPressedAlex@2x.png",
+    overFile = "Images/BackButtonPressedAlex@2.png",
  -- Setting Functional Properties
     onRelease = BackTransition
 } )
@@ -92,8 +93,7 @@ function scene:show( event )
        -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-    timer.performWithDelay(2000, HideCorrect)
-    end
+ end
 end -- function scene:show( event )
 
 -----------------------------------------------------------------------------------------

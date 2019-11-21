@@ -4,7 +4,7 @@ local composer = require( "composer" )
 local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 -- Naming Scene
-sceneName = "credits_screen"
+sceneName = "Credit"
 -- Creating Scene Object
 scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
 -----------------------------------------------------------------------------------------
@@ -23,11 +23,11 @@ local clickSound = audio.loadSound("Sounds/PopSound.wp3.wav")
 -- Creating Transitioning Function back to main menu
 local transitionOption =({
 	effect="fromRight",
-    time = 1000
+    time = 500
 })
 local function BackTransition( )
-	composer.gotoScene( "main_menu", {effect = "zoomOutInFadeRotate", time = 500})
-    local  clickSound = audio.play(clickSound)
+	composer.gotoScene( "main_menu", transitionOption)
+   -- local  clickSound = audio.play(clickSound)
 end
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -40,7 +40,7 @@ function scene:create( event )
  -- BACKGROUND AND DISPLAY OBJECTS
 -----------------------------------------------------------------------------------------
 -- Insert the background image and set it to the center of the screen
-	bkg_image = display.newImageRect("Images/CreditsScreenFerdous@2x(1).png", display.contentWidth, display.contentHeight)
+	bkg_image = display.newImageRect("Images/CreditsScreenFerdous@2x (1).png", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
@@ -62,8 +62,8 @@ function scene:create( event )
     width = 100,
     height = 106,
     -- Setting Visual Properties
-    defaultFile = "Images/Back Button Unpressed.png",
-    overFile = "Images/Back Button Pressed.png",
+    defaultFile = "Images/BackButtonUnPressedAlex@2x.png",
+    overFile = "Images/BackButtonPressedAlex@2x.png",
     -- Setting Functional Properties
     onRelease = BackTransition
     } )
@@ -81,7 +81,7 @@ function scene:show( event )
 	-----------------------------------------------------------------------------------------
     local phase = event.phase
     -----------------------------------------------------------------------------------------
-    if ( phase == "will" ) the
+    if ( phase == "will" ) then
  -- Called when the scene is still off screen (but is about to come on screen).
  -----------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
@@ -109,7 +109,7 @@ function scene:hide( event )
 
     if ( phase == "will" ) then
         --stpping the function the backgroundMusic after scene
-        backgroundMusic = audio.stop()
+        --backgroundMusic = audio.stop()
         
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
@@ -119,6 +119,7 @@ function scene:hide( event )
 
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
+        audio.stop(backgroundMusicChannel)
     end
 
 end --function scene:hide( event )
@@ -127,18 +128,15 @@ end --function scene:hide( event )
 
 -- The function called when the scene is issued to be destroyed
 function scene:destroy( event )
-
-    -- Creating a group that associates objects with the scene
+-- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
     -----------------------------------------------------------------------------------------
-
-
     -- Called prior to the removal of scene's view ("sceneGroup").
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
-
-end --function scene:destroy( event )
+    end
+--function scene:destroy( event )
 
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS

@@ -21,6 +21,7 @@ local companyLogo
 local scrollXSpeed = 10
 local scrollYSpeed = 10
 local backgroundSound = audio.loadSound("Sounds/simon.wav")
+local backgroundSoundChannel
 
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -33,11 +34,11 @@ local function logoEntry()
 end
 
 local function movingLogo()
-companyLogo.x = companyLogo.x + scrollXSpeed
+	companyLogo.x = companyLogo.x + scrollXSpeed
 end
 -- The function that will go to the main menu 
 local function gotoMenu()
-composer.gotoScene( "main_menu" )
+	composer.gotoScene( "main_menu" )
 end
 -------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -73,7 +74,7 @@ function scene:show( event )
 ----------------------------------------------------------------------------------------
 	elseif ( phase == "did" ) then
 	-- start the splash screen music
-	backgroundSoundChennal = audio.play(backgroundSound )
+	backgroundSoundChannel = audio.play(backgroundSound )
 	-- Call the moveBeetleship function as soon as we enter the frame.
 	Runtime:addEventListener("enterFrame", logoEntry )
 	-- timer for function duration
@@ -96,6 +97,9 @@ function scene:hide( event )
 -- Called immediately after scene goes off screen.
 	elseif ( phase == "did" ) then
 -- stop the jungle sounds channel for this screen
+		Runtime:removeEventListener("enterFrame", logoEntry )
+		audio.stop(backgroundSoundChannel)
+
 	end
 end --function scene:hide( event )
 
