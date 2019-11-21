@@ -40,7 +40,7 @@ function scene:create( event )
  -- BACKGROUND AND DISPLAY OBJECTS
 -----------------------------------------------------------------------------------------
 -- Insert the background image and set it to the center of the screen
-	bkg_image = display.newImageRect("Images/Credits Screen.png", display.contentWidth, display.contentHeight)
+	bkg_image = display.newImageRect("Images/CreditsScreenFerdous@2x(1).png", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth

@@ -79,7 +79,7 @@ function scene:show( event )
 	-- timer for function duration
 	timer.performWithDelay (3500, gotoMenu)
 	end
-	end
+end
  ------------------------------------------------------------------------------------
 --function scene:show( event )
 ----------------------------------------------------------------------
@@ -96,9 +96,8 @@ function scene:hide( event )
 -- Called immediately after scene goes off screen.
 	elseif ( phase == "did" ) then
 -- stop the jungle sounds channel for this screen
-	Runtime:removeEventListener("enterFrame", logoEntry)
 	end
-	end --function scene:hide( event )
+end --function scene:hide( event )
 
 -----------------------------------------------------------------------------------------
 
@@ -107,7 +106,7 @@ function scene:destroy( event )
 -- Creating a group that associates objects with the scene
 	local sceneGroup = self.view
  -----------------------------------------------------------------------------------------
- 	end
+ end
 -----------------------------------------------------------------------------------------
 	-- EVENT LISTENERS
 -----------------------------------------------------------------------------------------
