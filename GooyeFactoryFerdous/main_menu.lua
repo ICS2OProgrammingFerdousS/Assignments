@@ -48,7 +48,7 @@ end
 
  --Creating Transition to Level1 Screen
 local function Level1ScreenTransition( )
-    composer.gotoScene( "level1_screen", {effect = "fromLeft", time = 1000})
+    composer.gotoScene( "Level1_screen", {effect = "fromLeft", time = 1000})
     clickSoundChannel = audio.play(clickSound)
 
 end   
