@@ -15,7 +15,7 @@ scene = composer.newScene( sceneName )
 local bkg_image
 local backButton
 -- adding background sound
-local soundEffect = audio.loadSound("Sounds/B.wav")
+local soundEffect = audio.loadSound("Sounds/Hoot.wav")
 local soundEffectChannel
 
 -----------------------------------------------------------------------------------------
@@ -87,7 +87,7 @@ function scene:show( event )
      -------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
         -- display background sound
-    soundEffectChannel = audio.play(soundEffect, {channel = 1, loops = -1})
+    soundEffectChannel = audio.play(soundEffect, {channels = 1, loops = -1})
        
     end
 end -- function scene:show( event )

@@ -27,8 +27,6 @@ local instructionsButton
 -- backgroundSound
 local sound = audio.loadSound("Sounds/TABL.wav")
 local soundChannel
-local clickSound = audio.loadSound("Sounds/PopSound.wp3.wav")
-local clickSoundChannel
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -169,9 +167,10 @@ function scene:hide( event )
 -----------------------------------------------------------------------------------------
     if ( phase == "will" ) then
 -- stoping the backgroundSound
-        sound = audio.stop()
+        --sound = audio.stop()
 
     elseif ( phase == "did" ) then
+
     end
 end 
 

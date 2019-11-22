@@ -18,7 +18,6 @@ local backButton
 local backgroundMusic = audio.loadSound("Sounds/T3.wav")
 local backgroundMusicChannel
 -- adding click sound
-local clickSound = audio.loadSound("Sounds/PopSound.wp3.wav")
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -29,7 +28,7 @@ local transitionOption =({
 })
 local function BackTransition( )
 	composer.gotoScene( "main_menu", transitionOption)
-   -- local  clickSound = audio.play(clickSound)
+
 end
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -64,7 +63,7 @@ function scene:create( event )
     width = 100,
     height = 106,
     -- Setting Visual Properties
-    defaultFile = "Images/BackButtonUnPressedAlex@2x.png",
+    defaultFile = "Images/backButtonUnpressedAlex@2x.png",
     overFile = "Images/BackButtonPressedAlex@2x.png",
     -- Setting Functional Properties
     onRelease = BackTransition
@@ -83,11 +82,11 @@ function scene:show( event )
     local phase = event.phase
     -----------------------------------------------------------------------------------------
     if ( phase == "will" ) then
- -- Called when the scene is still off screen (but is about to come on screen).
+ -- Called when the scene is still off Bscreen (but is about to come on screen).
  -----------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
      --display backgroundMusic
-    backgroundMusicChannel = audio.play(backgroundMusic, {channels = -1, loops = -1})
+    backgroundMusicChannel = audio.play(backgroundMusic, {channels = 1, loops = -1})
 
     end
 end 
@@ -104,10 +103,12 @@ function scene:hide( event )
     if ( phase == "will" ) then
         --stpping the function the backgroundMusic after scene
 	backgroundMusic = audio.stop()
-        
+
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
-        audio.stop(backgroundMusicChannel)
+       -- audio.stop(backgroundMusicChannel)
+       	soundChannel = audio.play(sound)
+
     end
 end 
 

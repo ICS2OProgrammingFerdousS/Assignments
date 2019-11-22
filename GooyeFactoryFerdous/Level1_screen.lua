@@ -68,7 +68,7 @@ function scene:create( event )
     width = 100,
     height = 106,
     -- Setting Visual Properties
-    defaultFile = "Images/BackButtonUnPressedAlex@2x.png",
+    defaultFile = "Images/backButtonUnpressedAlex@2x.png",
     overFile = "Images/BackButtonPressedAlex@2x.png",
     -- Setting Functional Properties
     onRelease = BackTransition
@@ -94,7 +94,7 @@ function scene:show( event )
 -----------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
 -- start the splash screen music
-        backgroundSoundChannel = audio.play(backgroundSound)   
+        backgroundSoundChannel = audio.play(backgroundSound, {channels = 1, loops = -1})   
     end
 
 end 
