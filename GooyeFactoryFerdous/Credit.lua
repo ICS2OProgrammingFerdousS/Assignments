@@ -1,12 +1,14 @@
--- Ferdous
---assingment
+--Title: splash screen
+-- Name: Ferdous Sediqi
+-- Course: ICS2O
+-- in This this assigment i will make a main menu, instructio, and level 1 screen.
 local composer = require( "composer" )
 local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 -- Naming Scene
 sceneName = "Credit"
 -- Creating Scene Object
-scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
+scene = composer.newScene( sceneName ) 
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
@@ -69,8 +71,7 @@ function scene:create( event )
     } )
 -----------------------------------------------------------------------------------------
 -- Associating Buttons with this scene
-	sceneGroup:insert( backButton )
-    
+	sceneGroup:insert( backButton ) 
 end 
 --function scene:create( event )
 
@@ -87,55 +88,38 @@ function scene:show( event )
     elseif ( phase == "did" ) then
      --display backgroundMusic
     backgroundMusicChannel = audio.play(backgroundMusic, {channels = -1, loops = -1})
--- Called when the scene is now on screen.
--- Insert code here to make the scene come alive.
--- Example: start timers, begin animation, play audio, etc.
+
     end
-end -- function scene:show( event )
+end 
 
 -----------------------------------------------------------------------------------------
-
 -- The function called when the scene is issued to leave the screen
 function scene:hide( event )
 
-    -- Creating a group that associates objects with the scene
-    local sceneGroup = self.view
-
-    -----------------------------------------------------------------------------------------
-
+-- Creating a group that associates objects with the scene
+	local sceneGroup = self.view
+ -----------------------------------------------------------------------------------------
     local phase = event.phase
-
-    -----------------------------------------------------------------------------------------
-
+ -----------------------------------------------------------------------------------------
     if ( phase == "will" ) then
         --stpping the function the backgroundMusic after scene
-        --backgroundMusic = audio.stop()
+	backgroundMusic = audio.stop()
         
-        -- Called when the scene is on screen (but is about to go off screen).
-        -- Insert code here to "pause" the scene.
-        -- Example: stop timers, stop animation, stop audio, etc.
-
-    -----------------------------------------------------------------------------------------
-
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
         audio.stop(backgroundMusicChannel)
     end
-
-end --function scene:hide( event )
+end 
 
 -----------------------------------------------------------------------------------------
 
--- The function called when the scene is issued to be destroyed
+-- The function called when the scene is  to be destroyed
 function scene:destroy( event )
 -- Creating a group that associates objects with the scene
-    local sceneGroup = self.view
+	local sceneGroup = self.view
+-----------------------------------------------------------------------------------------
+end
 
-    -----------------------------------------------------------------------------------------
-    -- Called prior to the removal of scene's view ("sceneGroup").
-    -- Insert code here to clean up the scene.
-    -- Example: remove display objects, save state, etc.
-    end
 --function scene:destroy( event )
 
 -----------------------------------------------------------------------------------------

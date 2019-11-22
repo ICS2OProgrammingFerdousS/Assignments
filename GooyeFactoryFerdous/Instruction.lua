@@ -1,7 +1,7 @@
----- Ferdous Sediqi
---assignment
---This is the credits page, displaying a back button to the main menu.
--- Use Composer Libraries
+--Title: splash screen
+-- Name: Ferdous Sediqi
+-- Course: ICS2O
+-- in This this assigment i will make a main menu, instructio, and level 1 screen.
 local composer = require( "composer" )
 local widget = require( "widget" )
 -- Naming Scene
@@ -14,26 +14,21 @@ scene = composer.newScene( sceneName )
 -----------------------------------------------------------------------------------------
 local bkg_image
 local backButton
-
 -- adding background sound
 local soundEffect = audio.loadSound("Sounds/B.wav")
 local soundEffectChannel
-
--- adding click sound
---local clickSound = audio.loadSound("Sounds/PopSound.wp3.wav")
---local clickSoundChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 local transitionOption = ({
-        effect="zoomOutInRotate",
-        time = 500
+    effect="zoomOutInRotate",
+    time = 500
 })
 
 local  function BackTransition( )
     composer.gotoScene( "main_menu", transitionOption)
-    --clickSoundChannel = audio.play(clickSound)
+    soundChannel = audio.play()
 end
 
 -----------------------------------------------------------------------------------------
@@ -68,7 +63,7 @@ backButton = widget.newButton(
     width = 150,
     height = 70,
 -- Setting Visual Properties
-    defaultFile = "Images/backButtonUnPressedAlex@2x.png",
+    defaultFile = "Images/backButtonUnpressedAlex@2x.png",
     overFile = "Images/BackButtonPressedAlex@2x.png",
  -- Setting Functional Properties
     onRelease = BackTransition
@@ -76,6 +71,9 @@ backButton = widget.newButton(
 
 -- Associating Buttons with this scene
 sceneGroup:insert( backButton )
+------------------------------------------------------------------------------------
+--global FUNCTIONS
+------------------------------------------------------------------------------------
     
 -- The function called when the scene is issued to appear on screen
 function scene:show( event )
@@ -90,10 +88,8 @@ function scene:show( event )
     elseif ( phase == "did" ) then
         -- display background sound
     soundEffectChannel = audio.play(soundEffect, {channel = 1, loops = -1})
-       -- Called when the scene is now on screen.
-        -- Insert code here to make the scene come alive.
-        -- Example: start timers, begin animation, play audio, etc.
- end
+       
+    end
 end -- function scene:show( event )
 
 -----------------------------------------------------------------------------------------
@@ -109,23 +105,18 @@ function scene:hide( event )
      -- stop the sound after scene gone 
     soundEffect = audio.stop()
         -- Called when the scene is on screen (but is about to go off screen).
-        -- Insert code here to "pause" the scene.
-        -- Example: stop timers, stop animation, stop audio, etc.
+        
 ----------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
     end
-end --function scene:hide( event )
-
------------------------------------------------------------------------------------------
+end 
 
 -- The function called when the scene is issued to be destroyed
 function scene:destroy( event )
  -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
     -- Called prior to the removal of scene's view ("sceneGroup").
-    -- Insert code here to clean up the scene.
-    -- Example: remove display objects, save state, etc.
     end --function scene:destroy( event )
 end
 -----------------------------------------------------------------------------------------
