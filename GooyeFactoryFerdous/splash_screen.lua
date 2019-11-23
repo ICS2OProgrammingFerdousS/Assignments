@@ -93,12 +93,13 @@ function scene:hide( event )
 	local phase = event.phase
 -----------------------------------------------------------------------------------------
 	if ( phase == "will" ) then  
+	audio.stop(backgroundSoundChannel)
+
 -----------------------------------------------------------------------------------------
 -- Called immediately after scene goes off screen.
 	elseif ( phase == "did" ) then
 -- stop the jungle sounds channel for this screen
 		Runtime:removeEventListener("enterFrame", logoEntry )
-		audio.stop(backgroundSoundChannel)
 
 	end
 end --function scene:hide( event )
