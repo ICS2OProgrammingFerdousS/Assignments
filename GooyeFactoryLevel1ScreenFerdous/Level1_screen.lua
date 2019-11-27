@@ -1,130 +1,132 @@
+--Title: splash screen/MainMenue
+-- Name: Ferdous Sediqi
+-- Course: ICS2O
+-- in This this assigment i will make a main menu, instructio, and level 1 screen.
+-----------------------------------------------------------------------------------------
+-- Use Composer Library
 local composer = require( "composer" )
 local widget = require( "widget" )
 
+-- Name the Scene
+sceneName = "Level1_screen"
+scene = composer.newScene(sceneName)
+--------------------------------------------------------------------------------
+--local sounds
+---------------------------------------------------------------------------------
+local backgroundSound = audio.loadSound("Sounds/Hoot.wav")
+local backgroundSoundChannel
 -----------------------------------------------------------------------------------------
-
--- Naming Scene
-sceneName = "level1_screen"
-
------------------------------------------------------------------------------------------
-
--- Creating Scene Object
+-- Create Scene Object
 local scene = composer.newScene( sceneName )
-
------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
------------------------------------------------------------------------------------------
-
+----------------------------------------------------------------------------------------- 
 -- The local variables for this scene
-local bkg_image
+local beetleship
+local scrollXSpeed = 10
+local scrollYSpeed = -5
+local jungleSounds = audio.loadSound("Sounds/animals144.mp3")
+local jungleSoundsChannel
+--------------------------------------------------------------------------------------------
+-- LOCAL FUNCTIONS
+--------------------------------------------------------------------------------------------
+-- The function that will go to the main menu 
+local transitionOption =({
+    effect="zoomOutInRotate",
+    time = 500
+})
+local function BackTransition()
+    composer.gotoScene( "main_menu", transitionOption )
+end
 
--- background sound
-local soundEffect = audio.loadSound("Sounds/UGH1.wav")
-local soundEffectChannel
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
 
 -- The function called when the screen doesn't exist
 function scene:create( event )
-
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
-
-    -----------------------------------------------------------------------------------------
-
-    -- Insert the background image
-    bkg_image = display.newImageRect("Images/IMG_1803.png", display.contentWidth, display.contentHeight)
+    -- set the background to be black
+    bkg_image = display.newImageRect("Images/IMG_1803.JPG", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
-
+    -- Associating display objects with this scene 
+    sceneGroup:insert( bkg_image )
     -- Send the background image to the back layer so all other objects can be on top
     bkg_image:toBack()
-
-        -- Insert background image into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( bkg_image )    
-
-end --function scene:create( event )
-
 -----------------------------------------------------------------------------------------
+-- BUTTON WIDGETS
+-----------------------------------------------------------------------------------------
+   -- Creating Back Button
+    backButton = widget.newButton( 
+   {
+        -- Setting Position
+    x = display.contentWidth*1/8,
+    y = display.contentHeight*15/16,
+    -- Setting Dimensions
+    width = 100,
+    height = 106,
+    -- Setting Visual Properties
+    defaultFile = "Images/BackButtonUnpressedAlex@2x.png",
+    overFile = "Images/BackButtonPressedAlex@2x.png",
+    -- Setting Functional Properties
+    onRelease = BackTransition
+    } )
+-----------------------------------------------------------------------------------------
+-- Associating Buttons with this scene
+    sceneGroup:insert( backButton )
+    
+end 
+ -- function scene:create( event )
+
+--------------------------------------------------------------------------------------------
 
 -- The function called when the scene is issued to appear on screen
 function scene:show( event )
-
-    -- Creating a group that associates objects with the scene
+-- Creating a group that associates objects with the scene
     local sceneGroup = self.view
+-----------------------------------------------------------------------------------------
     local phase = event.phase
-
-    -----------------------------------------------------------------------------------------
-
+-----------------------------------------------------------------------------------------
+-- Called when the scene is still off screen (but is about to come on screen).
     if ( phase == "will" ) then
-
-        -- Called when the scene is still off screen (but is about to come on screen).
-        local transitionOption = ({
-        effect="fromLeft",
-        time = 1000
-   })
-    function BackTransition( )
-    composer.gotoScene( "main_menu", transitionOption)
-    end
-    -----------------------------------------------------------------------------------------
-
+-----------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
-        --displaying background sound
-        soundEffectChannel = audio.play(soundEffect, {channel = 1, loops = -1})
-
-        -- Called when the scene is now on screen.
-        -- Insert code here to make the scene come alive.
-        -- Example: start timers, begin animation, play audio, etc.
-
+-- start the splash screen music
+        backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1})   
     end
 
-end --function scene:show( event )
-
+end 
 -----------------------------------------------------------------------------------------
 
 -- The function called when the scene is issued to leave the screen
 function scene:hide( event )
-
-    -- Creating a group that associates objects with the scene
+-- Creating a group that associates objects with the scene
     local sceneGroup = self.view
     local phase = event.phase
 
     -----------------------------------------------------------------------------------------
-
-    if ( phase == "will" ) then
-        --stoping sound
-        soundEffect = audio.stop()
-        -- Called when the scene is on screen (but is about to go off screen).
-        -- Insert code here to "pause" the scene.
-        -- Example: stop timers, stop animation, stop audio, etc.
-
-    -----------------------------------------------------------------------------------------
-
+    if ( phase == "will" ) then  
+-----------------------------------------------------------------------------------------
+-- Called immediately after scene goes off screen.
     elseif ( phase == "did" ) then
-        -- Called immediately after scene goes off screen.
+        backgroundSoundChannel = audio.stop()
+
+-- stop the jungle sounds channel for this screen
     end
 
 end --function scene:hide( event )
 
 -----------------------------------------------------------------------------------------
-
 -- The function called when the scene is issued to be destroyed
 function scene:destroy( event )
-
-    -- Creating a group that associates objects with the scene
+-- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
-    -----------------------------------------------------------------------------------------
-
-    -- Called prior to the removal of scene's view ("sceneGroup").
-    -- Insert code here to clean up the scene.
-    -- Example: remove display objects, save state, etc.
-
-end -- function scene:destroy( event )
-
+end 
 -----------------------------------------------------------------------------------------
 -- EVENT LISTENERS
 -----------------------------------------------------------------------------------------
@@ -138,4 +140,3 @@ scene:addEventListener( "destroy", scene )
 -----------------------------------------------------------------------------------------
 
 return scene
-

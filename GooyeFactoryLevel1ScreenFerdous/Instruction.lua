@@ -63,7 +63,7 @@ backButton = widget.newButton(
     width = 150,
     height = 70,
 -- Setting Visual Properties
-    defaultFile = "Images/backButtonUnpressedAlex@2x.png",
+    defaultFile = "Images/BackButtonUnpressedAlex@2x.png",
     overFile = "Images/BackButtonPressedAlex@2x.png",
  -- Setting Functional Properties
     onRelease = BackTransition

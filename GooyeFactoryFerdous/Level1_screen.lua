@@ -13,8 +13,8 @@ scene = composer.newScene(sceneName)
 --------------------------------------------------------------------------------
 --local sounds
 ---------------------------------------------------------------------------------
-local backgroundSound = audio.loadSound("Sounds/Hoot.wav")
-local backgroundSoundChannel
+local backSound = audio.loadSound("Sounds/Hoot.wav")
+local backSoundChannel
 -----------------------------------------------------------------------------------------
 -- Create Scene Object
 local scene = composer.newScene( sceneName )
@@ -25,8 +25,6 @@ local scene = composer.newScene( sceneName )
 local beetleship
 local scrollXSpeed = 10
 local scrollYSpeed = -5
-local jungleSounds = audio.loadSound("Sounds/animals144.mp3")
-local jungleSoundsChannel
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
@@ -70,7 +68,7 @@ function scene:create( event )
     width = 100,
     height = 106,
     -- Setting Visual Properties
-    defaultFile = "Images/BackButtonUnpressedAlex@2x.png",
+    defaultFile = "Images/backButtonUnpressedAlex@2x.png",
     overFile = "Images/BackButtonPressedAlex@2x.png",
     -- Setting Functional Properties
     onRelease = BackTransition
@@ -96,7 +94,7 @@ function scene:show( event )
 -----------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
 -- start the splash screen music
-        backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1})   
+        backSoundChannel = audio.play(backSound, {channel = 4, loops = -1})   
     end
 
 end 
@@ -113,7 +111,7 @@ function scene:hide( event )
 -----------------------------------------------------------------------------------------
 -- Called immediately after scene goes off screen.
     elseif ( phase == "did" ) then
-        backgroundSoundChannel = audio.stop()
+        backSoundChannel = audio.stop()
 
 -- stop the jungle sounds channel for this screen
     end
