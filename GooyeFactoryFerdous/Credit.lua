@@ -88,7 +88,7 @@ function scene:show( event )
  -----------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
      --display backgroundMusic
-    backgroundMusicChannel = audio.play(backgroundMusic, {channel = 2, loops = -1})
+        backgroundMusicChannel = audio.play(backgroundMusic, {channel = 2, loops = -1})
 
     end
 end 

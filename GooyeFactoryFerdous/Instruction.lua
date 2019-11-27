@@ -87,7 +87,7 @@ function scene:show( event )
      -------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
         -- display background sound
-    soundEffectChannel = audio.play(soundEffect, {channel = 3, loops = -1})
+        soundEffectChannel = audio.play(soundEffect, {channel = 3, loops = -1})
        
     end
 end -- function scene:show( event )
@@ -106,7 +106,7 @@ function scene:hide( event )
      -- Called when the scene is on screen (but is about to go off screen).
         
 ----------------------------------------------------------------------------------
-    elseif ( phase == "did" ) then
+     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
         soundEffectChannel = audio.stop()
     end
