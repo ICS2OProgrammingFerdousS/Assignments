@@ -28,7 +28,7 @@ local transitionOption = ({
 
 local  function BackTransition( )
     composer.gotoScene( "main_menu", transitionOption)
-    soundChannel = audio.play()
+   -- soundChannel = audio.play()
 end
 
 -----------------------------------------------------------------------------------------
@@ -103,8 +103,7 @@ function scene:hide( event )
 -------------------------------------------------------------------------------------
     if ( phase == "will" ) then
      -- stop the sound after scene gone 
-    soundEffect = audio.stop()
-        -- Called when the scene is on screen (but is about to go off screen).
+     -- Called when the scene is on screen (but is about to go off screen).
         
 ----------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
