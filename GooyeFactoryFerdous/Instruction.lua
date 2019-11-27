@@ -10,7 +10,7 @@ sceneName = "Instruction"
 scene = composer.newScene( sceneName )
  -- This function doesn't accept a string, only 
 -----------------------------------------------------------------------------------------
--- LOCAL VARIABLES
+-- LOCAL Sounds
 -----------------------------------------------------------------------------------------
 local bkg_image
 local backButton
@@ -87,7 +87,7 @@ function scene:show( event )
      -------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
         -- display background sound
-    soundEffectChannel = audio.play(soundEffect, {channels = 1, loops = -1})
+    soundEffectChannel = audio.play(soundEffect, {channel = 3, loops = -1})
        
     end
 end -- function scene:show( event )
@@ -109,6 +109,7 @@ function scene:hide( event )
 ----------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
+        soundEffectChannel = audio.stop()
     end
 end 
 

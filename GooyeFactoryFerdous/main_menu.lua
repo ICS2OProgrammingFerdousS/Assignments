@@ -170,6 +170,7 @@ function scene:hide( event )
         --sound = audio.stop()
 
     elseif ( phase == "did" ) then
+        soundChannel = audio.stop()
 
     end
 end 

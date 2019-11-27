@@ -10,7 +10,9 @@ local widget = require( "widget" )
 -- Name the Scene
 sceneName = "Level1_screen"
 scene = composer.newScene(sceneName)
--- background sound effect
+--------------------------------------------------------------------------------
+--local sounds
+---------------------------------------------------------------------------------
 local backgroundSound = audio.loadSound("Sounds/Hoot.wav")
 local backgroundSoundChannel
 -----------------------------------------------------------------------------------------
@@ -94,7 +96,7 @@ function scene:show( event )
 -----------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
 -- start the splash screen music
-        backgroundSoundChannel = audio.play(backgroundSound, {channels = 1, loops = -1})   
+        backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1})   
     end
 
 end 
@@ -108,10 +110,11 @@ function scene:hide( event )
 
     -----------------------------------------------------------------------------------------
     if ( phase == "will" ) then  
-        backgroundSound = audio.stop()
 -----------------------------------------------------------------------------------------
 -- Called immediately after scene goes off screen.
     elseif ( phase == "did" ) then
+        backgroundSoundChannel = audio.stop()
+
 -- stop the jungle sounds channel for this screen
     end
 

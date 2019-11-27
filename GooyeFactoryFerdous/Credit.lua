@@ -14,7 +14,9 @@ scene = composer.newScene( sceneName )
 -----------------------------------------------------------------------------------------
 local bkg_image
 local backButton
--- Adding background sound to the scene
+-----------------------------------------------------------------------
+--local Sounds
+---------------------------------------------------------------------------------------
 local backgroundMusic = audio.loadSound("Sounds/T3.wav")
 local backgroundMusicChannel
 -- adding click sound
@@ -86,7 +88,7 @@ function scene:show( event )
  -----------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
      --display backgroundMusic
-    backgroundMusicChannel = audio.play(backgroundMusic, {channels = 1, loops = -1})
+    backgroundMusicChannel = audio.play(backgroundMusic, {channel = 2, loops = -1})
 
     end
 end 
@@ -102,13 +104,11 @@ function scene:hide( event )
  -----------------------------------------------------------------------------------------
     if ( phase == "will" ) then
         --stpping the function the backgroundMusic after scene
-	backgroundMusic = audio.stop()
 
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
        -- audio.stop(backgroundMusicChannel)
-       	soundChannel = audio.play(sound)
-
+        backgroundMusicChannel = audio.stop()
     end
 end 
 
