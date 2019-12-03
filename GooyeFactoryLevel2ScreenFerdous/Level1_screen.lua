@@ -48,7 +48,7 @@ function scene:create( event )
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
     -- set the background to be black
-    bkg_image = display.newImageRect("Images/IMG_1803.JPG", display.contentWidth, display.contentHeight)
+    bkg_image = display.newImageRect("Images/Level1ScreenAlex.png", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
@@ -75,9 +75,41 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = BackTransition
     } )
+   
 -----------------------------------------------------------------------------------------
 -- Associating Buttons with this scene
     sceneGroup:insert( backButton )
+
+    butter_image = display.newImageRect("Images/butter.png", display.contentWidth, display.contentHeight)
+    butter_image.x = 960
+    butter_image.y = 310
+    butter_image.width = 100
+    butter_image.height = 100
+
+    sceneGroup:insert( butter_image )
+
+    egg_image = display.newImageRect("Images/eggs.png", display.contentWidth, display.contentHeight)
+    egg_image.x = 960
+    egg_image.y = 410
+    egg_image.width = 100
+    egg_image.height = 100
+    sceneGroup:insert(egg_image)
+
+    sugar_image = display.newImageRect("Images/sugar.png", display.contentWidth, display.contentHeight)
+    sugar_image.x = 960
+    sugar_image.y = 500
+    sugar_image.width = 100
+    sugar_image.height = 100
+    sceneGroup:insert(sugar_image)
+
+    flour_image = display.newImageRect("Images/flour.png", display.contentWidth, display.contentHeight)
+    flour_image.x = 960
+    flour_image.y = 225
+    flour_image.width = 100
+    flour_image.height = 100
+    sceneGroup:insert(flour_image)
+
+
     
 end 
  -- function scene:create( event )
