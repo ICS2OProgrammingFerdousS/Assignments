@@ -28,6 +28,11 @@ local bowl_image
 local flour_image
 local sugar_image
 
+local totalSeconds = 60
+local secondsLeft = 60
+local clockText
+local countDownTimer
+
 local touchChocolate = false
 local touchButter = false
 local touchFlour = false
@@ -167,7 +172,21 @@ local function movingFlour(touch)
         end
       end
     end
+local function UpdateTime( )
+    secondsLeft = secondsLeft - 1
+    clockText.text = secondsLeft .. ""
+    if(secondsLeft == 0)then
+        secondsLeft = totalSeconds
+    end
+end
+
+  local  function startTimer( )
+      countDownTimer = timer.performWithDelay(1000, UpdateTime, 0)
+ 
+      
+    end
       local function AddAnswerBoxEventListeners()
+
         chocolate_image:addEventListener("touch", movingChocolate)
         butter_image:addEventListener("touch", movingButter)
         egg_image:addEventListener("touch", movingEggs)
@@ -194,8 +213,14 @@ end
 
 -- The function called when the screen doesn't exist
 function scene:create( event )
+
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
+   clockText= display.newText(secondsLeft, display.contentWidth/7, display.contentHeight/7, nil, 50)
+   clockText.x = 30
+   clockText.y = 45
+   sceneGroup:insert(clockText)
+
     -- set the background to be black
     bkg_image = display.newImageRect("Images/Level1ScreenAlex.png", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentCenterX
@@ -291,7 +316,7 @@ function scene:show( event )
     elseif ( phase == "did" ) then
 -- start the splash screen music
         AddAnswerBoxEventListeners()
-
+        startTimer()
         backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1}) 
     end
 
