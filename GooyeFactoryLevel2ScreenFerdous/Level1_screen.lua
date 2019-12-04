@@ -22,9 +22,6 @@ local scene = composer.newScene( sceneName )
 -- LOCAL VARIABLES
 ----------------------------------------------------------------------------------------- 
 -- The local variables for this scene
-local beetleship
-local scrollXSpeed = 10
-local scrollYSpeed = -5
 local chocolate_image
 local egg_image
 local bowl_image
