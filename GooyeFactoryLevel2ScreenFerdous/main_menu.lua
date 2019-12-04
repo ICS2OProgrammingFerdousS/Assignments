@@ -40,7 +40,7 @@ end
 
  --Creating Transition to Level1 Screen
 local function Level1ScreenTransition( )
-    composer.gotoScene( "Level1_screen", {effect = "fromRight", time = 1000})
+    composer.gotoScene( "Level1_screen", {effect = "fromRight", time = 500})
     clickSoundChannel = audio.play(clickSound)
 end   
 -----------------------------------------------------------------------------------------
@@ -85,7 +85,7 @@ function scene:create( event )
          height = 70,
          -- Insert the images here
          defaultFile = "Images/PlayButtonUnpressedAlex@2x.png", 150, 100,
-         overFile = "Images/PlayButtonUnpressedAlex@2x.png", 150, 100,
+         overFile = "Images/PlayButtonPressedAlex@2x.png", 150, 100,
          --
          -- When the button is released, call the Level1 screen transition function
          onRelease = Level1ScreenTransition    

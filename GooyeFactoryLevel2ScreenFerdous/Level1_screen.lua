@@ -72,6 +72,18 @@ local function movingChocolate(touch)
         -- this occurs when they release the mouse
         elseif (touch.phase == "ended") then
             touchChocolate = false
+            if (((bowl_image.x - bowl_image.width/1) < chocolate_image.x ) and
+                ((bowl_image.x + bowl_image.width/2) > chocolate_image.x ) and 
+                ((bowl_image.y - bowl_image.height/2) < chocolate_image.y ) and 
+                ((bowl_image.y + bowl_image.height/2) > chocolate_image.y ) ) then
+
+                -- setting the position of the number to be in the center of the box
+                chocolate_image.x = bowl_image.x
+                chocolate_image.y = bowl_image.y
+                chocolate_image.isVisible = false
+
+            end
+               
             chocolate_image.x = 960
             chocolate_image.y = 130
               -- if the number is dragged into the userAnswerBox, place it in the center of it
@@ -96,6 +108,18 @@ local function movingChocolate(touch)
 
         elseif (touch.phase == "ended") then
             touchButter = false
+            if (((bowl_image.x - bowl_image.width/1) < butter_image.x ) and
+                ((bowl_image.x + bowl_image.width/2) > butter_image.x ) and 
+                ((bowl_image.y - bowl_image.height/2) < butter_image.y ) and 
+                ((bowl_image.y + bowl_image.height/2) > butter_image.y ) ) then
+
+                -- setting the position of the number to be in the center of the box
+                butter_image.x = bowl_image.x
+                butter_image.y = bowl_image.y
+                butter_image.isVisible = false
+
+            end
+              
             butter_image.x = 960
             butter_image.y = 310
 
@@ -129,6 +153,8 @@ local function movingEggs(touch)
                 -- setting the position of the number to be in the center of the box
                 egg_image.x = bowl_image.x
                 egg_image.y = bowl_image.y
+                egg_image.isVisible = false
+
             end
                 egg_image.x = 960
                 egg_image.y = 410
@@ -160,11 +186,20 @@ local function movingFlour(touch)
 
         elseif (touch.phase == "ended") then
             touchFlour = false
+             if (((bowl_image.x - bowl_image.width/1) < flour_image.x ) and
+                ((bowl_image.x + bowl_image.width/2) > flour_image.x ) and 
+                ((bowl_image.y - bowl_image.height/2) < flour_image.y ) and 
+                ((bowl_image.y + bowl_image.height/2) > flour_image.y ) ) then
+
+                -- setting the position of the number to be in the center of the box
+                flour_image.x = bowl_image.x
+                flour_image.y = bowl_image.y
+                flour_image.isVisible = false
+
+        end
             flour_image.x = 960
             flour_image.y = 225
-            flour_image.x = bowl_image.x
-            flour_image.y = bowl_image.y
-            bowl_image = flour_image
+
             wrongFlourTouch = wrongFlourTouch + 1
             if(wrongFlourTouch == 2)then
                 composer.gotoScene("You_Win")
@@ -191,6 +226,17 @@ local function movingFlour(touch)
 
         elseif (touch.phase == "ended") then
             touchSugar = false
+             if (((bowl_image.x - bowl_image.width/1) < sugar_image.x ) and
+                ((bowl_image.x + bowl_image.width/2) > sugar_image.x ) and 
+                ((bowl_image.y - bowl_image.height/2) < sugar_image.y ) and 
+                ((bowl_image.y + bowl_image.height/2) > sugar_image.y ) ) then
+
+                -- setting the position of the number to be in the center of the box
+                sugar_image.x = bowl_image.x
+                sugar_image.y = bowl_image.y
+                sugar_image.isVisible = false
+
+          end
             sugar_image.x = 960
             sugar_image.y = 500
         end
@@ -201,6 +247,9 @@ local function UpdateTime( )
     clockText.text = secondsLeft .. ""
     if(secondsLeft == 0)then
         secondsLeft = totalSeconds
+        composer.gotoScene("You_Lose")
+
+
     end
 end
 
@@ -209,6 +258,7 @@ end
  
       
     end
+
       local function AddAnswerBoxEventListeners()
 
         chocolate_image:addEventListener("touch", movingChocolate)
@@ -281,8 +331,8 @@ function scene:create( event )
     bowl_image =display.newImageRect("Images/bowlPlaceholder.png", display.contentWidth, display.contentHeight) 
     bowl_image.x = 400
     bowl_image.y = 380
-    bowl_image.width = 200
-    bowl_image.height = 200
+    bowl_image.width = 150
+    bowl_image.height = 150
     sceneGroup:insert(bowl_image)
 
 
@@ -321,6 +371,7 @@ function scene:create( event )
     chocolate_image.width = 90
     chocolate_image.height = 50
     sceneGroup:insert(chocolate_image)
+    secondsLeft = totalSeconds
    
 end 
  -- function scene:create( event )
