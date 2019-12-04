@@ -38,6 +38,7 @@ local touchButter = false
 local touchFlour = false
 local touchEggs = false
 local touchSugar = false
+local wrongFlourTouch = 0
 
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -120,14 +121,28 @@ local function movingEggs(touch)
 
         elseif (touch.phase == "ended") then
             touchEggs = false
-            egg_image.x = 960
-            egg_image.y = 410
+            if (((bowl_image.x - bowl_image.width/1) < egg_image.x ) and
+                ((bowl_image.x + bowl_image.width/2) > egg_image.x ) and 
+                ((bowl_image.y - bowl_image.height/2) < egg_image.y ) and 
+                ((bowl_image.y + bowl_image.height/2) > egg_image.y ) ) then
+
+                -- setting the position of the number to be in the center of the box
+                egg_image.x = bowl_image.x
+                egg_image.y = bowl_image.y
+            end
+                egg_image.x = 960
+                egg_image.y = 410
+
+
+
+
+           
 
             -- if the box is in the userAnswerBox Placeholder  go to center of placeholder
          
       end
       end
-        end
+    end
 
 local function movingFlour(touch)
     --only work if none of the other boxes have been touched
@@ -147,8 +162,17 @@ local function movingFlour(touch)
             touchFlour = false
             flour_image.x = 960
             flour_image.y = 225
+            flour_image.x = bowl_image.x
+            flour_image.y = bowl_image.y
+            bowl_image = flour_image
+            wrongFlourTouch = wrongFlourTouch + 1
+            if(wrongFlourTouch == 2)then
+                composer.gotoScene("You_Win")
+
+
         end
       end
+    end
     end
 
     local function movingSugar(touch)
@@ -222,7 +246,7 @@ function scene:create( event )
    sceneGroup:insert(clockText)
 
     -- set the background to be black
-    bkg_image = display.newImageRect("Images/Level1ScreenAlex.png", display.contentWidth, display.contentHeight)
+    bkg_image = display.newImageRect("Images/level2_screenFerdous.png", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
@@ -255,8 +279,8 @@ function scene:create( event )
     sceneGroup:insert( backButton )
 
     bowl_image =display.newImageRect("Images/bowlPlaceholder.png", display.contentWidth, display.contentHeight) 
-    bowl_image.x = 600
-    bowl_image.y = 430
+    bowl_image.x = 400
+    bowl_image.y = 380
     bowl_image.width = 200
     bowl_image.height = 200
     sceneGroup:insert(bowl_image)
