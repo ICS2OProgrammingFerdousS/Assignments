@@ -13,7 +13,7 @@ scene = composer.newScene(sceneName)
 --------------------------------------------------------------------------------
 --local sounds
 ---------------------------------------------------------------------------------
-local backgroundSound = audio.loadSound("Sounds/Hoot.wav")
+local backgroundSound = audio.loadSound("Sounds/Let it Go .mp3")
 local backgroundSoundChannel
 -----------------------------------------------------------------------------------------
 -- Create Scene Object
@@ -25,8 +25,18 @@ local scene = composer.newScene( sceneName )
 local beetleship
 local scrollXSpeed = 10
 local scrollYSpeed = -5
-local jungleSounds = audio.loadSound("Sounds/animals144.mp3")
-local jungleSoundsChannel
+local chocolate_image
+local egg_image
+local bowl_image
+local flour_image
+local sugar_image
+
+local touchChocolate = false
+local touchButter = false
+local touchFlour = false
+local touchEggs = false
+local touchSugar = false
+
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
@@ -38,6 +48,148 @@ local transitionOption =({
 local function BackTransition()
     composer.gotoScene( "main_menu", transitionOption )
 end
+
+local function movingChocolate(touch)
+    --only work if none of the other boxes have been touched
+    if (touchButter == false) and 
+        (touchEggs == false) then
+
+        if (touch.phase == "began") then
+
+            --let other boxes know it has been clicked
+            touchChocolate = true
+          
+
+        --drag the answer to follow the mouse
+        elseif (touch.phase == "moved") then
+            
+            chocolate_image.x = touch.x
+            chocolate_image.y = touch.y
+
+        -- this occurs when they release the mouse
+        elseif (touch.phase == "ended") then
+            touchChocolate = false
+            chocolate_image.x = 960
+            chocolate_image.y = 130
+              -- if the number is dragged into the userAnswerBox, place it in the center of it
+                
+            
+        end
+        end
+    end
+    local function movingButter(touch)
+    --only work if none of the other boxes have been touched
+    if (touchSugar == false) and 
+        ( touchFlour == false) then
+
+        if (touch.phase == "began") then
+            --let other boxes know it has been clicked
+            touchButter = true
+            
+        elseif (touch.phase == "moved") then
+            --dragging function
+            butter_image.x = touch.x
+            butter_image.y = touch.y
+
+        elseif (touch.phase == "ended") then
+            touchButter = false
+            butter_image.x = 960
+            butter_image.y = 310
+
+            -- if the box is in the userAnswerBox Placeholder  go to center of placeholder
+         
+      end
+      end
+        end
+
+local function movingEggs(touch)
+    --only work if none of the other boxes have been touched
+    if (touchChocolate == false) and 
+        ( touchButter == false) then
+
+        if (touch.phase == "began") then
+            --let other boxes know it has been clicked
+            touchEggs = true
+            
+        elseif (touch.phase == "moved") then
+            --dragging function
+            egg_image.x = touch.x
+            egg_image.y = touch.y
+
+        elseif (touch.phase == "ended") then
+            touchEggs = false
+            egg_image.x = 960
+            egg_image.y = 410
+
+            -- if the box is in the userAnswerBox Placeholder  go to center of placeholder
+         
+      end
+      end
+        end
+
+local function movingFlour(touch)
+    --only work if none of the other boxes have been touched
+    if (touchChocolate == false) and 
+        ( touchEggs == false) then
+
+        if (touch.phase == "began") then
+            --let other boxes know it has been clicked
+            touchFlour = true
+            
+        elseif (touch.phase == "moved") then
+            --dragging function
+            flour_image.x = touch.x
+            flour_image.y = touch.y
+
+        elseif (touch.phase == "ended") then
+            touchFlour = false
+            flour_image.x = 960
+            flour_image.y = 225
+        end
+      end
+    end
+
+    local function movingSugar(touch)
+    --only work if none of the other boxes have been touched
+    if (touchChocolate == false) and 
+        ( touchFlour == false) then
+
+        if (touch.phase == "began") then
+            --let other boxes know it has been clicked
+            touchSugar = true
+            
+        elseif (touch.phase == "moved") then
+            --dragging function
+            sugar_image.x = touch.x
+            sugar_image.y = touch.y
+
+        elseif (touch.phase == "ended") then
+            touchSugar = false
+            sugar_image.x = 960
+            sugar_image.y = 500
+        end
+      end
+    end
+      local function AddAnswerBoxEventListeners()
+        chocolate_image:addEventListener("touch", movingChocolate)
+        butter_image:addEventListener("touch", movingButter)
+        egg_image:addEventListener("touch", movingEggs)
+        flour_image:addEventListener("touch", movingFlour)
+        sugar_image:addEventListener("touch", movingSugar)
+
+end 
+
+-- Function that Removes Listeners to each answer box
+local function RemoveAnswerBoxEventListeners()
+    chocolate_image:removeEventListener("touch", movingChocolate)
+    egg_image:removeEventListener("touch", movingButter)
+    egg_image:removeEventListener("touch", movingEggs)
+    flour_image:removeEventListener("touch", movingFlour)
+    sugar_image:removeEventListener("touch", movingSugar)
+
+end 
+
+
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -80,6 +232,14 @@ function scene:create( event )
 -- Associating Buttons with this scene
     sceneGroup:insert( backButton )
 
+    bowl_image =display.newImageRect("Images/bowlPlaceholder.png", display.contentWidth, display.contentHeight) 
+    bowl_image.x = 600
+    bowl_image.y = 430
+    bowl_image.width = 200
+    bowl_image.height = 200
+    sceneGroup:insert(bowl_image)
+
+
     butter_image = display.newImageRect("Images/butter.png", display.contentWidth, display.contentHeight)
     butter_image.x = 960
     butter_image.y = 310
@@ -109,8 +269,13 @@ function scene:create( event )
     flour_image.height = 100
     sceneGroup:insert(flour_image)
 
-
-    
+    chocolate_image = display.newImageRect("Images/Chocolate.png", display.contentWidth, display.contentHeight)
+    chocolate_image.x = 960
+    chocolate_image.y = 130
+    chocolate_image.width = 90
+    chocolate_image.height = 50
+    sceneGroup:insert(chocolate_image)
+   
 end 
  -- function scene:create( event )
 
@@ -128,7 +293,9 @@ function scene:show( event )
 -----------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
 -- start the splash screen music
-        backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1})   
+        AddAnswerBoxEventListeners()
+
+        backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1}) 
     end
 
 end 
@@ -146,7 +313,7 @@ function scene:hide( event )
 -- Called immediately after scene goes off screen.
     elseif ( phase == "did" ) then
         backgroundSoundChannel = audio.stop()
-
+        RemoveAnswerBoxEventListeners()
 -- stop the jungle sounds channel for this screen
     end
 
