@@ -25,14 +25,6 @@ local scene = composer.newScene( sceneName )
 -- The local variables for this scene
 local questionText
 
-local firstNumber
-local secondNumber
-
-local answer
-local wrongAnswer1
-local wrongAnswer2
-local wrongAnswer3
-
 local answerText 
 local wrongAnswerText1
 local wrongAnswerText2
@@ -64,22 +56,22 @@ end
 -----------------------------------------------------------------------------------------
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerAnswer(touch)
-    userAnswer = answerText.text
+    
     
     if (touch.phase == "ended") then
 
-        BackToLevel1( )
+        
     
     end 
 end
 
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerWrongAnswer(touch)
-    userAnswer = wrongText1.text
+    
     
     if (touch.phase == "ended") then
         
-        BackToLevel1( )
+            
         
         
     end 
@@ -87,20 +79,20 @@ end
 
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerWrongAnswer2(touch)
-    userAnswer = wrongText2.text
+    
     
     if (touch.phase == "ended") then
 
-        BackToLevel1( )
+        
         
     end 
 end
 local function TouchListenerWrongAnswer3(touch)
-    userAnswer = wrongText3.text
+    
     
     if (touch.phase == "ended") then
 
-        BackToLevel1( )
+        
         
     end 
 end
@@ -127,9 +119,11 @@ local function RemoveTextListeners()
 end
 
 local function DisplayQuestion()
-    
-    --creating the question depending on the selcetion number
-    questionText.text = "What color is the sky?"
+    local randomQuestion = math.random (1,2)
+
+    if (randomQuestion == 1) then
+        --creating the question depending on the selcetion number
+        questionText.text = "What color is the sky?"
 
     --creating answer text from list it corispondes with the animals list
     answerText.text = "Blue"
@@ -138,6 +132,18 @@ local function DisplayQuestion()
     wrongText1.text = "Green"
     wrongText2.text = "Yellow"
     wrongText3.text = "Purple"
+        elseif (randomQuestion == 2) then
+    --creating the question depending on the selcetion number
+        questionText.text = "What color is the sky?"
+
+    --creating answer text from list it corispondes with the animals list
+    answerText.text = "Blue"
+    
+    --creating wrong answers
+    wrongText1.text = "Green"
+    wrongText2.text = "Yellow"
+    wrongText3.text = "Purple"
+        end
 end
 
 local function PositionAnswers()
@@ -155,6 +161,7 @@ local function PositionAnswers()
         
         wrongText2.x = X1
         wrongText2.y = Y2
+
         wrongText3.x = X2
         wrongText3.y = Y2
 
