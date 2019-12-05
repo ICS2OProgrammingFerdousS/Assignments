@@ -10,14 +10,19 @@ local widget = require( "widget" )
 -- Name the Scene
 sceneName = "Level1_screen"
 scene = composer.newScene(sceneName)
+
+-----------------------------------------------------------------------------------------
+-- Create Scene Object
+local scene = composer.newScene( sceneName )
+
 --------------------------------------------------------------------------------
 --local sounds
 ---------------------------------------------------------------------------------
 local backgroundSound = audio.loadSound("Sounds/Let it Go .mp3")
 local backgroundSoundChannel
------------------------------------------------------------------------------------------
--- Create Scene Object
-local scene = composer.newScene( sceneName )
+
+
+
 ----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 ----------------------------------------------------------------------------------------- 
@@ -26,6 +31,7 @@ local totalSeconds = 60
 local secondsLeft = 60
 local clockText
 local countDownTimer
+
 --variables for the touch of the objects
 local touchChocolate = false
 local touchButter = false
@@ -33,12 +39,14 @@ local touchFlour = false
 local touchEggs = false
 local touchSugar = false
 local wrongFlourTouch = 0
+
 --variables for the questions
 local answerTextObject 
 local wrongAnswer1TextObject
 local wrongAnswer2TextObject
 local wrongAnswer3TextObject
 local wrongAnswer4TextObject
+
 local answer 
 local wrongAnswer1
 local wrongAnswer2
@@ -58,40 +66,49 @@ local transitionOption =({
 local function BackTransition()
     composer.gotoScene( "main_menu", transitionOption )
 end
+
 local function gotoYouWin( ... )
     composer.gotoScene("You_Win", transitionOption)
 end
 
 local function movingChocolate(touch)
 
-    if (touchButter == false) and 
-        (touchEggs == false) then
+    if (touchButter == false) and (touchEggs == false) then
+
         if (touch.phase == "began") then
-  --boolean for click the gredian
+            --boolean for click the gredian
             touchChocolate = true
+
         --drag the objects to follow the mouse
-    elseif (touch.phase == "moved") then
-        chocolate_image.x = touch.x
-        chocolate_image.y = touch.y
--- this occurs when they release the mouse
-    elseif (touch.phase == "ended") then
-        touchChocolate = false
-        if (((bowl_image.x - bowl_image.width/1) < chocolate_image.x ) and
-           ((bowl_image.x + bowl_image.width/2) > chocolate_image.x ) and 
-           ((bowl_image.y - bowl_image.height/2) < chocolate_image.y ) and 
-           ((bowl_image.y + bowl_image.height/2) > chocolate_image.y ) ) then
--- setting the position of the chocolate to be in the center of the box
-            chocolate_image.x = bowl_image.x
-            chocolate_image.y = bowl_image.y
-            chocolate_image.isVisible = false
-            checkMark2.isVisible = true
-            smallChocolate.isVisible = true
-        end
-        chocolate_image.x = 960
-        chocolate_image.y = 130
+        elseif (touch.phase == "moved") then
+            chocolate_image.x = touch.x
+            chocolate_image.y = touch.y
+
+        -- this occurs when they release the mouse
+        elseif (touch.phase == "ended") then
+
+            touchChocolate = false
+
+            if (((bowl_image.x - bowl_image.width/1) < chocolate_image.x ) and
+            ((bowl_image.x + bowl_image.width/2) > chocolate_image.x ) and 
+            ((bowl_image.y - bowl_image.height/2) < chocolate_image.y ) and 
+            ((bowl_image.y + bowl_image.height/2) > chocolate_image.y ) ) then
+
+                -- setting the position of the chocolate to be in the center of the box
+                chocolate_image.x = bowl_image.x
+                chocolate_image.y = bowl_image.y
+
+                chocolate_image.isVisible = false                
+                checkMark2.isVisible = true
+                smallChocolate.isVisible = true
+            end
+
+            chocolate_image.x = 960
+            chocolate_image.y = 130
         end
     end
 end
+
 local function movingButter(touch)
 --only work if none of the other objects have been touched
     if (touchSugar == false) and 
