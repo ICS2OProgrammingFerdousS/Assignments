@@ -21,6 +21,8 @@ local bkg_image
 local playButton
 local creditsButton
 local instructionsButton
+
+--VARIABLES for questions 
 -----------------------------------------------------------------------------------------
 -- LOCAL SOUNDS
 -----------------------------------------------------------------------------------------
@@ -40,7 +42,7 @@ end
 
  --Creating Transition to Level1 Screen
 local function Level1ScreenTransition( )
-    composer.gotoScene( "Level1_screen", {effect = "fromRight", time = 500})
+    composer.gotoScene( "Level2_screen", {effect = "fromRight", time = 500})
     clickSoundChannel = audio.play(clickSound)
 end   
 -----------------------------------------------------------------------------------------

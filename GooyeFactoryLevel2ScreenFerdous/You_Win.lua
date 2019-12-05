@@ -17,7 +17,7 @@ local widget = require( "widget" )
 
 -----------------------------------------------------------------------------------------
 -- local variable for sound effect
-local youWinSound =  audio.loadSound("Sounds/cheer.m4a")
+local youWinSound =  audio.loadSound("Sounds/Correct.wav")
 local yowWinSoundChannel
 -- Naming Scene
 sceneName = "you_win"
@@ -99,6 +99,7 @@ function scene:hide( event )
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
+        
 --    display the sound effect
 
 end --function scene:hide( event )
@@ -111,12 +112,7 @@ function scene:destroy( event )
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
-    -----------------------------------------------------------------------------------------
-
-
-    -- Called prior to the removal of scene's view ("sceneGroup").
-    -- Insert code here to clean up the scene.
-    -- Example: remove display objects, save state, etc.
+-----------------------------------------------------------------------------------------
 
 end --function scene:destroy( event )
 

@@ -69,7 +69,7 @@ local function movingChocolate(touch)
         if (touch.phase == "began") then
   --boolean for click the gredian
             touchChocolate = true
-        --drag the answer to follow the mouse
+        --drag the objects to follow the mouse
     elseif (touch.phase == "moved") then
         chocolate_image.x = touch.x
         chocolate_image.y = touch.y
@@ -93,7 +93,7 @@ local function movingChocolate(touch)
     end
 end
 local function movingButter(touch)
---only work if none of the other boxes have been touched
+--only work if none of the other objects have been touched
     if (touchSugar == false) and 
         ( touchFlour == false) then
         if (touch.phase == "began") then
@@ -317,7 +317,7 @@ backButton = widget.newButton(
 
     bowl_image =display.newImageRect("Images/bowlPlaceholder.png", display.contentWidth, display.contentHeight) 
     bowl_image.x = 400
-    bowl_image.y = 380
+    bowl_image.y = 400
     bowl_image.width = 150
     bowl_image.height = 150
     sceneGroup:insert(bowl_image)
