@@ -15,33 +15,28 @@ local composer = require( "composer" )
 -- Use Widget Library
 local widget = require( "widget" )
 
-local scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
-sceneName = "you_win"
 
--------------------------------------------------------------------------------------------------------
+-- Creating Scene Object
+local scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
+-- Naming Scene
+sceneName = "your_cake"
+-----------------------------------------------------------------------------------------
 -- local variable for sound effect
-------------------------------------------------------------------------------------------------------
 local youWinSound =  audio.loadSound("Sounds/Correct.wav")
 local yowWinSoundChannel
-----------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------
 --local variable
------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 local bkg_image
---------------------------------------------------------------------------------------------------
---local  functions
---------------------------------------------------------------------------------------------------
-local transitionOption =({
-    effect="zoomOutInRotate",
-    time = 500
-})
+local function YouWin( )
+    composer.gotoScene( "You_Win", {effect = "fromLeft", time = 1000})
 
-local function gotoCake( ... )
-    composer.gotoScene("your_cake", transitionOption)
-
-end
+end   
 
 -- The function called when the screen doesn't exist
 function scene:create( event )
+
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
@@ -50,7 +45,7 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImage("Images/youWinFerdous@2x.png")
+    bkg_image = display.newImage("Images/CakeFerdous.png")
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
@@ -58,6 +53,7 @@ function scene:create( event )
 
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg_image )
+
 end
 -----------------------------------------------------------------------------------------
 
@@ -101,20 +97,29 @@ function scene:hide( event )
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
+                YouWin()
 
+        -- Called when the scene is on screen (but is about to go off screen).
+        -- Insert code here to "pause" the scene.
+        -- Example: stop timers, stop animation, stop audio, etc.
+
+    -----------------------------------------------------------------------------------------
 
         elseif ( phase == "did" ) then
---          display the sound effect
-            gotoCake()
+    --    display the sound effect
 
-    end --function scene:hide( event )
+end --function scene:hide( event )
 end
 -----------------------------------------------------------------------------------------
 
 -- The function called when the scene is issued to be destroyed
 function scene:destroy( event )
+
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
+
+-----------------------------------------------------------------------------------------
+
 end --function scene:destroy( event )
 
 -----------------------------------------------------------------------------------------

@@ -71,6 +71,10 @@ local function gotoYouWin( ... )
     composer.gotoScene("You_Win", transitionOption)
 end
 
+local function gotoQuestions( ... )
+    composer.gotoScene("level2_questions", transitionOption)
+end
+
 local function movingChocolate(touch)
 
     if (touchButter == false) and (touchEggs == false) then
@@ -106,160 +110,172 @@ local function movingChocolate(touch)
             chocolate_image.x = 960
             chocolate_image.y = 130
         end
+
+     if(checkMark.isVisible == true)and
+     (checkMark2.isVisible == true) and
+      (checkMark3.isVisible == true) and
+      (checkMark4.isVisible == true) and
+       (checkMark5.isVisible == true) then
+        gotoQuestions()
+   
     end
 end
-
+end
 local function movingButter(touch)
 --only work if none of the other objects have been touched
-    if (touchSugar == false) and 
-        ( touchFlour == false) then
+    if (touchSugar == false) and  ( touchFlour == false) then
         if (touch.phase == "began") then
 -- boolean to  know it has been clicked
             touchButter = true  
-    elseif (touch.phase == "moved") then
+        elseif (touch.phase == "moved") then
 --dragging function
-        butter_image.x = touch.x
-        butter_image.y = touch.y
-    elseif (touch.phase == "ended") then
-        touchButter = false
-        if (((bowl_image.x - bowl_image.width/1) < butter_image.x ) and
+            butter_image.x = touch.x
+            butter_image.y = touch.y
+        elseif (touch.phase == "ended") then
+            touchButter = false
+            if (((bowl_image.x - bowl_image.width/1) < butter_image.x ) and
             ((bowl_image.x + bowl_image.width/2) > butter_image.x ) and 
             ((bowl_image.y - bowl_image.height/2) < butter_image.y ) and 
             ((bowl_image.y + bowl_image.height/2) > butter_image.y ) ) then
 -- setting the position of butter
-            butter_image.x = bowl_image.x
-            butter_image.y = bowl_image.y
-            butter_image.isVisible = false
-            checkMark.isVisible = true
-            smallButter.isVisible = true
+                butter_image.x = bowl_image.x
+                butter_image.y = bowl_image.y
+                butter_image.isVisible = false
+                checkMark.isVisible = true
+                smallButter.isVisible = true
 
         end
-            butter_image.x = 960
-            butter_image.y = 310
+                 butter_image.x = 960
+                 butter_image.y = 310
+     end
+
+        if(checkMark.isVisible == true)and
+        (checkMark2.isVisible == true) and
+        (checkMark3.isVisible == true) and
+        (checkMark4.isVisible == true) and
+        (checkMark5.isVisible == true) then
+        gotoQuestions()
         end
     end
 end
 
 local function movingEggs(touch)
 --only work if none of the other objects have been touched
-    if (touchChocolate == false) and 
-        ( touchButter == false) then
+    if (touchChocolate == false) and ( touchButter == false) then
         if (touch.phase == "began") then
 --boolean know it has been clicked
             touchEggs = true 
-    elseif (touch.phase == "moved") then
+        elseif (touch.phase == "moved") then
 --dragging function
-        egg_image.x = touch.x
-        egg_image.y = touch.y
-    elseif (touch.phase == "ended") then
-        touchEggs = false
-        if (((bowl_image.x - bowl_image.width/1) < egg_image.x ) and
+            egg_image.x = touch.x
+            egg_image.y = touch.y
+        elseif (touch.phase == "ended") then
+            touchEggs = false
+            if (((bowl_image.x - bowl_image.width/1) < egg_image.x ) and
             ((bowl_image.x + bowl_image.width/2) > egg_image.x ) and 
             ((bowl_image.y - bowl_image.height/2) < egg_image.y ) and 
             ((bowl_image.y + bowl_image.height/2) > egg_image.y ) ) then
 -- setting the position of the objects to be in the center of the box
-            egg_image.x = bowl_image.x
-            egg_image.y = bowl_image.y
-            egg_image.isVisible = false
-            checkMark5.isVisible = true
-            smallEggs.isVisible = true
+                egg_image.x = bowl_image.x
+                egg_image.y = bowl_image.y
+                egg_image.isVisible = false
+                checkMark5.isVisible = true
+                smallEggs.isVisible = true
 
         end
             egg_image.x = 960
             egg_image.y = 410
          
-      end
+        end
+
+     if(checkMark.isVisible == true)and
+     (checkMark2.isVisible == true) and
+      (checkMark3.isVisible == true) and
+      (checkMark4.isVisible == true) and
+       (checkMark5.isVisible == true) then
+        gotoQuestions()
+   
+        end
     end
 end
 
 local function movingFlour(touch)
 --only work if none of the other objects have been touched
-    if (touchChocolate == false) and 
-        ( touchEggs == false) then
+    if (touchChocolate == false) and ( touchEggs == false) then
         if (touch.phase == "began") then
 --let other boxes know it has been clicked
             touchFlour = true       
-    elseif (touch.phase == "moved") then
+        elseif (touch.phase == "moved") then
  --dragging function
-        flour_image.x = touch.x
-        flour_image.y = touch.y
-    elseif (touch.phase == "ended") then
-        touchFlour = false
-        if (((bowl_image.x - bowl_image.width/1) < flour_image.x ) and
+            flour_image.x = touch.x
+            flour_image.y = touch.y
+        elseif (touch.phase == "ended") then
+            touchFlour = false
+            if (((bowl_image.x - bowl_image.width/1) < flour_image.x ) and
             ((bowl_image.x + bowl_image.width/2) > flour_image.x ) and 
             ((bowl_image.y - bowl_image.height/2) < flour_image.y ) and 
             ((bowl_image.y + bowl_image.height/2) > flour_image.y ) ) then
             -- setting the position of the number to be in the center of the box
-            flour_image.x = bowl_image.x
-            flour_image.y = bowl_image.y
-            flour_image.isVisible = false
-            checkMark3.isVisible = true
-            smallFlour.isVisible = true
+                flour_image.x = bowl_image.x
+                flour_image.y = bowl_image.y
+                flour_image.isVisible = false
+                checkMark3.isVisible = true
+                smallFlour.isVisible = true
 
-        end
+            end
             flour_image.x = 960
             flour_image.y = 225
-            wrongFlourTouch = wrongFlourTouch + 1
-        if(wrongFlourTouch == 2)then
-            composer.gotoScene("You_Win")
+       
         end
-        end
-    end
-end
 
-local function movingSugar(touch)
---only work if none of the other objects have been touched
-    if (touchChocolate == false) and 
-        ( touchFlour == false) then
-        if (touch.phase == "began") then
---boolean to know it has been clicked
-            touchSugar = true   
-    elseif (touch.phase == "moved") then
---dragging function
-        sugar_image.x = touch.x
-        sugar_image.y = touch.y
-    elseif (touch.phase == "ended") then
-        touchSugar = false
-        if (((bowl_image.x - bowl_image.width/1) < sugar_image.x ) and
-            ((bowl_image.x + bowl_image.width/2) > sugar_image.x ) and 
-            ((bowl_image.y - bowl_image.height/2) < sugar_image.y ) and 
-            ((bowl_image.y + bowl_image.height/2) > sugar_image.y ) ) then
--- setting the position of the sugar to be in the center of the box
-            sugar_image.x = bowl_image.x
-            sugar_image.y = bowl_image.y
-            sugar_image.isVisible = false
-            checkMark4.isVisible = true
-            smallSugar.isVisible = true
-            smallChocolate.isVisible = false
-            smallEggs.isVisible = false
-          end
-            sugar_image.x = 960
-            sugar_image.y = 500
-        end
-    end
-end
-
-local function UpdateTime( )
-    secondsLeft = secondsLeft - 1
-    clockText.text = secondsLeft .. ""
-    if(checkMark.isVisible == true)and
+     if(checkMark.isVisible == true)and
      (checkMark2.isVisible == true) and
       (checkMark3.isVisible == true) and
       (checkMark4.isVisible == true) and
        (checkMark5.isVisible == true) then
-        gotoYouWin()
+        gotoQuestions()
+   
     end
-    if(secondsLeft == 0)then
-        secondsLeft = totalSeconds
-        composer.gotoScene("You_Lose")
-
-
     end
 end
-
-local  function startTimer( )
-      countDownTimer = timer.performWithDelay(1000, UpdateTime, 0)
+local function movingSugar(touch)
+--only work if none of the other objects have been touched
+    if (touchChocolate == false) and ( touchFlour == false) then
+        if (touch.phase == "began") then
+--boolean to know it has been clicked
+            touchSugar = true   
+        elseif (touch.phase == "moved") then
+--dragging function
+            sugar_image.x = touch.x
+            sugar_image.y = touch.y
+        elseif (touch.phase == "ended") then
+            touchSugar = false
+            if (((bowl_image.x - bowl_image.width/1) < sugar_image.x ) and
+            ((bowl_image.x + bowl_image.width/2) > sugar_image.x ) and 
+            ((bowl_image.y - bowl_image.height/2) < sugar_image.y ) and 
+            ((bowl_image.y + bowl_image.height/2) > sugar_image.y ) ) then
+-- setting the position of the sugar to be in the center of the box
+                sugar_image.x = bowl_image.x
+                sugar_image.y = bowl_image.y
+                sugar_image.isVisible = false
+                checkMark4.isVisible = true
+                smallSugar.isVisible = true
+                smallChocolate.isVisible = false
+                smallEggs.isVisible = false
+            end
+            sugar_image.x = 960
+            sugar_image.y = 500
+        end
+    end
+     if(checkMark.isVisible == true)and
+     (checkMark2.isVisible == true) and
+      (checkMark3.isVisible == true) and
+      (checkMark4.isVisible == true) and
+       (checkMark5.isVisible == true) then
+        gotoQuestions()
+     end
 end
+
 
 local function AddAnswerBoxEventListeners()
     chocolate_image:addEventListener("touch", movingChocolate)
@@ -295,10 +311,7 @@ function scene:create( event )
     questionText.y = display.contentHeight * 0.6
     questionText:setTextColor(0.2, 0.4, 1)
 
-    clockText= display.newText(secondsLeft, display.contentWidth/7, display.contentHeight/7, nil, 50)
-    clockText.x = 30
-    clockText.y = 45
-    sceneGroup:insert(clockText)
+   
     -- set the background to be black
     bkg_image = display.newImageRect("Images/level2_screenFerdous.png", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentCenterX
@@ -313,7 +326,7 @@ function scene:create( event )
 -- BUTTON WIDGETS
 -----------------------------------------------------------------------------------------
    -- Creating Back Button
-backButton = widget.newButton( 
+    backButton = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/8,
@@ -507,11 +520,10 @@ function scene:show( event )
 -- Called when the scene is still off screen (but is about to come on screen).
     if ( phase == "will" ) then
 -----------------------------------------------------------------------------------------
-    elseif ( phase == "did" ) then
+        elseif ( phase == "did" ) then
 -- start the splash screen music
-        AddAnswerBoxEventListeners()
-        startTimer()
-        backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1}) 
+            AddAnswerBoxEventListeners()
+            backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1}) 
     end
 
 end 
@@ -522,17 +534,14 @@ function scene:hide( event )
 -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
     local phase = event.phase
-
-    -----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
     if ( phase == "will" ) then  
 -----------------------------------------------------------------------------------------
 -- Called immediately after scene goes off screen.
-    elseif ( phase == "did" ) then
-        backgroundSoundChannel = audio.stop()
-        RemoveAnswerBoxEventListeners()
--- stop the jungle sounds channel for this screen
+        elseif ( phase == "did" ) then
+            backgroundSoundChannel = audio.stop()
+            RemoveAnswerBoxEventListeners()
     end
-
 end --function scene:hide( event )
 
 -----------------------------------------------------------------------------------------

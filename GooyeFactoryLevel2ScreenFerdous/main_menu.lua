@@ -153,8 +153,8 @@ function scene:show( event )
  -- The function that will go to the main menu 
 ----------------------------------------------------------------------------------------
     -- Called when the scene is now on screen.
-    elseif ( phase == "did" ) then
-    soundChannel = audio.play(sound, {channel = 1, loops = -1})
+        elseif ( phase == "did" ) then
+            soundChannel = audio.play(sound, {channel = 1, loops = -1})
     end
 end -- function scene:show( event )
 
@@ -170,11 +170,9 @@ function scene:hide( event )
     if ( phase == "will" ) then
 -- stoping the backgroundSound
         --sound = audio.stop()
-
-    elseif ( phase == "did" ) then
+        elseif ( phase == "did" ) then
         soundChannel = audio.stop()
-
-    end
+     end
 end 
 
 -----------------------------------------------------------------------------------------
