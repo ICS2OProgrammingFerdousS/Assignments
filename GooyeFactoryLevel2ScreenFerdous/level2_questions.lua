@@ -289,6 +289,7 @@ function scene:create( event )
     clockText= display.newText(secondsLeft, display.contentWidth/7, display.contentHeight/7, nil, 50)
     clockText.x = 30
     clockText.y = 45
+    clockText:setTextColor(0.3, 0.3, 0.2)
     sceneGroup:insert(clockText)
     -----------------------------------------------------------------------------------------
     --covering the other scene with a rectangle so it looks faded and stops touch from going through
