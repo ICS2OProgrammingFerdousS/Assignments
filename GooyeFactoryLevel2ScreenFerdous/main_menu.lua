@@ -44,6 +44,8 @@ end
 local function Level1ScreenTransition( )
     composer.gotoScene( "Level2_screen", {effect = "fromRight", time = 500})
     clickSoundChannel = audio.play(clickSound)
+    resetScene()
+
 end   
 -----------------------------------------------------------------------------------------
 
@@ -171,7 +173,7 @@ function scene:hide( event )
 -- stoping the backgroundSound
         --sound = audio.stop()
         elseif ( phase == "did" ) then
-        soundChannel = audio.stop()
+            soundChannel = audio.stop()
      end
 end 
 

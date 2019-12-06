@@ -56,6 +56,12 @@ local wrongAnswer4
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
+--add global FUNCTION
+function resetScene( ... )
+    butter_image.x = 960
+    butter_image.y = 310
+end
+
 -- The function that will go to the main menu 
 local transitionOption =({
     effect="zoomOutInRotate",
@@ -65,6 +71,7 @@ local transitionOption =({
 
 local function BackTransition()
     composer.gotoScene( "main_menu", transitionOption )
+    resetScene()
 end
 
 local function gotoYouWin( ... )
