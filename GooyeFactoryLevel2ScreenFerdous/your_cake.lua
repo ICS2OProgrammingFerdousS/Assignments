@@ -29,10 +29,10 @@ local yowWinSoundChannel
 --local variable
 -----------------------------------------------------------------------------------------
 local bkg_image
-local function YouWin( )
+--local function YouWin( )
     composer.gotoScene( "You_Win", {effect = "fromLeft", time = 1000})
 
-end   
+--end   
 
 -- The function called when the screen doesn't exist
 function scene:create( event )
@@ -45,7 +45,7 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImage("Images/CakeFerdous.png")
+    bkg_image = display.newImage("Images/YouWinScreenAlex.png")
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
@@ -97,7 +97,7 @@ function scene:hide( event )
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
-                YouWin()
+               -- YouWin()
 
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.

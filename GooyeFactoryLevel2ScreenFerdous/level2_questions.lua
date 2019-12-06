@@ -53,8 +53,8 @@ local textTouched = false
 local totalAnswer = 0
 
 -- The local variables for the timer
-local totalSeconds = 60
-local secondsLeft = 60
+local totalSeconds = 10
+local secondsLeft = 10
 local clockText
 local countDownTimer
 
@@ -73,7 +73,7 @@ local transitionOption =({
     effect="zoomOutInRotate",
     time = 500
 })
-local function yourcake( ... )
+local function yourcake()
     composer.gotoScene("your_cake", transitionOption)
 
 end
@@ -249,6 +249,7 @@ local function UpdateTime( )
     if(secondsLeft == 0)then
         secondsLeft = totalSeconds
         composer.gotoScene("You_Lose")
+
 
 
     end
