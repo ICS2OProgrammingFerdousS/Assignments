@@ -1,8 +1,6 @@
--- Ferdous
--- credits_screen.lua
--- Created by: Daniel Lopez-Carreon
--- Date: Nov. 10th, 2019
--- Description: This is the you win screen
+--Ferdous Sediqi
+-- You_Win
+-- Description: In this scene whe display the You win screen
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
@@ -11,53 +9,56 @@
 local composer = require( "composer" )
 
 -----------------------------------------------------------------------------------------
-
 -- Use Widget Library
 local widget = require( "widget" )
 
+sceneName = "You_Win"
 local scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
-sceneName = "you_win"
 
 -------------------------------------------------------------------------------------------------------
--- local variable for sound effect
+-- Local Sounds
 ------------------------------------------------------------------------------------------------------
 local youWinSound =  audio.loadSound("Sounds/Correct.wav")
 local yowWinSoundChannel
 ----------------------------------------------------------------------------------------------------
 --local variable
 -----------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
 local bkg_image
---------------------------------------------------------------------------------------------------
---local  functions
---------------------------------------------------------------------------------------------------
+
 local transitionOption =({
     effect="zoomOutInRotate",
     time = 500
 })
-
+-----------------------------------------------------------------------------------------------------
+-- Local Functions 
+-----------------------------------------------------------------------------------------------------
 --local function gotoCake( ... )
   --  composer.gotoScene("your_cake", transitionOption)
 
 --end
+-- function for going back to main menu 
 local function BackTransition()
     composer.gotoScene( "main_menu", transitionOption )
-    composer.removeScene("Level2_screen")
 
 end
-
+-- function for going to level 2 screen
 local function gotoLevel2Screen()
     composer.gotoScene( "Level2_screen", transitionOption )
 end
-
+-- function for going to questions screen
 local function gotoQuestions()
     composer.gotoScene( "level2_questions", transitionOption )
 end
-
+---------------------------------------------------------------------------------------------------
+--Global Functions
+---------------------------------------------------------------------------------------------------
 -- The function called when the screen doesn't exist
 function scene:create( event )
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
-
     -----------------------------------------------------------------------------------------
     -- BACKGROUND AND DISPLAY OBJECTS
     -----------------------------------------------------------------------------------------
@@ -68,7 +69,7 @@ function scene:create( event )
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
-
+-- create the going back button to main menu screen 
 backButton = widget.newButton( 
     {
 -- Setting Position
@@ -83,6 +84,7 @@ backButton = widget.newButton(
     -- Setting Functional Properties
     onRelease = BackTransition
     })
+-- Creating button for going to questions screen
 backButton2 = widget.newButton( 
     {
 -- Setting Position
@@ -98,6 +100,7 @@ backButton2 = widget.newButton(
     onRelease = gotoQuestions
     })
 
+--Creating button fo going back 2 level 2 screen
 backButton3 = widget.newButton( 
     {
 -- Setting Position
@@ -113,8 +116,7 @@ backButton3 = widget.newButton(
     onRelease = gotoLevel2Screen
     })
     
-
-    -- Associating display objects with this scene 
+     -- Associating display objects with this scenes 
     sceneGroup:insert( bkg_image )
     sceneGroup:insert( backButton )
     sceneGroup:insert( backButton2 )
@@ -125,15 +127,12 @@ end
 
 -- The function called when the scene is issued to appear on screen
 function scene:show( event )
-
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
-
-    -----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
     local phase = event.phase
-
-    -----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
         -- Called when the scene is still off screen (but is about to come on screen).
@@ -144,14 +143,12 @@ function scene:show( event )
         -- display the win sound
             yowWinSoundChannel = audio.play(youWinSound)
     end
-
 end -- function scene:show( event )
 
 -----------------------------------------------------------------------------------------
 
 -- The function called when the scene is issued to leave the screen
 function scene:hide( event )
-
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
@@ -165,9 +162,7 @@ function scene:hide( event )
 
 
         elseif ( phase == "did" ) then
---          display the sound effect
-
-    end --function scene:hide( event )
+    end 
 end
 -----------------------------------------------------------------------------------------
 
@@ -178,7 +173,7 @@ function scene:destroy( event )
 end --function scene:destroy( event )
 
 -----------------------------------------------------------------------------------------
--- EVENT LISTENERS
+-- ADD EVENT LISTENERS
 -----------------------------------------------------------------------------------------
 
 -- Adding Event Listeners

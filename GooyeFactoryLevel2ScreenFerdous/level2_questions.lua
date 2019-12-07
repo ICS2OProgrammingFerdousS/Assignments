@@ -1,69 +1,64 @@
-----------------------------------------------------------------------------------------
--- INITIALIZATIONS
------------------------------------------------------------------------------------------
-
+--Ferdous
+--level2_questions screen
+--Discription: in this scene we display the questions 
 -- Use Composer Libraries
 local composer = require( "composer" )
 local widget = require( "widget" )
 local physics = require( "physics")
 
-
------------------------------------------------------------------------------------------
-
+-- Creating Scene Object
+local scene = composer.newScene( sceneName )
 -- Naming Scene
 sceneName = "level2_questions"
 
 -----------------------------------------------------------------------------------------
---local Sounds
+--Local Sounds
 ----------------------------------------------------------------------------------------
 local sound = audio.loadSound("Sounds/inspire.mp3")
 local soundChannel
 
 local popUp = audio.loadSound("Sounds/pop up2.mp3")
 local popUpChannel
--- Creating Scene Object
-local scene = composer.newScene( sceneName )
-----------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
-
--- The local variables for this scene
+-- variable for question text
 local questionText
-
-local firstNumber
-local secondNumber
-
+--variables for answers
 local answer
 local wrongAnswer1
 local wrongAnswer2
 local wrongAnswer3
-
+-- variables for answers texts
 local answerText 
 local wrongAnswerText1
 local wrongAnswerText2
 local wrongAnswerText3
-
+-- answers position variable
 local answerPosition = 1
-local bkg
-local cover
-
 local X1 = display.contentWidth*2/7
 local X2 = display.contentWidth*4/7
 local Y1 = display.contentHeight*1/2
 local Y2 = display.contentHeight*5.5/7
+-- background variables 
+local bkg
+local cover
 
 local userAnswer
+-- boolean for touching the answers
 local textTouched = false
--- variables for counting the right answer
+-- variables for counting the right answers
 local totalAnswer = 0
 
 -- The local variables for the timer
 local totalSeconds = 100
-local secondsLeft = 100
+local secondsLeft =  100
 local clockText
 local countDownTimer
+
+-- background color
+display.setDefault("background", 0.1, 0.9, 0.5)
 
 -----------------------------------------------------------------------------------------
 --LOCAL FUNCTIONS
@@ -73,23 +68,24 @@ local countDownTimer
 --local function BackToLevel1() 
   --  composer.hideOverlay("fadeOut", 1000 )
   
-  display.setDefault("background", 0.1, 0.9, 0.5)
-
 --end 
+-- transition effect variable
 local transitionOption =({
     effect="zoomOutInRotate",
     time = 500
 })
+-- function for going to you win screen
 local function yourcake()
-    composer.gotoScene("your_cake", transitionOption)
+    composer.gotoScene("You_Win", transitionOption)
 
 end
+-- FUNCTIONS for going to you lose screen
 local function youLostScreen( ... )
     composer.gotoScene("You_Lose", transitionOption)
 
 end
+-- FUNCTIONS changing the answers positions 
 local function PositionAnswers()
-
     --creating random start position in a cretain area
     answerPosition = math.random(1,4)
 
@@ -108,52 +104,53 @@ local function PositionAnswers()
         wrongText3.y = Y2
 
         
-    elseif (answerPosition == 2) then
+        elseif (answerPosition == 2) then
 
-        answerText.x = X2
-        answerText.y = Y2
+            answerText.x = X2
+            answerText.y = Y2
             
-        wrongText1.x = X1
-        wrongText1.y = Y1
+            wrongText1.x = X1
+            wrongText1.y = Y1
             
-        wrongText2.x = X2
-        wrongText2.y = Y1
+            wrongText2.x = X2
+            wrongText2.y = Y1
 
-        wrongText3.x = X1
-        wrongText3.y = Y2
+            wrongText3.x = X1
+            wrongText3.y = Y2
 
 
-    elseif (answerPosition == 3) then
+        elseif (answerPosition == 3) then
 
-        answerText.x = X2
-        answerText.y = Y1
+            answerText.x = X2
+            answerText.y = Y1
             
-        wrongText1.x = X1
-        wrongText1.y = Y2
+            wrongText1.x = X1
+            wrongText1.y = Y2
             
-        wrongText2.x = X1
-        wrongText2.y = Y1
+            wrongText2.x = X1
+            wrongText2.y = Y1
 
-        wrongText3.x = X2
-        wrongText3.y = Y2
+            wrongText3.x = X2
+            wrongText3.y = Y2
             
     
-      elseif (answerPosition == 4) then
+        elseif (answerPosition == 4) then
 
-        answerText.x = X2
-        answerText.y = Y1
+            answerText.x = X2
+            answerText.y = Y1
             
-        wrongText1.x = X1
-        wrongText1.y = Y2
+            wrongText1.x = X1
+            wrongText1.y = Y2
             
-        wrongText2.x = X1
-        wrongText2.y = Y1
+            wrongText2.x = X1
+            wrongText2.y = Y1
 
-        wrongText3.x = X2
-        wrongText3.y = Y2
+            wrongText3.x = X2
+            wrongText3.y = Y2
             
     end
 end
+-- FUNCTION for Displaying Questions
 
 local function DisplayQuestion()
     local randomQuestion = math.random (1,5)
@@ -213,9 +210,8 @@ local function DisplayQuestion()
                  --creating wrong answers
             wrongText1.text = "Maple Trees"
             wrongText2.text = "Oak Trees"
-            wrongText3.text = "Oval Trees"
-                
-        end
+            wrongText3.text = "Oval Trees"            
+    end
 end
 
 
@@ -224,62 +220,80 @@ end
 local function TouchListenerAnswer(touch)
     userAnswer = answerText.text
     if (touch.phase == "ended") then
+        -- adding the pop sound when objects touched 
         popUpChannel = audio.play(popUp)
-
         DisplayQuestion()
+        -- counting the right answer
         totalAnswer = totalAnswer + 1
+-- make condition for winning the game 
         if(totalAnswer == 5)then
             yourcake()
         end 
     end
 end
+-- FUNCTION for hidding the correct answer text
 local function HideCorrectAnswer( ... )
-    giveThenAnswer.isVisible= false
+    giveThenAnswer.isVisible = false
 end
---checking to see if the user pressed the right answer and bring them back to level 1
+
+--checking to see if the user pressed the right answer 
 local function TouchListenerWrongAnswer(touch)
     userAnswer = wrongText1.text
     if (touch.phase == "ended") then
+        -- pop sound when the objects touched
         popUpChannel = audio.play(popUp)
-
+    -- Displaying the the right answer text
         giveThenAnswer.text = "Ops wrong answer the correct \n answer is ".. answerText.text
+    --make the text Visible
         giveThenAnswer.isVisible = true
-   timer.performWithDelay(3000, youLostScreen )
-   timer.performWithDelay(2000, HideCorrectAnswer)
+    -- delaly for Displaying the you lose screen
+        timer.performWithDelay(3000, youLostScreen )
+    -- delaly for hidding the correct answer text
+        timer.performWithDelay(2000, HideCorrectAnswer)
     end 
 end
 
 
---checking to see if the user pressed the right answer and bring them back to level 1
+--checking to see if the user pressed the right answer 
 local function TouchListenerWrongAnswer2(touch)
     userAnswer = wrongText2.text
     if (touch.phase == "ended") then
+    --pop sound when the objects touched
+
         popUpChannel = audio.play(popUp)
+        -- Displaying the correct answer text if the user got wrong
         giveThenAnswer.text = "Ops wrong answer the correct \n answer is ".. answerText.text
+    -- making the correct answer text Visible
         giveThenAnswer.isVisible = true
+    -- delaly for Displaying you lose screen
         timer.performWithDelay(3000, youLostScreen )    
+-- delaly for making the correct text inVisible
         timer.performWithDelay(2000, HideCorrectAnswer)
 
     end 
 end
+-- function for 3 wrong answer
 local function TouchListenerWrongAnswer3(touch)
     userAnswer = wrongText3.text
     if (touch.phase == "ended") then
+    -- DisplayQuestion pop sound when the objects touched
         popUpChannel = audio.play(popUp)
-
+    -- Displaying the right answer text if the user got it wrong
         giveThenAnswer.text = "Ops wrong answer the correct \n answer is ".. answerText.text
+    -- making the right answer text Visible
         giveThenAnswer.isVisible = true
+    -- delaly for displying  you lose screen
         timer.performWithDelay(3000, youLostScreen )
+    -- delaly for hidding the right answer
         timer.performWithDelay(2000, HideCorrectAnswer)
 
     end 
 end
-
+-- timer counting function 
 local function UpdateTime( )
     secondsLeft = secondsLeft - 1
     clockText.text = secondsLeft .. ""
-
-   if(secondsLeft == 0)then
+    if(secondsLeft == 0)then
         secondsLeft = totalSeconds
         composer.gotoScene("You_Lose")
 
@@ -287,13 +301,13 @@ local function UpdateTime( )
 
     end
 end
-
+-- FUNCTION start the timer again
 local  function startTimer( )
-    countDownTimer = timer.performWithDelay(1000, UpdateTime, 0)
+  countDownTimer = timer.performWithDelay(1000, UpdateTime, 0)
 end
 
 
---adding the event listeners 
+--adding the event listeners to objects
 local function AddTextListeners ( )
     answerText:addEventListener( "touch", TouchListenerAnswer )
     wrongText1:addEventListener( "touch", TouchListenerWrongAnswer)
@@ -301,7 +315,7 @@ local function AddTextListeners ( )
     wrongText3:addEventListener( "touch", TouchListenerWrongAnswer3)
 end
 
---removing the event listeners
+--removing the event listeners from objects
 local function RemoveTextListeners()
     answerText:removeEventListener( "touch", TouchListenerAnswer)
     wrongText1:removeEventListener( "touch", TouchListenerWrongAnswer)
@@ -398,18 +412,20 @@ function scene:show( event )
 -----------------------------------------------------------------------------------------
 
         elseif ( phase == "did" ) then
-        -- Called when the scene is now on screen.
-        -- Insert code here to make the scene come alive.
-        -- Example: start timers, begin animation, play audio, etc.
+        -- called the FUNCTION to display questions
             DisplayQuestion()
+        -- call the function to change the answers positions
             PositionAnswers()
+            -- called texts 
             AddTextListeners()
+        -- start timer 
             startTimer()
+        -- play the background sound
             soundChannel = audio.play(sound, {channel = 5, loops = -1})
 
     end
 
-end --function scene:show( event )
+end 
 
 -----------------------------------------------------------------------------------------
 
@@ -428,13 +444,15 @@ function scene:hide( event )
 
         elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
+        -- call the remove the event listeners FUNCTION
             RemoveTextListeners()
+        -- reset scene after leave it 
             composer.removeScene("level2_questions")
+        -- Displaying the background sound
             soundChannel = audio.stop()
-
     end
 
-end --function scene:hide( event )
+end 
 
 -----------------------------------------------------------------------------------------
 
@@ -443,14 +461,12 @@ function scene:destroy( event )
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 -----------------------------------------------------------------------------------------
-    -- Called prior to the removal of scene's view ("sceneGroup"). 
-    -- Insert code here to clean up the scene.
-    -- Example: remove display objects, save state, etc.
+  
 
-end -- function scene:destroy( event )
+end 
 
 -----------------------------------------------------------------------------------------
--- EVENT LISTENERS
+-- ADD EVENT LISTENERS
 -----------------------------------------------------------------------------------------
 
 -- Adding Event Listeners
@@ -458,9 +474,5 @@ scene:addEventListener( "create", scene )
 scene:addEventListener( "show", scene )
 scene:addEventListener( "hide", scene )
 scene:addEventListener( "destroy", scene )
-
-
-
------------------------------------------------------------------------------------------
 
 return scene

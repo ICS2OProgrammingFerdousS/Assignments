@@ -29,11 +29,9 @@ local foodSoundChannel
 ----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 ----------------------------------------------------------------------------------------- 
--- The local variables for the timer
-local totalSeconds = 60
-local secondsLeft = 60
-local clockText
-local countDownTimer
+-- text for finishing cooking
+local readyText
+
 
 --variables for the touch of the objects
 local touchChocolate = false
@@ -74,7 +72,7 @@ local transitionOption =({
 
 local function BackTransition()
     composer.gotoScene( "main_menu", transitionOption )
-    resetScene()
+    --resetScene()
 end
 
 local function gotoYouWin( ... )
@@ -84,6 +82,11 @@ end
 local function gotoQuestions( ... )
     composer.gotoScene("level2_questions", transitionOption)
 end
+local function restartLevel2( ... )
+    composer.gotoScene("level2_screen", transitionOption)
+end
+
+
 
 local function movingChocolate(touch)
 
@@ -117,6 +120,7 @@ local function movingChocolate(touch)
                 chocolate_image.isVisible = false                
                 checkMark2.isVisible = true
                 smallChocolate.isVisible = true
+              
             end
 
             chocolate_image.x = 960
@@ -128,8 +132,13 @@ local function movingChocolate(touch)
       (checkMark3.isVisible == true) and
       (checkMark4.isVisible == true) and
        (checkMark5.isVisible == true) then
-        gotoQuestions()
-   
+        readyText.text = "Good job, now are you ready for questions?"
+        readyText.isVisible = true
+        yesButton.isVisible = true
+        noButton.isVisible = true  
+        backButton.x =  500
+        backButton.y = 500 
+
     end
 end
 end
@@ -168,8 +177,13 @@ local function movingButter(touch)
         (checkMark3.isVisible == true) and
         (checkMark4.isVisible == true) and
         (checkMark5.isVisible == true) then
-        gotoQuestions()
-        end
+        readyText.text = "Good job, now are you ready for questions?"
+        readyText.isVisible = true
+        yesButton.isVisible = true
+        noButton.isVisible = true  
+        backButton.x =  500
+        backButton.y = 500      
+    end
     end
 end
 
@@ -210,7 +224,12 @@ local function movingEggs(touch)
       (checkMark3.isVisible == true) and
       (checkMark4.isVisible == true) and
        (checkMark5.isVisible == true) then
-        gotoQuestions()
+        readyText.text = "Good job, now are you ready for questions?"
+        readyText.isVisible = true
+        yesButton.isVisible = true
+        noButton.isVisible = true
+        backButton.x =  500
+        backButton.y = 500
    
         end
     end
@@ -254,8 +273,12 @@ local function movingFlour(touch)
       (checkMark3.isVisible == true) and
       (checkMark4.isVisible == true) and
        (checkMark5.isVisible == true) then
-        gotoQuestions()
-   
+        readyText.text = "Good job, now are you ready for questions?"
+        readyText.isVisible = true
+        yesButton.isVisible = true
+        noButton.isVisible = true   
+        backButton.x =  500
+        backButton.y = 500
     end
     end
 end
@@ -297,7 +320,12 @@ local function movingSugar(touch)
       (checkMark3.isVisible == true) and
       (checkMark4.isVisible == true) and
        (checkMark5.isVisible == true) then
-        gotoQuestions()
+        readyText.text = "Good job, now are you ready for questions?"
+        readyText.isVisible = true
+        yesButton.isVisible = true
+        noButton.isVisible = true
+        backButton.x =  500
+        backButton.y = 500
      end
 end
 
@@ -347,9 +375,17 @@ function scene:create( event )
     sceneGroup:insert( bkg_image )
     -- Send the background image to the back layer so all other objects can be on top
     bkg_image:toBack()
+
 -----------------------------------------------------------------------------------------
 -- BUTTON WIDGETS
 -----------------------------------------------------------------------------------------
+    readyText =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
+    readyText.x = 500
+    readyText.y = 570
+    readyText.isVisible = false
+    readyText:setTextColor(0.3, 0.1, 0.1)
+    sceneGroup:insert(readyText)
+
    -- Creating Back Button
     backButton = widget.newButton( 
     {
@@ -369,6 +405,7 @@ function scene:create( event )
 -----------------------------------------------------------------------------------------
 -- Associating Buttons with this scene
     sceneGroup:insert( backButton )
+    
 
     bowl_image =display.newImageRect("Images/bowlPlaceholder.png", display.contentWidth, display.contentHeight) 
     bowl_image.x = 400
@@ -376,7 +413,40 @@ function scene:create( event )
     bowl_image.width = 150
     bowl_image.height = 150
     sceneGroup:insert(bowl_image)
+yesButton = widget.newButton( 
+    {
+-- Setting Position
+    x = display.contentWidth*1/3,
+    y = display.contentHeight*15/27,
+    -- Setting Dimensions
+    width = 100,
+    height = 106,
+    -- Setting Visual Properties
+    defaultFile = "Images/YesButtonUnPressedFerdous@2x.png",
+    overFile = "Images/YesButtonPressedFerdous@2x.png",
+    -- Setting Functional Properties
+    onRelease = gotoQuestions
+    })
+    yesButton.isVisible = false
+    sceneGroup:insert(yesButton)
+     noButton = widget.newButton( 
+    {
+-- Setting Position
+    x = display.contentWidth*1/1.5,
+    y = display.contentHeight*15/27,
+    -- Setting Dimensions
+    width = 100,
+    height = 106,
+    -- Setting Visual Properties
+    defaultFile = "Images/NoButtonUnPressedFerdous@2x.png",
+    overFile = "Images/NoButtonPressedFerdous@2x.png",
+    -- Setting Functional Properties
+    onRelease = restartLevel2
+    })
+    noButton.isVisible = false
 
+   sceneGroup:insert(noButton)
+   
 
     butter_image = display.newImageRect("Images/butter.png", display.contentWidth, display.contentHeight)
     butter_image.x = 960
@@ -529,7 +599,7 @@ function scene:create( event )
     smallEggs.height = 20
     sceneGroup:insert(smallEggs)    
     smallEggs.isVisible = false
-
+    
 end 
  -- function scene:create( event )
 

@@ -1,17 +1,11 @@
 -- Ferdous
--- credits_screen.lua
--- Created by: Daniel Lopez-Carreon
--- Date: Nov. 10th, 2019
--- Description: This is the you win screen
+--Ferdous
+-- You_Lose_screen.lua
+-- Description: in this assignment we add the you lose screen 
 -----------------------------------------------------------------------------------------
-
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
--- sound veriables
-local youLost = audio.loadSound("Sounds/boo.mp3")
-local youLostChannel
-
 -- Use Composer Library
 local composer = require( "composer" )
 
@@ -28,8 +22,15 @@ sceneName = "You_Lose"
 -- Creating Scene Object
 local scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
 
+--------------------------------------------------------------------------------------------
+-- local Sounds
+--------------------------------------------------------------------------------------------
+local youLost = audio.loadSound("Sounds/boo.mp3")
+local youLostChannel
+
+
 -----------------------------------------------------------------------------------------
--- DISPLAY OBJECTS
+-- local variables
 -----------------------------------------------------------------------------------------
 local bkg_image
 
@@ -37,29 +38,32 @@ local transitionOption =({
     effect="zoomOutInRotate",
     time = 500
 })
+--------------------------------------------------------------------------------------------------
+--local functions
+---------------------------------------------------------------------------------------------------
 
+-- function for going back to main menu screen
 
 local function BackTransition()
     composer.gotoScene( "main_menu", transitionOption )
 end
+-- function for going to level 2 screen 
 
 local function gotoLevel2Screen()
     composer.gotoScene( "Level2_screen", transitionOption )
 end
-
+-- function for going back to the questions 
 local function gotoQuestions()
     composer.gotoScene( "level2_questions", transitionOption )
 end
--- The function called when the screen doesn't exist
+-- creation of objects
 function scene:create( event )
 
-    -- Creating a group that associates objects with the scene
+-- Creating a group that associates objects with the scene
     local sceneGroup = self.view
-
-    -----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
     -- BACKGROUND AND DISPLAY OBJECTS
-    -----------------------------------------------------------------------------------------
-
+----------------------------------------------------------------------------------------
     -- Insert the background image and set it to the center of the screen
     bkg_image = display.newImage("Images/YouLoseScreenFerdous.png")
     bkg_image.x = display.contentCenterX
@@ -67,6 +71,7 @@ function scene:create( event )
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
 
+-- button for going back to main menu screen
 backButton = widget.newButton( 
     {
 -- Setting Position
@@ -81,6 +86,8 @@ backButton = widget.newButton(
     -- Setting Functional Properties
     onRelease = BackTransition
     })
+
+-- button for going back to questions screen
 backButton2 = widget.newButton( 
     {
 -- Setting Position
@@ -96,6 +103,7 @@ backButton2 = widget.newButton(
     onRelease = gotoQuestions
     })
 
+--creation button for going to level 2 screen 
 backButton3 = widget.newButton( 
     {
 -- Setting Position
@@ -110,44 +118,30 @@ backButton3 = widget.newButton(
     -- Setting Functional Properties
     onRelease = gotoLevel2Screen
     })
-   
-   
 -----------------------------------------------------------------------------------------
-
-    -- Associating display objects with this scene 
+    -- Associating display objects with this scenes 
     sceneGroup:insert( bkg_image )
-    -- Associating Buttons with this scene
     sceneGroup:insert( backButton )
     sceneGroup:insert( backButton2 )
     sceneGroup:insert( backButton3 )
-
-
 end
 
------------------------------------------------------------------------------------------
-
+-----------------------------------------------------------------------------------------------
+-- Global functions
+-----------------------------------------------------------------------------------------------
 -- The function called when the scene is issued to appear on screen
 function scene:show( event )
-
-    -- Creating a group that associates objects with the scene
+ -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
-
     -----------------------------------------------------------------------------------------
-
     local phase = event.phase
-
-    -----------------------------------------------------------------------------------------
-
+ -----------------------------------------------------------------------------------------
     if ( phase == "will" ) then
         -- Called when the scene is still off screen (but is about to come on screen).
-
     -----------------------------------------------------------------------------------------
-
-    elseif ( phase == "did" ) then
-        -- display the sound
-        youLostChannel = audio.play(youLost)
-
-        
+        elseif ( phase == "did" ) then
+        -- display the background sound
+            youLostChannel = audio.play(youLost)     
     end
 
 end -- function scene:show( event )
@@ -156,48 +150,27 @@ end -- function scene:show( event )
 
 -- The function called when the scene is issued to leave the screen
 function scene:hide( event )
-
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
-
-    -----------------------------------------------------------------------------------------
-
+ -----------------------------------------------------------------------------------------
     local phase = event.phase
-
-    -----------------------------------------------------------------------------------------
-
+ -----------------------------------------------------------------------------------------
     if ( phase == "will" ) then
-        -- Called when the scene is on screen (but is about to go off screen).
-        -- Insert code here to "pause" the scene.
-        -- Example: stop timers, stop animation, stop audio, etc.
-
-    -----------------------------------------------------------------------------------------
-
-    elseif ( phase == "did" ) then
-        -- Called immediately after scene goes off screen.
+-----------------------------------------------------------------------------------------
+        elseif ( phase == "did" ) then
     end
-
-end --function scene:hide( event )
+end 
 
 -----------------------------------------------------------------------------------------
-
 -- The function called when the scene is issued to be destroyed
 function scene:destroy( event )
-
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
-
-    -----------------------------------------------------------------------------------------
-
-
-    -- Called prior to the removal of scene's view ("sceneGroup").
-    -- Insert code here to clean up the scene.
-    -- Example: remove display objects, save state, etc.
 
 end --function scene:destroy( event )
 
 -----------------------------------------------------------------------------------------
--- EVENT LISTENERS
+-- ADD EVENT LISTENERS
 -----------------------------------------------------------------------------------------
 
 -- Adding Event Listeners
@@ -207,5 +180,5 @@ scene:addEventListener( "hide", scene )
 scene:addEventListener( "destroy", scene )
 
 -----------------------------------------------------------------------------------------
-
+-- return the scene 
 return scene
