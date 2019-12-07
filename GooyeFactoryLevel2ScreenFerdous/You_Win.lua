@@ -35,9 +35,22 @@ local transitionOption =({
     time = 500
 })
 
-local function gotoCake( ... )
-    composer.gotoScene("your_cake", transitionOption)
+--local function gotoCake( ... )
+  --  composer.gotoScene("your_cake", transitionOption)
 
+--end
+local function BackTransition()
+    composer.gotoScene( "main_menu", transitionOption )
+    composer.removeScene("Level2_screen")
+
+end
+
+local function gotoLevel2Screen()
+    composer.gotoScene( "Level2_screen", transitionOption )
+end
+
+local function gotoQuestions()
+    composer.gotoScene( "level2_questions", transitionOption )
 end
 
 -- The function called when the screen doesn't exist
@@ -50,14 +63,63 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImage("Images/YouWinScreenAlex.png")
+    bkg_image = display.newImage("Images/youWinFerdous@2x.png")
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
 
+backButton = widget.newButton( 
+    {
+-- Setting Position
+    x = display.contentWidth*1/2,
+    y = display.contentHeight*15/17,
+        -- Setting Dimensions
+    width = 150,
+    height = 100,
+    -- Setting Visual Properties
+    defaultFile = "Images/MainMenuUnpressedFerdous@2x.png",
+    overFile = "Images/MainMenuButtonPressedFerdous@2x.png",
+    -- Setting Functional Properties
+    onRelease = BackTransition
+    })
+backButton2 = widget.newButton( 
+    {
+-- Setting Position
+    x = display.contentWidth*1/4,
+    y = display.contentHeight*15/17,
+        -- Setting Dimensions
+    width = 150,
+    height = 100,
+    -- Setting Visual Properties
+    defaultFile = "Images/QuestionButtonUnPressedFerdous@2x.png",
+    overFile = "Images/QuestionButtonPressedFerdous.png",
+    -- Setting Functional Properties
+    onRelease = gotoQuestions
+    })
+
+backButton3 = widget.newButton( 
+    {
+-- Setting Position
+    x = display.contentWidth*1/1.3,
+    y = display.contentHeight*15/17,
+        -- Setting Dimensions
+    width = 150,
+    height = 100,
+    -- Setting Visual Properties
+    defaultFile = "Images/BackToLevel2ButtonUnPressedFerdous@2x .png",
+    overFile = "Images/BackToLevel2ButtonPressed@2x.png",
+    -- Setting Functional Properties
+    onRelease = gotoLevel2Screen
+    })
+    
+
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg_image )
+    sceneGroup:insert( backButton )
+    sceneGroup:insert( backButton2 )
+    sceneGroup:insert( backButton3 )
+
 end
 -----------------------------------------------------------------------------------------
 
@@ -81,7 +143,6 @@ function scene:show( event )
         elseif ( phase == "did" ) then
         -- display the win sound
             yowWinSoundChannel = audio.play(youWinSound)
-
     end
 
 end -- function scene:show( event )
@@ -105,7 +166,6 @@ function scene:hide( event )
 
         elseif ( phase == "did" ) then
 --          display the sound effect
-            gotoCake()
 
     end --function scene:hide( event )
 end

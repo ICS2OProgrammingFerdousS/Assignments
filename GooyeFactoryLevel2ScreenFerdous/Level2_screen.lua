@@ -18,11 +18,14 @@ local scene = composer.newScene( sceneName )
 --------------------------------------------------------------------------------
 --local sounds
 ---------------------------------------------------------------------------------
-local backgroundSound = audio.loadSound("Sounds/Let it Go .mp3")
+local backgroundSound = audio.loadSound("Sounds/sweet.mp3")
 local backgroundSoundChannel
 
+local touchSound = audio.loadSound("Sounds/PopSound.wav")
+local touchSoundChannel
 
-
+local foodSound = audio.loadSound("Sounds/water.mp3")
+local foodSoundChannel
 ----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 ----------------------------------------------------------------------------------------- 
@@ -89,6 +92,7 @@ local function movingChocolate(touch)
         if (touch.phase == "began") then
             --boolean for click the gredian
             touchChocolate = true
+            touchSoundChannel = audio.play(touchSound)
 
         --drag the objects to follow the mouse
         elseif (touch.phase == "moved") then
@@ -108,6 +112,7 @@ local function movingChocolate(touch)
                 -- setting the position of the chocolate to be in the center of the box
                 chocolate_image.x = bowl_image.x
                 chocolate_image.y = bowl_image.y
+                foodSoundChannel = audio.play(foodSound)
 
                 chocolate_image.isVisible = false                
                 checkMark2.isVisible = true
@@ -134,6 +139,7 @@ local function movingButter(touch)
         if (touch.phase == "began") then
 -- boolean to  know it has been clicked
             touchButter = true  
+            touchSoundChannel = audio.play(touchSound)
         elseif (touch.phase == "moved") then
 --dragging function
             butter_image.x = touch.x
@@ -147,6 +153,7 @@ local function movingButter(touch)
 -- setting the position of butter
                 butter_image.x = bowl_image.x
                 butter_image.y = bowl_image.y
+                foodSoundChannel = audio.play(foodSound)
                 butter_image.isVisible = false
                 checkMark.isVisible = true
                 smallButter.isVisible = true
@@ -172,6 +179,8 @@ local function movingEggs(touch)
         if (touch.phase == "began") then
 --boolean know it has been clicked
             touchEggs = true 
+             touchSoundChannel = audio.play(touchSound)
+
         elseif (touch.phase == "moved") then
 --dragging function
             egg_image.x = touch.x
@@ -185,6 +194,7 @@ local function movingEggs(touch)
 -- setting the position of the objects to be in the center of the box
                 egg_image.x = bowl_image.x
                 egg_image.y = bowl_image.y
+                foodSoundChannel = audio.play(foodSound)
                 egg_image.isVisible = false
                 checkMark5.isVisible = true
                 smallEggs.isVisible = true
@@ -212,6 +222,8 @@ local function movingFlour(touch)
         if (touch.phase == "began") then
 --let other boxes know it has been clicked
             touchFlour = true       
+            touchSoundChannel = audio.play(touchSound)
+
         elseif (touch.phase == "moved") then
  --dragging function
             flour_image.x = touch.x
@@ -225,6 +237,8 @@ local function movingFlour(touch)
             -- setting the position of the number to be in the center of the box
                 flour_image.x = bowl_image.x
                 flour_image.y = bowl_image.y
+                foodSoundChannel = audio.play(foodSound)
+
                 flour_image.isVisible = false
                 checkMark3.isVisible = true
                 smallFlour.isVisible = true
@@ -251,6 +265,8 @@ local function movingSugar(touch)
         if (touch.phase == "began") then
 --boolean to know it has been clicked
             touchSugar = true   
+            touchSoundChannel = audio.play(touchSound)
+
         elseif (touch.phase == "moved") then
 --dragging function
             sugar_image.x = touch.x
@@ -264,6 +280,8 @@ local function movingSugar(touch)
 -- setting the position of the sugar to be in the center of the box
                 sugar_image.x = bowl_image.x
                 sugar_image.y = bowl_image.y
+                foodSoundChannel = audio.play(foodSound)
+
                 sugar_image.isVisible = false
                 checkMark4.isVisible = true
                 smallSugar.isVisible = true
@@ -531,6 +549,7 @@ function scene:show( event )
 -- start the splash screen music
             AddAnswerBoxEventListeners()
             backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1}) 
+
     end
 
 end 
@@ -548,6 +567,9 @@ function scene:hide( event )
         elseif ( phase == "did" ) then
             backgroundSoundChannel = audio.stop()
             RemoveAnswerBoxEventListeners()
+            composer.removeScene("Level2_screen")
+
+
     end
 end --function scene:hide( event )
 

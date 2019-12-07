@@ -27,7 +27,7 @@ local instructionsButton
 -- LOCAL SOUNDS
 -----------------------------------------------------------------------------------------
 -- backgroundSound
-local sound = audio.loadSound("Sounds/TABL.wav")
+local sound = audio.loadSound("Sounds/buddy.mp3")
 local soundChannel
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -156,7 +156,7 @@ function scene:show( event )
 ----------------------------------------------------------------------------------------
     -- Called when the scene is now on screen.
         elseif ( phase == "did" ) then
-            soundChannel = audio.play(sound, {channel = 1, loops = -1})
+            soundChannel = audio.play(sound, {channel = 2, loops = -1})
     end
 end -- function scene:show( event )
 

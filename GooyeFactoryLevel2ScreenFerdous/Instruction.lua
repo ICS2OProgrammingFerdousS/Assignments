@@ -15,7 +15,7 @@ scene = composer.newScene( sceneName )
 local bkg_image
 local backButton
 -- adding background sound
-local soundEffect = audio.loadSound("Sounds/Hoot.wav")
+local soundEffect = audio.loadSound("Sounds/sweet.mp3")
 local soundEffectChannel
 
 -----------------------------------------------------------------------------------------
@@ -87,7 +87,7 @@ function scene:show( event )
      -------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
         -- display background sound
-    soundEffectChannel = audio.play(soundEffect, {channels = 1, loops = -1})
+    soundEffectChannel = audio.play(soundEffect, {channel = 1, loops = -1})
        
     end
 end -- function scene:show( event )
@@ -103,11 +103,12 @@ function scene:hide( event )
 -------------------------------------------------------------------------------------
     if ( phase == "will" ) then
      -- stop the sound after scene gone 
-    soundEffect = audio.stop()
         -- Called when the scene is on screen (but is about to go off screen).
         
 ----------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
+        soundEffectChannel = audio.stop()
+
         -- Called immediately after scene goes off screen.
     end
 end 

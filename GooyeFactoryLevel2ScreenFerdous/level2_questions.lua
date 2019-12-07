@@ -14,9 +14,16 @@ local physics = require( "physics")
 sceneName = "level2_questions"
 
 -----------------------------------------------------------------------------------------
+--local Sounds
+----------------------------------------------------------------------------------------
+local sound = audio.loadSound("Sounds/inspire.mp3")
+local soundChannel
 
+local popUp = audio.loadSound("Sounds/pop up2.mp3")
+local popUpChannel
 -- Creating Scene Object
 local scene = composer.newScene( sceneName )
+----------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
@@ -53,8 +60,8 @@ local textTouched = false
 local totalAnswer = 0
 
 -- The local variables for the timer
-local totalSeconds = 10
-local secondsLeft = 10
+local totalSeconds = 100
+local secondsLeft = 100
 local clockText
 local countDownTimer
 
@@ -75,6 +82,10 @@ local transitionOption =({
 })
 local function yourcake()
     composer.gotoScene("your_cake", transitionOption)
+
+end
+local function youLostScreen( ... )
+    composer.gotoScene("You_Lose", transitionOption)
 
 end
 local function PositionAnswers()
@@ -213,6 +224,8 @@ end
 local function TouchListenerAnswer(touch)
     userAnswer = answerText.text
     if (touch.phase == "ended") then
+        popUpChannel = audio.play(popUp)
+
         DisplayQuestion()
         totalAnswer = totalAnswer + 1
         if(totalAnswer == 5)then
@@ -220,25 +233,45 @@ local function TouchListenerAnswer(touch)
         end 
     end
 end
+local function HideCorrectAnswer( ... )
+    giveThenAnswer.isVisible= false
+end
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerWrongAnswer(touch)
     userAnswer = wrongText1.text
     if (touch.phase == "ended") then
-        composer.gotoScene("You_Lose")    
+        popUpChannel = audio.play(popUp)
+
+        giveThenAnswer.text = "Ops wrong answer the correct \n answer is ".. answerText.text
+        giveThenAnswer.isVisible = true
+   timer.performWithDelay(3000, youLostScreen )
+   timer.performWithDelay(2000, HideCorrectAnswer)
     end 
 end
+
 
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerWrongAnswer2(touch)
     userAnswer = wrongText2.text
     if (touch.phase == "ended") then
-        composer.gotoScene("You_Lose") 
+        popUpChannel = audio.play(popUp)
+        giveThenAnswer.text = "Ops wrong answer the correct \n answer is ".. answerText.text
+        giveThenAnswer.isVisible = true
+        timer.performWithDelay(3000, youLostScreen )    
+        timer.performWithDelay(2000, HideCorrectAnswer)
+
     end 
 end
 local function TouchListenerWrongAnswer3(touch)
     userAnswer = wrongText3.text
     if (touch.phase == "ended") then
-        composer.gotoScene("You_Lose")  
+        popUpChannel = audio.play(popUp)
+
+        giveThenAnswer.text = "Ops wrong answer the correct \n answer is ".. answerText.text
+        giveThenAnswer.isVisible = true
+        timer.performWithDelay(3000, youLostScreen )
+        timer.performWithDelay(2000, HideCorrectAnswer)
+
     end 
 end
 
@@ -246,7 +279,7 @@ local function UpdateTime( )
     secondsLeft = secondsLeft - 1
     clockText.text = secondsLeft .. ""
 
-    if(secondsLeft == 0)then
+   if(secondsLeft == 0)then
         secondsLeft = totalSeconds
         composer.gotoScene("You_Lose")
 
@@ -323,6 +356,12 @@ function scene:create( event )
     wrongText3.anchorX = 0
     wrongText3:setTextColor(1, 0.3, 0.5)
 
+    giveThenAnswer =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
+    giveThenAnswer.x = 500
+    giveThenAnswer.y = 500
+    giveThenAnswer.isVisible = false
+    giveThenAnswer:setTextColor(0.4, 0.3, 0.9)
+
     -----------------------------------------------------------------------------------------
     rootImage = display.newImageRect("Images/roots.png", display.contentWidth, display.contentHeight) 
     rootImage.x = 500
@@ -339,7 +378,7 @@ function scene:create( event )
     sceneGroup:insert(wrongText2)
     sceneGroup:insert(wrongText3)
     sceneGroup:insert(rootImage)
-
+    sceneGroup:insert(giveThenAnswer)
 
 
 end --function scene:create( event )
@@ -353,6 +392,8 @@ function scene:show( event )
     local phase = event.phase
     -----------------------------------------------------------------------------------------
     if ( phase == "will" ) then
+        DisplayQuestion()
+        PositionAnswers()
 -- Called when the scene is still off screen (but is about to come on screen).
 -----------------------------------------------------------------------------------------
 
@@ -364,6 +405,8 @@ function scene:show( event )
             PositionAnswers()
             AddTextListeners()
             startTimer()
+            soundChannel = audio.play(sound, {channel = 5, loops = -1})
+
     end
 
 end --function scene:show( event )
@@ -386,6 +429,9 @@ function scene:hide( event )
         elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
             RemoveTextListeners()
+            composer.removeScene("level2_questions")
+            soundChannel = audio.stop()
+
     end
 
 end --function scene:hide( event )
