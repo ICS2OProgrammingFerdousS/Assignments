@@ -56,6 +56,13 @@ end
 local function gotoQuestions()
     composer.gotoScene( "level2_questions", transitionOption )
 end
+local function GotoLevel1Screen()
+    composer.gotoScene( "level2_questions", transitionOption )
+end
+-- function for level 3
+local function GotoLevel3Screen()
+    composer.gotoScene( "level2_questions", transitionOption )
+end
 -- creation of objects
 function scene:create( event )
 
@@ -81,8 +88,8 @@ backButton = widget.newButton(
     width = 150,
     height = 100,
     -- Setting Visual Properties
-    defaultFile = "Images/MainMenuUnpressedFerdous@2x.png",
-    overFile = "Images/MainMenuButtonPressedFerdous@2x.png",
+    defaultFile = "Images/BackButtonUnpressedAlex@2x.png",
+    overFile = "Images/BackButtonPressedAlex@2x.png",
     -- Setting Functional Properties
     onRelease = BackTransition
     })
@@ -118,12 +125,16 @@ backButton3 = widget.newButton(
     -- Setting Functional Properties
     onRelease = gotoLevel2Screen
     })
+
 -----------------------------------------------------------------------------------------
     -- Associating display objects with this scenes 
     sceneGroup:insert( bkg_image )
     sceneGroup:insert( backButton )
     sceneGroup:insert( backButton2 )
     sceneGroup:insert( backButton3 )
+    --sceneGroup:insert( backButton4 )
+    --sceneGroup:insert( backButton5 )
+
 end
 
 -----------------------------------------------------------------------------------------------

@@ -19,7 +19,7 @@ local composer = require( "composer" )
 -----------------------------------------------------------------------------------------
 
 -- Go to the intro screen
-composer.gotoScene( "You_Win")
+composer.gotoScene( "You_Lose")
 --display.setDefault("background", 0.5, 0.7, 1)
 
 

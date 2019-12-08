@@ -132,7 +132,7 @@ local function movingChocolate(touch)
       (checkMark3.isVisible == true) and
       (checkMark4.isVisible == true) and
        (checkMark5.isVisible == true) then
-        readyText.text = "Good job, now are you ready for questions?"
+        readyText.text = "Good job, now are you\n ready for the questions?"
         readyText.isVisible = true
         yesButton.isVisible = true
         noButton.isVisible = true  
@@ -177,7 +177,7 @@ local function movingButter(touch)
         (checkMark3.isVisible == true) and
         (checkMark4.isVisible == true) and
         (checkMark5.isVisible == true) then
-        readyText.text = "Good job, now are you ready for questions?"
+        readyText.text = "Good job, now are you\n ready for the questions?"
         readyText.isVisible = true
         yesButton.isVisible = true
         noButton.isVisible = true  
@@ -224,7 +224,7 @@ local function movingEggs(touch)
       (checkMark3.isVisible == true) and
       (checkMark4.isVisible == true) and
        (checkMark5.isVisible == true) then
-        readyText.text = "Good job, now are you ready for questions?"
+        readyText.text = "Good job, now are you\n ready for the questions?"
         readyText.isVisible = true
         yesButton.isVisible = true
         noButton.isVisible = true
@@ -273,7 +273,7 @@ local function movingFlour(touch)
       (checkMark3.isVisible == true) and
       (checkMark4.isVisible == true) and
        (checkMark5.isVisible == true) then
-        readyText.text = "Good job, now are you ready for questions?"
+        readyText.text = "Good job, now are you \n ready for the questions?"
         readyText.isVisible = true
         yesButton.isVisible = true
         noButton.isVisible = true   
@@ -320,7 +320,7 @@ local function movingSugar(touch)
       (checkMark3.isVisible == true) and
       (checkMark4.isVisible == true) and
        (checkMark5.isVisible == true) then
-        readyText.text = "Good job, now are you ready for questions?"
+        readyText.text = "Good job, now are you\n ready for the questions?"
         readyText.isVisible = true
         yesButton.isVisible = true
         noButton.isVisible = true
@@ -380,10 +380,10 @@ function scene:create( event )
 -- BUTTON WIDGETS
 -----------------------------------------------------------------------------------------
     readyText =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
-    readyText.x = 500
-    readyText.y = 570
+    readyText.x = 550
+    readyText.y = 600
     readyText.isVisible = false
-    readyText:setTextColor(0.3, 0.1, 0.1)
+    readyText:setTextColor(255/255, 0/255, 0/255)
     sceneGroup:insert(readyText)
 
    -- Creating Back Button
@@ -422,8 +422,8 @@ yesButton = widget.newButton(
     width = 100,
     height = 106,
     -- Setting Visual Properties
-    defaultFile = "Images/YesButtonUnPressedFerdous@2x.png",
-    overFile = "Images/YesButtonPressedFerdous@2x.png",
+    defaultFile = "Images/YesButtonPressedFerdous@2x.png",
+    overFile = "Images/YesButtonUnpressedFerdous@2x.png",
     -- Setting Functional Properties
     onRelease = gotoQuestions
     })
@@ -438,8 +438,8 @@ yesButton = widget.newButton(
     width = 100,
     height = 106,
     -- Setting Visual Properties
-    defaultFile = "Images/NoButtonUnPressedFerdous@2x.png",
-    overFile = "Images/NoButtonPressedFerdous@2x.png",
+    defaultFile = "Images/NoButtonPressedFerdous@2x.png",
+    overFile = "Images/NoButtonUnPressedFerdous@2x.png",
     -- Setting Functional Properties
     onRelease = restartLevel2
     })
@@ -447,28 +447,15 @@ yesButton = widget.newButton(
 
    sceneGroup:insert(noButton)
    
+    chocolate_image = display.newImageRect("Images/Chocolate.png", display.contentWidth, display.contentHeight)
+    chocolate_image.x = 960
+    chocolate_image.y = 130
+    chocolate_image.width = 90
+    chocolate_image.height = 50
+    sceneGroup:insert(chocolate_image)
+    
 
-    butter_image = display.newImageRect("Images/butter.png", display.contentWidth, display.contentHeight)
-    butter_image.x = 960
-    butter_image.y = 310
-    butter_image.width = 100
-    butter_image.height = 100
 
-    sceneGroup:insert( butter_image )
-
-    egg_image = display.newImageRect("Images/eggs.png", display.contentWidth, display.contentHeight)
-    egg_image.x = 960
-    egg_image.y = 410
-    egg_image.width = 100
-    egg_image.height = 100
-    sceneGroup:insert(egg_image)
-
-    sugar_image = display.newImageRect("Images/sugar.png", display.contentWidth, display.contentHeight)
-    sugar_image.x = 960
-    sugar_image.y = 500
-    sugar_image.width = 100
-    sugar_image.height = 100
-    sceneGroup:insert(sugar_image)
 
     flour_image = display.newImageRect("Images/flour.png", display.contentWidth, display.contentHeight)
     flour_image.x = 960
@@ -477,86 +464,110 @@ yesButton = widget.newButton(
     flour_image.height = 100
     sceneGroup:insert(flour_image)
 
-    chocolate_image = display.newImageRect("Images/Chocolate.png", display.contentWidth, display.contentHeight)
-    chocolate_image.x = 960
-    chocolate_image.y = 130
-    chocolate_image.width = 90
-    chocolate_image.height = 50
-    sceneGroup:insert(chocolate_image)
+    butter_image = display.newImageRect("Images/butter.png", display.contentWidth, display.contentHeight)
+    butter_image.x = 960
+    butter_image.y = 310
+    butter_image.width = 100
+    butter_image.height = 100
+    sceneGroup:insert( butter_image )
+
+    
+    egg_image = display.newImageRect("Images/eggs.png", display.contentWidth, display.contentHeight)
+    egg_image.x = 960
+    egg_image.y = 410
+    egg_image.width = 100
+    egg_image.height = 100
+    sceneGroup:insert(egg_image)
+
+    
+
+    sugar_image = display.newImageRect("Images/sugar.png", display.contentWidth, display.contentHeight)
+    sugar_image.x = 960
+    sugar_image.y = 500
+    sugar_image.width = 100
+    sugar_image.height = 100
+    sceneGroup:insert(sugar_image)
+
+    
+
+   
+    
+    
+
     
     butter_imageShort = display.newImageRect("Images/butter.png", display.contentWidth, display.contentHeight)
-    butter_imageShort.x = 200
+    butter_imageShort.x = 160
     butter_imageShort.y = 200
-    butter_imageShort.width = 50
-    butter_imageShort.height = 50
+    butter_imageShort.width =100
+    butter_imageShort.height = 100
     sceneGroup:insert(butter_imageShort)
     checkMark = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
-    checkMark.x = 200
+    checkMark.x = 160
     checkMark.y = 200
-    checkMark.width = 50
-    checkMark.height = 50
+    checkMark.width = 70
+    checkMark.height = 70
     sceneGroup:insert(checkMark)
     checkMark.isVisible = false
 
     chocolate_imageShort = display.newImageRect("Images/Chocolate.png", display.contentWidth, display.contentHeight)
-    chocolate_imageShort.x = 280
+    chocolate_imageShort.x = 260
     chocolate_imageShort.y = 200
-    chocolate_imageShort.width = 50
-    chocolate_imageShort.height = 50
+    chocolate_imageShort.width = 70
+    chocolate_imageShort.height = 70
     sceneGroup:insert(chocolate_imageShort)
 
     checkMark2 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
-    checkMark2.x = 280
+    checkMark2.x = 260
     checkMark2.y = 200
-    checkMark2.width = 50
-    checkMark2.height = 50
+    checkMark2.width = 70
+    checkMark2.height = 70
     sceneGroup:insert(checkMark2)
     checkMark2.isVisible = false
 
     flour_imageShort = display.newImageRect("Images/flour.png", display.contentWidth, display.contentHeight)
-    flour_imageShort.x = 340
+    flour_imageShort.x = 350
     flour_imageShort.y = 200
-    flour_imageShort.width = 50
-    flour_imageShort.height = 50
+    flour_imageShort.width = 90
+    flour_imageShort.height = 90
     sceneGroup:insert(flour_imageShort)
 
     checkMark3 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
-    checkMark3.x = 340
+    checkMark3.x = 350
     checkMark3.y = 200
-    checkMark3.width = 50
-    checkMark3.height = 50
+    checkMark3.width = 70
+    checkMark3.height = 70
     sceneGroup:insert(checkMark3)
     checkMark3.isVisible = false
 
 
     sugar_imageShort = display.newImageRect("Images/sugar.png", display.contentWidth, display.contentHeight)
-    sugar_imageShort.x = 400
+    sugar_imageShort.x = 440
     sugar_imageShort.y = 200
-    sugar_imageShort.width = 50
-    sugar_imageShort.height = 50
+    sugar_imageShort.width = 80
+    sugar_imageShort.height = 80
     sceneGroup:insert(sugar_imageShort)
 
     checkMark4 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
-    checkMark4.x = 400
+    checkMark4.x = 440
     checkMark4.y = 200
-    checkMark4.width = 50
-    checkMark4.height = 50
+    checkMark4.width = 70
+    checkMark4.height = 70
     sceneGroup:insert(checkMark4)
     checkMark4.isVisible = false
 
    
    egg_imageShort = display.newImageRect("Images/eggs.png", display.contentWidth, display.contentHeight)
-   egg_imageShort.x = 470
+   egg_imageShort.x = 530
    egg_imageShort.y = 200
-   egg_imageShort.width = 50
-   egg_imageShort.height = 50
+   egg_imageShort.width = 80
+   egg_imageShort.height = 80
    sceneGroup:insert(egg_imageShort)
 
     checkMark5 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
-    checkMark5.x = 470
+    checkMark5.x = 530
     checkMark5.y = 200
-    checkMark5.width = 50
-    checkMark5.height = 50
+    checkMark5.width = 80
+    checkMark5.height = 80
     sceneGroup:insert(checkMark5)
     checkMark5.isVisible = false  
 
@@ -616,8 +627,9 @@ function scene:show( event )
     if ( phase == "will" ) then
 -----------------------------------------------------------------------------------------
         elseif ( phase == "did" ) then
--- start the splash screen music
+        --calling the addEventListener function 
             AddAnswerBoxEventListeners()
+        -- display background music
             backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1}) 
 
     end
