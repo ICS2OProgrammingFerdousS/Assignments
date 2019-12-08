@@ -29,10 +29,16 @@ local yowWinSoundChannel
 --local variable
 -----------------------------------------------------------------------------------------
 local bkg_image
---local function YouWin( )
+local function YouWin( )
     composer.gotoScene( "You_Win", {effect = "fromLeft", time = 1000})
 
---end   
+end   
+
+
+local function gotoMainMenu( )
+    composer.gotoScene( "main_menu", {effect = "fromLeft", time = 1000})
+
+end   
 
 -- The function called when the screen doesn't exist
 function scene:create( event )
@@ -45,7 +51,7 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImage("Images/YouWinScreenAlex.png")
+    bkg_image = display.newImage("Images/youWinFerdous@2x.png")
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
@@ -53,6 +59,43 @@ function scene:create( event )
 
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg_image )
+    -- creating baking button 
+     --creationg bake text
+    bakeText =  display.newText(" Great job do you want to bake the cake?", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
+    bakeText.x = 500
+    bakeText.y = 250
+    bakeText:setTextColor(0/255, 255/255, 255/255)
+    yesButton = widget.newButton( 
+    {
+-- Setting Position
+    x = display.contentWidth*1/3,
+    y = display.contentHeight*15/27,
+    -- Setting Dimensions
+    width = 100,
+    height = 106,
+    -- Setting Visual Properties
+    defaultFile = "Images/YesButtonPressedFerdous@2x.png",
+    overFile = "Images/YesButtonUnPressedFerdous@2x.png",
+    -- Setting Functional Properties
+    onRelease = YouWin
+})
+    -- Setting Position
+   noButton = widget.newButton( 
+    {
+-- Setting Position
+    x = display.contentWidth*1/1.5,
+    y = display.contentHeight*15/27,
+    -- Setting Dimensions
+    width = 100,
+    height = 106,
+    -- Setting Visual Properties
+    defaultFile = "Images/NoButtonPressedFerdous@2x.png",
+    overFile = "Images/NoButtonUnPressedFerdous@2x.png",
+    -- Setting Functional Properties
+    onRelease = gotoMainMenu
+    })
+    sceneGroup:insert( yesButton )
+    sceneGroup:insert( noButton )
 
 end
 -----------------------------------------------------------------------------------------
@@ -107,6 +150,9 @@ function scene:hide( event )
 
         elseif ( phase == "did" ) then
     --    display the sound effect
+            composer.removeScene("your_cake")
+            bakeText.isVisible = false
+
 
 end --function scene:hide( event )
 end

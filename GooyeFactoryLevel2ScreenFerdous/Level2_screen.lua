@@ -428,7 +428,7 @@ yesButton = widget.newButton(
 })
     yesButton.isVisible = false
     sceneGroup:insert(yesButton)
-     noButton = widget.newButton( 
+noButton = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/1.5,

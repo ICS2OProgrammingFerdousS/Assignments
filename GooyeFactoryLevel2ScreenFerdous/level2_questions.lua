@@ -103,7 +103,7 @@ end
 
 -- function for going to you win screen
 local function yourcake()
-    composer.gotoScene("You_Win", transitionOption3)
+    composer.gotoScene("your_cake", transitionOption3)
 
 end
 -- FUNCTIONS for going to you lose screen
@@ -254,7 +254,7 @@ local function TouchListenerAnswer(touch)
         totalAnswer = totalAnswer + 1
 -- make condition for winning the game 
         if(totalAnswer == 5)then
-            yourcake()
+           yourcake()
         end 
     end
 end
@@ -382,6 +382,7 @@ function scene:create( event )
     questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 75)
     questionText:setTextColor(0.2, 0.2, 0.2)
     questionText:setFillColor( 0.2, 0.2, 0. )
+  
 
     -- create the answer text object & wrong answer text objects
     answerText = display.newText("", X1, Y2, Arial, 40)
@@ -402,7 +403,12 @@ function scene:create( event )
     giveThenAnswer.y = 500
     giveThenAnswer.isVisible = false
     giveThenAnswer:setTextColor(0.4, 0.3, 0.9)
-
+    --creationg bake text
+    bakeText =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
+    bakeText.x = 500
+    bakeText.y = 500
+    bakeText.isVisible = false
+    bakeText:setTextColor(0.4, 0.3, 0.9)
     -----------------------------------------------------------------------------------------
     rootImage = display.newImageRect("Images/roots.png", display.contentWidth, display.contentHeight) 
     rootImage.x = 500
