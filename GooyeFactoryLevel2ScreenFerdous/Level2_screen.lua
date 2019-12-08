@@ -1,4 +1,4 @@
---Title: splash screen/MainMenue
+--Title: Level2_screen
 -- Name: Ferdous Sediqi
 -- Course: ICS2O
 -- in This this assigment i will make a main menu, instructio, and level 1 screen.
@@ -53,37 +53,36 @@ local wrongAnswer1
 local wrongAnswer2
 local wrongAnswer3
 local wrongAnswer4
-
---------------------------------------------------------------------------------------------
--- LOCAL FUNCTIONS
---------------------------------------------------------------------------------------------
---add global FUNCTION
-function resetScene( ... )
-    butter_image.x = 960
-    butter_image.y = 310
-end
-
--- The function that will go to the main menu 
+--------------------------------------------------------------------------------------
+--set variables for making scene transition
+------------------------------------------------------------------------------------------
 local transitionOption =({
-    effect="zoomOutInRotate",
+    effect="crossFade",
     time = 500
 })
 
+local transitionOption2 =({
+    effect="flipFadeOutIn",
+    time = 500
+})
+--------------------------------------------------------------------------------------------
+-- LOCAL FUNCTIONS
+--------------------------------------------------------------------------------------------
+
+-- The function that will go to the main menu 
+
 
 local function BackTransition()
-    composer.gotoScene( "main_menu", transitionOption )
+    composer.gotoScene( "main_menu", transitionOption2 )
     --resetScene()
-end
-
-local function gotoYouWin( ... )
-    composer.gotoScene("You_Win", transitionOption)
 end
 
 local function gotoQuestions( ... )
     composer.gotoScene("level2_questions", transitionOption)
 end
+
 local function restartLevel2( ... )
-    composer.gotoScene("level2_screen", transitionOption)
+    composer.gotoScene("Level2_screen", transitionOption2)
 end
 
 
@@ -379,7 +378,7 @@ function scene:create( event )
 -----------------------------------------------------------------------------------------
 -- BUTTON WIDGETS
 -----------------------------------------------------------------------------------------
-    readyText =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
+    readyText =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, bold, 40)
     readyText.x = 550
     readyText.y = 600
     readyText.isVisible = false
@@ -396,11 +395,11 @@ function scene:create( event )
     width = 100,
     height = 106,
     -- Setting Visual Properties
-    defaultFile = "Images/BackButtonUnpressedAlex@2x.png",
-    overFile = "Images/BackButtonPressedAlex@2x.png",
+     defaultFile = "Images/BackButtonUnPressedFerdous@2x.png",
+    overFile = "Images/BackButtonPressedFerdous@2x - Copy.png",
     -- Setting Functional Properties
     onRelease = BackTransition
-    })
+})
    
 -----------------------------------------------------------------------------------------
 -- Associating Buttons with this scene
@@ -423,10 +422,10 @@ yesButton = widget.newButton(
     height = 106,
     -- Setting Visual Properties
     defaultFile = "Images/YesButtonPressedFerdous@2x.png",
-    overFile = "Images/YesButtonUnpressedFerdous@2x.png",
+    overFile = "Images/YesButtonUnPressedFerdous@2x.png",
     -- Setting Functional Properties
     onRelease = gotoQuestions
-    })
+})
     yesButton.isVisible = false
     sceneGroup:insert(yesButton)
      noButton = widget.newButton( 
@@ -573,7 +572,7 @@ yesButton = widget.newButton(
 
     smallChocolate = display.newImageRect("Images/Chocolate.png", display.contentWidth, display.contentHeight)
     smallChocolate.x = 400
-    smallChocolate.y = 370
+    smallChocolate.y = 390
     smallChocolate.width = 50
     smallChocolate.height = 20
     sceneGroup:insert(smallChocolate)    
@@ -581,7 +580,7 @@ yesButton = widget.newButton(
 
     smallButter = display.newImageRect("Images/butter.png", display.contentWidth, display.contentHeight)
     smallButter.x = 400
-    smallButter.y = 370
+    smallButter.y = 390
     smallButter.width = 50
     smallButter.height = 20
     sceneGroup:insert(smallButter)    
@@ -589,7 +588,7 @@ yesButton = widget.newButton(
 
     smallFlour = display.newImageRect("Images/flour.png", display.contentWidth, display.contentHeight)
     smallFlour.x = 400
-    smallFlour.y = 370
+    smallFlour.y = 390
     smallFlour.width = 50
     smallFlour.height = 20
     sceneGroup:insert(smallFlour)    
@@ -597,7 +596,7 @@ yesButton = widget.newButton(
 
     smallSugar = display.newImageRect("Images/sugar.png", display.contentWidth, display.contentHeight)
     smallSugar.x = 400
-    smallSugar.y = 370
+    smallSugar.y = 390
     smallSugar.width = 50
     smallSugar.height = 20
     sceneGroup:insert(smallSugar)    
@@ -605,7 +604,7 @@ yesButton = widget.newButton(
 
     smallEggs = display.newImageRect("Images/eggs.png", display.contentWidth, display.contentHeight)
     smallEggs.x = 400
-    smallEggs.y = 370
+    smallEggs.y = 390
     smallEggs.width = 50
     smallEggs.height = 20
     sceneGroup:insert(smallEggs)    

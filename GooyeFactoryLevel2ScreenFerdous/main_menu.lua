@@ -1,4 +1,4 @@
---Title: splash screen
+--Title: main_menu
 -- Name: Ferdous Sediqi
 -- Course: ICS2O
 -- in This this assigment i will make a main menu, instructio, and level 1 screen.
@@ -33,6 +33,7 @@ local soundChannel
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
+
 -- Creating Transition Function to Credits Page
 local function CreditsTransition( )       
     composer.gotoScene( "Credit", {effect = "fromRight", time = 500})
@@ -42,16 +43,16 @@ end
 
  --Creating Transition to Level1 Screen
 local function Level1ScreenTransition( )
-    composer.gotoScene( "Level2_screen", {effect = "fromRight", time = 500})
+    composer.gotoScene( "Level2_screen", {effect = "fromLeft", time = 500})
     clickSoundChannel = audio.play(clickSound)
-    resetScene()
+
 
 end   
 -----------------------------------------------------------------------------------------
 
 -- INSERT LOCAL FUNCTION DEFINITION THAT GOES TO INSTRUCTIONS SCREEN 
 local function gotoInstructions( )
-    composer.gotoScene("Instruction", {effect = "zoomOutInRotate", time = 500})
+    composer.gotoScene("Instruction", {effect = "fromBottom", time = 500})
     clickSoundChannel = audio.play(clickSound)
 end
 -----------------------------------------------------------------------------------------
@@ -170,9 +171,8 @@ function scene:hide( event )
     local phase = event.phase
 -----------------------------------------------------------------------------------------
     if ( phase == "will" ) then
--- stoping the backgroundSound
-        --sound = audio.stop()
         elseif ( phase == "did" ) then
+        --stop background music
             soundChannel = audio.stop()
      end
 end 

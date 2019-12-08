@@ -1,6 +1,10 @@
---Ferdous
---level2_questions screen
+--name:Ferdous
+--title:level2_questions screen
 --Discription: in this scene we display the questions 
+-----------------------------------------------------------------------------------------
+-- INITIALIZATIONS
+-----------------------------------------------------------------------------------------
+
 -- Use Composer Libraries
 local composer = require( "composer" )
 local widget = require( "widget" )
@@ -30,6 +34,8 @@ local answer
 local wrongAnswer1
 local wrongAnswer2
 local wrongAnswer3
+local userAnswer
+
 -- variables for answers texts
 local answerText 
 local wrongAnswerText1
@@ -45,7 +51,6 @@ local Y2 = display.contentHeight*5.5/7
 local bkg
 local cover
 
-local userAnswer
 -- boolean for touching the answers
 local textTouched = false
 -- variables for counting the right answers
@@ -60,28 +65,50 @@ local countDownTimer
 -- background color
 display.setDefault("background", 0.1, 0.9, 0.5)
 
+------------------------------------------------------------------------------------------
+--tasnsition variables
+------------------------------------------------------------------------------------------
+local transitionOption =({
+    effect="slideUp",
+    time = 500
+})
+
+local transitionOption2 =({
+    effect="flip",
+    time = 500
+})
+-- transition effect variable
+local transitionOption3 =({
+    effect="crossFade",
+    time = 500
+})
+local transitionOption4 =({
+    effect="zoomInOutFade",
+    time = 500
+})
 -----------------------------------------------------------------------------------------
 --LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
---making transition to next scene
---local function BackToLevel1() 
-  --  composer.hideOverlay("fadeOut", 1000 )
-  
---end 
--- transition effect variable
-local transitionOption =({
-    effect="zoomOutInRotate",
-    time = 500
-})
+-- function for going back to main menu screen
+
+local function BackTransition()
+    composer.gotoScene( "main_menu", transitionOption )
+end
+-- function for going to level 2 screen 
+
+local function gotoLevel2Screen()
+    composer.gotoScene( "Level2_screen", transitionOption2 )
+end
+
 -- function for going to you win screen
 local function yourcake()
-    composer.gotoScene("You_Win", transitionOption)
+    composer.gotoScene("You_Win", transitionOption3)
 
 end
 -- FUNCTIONS for going to you lose screen
 local function youLostScreen( ... )
-    composer.gotoScene("You_Lose", transitionOption)
+    composer.gotoScene("You_Lose", transitionOption4)
 
 end
 -- FUNCTIONS changing the answers positions 
@@ -383,6 +410,35 @@ function scene:create( event )
     rootImage.width = 200
     rootImage.height = 200
     rootImage.isVisible = false
+
+    backButton = widget.newButton( 
+    {
+-- Setting Position
+    x = display.contentWidth*1/1.1,
+    y = display.contentHeight*15/17,
+        -- Setting Dimensions
+    width = 150,
+    height = 100,
+    -- Setting Visual Properties
+    defaultFile = "Images/BackToLevel2ButtonPressed@2x.png",
+    overFile = "Images/BackToLevel2ButtonUnPressedFerdous@2x .png",
+    -- Setting Functional Properties
+    onRelease = gotoLevel2Screen
+    })
+    backButton2 = widget.newButton( 
+    {
+-- Setting Position
+    x = display.contentWidth*1/12,
+    y = display.contentHeight*15/17,
+        -- Setting Dimensions
+    width = 150,
+    height = 100,
+    -- Setting Visual Properties
+     defaultFile = "Images/BackButtonUnPressedFerdous@2x.png",
+    overFile = "Images/BackButtonPressedFerdous@2x - Copy.png",
+    -- Setting Functional Properties
+    onRelease = BackTransition
+    })
     -- insert all objects for this scene into the scene group
     sceneGroup:insert(bkg)
     sceneGroup:insert(cover)
@@ -393,7 +449,8 @@ function scene:create( event )
     sceneGroup:insert(wrongText3)
     sceneGroup:insert(rootImage)
     sceneGroup:insert(giveThenAnswer)
-
+    sceneGroup:insert(backButton)
+    sceneGroup:insert(backButton2)
 
 end --function scene:create( event )
 

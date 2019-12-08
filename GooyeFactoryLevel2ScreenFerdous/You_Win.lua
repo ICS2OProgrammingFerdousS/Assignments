@@ -1,5 +1,5 @@
 --Ferdous Sediqi
--- You_Win
+-- You_Win screen
 -- Description: In this scene whe display the You win screen
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
@@ -23,22 +23,29 @@ local yowWinSoundChannel
 ----------------------------------------------------------------------------------------------------
 --local variable
 -----------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------
-
---------------------------------------------------------------------------------------------------
 local bkg_image
 
 local transitionOption =({
     effect="zoomOutInRotate",
     time = 500
 })
+local transitionOption2 =({
+    effect="zoomInOutFade Screen",
+    time = 500
+})
+local transitionOption3 =({
+    effect="zoomOutInRotate",
+    time = 500
+})
+local transitionOptions4 = ({
+     effect = "fromTop",
+     time = 1000
+})
+
 -----------------------------------------------------------------------------------------------------
 -- Local Functions 
 -----------------------------------------------------------------------------------------------------
---local function gotoCake( ... )
-  --  composer.gotoScene("your_cake", transitionOption)
 
---end
 -- function for going back to main menu 
 local function BackTransition()
     composer.gotoScene( "main_menu", transitionOption )
@@ -46,11 +53,20 @@ local function BackTransition()
 end
 -- function for going to level 2 screen
 local function gotoLevel2Screen()
-    composer.gotoScene( "Level2_screen", transitionOption )
+    composer.gotoScene( "Level2_screen", transitionOption2 )
 end
 -- function for going to questions screen
 local function gotoQuestions()
-    composer.gotoScene( "level2_questions", transitionOption )
+    composer.gotoScene( "level2_questions", transitionOption3 )
+end
+
+-- function for going to questions screen
+local function BackToLevel1()
+    composer.gotoScene( "Level2_screen", transitionOption3 )
+end
+-- function for going to questions screen
+local function gotoLevel3()
+    composer.gotoScene( "Level2_screen", transitionOptions4 )
 end
 ---------------------------------------------------------------------------------------------------
 --Global Functions
@@ -79,8 +95,8 @@ backButton = widget.newButton(
     width = 150,
     height = 100,
     -- Setting Visual Properties
-    defaultFile = "Images/MainMenuUnpressedFerdous@2x.png",
-    overFile = "Images/MainMenuButtonPressedFerdous@2x.png",
+     defaultFile = "Images/BackButtonUnPressedFerdous@2x.png",
+    overFile = "Images/BackButtonPressedFerdous@2x - Copy.png",
     -- Setting Functional Properties
     onRelease = BackTransition
     })
@@ -113,14 +129,44 @@ backButton3 = widget.newButton(
     defaultFile = "Images/BackToLevel2ButtonUnPressedFerdous@2x .png",
     overFile = "Images/BackToLevel2ButtonPressed@2x.png",
     -- Setting Functional Properties
-    onRelease = gotoLevel2Screen
+    onRelease = BackToLevel1
     })
-    
+backButton4 = widget.newButton( 
+    {
+-- Setting Position
+    x = display.contentWidth*1/1.5,
+    y = display.contentHeight*15/22,
+        -- Setting Dimensions
+    width = 150,
+    height = 100,
+    -- Setting Visual Properties
+    defaultFile = "Images/BackToLevel1UnPressedButtonFerdous@2x.png",
+    overFile = "Images/BackToLevel1ButtonPressedFerdous@2x .png",
+    -- Setting Functional Properties
+    onRelease = BackToLevel1
+    })
+
+backButton5 = widget.newButton( 
+    {
+-- Setting Position
+    x = display.contentWidth*1/3,
+    y = display.contentHeight*15/22,
+        -- Setting Dimensions
+    width = 150,
+    height = 100,
+    -- Setting Visual Properties
+    defaultFile = "Images/GoToLevel3ButtonUnPressedFerdous@2x.png",
+    overFile = "Images/GoToLevel3ButtonPressedFerdous@2x.png",
+    -- Setting Functional Properties
+    onRelease = gotoLevel3
+    })
      -- Associating display objects with this scenes 
     sceneGroup:insert( bkg_image )
     sceneGroup:insert( backButton )
     sceneGroup:insert( backButton2 )
     sceneGroup:insert( backButton3 )
+    sceneGroup:insert( backButton4 )
+    sceneGroup:insert( backButton5 )
 
 end
 -----------------------------------------------------------------------------------------

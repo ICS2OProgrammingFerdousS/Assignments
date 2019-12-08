@@ -23,7 +23,7 @@ local backgroundMusicChannel
 -----------------------------------------------------------------------------------------
 -- Creating Transitioning Function back to main menu
 local transitionOption =({
-	effect="fromRight",
+	effect="fromLeft",
     time = 500
 })
 local function BackTransition( )
@@ -104,7 +104,6 @@ function scene:hide( event )
         --stpping the function the backgroundMusic after scene
 
     elseif ( phase == "did" ) then
-        -- Called immediately after scene goes off screen.
        -- audio.stop(backgroundMusicChannel)
        	backgroundMusicChannel = audio.stop()
 

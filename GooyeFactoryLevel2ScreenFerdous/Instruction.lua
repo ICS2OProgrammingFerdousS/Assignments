@@ -22,7 +22,7 @@ local soundEffectChannel
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 local transitionOption = ({
-    effect="zoomOutInRotate",
+    effect="fromTop",
     time = 500
 })
 

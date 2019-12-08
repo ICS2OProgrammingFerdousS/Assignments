@@ -88,8 +88,8 @@ backButton = widget.newButton(
     width = 150,
     height = 100,
     -- Setting Visual Properties
-    defaultFile = "Images/BackButtonUnpressedAlex@2x.png",
-    overFile = "Images/BackButtonPressedAlex@2x.png",
+    defaultFile = "Images/BackButtonUnPressedFerdous@2x.png",
+    overFile = "Images/BackButtonPressedFerdous@2x - Copy.png",
     -- Setting Functional Properties
     onRelease = BackTransition
     })
@@ -125,6 +125,35 @@ backButton3 = widget.newButton(
     -- Setting Functional Properties
     onRelease = gotoLevel2Screen
     })
+backButton4 = widget.newButton( 
+    {
+-- Setting Position
+    x = display.contentWidth*1/1.5,
+    y = display.contentHeight*15/22,
+        -- Setting Dimensions
+    width = 150,
+    height = 100,
+    -- Setting Visual Properties
+    defaultFile = "Images/BackToLevel1UnPressedButtonFerdous@2x.png",
+    overFile = "Images/BackToLevel1ButtonPressedFerdous@2x .png",
+    -- Setting Functional Properties
+    onRelease = gotoLevel2Screen
+    })
+
+backButton5 = widget.newButton( 
+    {
+-- Setting Position
+    x = display.contentWidth*1/3,
+    y = display.contentHeight*15/22,
+        -- Setting Dimensions
+    width = 150,
+    height = 100,
+    -- Setting Visual Properties
+    defaultFile = "Images/GoToLevel3ButtonUnPressedFerdous@2x.png",
+    overFile = "Images/GoToLevel3ButtonPressedFerdous@2x.png",
+    -- Setting Functional Properties
+    onRelease = gotoLevel2Screen
+    })
 
 -----------------------------------------------------------------------------------------
     -- Associating display objects with this scenes 
@@ -132,8 +161,8 @@ backButton3 = widget.newButton(
     sceneGroup:insert( backButton )
     sceneGroup:insert( backButton2 )
     sceneGroup:insert( backButton3 )
-    --sceneGroup:insert( backButton4 )
-    --sceneGroup:insert( backButton5 )
+    sceneGroup:insert( backButton4 )
+    sceneGroup:insert( backButton5 )
 
 end
 
