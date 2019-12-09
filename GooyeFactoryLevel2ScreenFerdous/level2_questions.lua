@@ -29,6 +29,7 @@ local popUpChannel
 -----------------------------------------------------------------------------------------
 -- variable for question text
 local questionText
+
 --variables for answers
 local answer
 local wrongAnswer1
@@ -57,8 +58,8 @@ local textTouched = false
 local totalAnswer = 0
 
 -- The local variables for the timer
-local totalSeconds = 100
-local secondsLeft =  100
+local totalSeconds = 60
+local secondsLeft =  60
 local clockText
 local countDownTimer
 
@@ -103,7 +104,7 @@ end
 
 -- function for going to you win screen
 local function yourcake()
-    composer.gotoScene("your_cake", transitionOption3)
+    composer.gotoScene("You_Win", transitionOption3)
 
 end
 -- FUNCTIONS for going to you lose screen
@@ -506,7 +507,6 @@ function scene:hide( event )
     -----------------------------------------------------------------------------------------
 
         elseif ( phase == "did" ) then
-        -- Called immediately after scene goes off screen.
         -- call the remove the event listeners FUNCTION
             RemoveTextListeners()
         -- reset scene after leave it 
@@ -524,8 +524,6 @@ function scene:destroy( event )
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 -----------------------------------------------------------------------------------------
-  
-
 end 
 
 -----------------------------------------------------------------------------------------

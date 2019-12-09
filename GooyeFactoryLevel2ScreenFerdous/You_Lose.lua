@@ -1,6 +1,5 @@
--- Ferdous
---Ferdous
--- You_Lose_screen.lua
+--name: Ferdous
+-- title:You_Lose_screen.lua
 -- Description: in this assignment we add the you lose screen 
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------

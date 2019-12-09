@@ -1,6 +1,6 @@
---Ferdous Sediqi
--- You_Win screen
--- Description: In this scene whe display the You win screen
+-- name: Ferdous
+--title: You_Win screen
+-- Description: This is the you win screen
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
@@ -9,176 +9,106 @@
 local composer = require( "composer" )
 
 -----------------------------------------------------------------------------------------
+
 -- Use Widget Library
 local widget = require( "widget" )
 
-sceneName = "You_Win"
-local scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
 
--------------------------------------------------------------------------------------------------------
--- Local Sounds
-------------------------------------------------------------------------------------------------------
+-- Creating Scene Object
+local scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
+-- Naming Scene
+sceneName = "You_Win"
+-----------------------------------------------------------------------------------------
+-- local variable for sound effect
 local youWinSound =  audio.loadSound("Sounds/Correct.wav")
 local yowWinSoundChannel
-----------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------
 --local variable
------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 local bkg_image
+local function YouWin( )
+    composer.gotoScene( "your_cake", {effect = "fromLeft", time = 1000})
 
-local transitionOption =({
-    effect="zoomOutInRotate",
-    time = 500
-})
-local transitionOption2 =({
-    effect="zoomInOutFade Screen",
-    time = 500
-})
-local transitionOption3 =({
-    effect="zoomOutInRotate",
-    time = 500
-})
-local transitionOptions4 = ({
-     effect = "fromTop",
-     time = 1000
-})
+end   
 
------------------------------------------------------------------------------------------------------
--- Local Functions 
------------------------------------------------------------------------------------------------------
 
--- function for going back to main menu 
-local function BackTransition()
-    composer.gotoScene( "main_menu", transitionOption )
+local function gotoMainMenu( )
+    composer.gotoScene( "main_menu", {effect = "fromLeft", time = 1000})
 
-end
--- function for going to level 2 screen
-local function gotoLevel2Screen()
-    composer.gotoScene( "Level2_screen", transitionOption2 )
-end
--- function for going to questions screen
-local function gotoQuestions()
-    composer.gotoScene( "level2_questions", transitionOption3 )
-end
+end   
 
--- function for going to questions screen
-local function BackToLevel1()
-    composer.gotoScene( "Level2_screen", transitionOption3 )
-end
--- function for going to questions screen
-local function gotoLevel3()
-    composer.gotoScene( "Level2_screen", transitionOptions4 )
-end
----------------------------------------------------------------------------------------------------
---Global Functions
----------------------------------------------------------------------------------------------------
 -- The function called when the screen doesn't exist
 function scene:create( event )
+
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
+
     -----------------------------------------------------------------------------------------
     -- BACKGROUND AND DISPLAY OBJECTS
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImage("Images/CakeFerdous@2x.png")
+    bkg_image = display.newImage("Images/youWinFerdous@2x.png")
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
--- create the going back button to main menu screen 
-backButton = widget.newButton( 
-    {
--- Setting Position
-    x = display.contentWidth*1/2,
-    y = display.contentHeight*15/17,
-        -- Setting Dimensions
-    width = 150,
-    height = 100,
-    -- Setting Visual Properties
-     defaultFile = "Images/BackButtonUnPressedFerdous@2x.png",
-    overFile = "Images/BackButtonPressedFerdous@2x - Copy.png",
-    -- Setting Functional Properties
-    onRelease = BackTransition
-    })
--- Creating button for going to questions screen
-backButton2 = widget.newButton( 
-    {
--- Setting Position
-    x = display.contentWidth*1/4,
-    y = display.contentHeight*15/17,
-        -- Setting Dimensions
-    width = 150,
-    height = 100,
-    -- Setting Visual Properties
-    defaultFile = "Images/QuestionButtonUnPressedFerdous@2x.png",
-    overFile = "Images/QuestionButtonPressedFerdous.png",
-    -- Setting Functional Properties
-    onRelease = gotoQuestions
-    })
 
---Creating button fo going back 2 level 2 screen
-backButton3 = widget.newButton( 
-    {
--- Setting Position
-    x = display.contentWidth*1/1.3,
-    y = display.contentHeight*15/17,
-        -- Setting Dimensions
-    width = 150,
-    height = 100,
-    -- Setting Visual Properties
-    defaultFile = "Images/BackToLevel2ButtonUnPressedFerdous@2x .png",
-    overFile = "Images/BackToLevel2ButtonPressed@2x.png",
-    -- Setting Functional Properties
-    onRelease = BackToLevel1
-    })
-backButton4 = widget.newButton( 
-    {
--- Setting Position
-    x = display.contentWidth*1/1.5,
-    y = display.contentHeight*15/22,
-        -- Setting Dimensions
-    width = 150,
-    height = 100,
-    -- Setting Visual Properties
-    defaultFile = "Images/BackToLevel1UnPressedButtonFerdous@2x.png",
-    overFile = "Images/BackToLevel1ButtonPressedFerdous@2x .png",
-    -- Setting Functional Properties
-    onRelease = BackToLevel1
-    })
-
-backButton5 = widget.newButton( 
+    -- Associating display objects with this scene 
+    sceneGroup:insert( bkg_image )
+    -- creating baking button 
+     --creationg bake text
+    bakeText =  display.newText(" Great job do you want to bake the cake?", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
+    bakeText.x = 500
+    bakeText.y = 250
+    bakeText:setTextColor(0/255, 255/255, 255/255)
+    yesButton = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/3,
-    y = display.contentHeight*15/22,
-        -- Setting Dimensions
-    width = 150,
-    height = 100,
+    y = display.contentHeight*15/27,
+    -- Setting Dimensions
+    width = 100,
+    height = 106,
     -- Setting Visual Properties
-    defaultFile = "Images/GoToLevel3ButtonUnPressedFerdous@2x.png",
-    overFile = "Images/GoToLevel3ButtonPressedFerdous@2x.png",
+    defaultFile = "Images/YesButtonPressedFerdous@2x.png",
+    overFile = "Images/YesButtonUnPressedFerdous@2x.png",
     -- Setting Functional Properties
-    onRelease = gotoLevel3
+    onRelease = YouWin
+})
+    -- Setting Position
+   noButton = widget.newButton( 
+    {
+-- Setting Position
+    x = display.contentWidth*1/1.5,
+    y = display.contentHeight*15/27,
+    -- Setting Dimensions
+    width = 100,
+    height = 106,
+    -- Setting Visual Properties
+    defaultFile = "Images/NoButtonPressedFerdous@2x.png",
+    overFile = "Images/NoButtonUnPressedFerdous@2x.png",
+    -- Setting Functional Properties
+    onRelease = gotoMainMenu
     })
-     -- Associating display objects with this scenes 
-    sceneGroup:insert( bkg_image )
-    sceneGroup:insert( backButton )
-    sceneGroup:insert( backButton2 )
-    sceneGroup:insert( backButton3 )
-    sceneGroup:insert( backButton4 )
-    sceneGroup:insert( backButton5 )
+    sceneGroup:insert( yesButton )
+    sceneGroup:insert( noButton )
 
 end
 -----------------------------------------------------------------------------------------
 
 -- The function called when the scene is issued to appear on screen
 function scene:show( event )
+
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
------------------------------------------------------------------------------------------
+
+    -----------------------------------------------------------------------------------------
 
     local phase = event.phase
------------------------------------------------------------------------------------------
+
+    -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
         -- Called when the scene is still off screen (but is about to come on screen).
@@ -188,13 +118,16 @@ function scene:show( event )
         elseif ( phase == "did" ) then
         -- display the win sound
             yowWinSoundChannel = audio.play(youWinSound)
+
     end
+
 end -- function scene:show( event )
 
 -----------------------------------------------------------------------------------------
 
 -- The function called when the scene is issued to leave the screen
 function scene:hide( event )
+
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
@@ -205,21 +138,36 @@ function scene:hide( event )
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
+               -- YouWin()
 
+        -- Called when the scene is on screen (but is about to go off screen).
+        -- Insert code here to "pause" the scene.
+        -- Example: stop timers, stop animation, stop audio, etc.
+
+    -----------------------------------------------------------------------------------------
 
         elseif ( phase == "did" ) then
-    end 
+    --    display the sound effect
+            composer.removeScene("You_Win")
+            bakeText.isVisible = false
+
+
+end --function scene:hide( event )
 end
 -----------------------------------------------------------------------------------------
 
 -- The function called when the scene is issued to be destroyed
 function scene:destroy( event )
+
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
+
+-----------------------------------------------------------------------------------------
+
 end --function scene:destroy( event )
 
 -----------------------------------------------------------------------------------------
--- ADD EVENT LISTENERS
+-- EVENT LISTENERS
 -----------------------------------------------------------------------------------------
 
 -- Adding Event Listeners
