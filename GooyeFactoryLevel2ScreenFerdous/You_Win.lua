@@ -72,8 +72,8 @@ function scene:create( event )
     width = 100,
     height = 106,
     -- Setting Visual Properties
-    defaultFile = "Images/YesButtonPressedFerdous@2x.png",
-    overFile = "Images/YesButtonUnPressedFerdous@2x.png",
+    defaultFile = "Images/BakeButtonUnpressedAlex@2x.png",
+    overFile = "Images/BakeButtonPressedAlex@2x.png",
     -- Setting Functional Properties
     onRelease = YouWin
 })

@@ -58,13 +58,13 @@ local textTouched = false
 local totalAnswer = 0
 
 -- The local variables for the timer
-local totalSeconds = 60
-local secondsLeft =  60
+local totalSeconds = 20
+local secondsLeft =  20
 local clockText
 local countDownTimer
 
 -- background color
-display.setDefault("background", 0.1, 0.9, 0.5)
+display.setDefault("background", 0.9, 0.9, 0.5)
 
 ------------------------------------------------------------------------------------------
 --tasnsition variables
@@ -375,9 +375,9 @@ function scene:create( event )
 
     -----------------------------------------------------------------------------------------
     --making a cover rectangle to have the background fully bolcked where the question is
-    cover = display.newRoundedRect(display.contentCenterX, display.contentCenterY, display.contentWidth*0.8, display.contentHeight*0.95, 50 )
+    cover = display.newImageRect("Images/questions.png",display.contentCenterX, display.contentCenterY, display.contentWidth*0.8, display.contentHeight*0.95, 50 )
     --setting its colour
-    cover:setFillColor(200/255, 200/255, 200/255)
+    --cover:setFillColor(200/255, 200/255, 200/255)
 
     -- create the question text object
     questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 75)
@@ -513,6 +513,8 @@ function scene:hide( event )
             composer.removeScene("level2_questions")
         -- Displaying the background sound
             soundChannel = audio.stop()
+            --canceling the timer
+            timer.cancel(countDownTimer)
     end
 
 end 
