@@ -4,7 +4,6 @@
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
-
 -- Use Composer Library
 local composer = require( "composer" )
 
@@ -30,7 +29,7 @@ local transitionOption =({
     time = 500
 })
 local transitionOption2 =({
-    effect="zoomInOutFade Screen",
+    effect="zoomInOutFade",
     time = 500
 })
 local transitionOption3 =({
@@ -78,14 +77,13 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
     -- BACKGROUND AND DISPLAY OBJECTS
     -----------------------------------------------------------------------------------------
-
     -- Insert the background image and set it to the center of the screen
     bkg_image = display.newImage("Images/CakeFerdous@2x.png")
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
--- create the going back button to main menu screen 
+-- create the going back
 backButton = widget.newButton( 
     {
 -- Setting Position
@@ -131,6 +129,7 @@ backButton3 = widget.newButton(
     -- Setting Functional Properties
     onRelease = BackToLevel1
     })
+-- button for going to level 1
 backButton4 = widget.newButton( 
     {
 -- Setting Position
@@ -145,7 +144,7 @@ backButton4 = widget.newButton(
     -- Setting Functional Properties
     onRelease = BackToLevel1
     })
-
+-- button for going to level 3
 backButton5 = widget.newButton( 
     {
 -- Setting Position
@@ -227,7 +226,5 @@ scene:addEventListener( "create", scene )
 scene:addEventListener( "show", scene )
 scene:addEventListener( "hide", scene )
 scene:addEventListener( "destroy", scene )
-
 -----------------------------------------------------------------------------------------
-
 return scene

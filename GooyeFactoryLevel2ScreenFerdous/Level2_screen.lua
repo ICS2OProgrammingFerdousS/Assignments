@@ -1,7 +1,7 @@
 --Title: Level2_screen
 -- Name: Ferdous Sediqi
 -- Course: ICS2O
--- in This this assigment i will make a main menu, instructio, and level 1 screen.
+-- in This this assigment i will make the level 2 screen.
 -----------------------------------------------------------------------------------------
 -- Use Composer Library
 local composer = require( "composer" )
@@ -131,8 +131,7 @@ local function movingChocolate(touch)
       (checkMark3.isVisible == true) and
       (checkMark4.isVisible == true) and
        (checkMark5.isVisible == true) then
-        readyText.text = "Good job, now are you\n ready for the questions?"
-        readyText.isVisible = true
+        readyImage.isVisible = true
         yesButton.isVisible = true
         noButton.isVisible = true  
         backButton.x =  500
@@ -176,8 +175,7 @@ local function movingButter(touch)
         (checkMark3.isVisible == true) and
         (checkMark4.isVisible == true) and
         (checkMark5.isVisible == true) then
-        readyText.text = "Good job, now are you\n ready for the questions?"
-        readyText.isVisible = true
+        readyImage.isVisible = true
         yesButton.isVisible = true
         noButton.isVisible = true  
         backButton.x =  500
@@ -223,8 +221,7 @@ local function movingEggs(touch)
       (checkMark3.isVisible == true) and
       (checkMark4.isVisible == true) and
        (checkMark5.isVisible == true) then
-        readyText.text = "Good job, now are you\n ready for the questions?"
-        readyText.isVisible = true
+        readyImage.isVisible = true
         yesButton.isVisible = true
         noButton.isVisible = true
         backButton.x =  500
@@ -272,8 +269,7 @@ local function movingFlour(touch)
       (checkMark3.isVisible == true) and
       (checkMark4.isVisible == true) and
        (checkMark5.isVisible == true) then
-        readyText.text = "Good job, now are you \n ready for the questions?"
-        readyText.isVisible = true
+        readyImage.isVisible = true
         yesButton.isVisible = true
         noButton.isVisible = true   
         backButton.x =  500
@@ -319,8 +315,7 @@ local function movingSugar(touch)
       (checkMark3.isVisible == true) and
       (checkMark4.isVisible == true) and
        (checkMark5.isVisible == true) then
-        readyText.text = "Good job, now are you\n ready for the questions?"
-        readyText.isVisible = true
+        readyImage.isVisible = true
         yesButton.isVisible = true
         noButton.isVisible = true
         backButton.x =  500
@@ -375,15 +370,25 @@ function scene:create( event )
     -- Send the background image to the back layer so all other objects can be on top
     bkg_image:toBack()
 
+    -- display text for asking if the user ready for questions
+    readyImage = display.newImageRect("Images/text1.png", display.contentWidth, display.contentHeight)
+    readyImage.x = 550
+    readyImage.y = 610
+    readyImage.width = 900
+    readyImage.height = 700
+-- Associating display objects with this scene 
+    sceneGroup:insert( readyImage )
+    readyImage.isVisible = false
 -----------------------------------------------------------------------------------------
 -- BUTTON WIDGETS
 -----------------------------------------------------------------------------------------
-    readyText =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, bold, 40)
-    readyText.x = 550
-    readyText.y = 600
-    readyText.isVisible = false
-    readyText:setTextColor(255/255, 0/255, 0/255)
-    sceneGroup:insert(readyText)
+    --readyText =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, bold, 40)
+    --readyText.x = 550
+    --readyText.y = 600
+    --readyText.isVisible = false
+    --readyText:setTextColor(255/255, 0/255, 0/255)
+    --sceneGroup:insert(readyText)
+
 
    -- Creating Back Button
     backButton = widget.newButton( 

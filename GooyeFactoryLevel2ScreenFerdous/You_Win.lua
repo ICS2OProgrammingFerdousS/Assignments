@@ -59,15 +59,18 @@ function scene:create( event )
     sceneGroup:insert( bkg_image )
     -- creating baking button 
      --creationg bake text
-    bakeText =  display.newText(" Great job do you want to bake the cake?", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
+    bakeText =  display.newImage("Images/textFerdous.png")
     bakeText.x = 500
-    bakeText.y = 250
-    bakeText:setTextColor(0/255, 255/255, 255/255)
+    bakeText.y = 200
+    bakeText.width = 900
+    bakeText.height = 900
+
+
     yesButton = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/3,
-    y = display.contentHeight*15/27,
+    y = display.contentHeight*15/21,
     -- Setting Dimensions
     width = 100,
     height = 106,
@@ -82,7 +85,7 @@ function scene:create( event )
     {
 -- Setting Position
     x = display.contentWidth*1/1.5,
-    y = display.contentHeight*15/27,
+    y = display.contentHeight*15/21,
     -- Setting Dimensions
     width = 100,
     height = 106,
@@ -94,6 +97,9 @@ function scene:create( event )
     })
     sceneGroup:insert( yesButton )
     sceneGroup:insert( noButton )
+    sceneGroup:insert( bakeText )
+
+
 
 end
 -----------------------------------------------------------------------------------------
@@ -138,12 +144,6 @@ function scene:hide( event )
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
-               -- YouWin()
-
-        -- Called when the scene is on screen (but is about to go off screen).
-        -- Insert code here to "pause" the scene.
-        -- Example: stop timers, stop animation, stop audio, etc.
-
     -----------------------------------------------------------------------------------------
 
         elseif ( phase == "did" ) then

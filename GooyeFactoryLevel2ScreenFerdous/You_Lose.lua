@@ -2,19 +2,14 @@
 -- title:You_Lose_screen.lua
 -- Description: in this assignment we add the you lose screen 
 -----------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
 -- Use Composer Library
 local composer = require( "composer" )
-
------------------------------------------------------------------------------------------
-
+----------------------------------------------------------------------------------------
 -- Use Widget Library
 local widget = require( "widget" )
-
------------------------------------------------------------------------------------------
-
+----------------------------------------------------------------------------------------
 -- Naming Scene
 sceneName = "You_Lose"
 
@@ -31,12 +26,31 @@ local youLostChannel
 -----------------------------------------------------------------------------------------
 -- local variables
 -----------------------------------------------------------------------------------------
+-- background image variable
 local bkg_image
 
+--transition variables
 local transitionOption =({
     effect="zoomOutInRotate",
     time = 500
 })
+
+--transition variables
+local transitionOption2 =({
+    effect="zoomInOutFade Screen",
+    time = 500
+})
+--transition variables
+local transitionOption3 =({
+    effect="zoomOutInRotate",
+    time = 500
+})
+--transition variables
+local transitionOptions4 = ({
+     effect = "fromTop",
+     time = 1000
+})
+
 --------------------------------------------------------------------------------------------------
 --local functions
 ---------------------------------------------------------------------------------------------------
@@ -49,22 +63,24 @@ end
 -- function for going to level 2 screen 
 
 local function gotoLevel2Screen()
-    composer.gotoScene( "Level2_screen", transitionOption )
+    composer.gotoScene( "Level2_screen", transitionOption2 )
 end
 -- function for going back to the questions 
 local function gotoQuestions()
-    composer.gotoScene( "level2_questions", transitionOption )
+    composer.gotoScene( "level2_questions", transitionOption2 )
 end
 local function GotoLevel1Screen()
-    composer.gotoScene( "level2_questions", transitionOption )
+    composer.gotoScene( "level2_questions", transitionOption3 )
 end
 -- function for level 3
 local function GotoLevel3Screen()
-    composer.gotoScene( "level2_questions", transitionOption )
+    composer.gotoScene( "level2_questions", transitionOption4 )
 end
+---------------------------------------------------------------------------------
+--Global functions
+----------------------------------------------------------------------------------------
 -- creation of objects
 function scene:create( event )
-
 -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 -----------------------------------------------------------------------------------------
@@ -165,9 +181,6 @@ backButton5 = widget.newButton(
 
 end
 
------------------------------------------------------------------------------------------------
--- Global functions
------------------------------------------------------------------------------------------------
 -- The function called when the scene is issued to appear on screen
 function scene:show( event )
  -- Creating a group that associates objects with the scene
@@ -211,7 +224,6 @@ end --function scene:destroy( event )
 -----------------------------------------------------------------------------------------
 -- ADD EVENT LISTENERS
 -----------------------------------------------------------------------------------------
-
 -- Adding Event Listeners
 scene:addEventListener( "create", scene )
 scene:addEventListener( "show", scene )

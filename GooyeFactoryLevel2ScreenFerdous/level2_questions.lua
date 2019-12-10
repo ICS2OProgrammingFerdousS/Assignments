@@ -80,7 +80,7 @@ local transitionOption2 =({
 })
 -- transition effect variable
 local transitionOption3 =({
-    effect="crossFade",
+    effect="slideDown",
     time = 500
 })
 local transitionOption4 =({
@@ -362,48 +362,45 @@ function scene:create( event )
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view  
 
-    clockText= display.newText(secondsLeft, display.contentWidth/7, display.contentHeight/7, nil, 50)
-    clockText.x = 30
-    clockText.y = 45
-    clockText:setTextColor(0.3, 0.3, 0.2)
-    sceneGroup:insert(clockText)
     -----------------------------------------------------------------------------------------
     --covering the other scene with a rectangle so it looks faded and stops touch from going through
     bkg = display.newRect(display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight)
     --setting to a semi black colour
     bkg:setFillColor(0,0,0,0.5)
-
+   
     -----------------------------------------------------------------------------------------
     --making a cover rectangle to have the background fully bolcked where the question is
-    cover = display.newImageRect("Images/questions.png",display.contentCenterX, display.contentCenterY, display.contentWidth*0.8, display.contentHeight*0.95, 50 )
-    --setting its colour
-    --cover:setFillColor(200/255, 200/255, 200/255)
-
+    cover = display.newImageRect("Images/questionFerdous.png",display.contentWidth, display.contentHeight)
+    cover.x = display.contentCenterX
+    cover.y = display.contentCenterY
+    cover.width = display.contentWidth
+    cover.height = display.contentHeight 
+    sceneGroup:insert(cover)
     -- create the question text object
     questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 75)
-    questionText:setTextColor(0.2, 0.2, 0.2)
-    questionText:setFillColor( 0.2, 0.2, 0. )
+    questionText:setTextColor(100/255, 255/255, 10/255)
+    --questionText:setFillColor( 0.2, 0.2, 0. )
   
 
     -- create the answer text object & wrong answer text objects
-    answerText = display.newText("", X1, Y2, Arial, 40)
+    answerText = display.newText("", X1, Y2, Arial, 48)
     answerText.anchorX = 0
-    answerText:setTextColor(1, 0.3, 0.5)
-    wrongText1 = display.newText("", X2, Y2, Arial, 40)
+    answerText:setTextColor(0.9, 0, 0)
+    wrongText1 = display.newText("", X2, Y2, Arial, 48)
     wrongText1.anchorX = 0
-    wrongText1:setTextColor(1, 0.3, 0.5)
-    wrongText2 = display.newText("", X1, Y1, Arial, 40)
+    wrongText1:setTextColor(0.9, 0, 0)
+    wrongText2 = display.newText("", X1, Y1, Arial, 48)
     wrongText2.anchorX = 0
-    wrongText2:setTextColor(1, 0.3, 0.5)
-    wrongText3 = display.newText("", X1, Y2, Arial, 40)
+    wrongText2:setTextColor(0.9, 0, 0)
+    wrongText3 = display.newText("", X1, Y2, Arial, 48)
     wrongText3.anchorX = 0
-    wrongText3:setTextColor(1, 0.3, 0.5)
-
-    giveThenAnswer =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
+    wrongText3:setTextColor(0.9, 0, 0)
+-- creating the text to give the right answer if the got wrong
+    giveThenAnswer =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 50)
     giveThenAnswer.x = 500
     giveThenAnswer.y = 500
     giveThenAnswer.isVisible = false
-    giveThenAnswer:setTextColor(0.4, 0.3, 0.9)
+    giveThenAnswer:setTextColor(0, 0, 0.9)
     --creationg bake text
     bakeText =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
     bakeText.x = 500
@@ -411,6 +408,7 @@ function scene:create( event )
     bakeText.isVisible = false
     bakeText:setTextColor(0.4, 0.3, 0.9)
     -----------------------------------------------------------------------------------------
+   -- creating roots image
     rootImage = display.newImageRect("Images/roots.png", display.contentWidth, display.contentHeight) 
     rootImage.x = 500
     rootImage.y = 250
@@ -447,8 +445,15 @@ function scene:create( event )
     onRelease = BackTransition
     })
     -- insert all objects for this scene into the scene group
+    -- adding text and colour for timer
+    clockText= display.newText(secondsLeft, display.contentWidth/7, display.contentHeight/7, nil, 50)
+    clockText.x = 30
+    clockText.y = 45
+    clockText:setTextColor(0.9, 0, 0)
+
     sceneGroup:insert(bkg)
     sceneGroup:insert(cover)
+    sceneGroup:insert(clockText)
     sceneGroup:insert(questionText)
     sceneGroup:insert(answerText)
     sceneGroup:insert(wrongText1)
