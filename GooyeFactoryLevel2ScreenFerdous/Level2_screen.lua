@@ -437,7 +437,7 @@ function scene:create( event )
     bowl_image.height = 150
     sceneGroup:insert(bowl_image)
     --Creating yes buttton
-yesButton = widget.newButton( 
+    yesButton = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/3,
@@ -454,7 +454,7 @@ yesButton = widget.newButton(
     yesButton.isVisible = false
     sceneGroup:insert(yesButton)
 -- creating no button 
-noButton = widget.newButton( 
+    noButton = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/1.5,
