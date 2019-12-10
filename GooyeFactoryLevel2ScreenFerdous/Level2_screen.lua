@@ -53,6 +53,7 @@ local wrongAnswer1
 local wrongAnswer2
 local wrongAnswer3
 local wrongAnswer4
+local scrollSpeed = 2
 --------------------------------------------------------------------------------------
 --set variables for making scene transition
 ------------------------------------------------------------------------------------------
@@ -69,8 +70,23 @@ local transitionOption2 =({
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
 
--- The function that will go to the main menu 
+local function textMove( event )
+    starImage.x = starImage.x +scrollSpeed
+    starImage.y= starImage.y - scrollSpeed
+    starImage.width = 400
 
+ end
+
+ local function textMove2( event )
+    start2Image.x = start2Image.x - scrollSpeed
+    start2Image.y= start2Image.y - scrollSpeed
+    start2Image.width = 400
+
+ end
+
+ --------------------------------------------------------------------------------------------------------
+
+-- The function that will go to the main menu 
 
 local function BackTransition()
     composer.gotoScene( "main_menu", transitionOption2 )
@@ -334,6 +350,9 @@ local function AddAnswerBoxEventListeners()
     egg_image:addEventListener("touch", movingEggs)
     flour_image:addEventListener("touch", movingFlour)
     sugar_image:addEventListener("touch", movingSugar)
+    Runtime:addEventListener("enterFrame", textMove)
+    Runtime:addEventListener("enterFrame", textMove2)
+
 
 end 
 
@@ -344,6 +363,9 @@ local function RemoveAnswerBoxEventListeners()
     egg_image:removeEventListener("touch", movingEggs)
     flour_image:removeEventListener("touch", movingFlour)
     sugar_image:removeEventListener("touch", movingSugar)
+    Runtime:removeEventListener("enterFrame", textMove)
+    Runtime:removeEventListener("enterFrame", textMove2)
+
 
 end 
 
@@ -376,7 +398,7 @@ function scene:create( event )
 
     -- display text for asking if the user ready for questions
     readyImage = display.newImageRect("Images/text1.png", display.contentWidth, display.contentHeight)
-    readyImage.x = 550
+    readyImage.x = 650
     readyImage.y = 610
     readyImage.width = 900
     readyImage.height = 700
@@ -614,13 +636,28 @@ noButton = widget.newButton(
 
    -- Creating small Images of objects to stay in the bowl
     smallEggs = display.newImageRect("Images/eggs.png", display.contentWidth, display.contentHeight)
-    smallEggs.x = 400
-    smallEggs.y = 390
+    smallEggs.x = 0
+    smallEggs.y = 750
     smallEggs.width = 50
     smallEggs.height = 20
     sceneGroup:insert(smallEggs)    
     smallEggs.isVisible = false
-    
+
+    starImage = display.newImageRect("Images/cook.png", display.contentWidth, display.contentHeight)
+    starImage.x = 0
+    starImage.y = 750
+    starImage.width = 300
+    starImage.height = 300
+
+    sceneGroup:insert(starImage)
+
+    start2Image = display.newImageRect("Images/cook2.png", display.contentWidth, display.contentHeight)
+    start2Image.x = 1000
+    start2Image.y = 750
+    start2Image.width = 300
+    start2Image.height = 300
+
+    sceneGroup:insert(start2Image)
 end 
  -- function scene:create( event )
 
