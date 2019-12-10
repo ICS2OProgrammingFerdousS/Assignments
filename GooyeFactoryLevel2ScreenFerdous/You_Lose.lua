@@ -37,7 +37,7 @@ local transitionOption =({
 
 --transition variables
 local transitionOption2 =({
-    effect="zoomInOutFade Screen",
+    effect="zoomInOutFade",
     time = 500
 })
 --transition variables
@@ -70,11 +70,11 @@ local function gotoQuestions()
     composer.gotoScene( "level2_questions", transitionOption2 )
 end
 local function GotoLevel1Screen()
-    composer.gotoScene( "level2_questions", transitionOption3 )
+    composer.gotoScene( "Level2_screen", transitionOption3 )
 end
 -- function for level 3
 local function GotoLevel3Screen()
-    composer.gotoScene( "level2_questions", transitionOption4 )
+    composer.gotoScene( "Level2_screen", transitionOption4 )
 end
 ---------------------------------------------------------------------------------
 --Global functions
@@ -167,7 +167,7 @@ backButton5 = widget.newButton(
     defaultFile = "Images/GoToLevel3ButtonUnPressedFerdous@2x.png",
     overFile = "Images/GoToLevel3ButtonPressedFerdous@2x.png",
     -- Setting Functional Properties
-    onRelease = gotoLevel2Screen
+    onRelease = GotoLevel3Screen
     })
 
 -----------------------------------------------------------------------------------------

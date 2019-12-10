@@ -89,7 +89,8 @@ end
 
 local function movingChocolate(touch)
 
-    if (touchButter == false) and (touchEggs == false) then
+    if (touchButter == false) and (touchEggs == false) and 
+        (touchFlour == false) and (touchSugar == false) then
 
         if (touch.phase == "began") then
             --boolean for click the gredian
@@ -126,114 +127,26 @@ local function movingChocolate(touch)
             chocolate_image.y = 130
         end
 
-     if(checkMark.isVisible == true)and
-     (checkMark2.isVisible == true) and
-      (checkMark3.isVisible == true) and
-      (checkMark4.isVisible == true) and
-       (checkMark5.isVisible == true) then
-        readyImage.isVisible = true
-        yesButton.isVisible = true
-        noButton.isVisible = true  
-        backButton.x =  500
-        backButton.y = 500 
-
-    end
-end
-end
-local function movingButter(touch)
---only work if none of the other objects have been touched
-    if (touchSugar == false) and  ( touchFlour == false) then
-        if (touch.phase == "began") then
--- boolean to  know it has been clicked
-            touchButter = true  
-            touchSoundChannel = audio.play(touchSound)
-        elseif (touch.phase == "moved") then
---dragging function
-            butter_image.x = touch.x
-            butter_image.y = touch.y
-        elseif (touch.phase == "ended") then
-            touchButter = false
-            if (((bowl_image.x - bowl_image.width/1) < butter_image.x ) and
-            ((bowl_image.x + bowl_image.width/2) > butter_image.x ) and 
-            ((bowl_image.y - bowl_image.height/2) < butter_image.y ) and 
-            ((bowl_image.y + bowl_image.height/2) > butter_image.y ) ) then
--- setting the position of butter
-                butter_image.x = bowl_image.x
-                butter_image.y = bowl_image.y
-                foodSoundChannel = audio.play(foodSound)
-                butter_image.isVisible = false
-                checkMark.isVisible = true
-                smallButter.isVisible = true
+        if(checkMark.isVisible == true)and (checkMark2.isVisible == true) and
+            (checkMark3.isVisible == true) and (checkMark4.isVisible == true) and
+            (checkMark5.isVisible == true) then
+            readyImage.isVisible = true
+            yesButton.isVisible = true
+            noButton.isVisible = true  
+            backButton.x =  500
+            backButton.y = 500 
 
         end
-                 butter_image.x = 960
-                 butter_image.y = 310
-     end
-
-        if(checkMark.isVisible == true)and
-        (checkMark2.isVisible == true) and
-        (checkMark3.isVisible == true) and
-        (checkMark4.isVisible == true) and
-        (checkMark5.isVisible == true) then
-        readyImage.isVisible = true
-        yesButton.isVisible = true
-        noButton.isVisible = true  
-        backButton.x =  500
-        backButton.y = 500      
-    end
     end
 end
 
-local function movingEggs(touch)
---only work if none of the other objects have been touched
-    if (touchChocolate == false) and ( touchButter == false) then
-        if (touch.phase == "began") then
---boolean know it has been clicked
-            touchEggs = true 
-             touchSoundChannel = audio.play(touchSound)
 
-        elseif (touch.phase == "moved") then
---dragging function
-            egg_image.x = touch.x
-            egg_image.y = touch.y
-        elseif (touch.phase == "ended") then
-            touchEggs = false
-            if (((bowl_image.x - bowl_image.width/1) < egg_image.x ) and
-            ((bowl_image.x + bowl_image.width/2) > egg_image.x ) and 
-            ((bowl_image.y - bowl_image.height/2) < egg_image.y ) and 
-            ((bowl_image.y + bowl_image.height/2) > egg_image.y ) ) then
--- setting the position of the objects to be in the center of the box
-                egg_image.x = bowl_image.x
-                egg_image.y = bowl_image.y
-                foodSoundChannel = audio.play(foodSound)
-                egg_image.isVisible = false
-                checkMark5.isVisible = true
-                smallEggs.isVisible = true
-
-        end
-            egg_image.x = 960
-            egg_image.y = 410
-         
-        end
-
-     if(checkMark.isVisible == true)and
-     (checkMark2.isVisible == true) and
-      (checkMark3.isVisible == true) and
-      (checkMark4.isVisible == true) and
-       (checkMark5.isVisible == true) then
-        readyImage.isVisible = true
-        yesButton.isVisible = true
-        noButton.isVisible = true
-        backButton.x =  500
-        backButton.y = 500
-   
-        end
-    end
-end
 
 local function movingFlour(touch)
 --only work if none of the other objects have been touched
-    if (touchChocolate == false) and ( touchEggs == false) then
+    if (touchSugar == false) and (touchChocolate == false) and 
+        (touchButter == false) and (touchEggs == false) then 
+
         if (touch.phase == "began") then
 --let other boxes know it has been clicked
             touchFlour = true       
@@ -264,25 +177,118 @@ local function movingFlour(touch)
        
         end
 
-     if(checkMark.isVisible == true)and
-     (checkMark2.isVisible == true) and
-      (checkMark3.isVisible == true) and
-      (checkMark4.isVisible == true) and
-       (checkMark5.isVisible == true) then
-        readyImage.isVisible = true
-        yesButton.isVisible = true
-        noButton.isVisible = true   
-        backButton.x =  500
-        backButton.y = 500
-    end
+        if(checkMark.isVisible == true)and(checkMark2.isVisible == true) and
+            (checkMark3.isVisible == true) and(checkMark4.isVisible == true) and
+            (checkMark5.isVisible == true) then
+            readyImage.isVisible = true
+            yesButton.isVisible = true
+            noButton.isVisible = true   
+            backButton.x =  500
+            backButton.y = 500
+        end
     end
 end
+local function movingButter(touch)
+--only work if none of the other objects have been touched
+    if (touchFlour == false) and (touchChocolate == false) and 
+        (touchSugar == false) and (touchEggs == false) then
+
+        if (touch.phase == "began") then
+-- boolean to  know it has been clicked
+            touchButter = true  
+            touchSoundChannel = audio.play(touchSound)
+        elseif (touch.phase == "moved") then
+--dragging function
+            butter_image.x = touch.x
+            butter_image.y = touch.y
+        elseif (touch.phase == "ended") then
+            touchButter = false
+            if (((bowl_image.x - bowl_image.width/1) < butter_image.x ) and
+            ((bowl_image.x + bowl_image.width/2) > butter_image.x ) and 
+            ((bowl_image.y - bowl_image.height/2) < butter_image.y ) and 
+            ((bowl_image.y + bowl_image.height/2) > butter_image.y ) ) then
+-- setting the position of butter
+                butter_image.x = bowl_image.x
+                butter_image.y = bowl_image.y
+                foodSoundChannel = audio.play(foodSound)
+                butter_image.isVisible = false
+                checkMark.isVisible = true
+                smallButter.isVisible = true
+
+        end
+                 butter_image.x = 960
+                 butter_image.y = 310
+     end
+
+        if(checkMark.isVisible == true) and (checkMark2.isVisible == true) and
+            (checkMark3.isVisible == true) and (checkMark4.isVisible == true) and
+            (checkMark5.isVisible == true) then
+            readyImage.isVisible = true
+            yesButton.isVisible = true
+            noButton.isVisible = true  
+            backButton.x =  500
+            backButton.y = 500      
+        end
+    end
+end
+
+
+local function movingEggs(touch)
+--only work if none of the other objects have been touched
+    if (touchFlour == false) and (touchChocolate == false) and
+        (touchButter == false) and (touchSugar == false) then  
+
+        if (touch.phase == "began") then
+--boolean know it has been clicked
+            touchEggs = true 
+             touchSoundChannel = audio.play(touchSound)
+
+        elseif (touch.phase == "moved") then
+--dragging function
+            egg_image.x = touch.x
+            egg_image.y = touch.y
+        elseif (touch.phase == "ended") then
+            touchEggs = false
+            if (((bowl_image.x - bowl_image.width/1) < egg_image.x ) and
+            ((bowl_image.x + bowl_image.width/2) > egg_image.x ) and 
+            ((bowl_image.y - bowl_image.height/2) < egg_image.y ) and 
+            ((bowl_image.y + bowl_image.height/2) > egg_image.y ) ) then
+-- setting the position of the objects to be in the center of the box
+                egg_image.x = bowl_image.x
+                egg_image.y = bowl_image.y
+                foodSoundChannel = audio.play(foodSound)
+                egg_image.isVisible = false
+                checkMark5.isVisible = true
+                smallEggs.isVisible = true
+
+        end
+            egg_image.x = 960
+            egg_image.y = 410
+         
+        end
+
+        if(checkMark.isVisible == true) and (checkMark2.isVisible == true) and
+            (checkMark3.isVisible == true) and (checkMark4.isVisible == true) and
+            (checkMark5.isVisible == true) then
+            readyImage.isVisible = true
+            yesButton.isVisible = true
+            noButton.isVisible = true
+            backButton.x =  500
+            backButton.y = 500
+   
+        end
+    end
+end
+
 local function movingSugar(touch)
 --only work if none of the other objects have been touched
-    if (touchChocolate == false) and ( touchFlour == false) then
+    if (touchFlour == false) and (touchChocolate == false) and 
+        (touchButter == false) and (touchEggs == false) then    
+
         if (touch.phase == "began") then
 --boolean to know it has been clicked
-            touchSugar = true   
+            touchSugar = true  
+
             touchSoundChannel = audio.play(touchSound)
 
         elseif (touch.phase == "moved") then
@@ -310,17 +316,15 @@ local function movingSugar(touch)
             sugar_image.y = 500
         end
     end
-     if(checkMark.isVisible == true)and
-     (checkMark2.isVisible == true) and
-      (checkMark3.isVisible == true) and
-      (checkMark4.isVisible == true) and
-       (checkMark5.isVisible == true) then
-        readyImage.isVisible = true
-        yesButton.isVisible = true
-        noButton.isVisible = true
-        backButton.x =  500
-        backButton.y = 500
-     end
+        if(checkMark.isVisible == true) and (checkMark2.isVisible == true) and
+            (checkMark3.isVisible == true) and (checkMark4.isVisible == true) and
+            (checkMark5.isVisible == true) then
+            readyImage.isVisible = true
+            yesButton.isVisible = true
+            noButton.isVisible = true
+            backButton.x =  500
+            backButton.y = 500
+        end
 end
 
 
@@ -382,13 +386,6 @@ function scene:create( event )
 -----------------------------------------------------------------------------------------
 -- BUTTON WIDGETS
 -----------------------------------------------------------------------------------------
-    --readyText =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, bold, 40)
-    --readyText.x = 550
-    --readyText.y = 600
-    --readyText.isVisible = false
-    --readyText:setTextColor(255/255, 0/255, 0/255)
-    --sceneGroup:insert(readyText)
-
 
    -- Creating Back Button
     backButton = widget.newButton( 
@@ -410,13 +407,14 @@ function scene:create( event )
 -- Associating Buttons with this scene
     sceneGroup:insert( backButton )
     
-
+-- Creating bowl image
     bowl_image =display.newImageRect("Images/bowlPlaceholder.png", display.contentWidth, display.contentHeight) 
     bowl_image.x = 400
     bowl_image.y = 400
     bowl_image.width = 150
     bowl_image.height = 150
     sceneGroup:insert(bowl_image)
+    --Creating yes buttton
 yesButton = widget.newButton( 
     {
 -- Setting Position
@@ -433,6 +431,7 @@ yesButton = widget.newButton(
 })
     yesButton.isVisible = false
     sceneGroup:insert(yesButton)
+-- creating no button 
 noButton = widget.newButton( 
     {
 -- Setting Position
@@ -449,8 +448,15 @@ noButton = widget.newButton(
     })
     noButton.isVisible = false
 
-   sceneGroup:insert(noButton)
-   
+    sceneGroup:insert(noButton)
+ -- Creating butter image 
+    butter_image = display.newImageRect("Images/butter.png", display.contentWidth, display.contentHeight)
+    butter_image.x = 960
+    butter_image.y = 310
+    butter_image.width = 100
+    butter_image.height = 100
+    sceneGroup:insert( butter_image )
+   --Creating chocolate image 
     chocolate_image = display.newImageRect("Images/Chocolate.png", display.contentWidth, display.contentHeight)
     chocolate_image.x = 960
     chocolate_image.y = 130
@@ -458,9 +464,7 @@ noButton = widget.newButton(
     chocolate_image.height = 50
     sceneGroup:insert(chocolate_image)
     
-
-
-
+-- Creating flour image 
     flour_image = display.newImageRect("Images/flour.png", display.contentWidth, display.contentHeight)
     flour_image.x = 960
     flour_image.y = 225
@@ -468,14 +472,9 @@ noButton = widget.newButton(
     flour_image.height = 100
     sceneGroup:insert(flour_image)
 
-    butter_image = display.newImageRect("Images/butter.png", display.contentWidth, display.contentHeight)
-    butter_image.x = 960
-    butter_image.y = 310
-    butter_image.width = 100
-    butter_image.height = 100
-    sceneGroup:insert( butter_image )
 
     
+    -- Creating egg image 
     egg_image = display.newImageRect("Images/eggs.png", display.contentWidth, display.contentHeight)
     egg_image.x = 960
     egg_image.y = 410
@@ -483,8 +482,8 @@ noButton = widget.newButton(
     egg_image.height = 100
     sceneGroup:insert(egg_image)
 
-    
 
+    -- Creating sugar image 
     sugar_image = display.newImageRect("Images/sugar.png", display.contentWidth, display.contentHeight)
     sugar_image.x = 960
     sugar_image.y = 500
@@ -492,11 +491,6 @@ noButton = widget.newButton(
     sugar_image.height = 100
     sceneGroup:insert(sugar_image)
 
-    
-
-   
-    
-    
 
     
     butter_imageShort = display.newImageRect("Images/butter.png", display.contentWidth, display.contentHeight)
@@ -505,6 +499,8 @@ noButton = widget.newButton(
     butter_imageShort.width =100
     butter_imageShort.height = 100
     sceneGroup:insert(butter_imageShort)
+
+    --Creating checkMarks 
     checkMark = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
     checkMark.x = 160
     checkMark.y = 200
@@ -512,7 +508,7 @@ noButton = widget.newButton(
     checkMark.height = 70
     sceneGroup:insert(checkMark)
     checkMark.isVisible = false
-
+-- Creating small Images
     chocolate_imageShort = display.newImageRect("Images/Chocolate.png", display.contentWidth, display.contentHeight)
     chocolate_imageShort.x = 260
     chocolate_imageShort.y = 200
@@ -520,6 +516,7 @@ noButton = widget.newButton(
     chocolate_imageShort.height = 70
     sceneGroup:insert(chocolate_imageShort)
 
+    --Creating checkMarks 
     checkMark2 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
     checkMark2.x = 260
     checkMark2.y = 200
@@ -528,6 +525,7 @@ noButton = widget.newButton(
     sceneGroup:insert(checkMark2)
     checkMark2.isVisible = false
 
+-- Creating small Images of objects
     flour_imageShort = display.newImageRect("Images/flour.png", display.contentWidth, display.contentHeight)
     flour_imageShort.x = 350
     flour_imageShort.y = 200
@@ -535,6 +533,7 @@ noButton = widget.newButton(
     flour_imageShort.height = 90
     sceneGroup:insert(flour_imageShort)
 
+    --Creating checkMarks 
     checkMark3 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
     checkMark3.x = 350
     checkMark3.y = 200
@@ -543,7 +542,7 @@ noButton = widget.newButton(
     sceneGroup:insert(checkMark3)
     checkMark3.isVisible = false
 
-
+-- Creating small Images of objects
     sugar_imageShort = display.newImageRect("Images/sugar.png", display.contentWidth, display.contentHeight)
     sugar_imageShort.x = 440
     sugar_imageShort.y = 200
@@ -551,6 +550,7 @@ noButton = widget.newButton(
     sugar_imageShort.height = 80
     sceneGroup:insert(sugar_imageShort)
 
+    --Creating checkMarks 
     checkMark4 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
     checkMark4.x = 440
     checkMark4.y = 200
@@ -559,7 +559,7 @@ noButton = widget.newButton(
     sceneGroup:insert(checkMark4)
     checkMark4.isVisible = false
 
-   
+   -- Creating small Images of objects
    egg_imageShort = display.newImageRect("Images/eggs.png", display.contentWidth, display.contentHeight)
    egg_imageShort.x = 530
    egg_imageShort.y = 200
@@ -567,6 +567,7 @@ noButton = widget.newButton(
    egg_imageShort.height = 80
    sceneGroup:insert(egg_imageShort)
 
+    --Creating checkMarks 
     checkMark5 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
     checkMark5.x = 530
     checkMark5.y = 200
@@ -575,6 +576,7 @@ noButton = widget.newButton(
     sceneGroup:insert(checkMark5)
     checkMark5.isVisible = false  
 
+   -- Creating small Images of objects to stay in the bowl
     smallChocolate = display.newImageRect("Images/Chocolate.png", display.contentWidth, display.contentHeight)
     smallChocolate.x = 400
     smallChocolate.y = 390
@@ -583,6 +585,7 @@ noButton = widget.newButton(
     sceneGroup:insert(smallChocolate)    
     smallChocolate.isVisible = false
 
+   -- Creating small Images of objects to stay in the bowl
     smallButter = display.newImageRect("Images/butter.png", display.contentWidth, display.contentHeight)
     smallButter.x = 400
     smallButter.y = 390
@@ -591,6 +594,7 @@ noButton = widget.newButton(
     sceneGroup:insert(smallButter)    
     smallButter.isVisible = false
 
+   -- Creating small Images of objects to stay in the bowl
     smallFlour = display.newImageRect("Images/flour.png", display.contentWidth, display.contentHeight)
     smallFlour.x = 400
     smallFlour.y = 390
@@ -599,6 +603,7 @@ noButton = widget.newButton(
     sceneGroup:insert(smallFlour)    
     smallFlour.isVisible = false
 
+   -- Creating small Images of objects to stay in the bowl
     smallSugar = display.newImageRect("Images/sugar.png", display.contentWidth, display.contentHeight)
     smallSugar.x = 400
     smallSugar.y = 390
@@ -607,6 +612,7 @@ noButton = widget.newButton(
     sceneGroup:insert(smallSugar)    
     smallSugar.isVisible = false
 
+   -- Creating small Images of objects to stay in the bowl
     smallEggs = display.newImageRect("Images/eggs.png", display.contentWidth, display.contentHeight)
     smallEggs.x = 400
     smallEggs.y = 390

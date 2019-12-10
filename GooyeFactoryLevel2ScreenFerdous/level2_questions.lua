@@ -58,8 +58,8 @@ local textTouched = false
 local totalAnswer = 0
 
 -- The local variables for the timer
-local totalSeconds = 20
-local secondsLeft =  20
+local totalSeconds = 60
+local secondsLeft =  60
 local clockText
 local countDownTimer
 
@@ -383,16 +383,16 @@ function scene:create( event )
   
 
     -- create the answer text object & wrong answer text objects
-    answerText = display.newText("", X1, Y2, Arial, 48)
+    answerText = display.newText("", X1, Y2, Arial, 40)
     answerText.anchorX = 0
     answerText:setTextColor(0.9, 0, 0)
-    wrongText1 = display.newText("", X2, Y2, Arial, 48)
+    wrongText1 = display.newText("", X2, Y2, Arial, 40)
     wrongText1.anchorX = 0
     wrongText1:setTextColor(0.9, 0, 0)
-    wrongText2 = display.newText("", X1, Y1, Arial, 48)
+    wrongText2 = display.newText("", X1, Y1, Arial, 40)
     wrongText2.anchorX = 0
     wrongText2:setTextColor(0.9, 0, 0)
-    wrongText3 = display.newText("", X1, Y2, Arial, 48)
+    wrongText3 = display.newText("", X1, Y2, Arial, 40)
     wrongText3.anchorX = 0
     wrongText3:setTextColor(0.9, 0, 0)
 -- creating the text to give the right answer if the got wrong

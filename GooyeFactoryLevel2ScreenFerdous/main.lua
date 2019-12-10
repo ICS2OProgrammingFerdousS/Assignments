@@ -19,7 +19,7 @@ local composer = require( "composer" )
 -----------------------------------------------------------------------------------------
 
 -- Go to the intro screen
-composer.gotoScene( "You_Win")
+composer.gotoScene( "level2_questions")
 --display.setDefault("background", 0.5, 0.7, 1)
 
 
