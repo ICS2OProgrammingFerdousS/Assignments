@@ -385,16 +385,16 @@ function scene:create( event )
     -- create the answer text object & wrong answer text objects
     answerText = display.newText("", X1, Y2, Arial, 40)
     answerText.anchorX = 0
-    answerText:setTextColor(0.9, 0, 0)
+    answerText:setTextColor(0/255, 0/255, 0/255)
     wrongText1 = display.newText("", X2, Y2, Arial, 40)
     wrongText1.anchorX = 0
-    wrongText1:setTextColor(0.9, 0, 0)
+    wrongText1:setTextColor(0/255, 0/255, 0/255)
     wrongText2 = display.newText("", X1, Y1, Arial, 40)
     wrongText2.anchorX = 0
-    wrongText2:setTextColor(0.9, 0, 0)
+    wrongText2:setTextColor(0/255, 0/255, 0/255)
     wrongText3 = display.newText("", X1, Y2, Arial, 40)
     wrongText3.anchorX = 0
-    wrongText3:setTextColor(0.9, 0, 0)
+    wrongText3:setTextColor(0/255, 0/255, 0/255)
 -- creating the text to give the right answer if the got wrong
     giveThenAnswer =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 50)
     giveThenAnswer.x = 500
