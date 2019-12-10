@@ -164,8 +164,8 @@ backButton5 = widget.newButton(
     width = 150,
     height = 100,
     -- Setting Visual Properties
-    defaultFile = "Images/GoToLevel3ButtonUnPressedFerdous@2x.png",
-    overFile = "Images/GoToLevel3ButtonPressedFerdous@2x.png",
+    defaultFile = "Images/SkipLevelButtonUnPressedFerdous@2x .png",
+    overFile = "Images/SkipLevelButtonPressedFerdous@2x.png",
     -- Setting Functional Properties
     onRelease = GotoLevel3Screen
     })

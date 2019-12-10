@@ -28,7 +28,7 @@ local yowWinSoundChannel
 -----------------------------------------------------------------------------------------
 local bkg_image
 local function YouWin( )
-    composer.gotoScene( "your_cake", {effect = "fromLeft", time = 1000})
+    composer.gotoScene( "your_cake", {effect = "fromLeft", time = 3000})
 
 end   
 
