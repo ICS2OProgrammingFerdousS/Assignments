@@ -95,7 +95,7 @@ function scene:create( event )
     bkg_image.height = display.contentHeight
 
 -- button for going back to main menu screen
-backButton = widget.newButton( 
+    backButton = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/2,
@@ -111,7 +111,7 @@ backButton = widget.newButton(
     })
 
 -- button for going back to questions screen
-backButton2 = widget.newButton( 
+    backButton2 = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/4,
@@ -127,7 +127,7 @@ backButton2 = widget.newButton(
     })
 
 --creation button for going to level 2 screen 
-backButton3 = widget.newButton( 
+    backButton3 = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/1.3,
@@ -141,7 +141,7 @@ backButton3 = widget.newButton(
     -- Setting Functional Properties
     onRelease = gotoLevel2Screen
     })
-backButton4 = widget.newButton( 
+    backButton4 = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/1.3,
@@ -156,7 +156,7 @@ backButton4 = widget.newButton(
     onRelease = gotoLevel2Screen
     })
 
-backButton5 = widget.newButton( 
+    backButton5 = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/2,
@@ -171,7 +171,7 @@ backButton5 = widget.newButton(
     onRelease = GotoLevel3Screen
     })
 
-backButton6 = widget.newButton( 
+    backButton6 = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/4,
