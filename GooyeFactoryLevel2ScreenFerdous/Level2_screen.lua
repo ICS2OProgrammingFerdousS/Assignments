@@ -399,7 +399,7 @@ function scene:create( event )
 
     -- display text for asking if the user ready for questions
     readyImage = display.newImageRect("Images/text1.png", display.contentWidth, display.contentHeight)
-    readyImage.x = 650
+    readyImage.x = 960
     readyImage.y = 610
     readyImage.width = 900
     readyImage.height = 700

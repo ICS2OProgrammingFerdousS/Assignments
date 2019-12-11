@@ -234,7 +234,7 @@ local function DisplayQuestion()
             questionText.text = "What kind of trees\n have flowers on them?"
             rootImage.isVisible = false
              --creating answer text from list it corispondes with the animals list
-            answerText.text = "Bloosm Trees"
+            answerText.text = "Blossom tree"
                  --creating wrong answers
             wrongText1.text = "Maple Trees"
             wrongText2.text = "Oak Trees"
@@ -271,7 +271,7 @@ local function TouchListenerWrongAnswer(touch)
         -- pop sound when the objects touched
         popUpChannel = audio.play(popUp)
     -- Displaying the the right answer text
-        giveThenAnswer.text = "Ops wrong answer the correct \n answer is ".. answerText.text
+        giveThenAnswer.text = "sorry wrong answer the correct \n answer is ".. answerText.text
     --make the text Visible
         giveThenAnswer.isVisible = true
     -- delaly for Displaying the you lose screen
@@ -290,7 +290,7 @@ local function TouchListenerWrongAnswer2(touch)
 
         popUpChannel = audio.play(popUp)
         -- Displaying the correct answer text if the user got wrong
-        giveThenAnswer.text = "Ops wrong answer the correct \n answer is ".. answerText.text
+        giveThenAnswer.text = "sorry wrong answer the correct \n answer is ".. answerText.text
     -- making the correct answer text Visible
         giveThenAnswer.isVisible = true
     -- delaly for Displaying you lose screen
@@ -307,7 +307,7 @@ local function TouchListenerWrongAnswer3(touch)
     -- DisplayQuestion pop sound when the objects touched
         popUpChannel = audio.play(popUp)
     -- Displaying the right answer text if the user got it wrong
-        giveThenAnswer.text = "Ops wrong answer the correct \n answer is ".. answerText.text
+        giveThenAnswer.text = "sorry wrong answer the correct \n answer is ".. answerText.text
     -- making the right answer text Visible
         giveThenAnswer.isVisible = true
     -- delaly for displying  you lose screen

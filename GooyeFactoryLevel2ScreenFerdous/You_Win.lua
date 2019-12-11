@@ -61,7 +61,7 @@ function scene:create( event )
      --creationg bake text
     bakeText =  display.newImage("Images/textFerdous.png")
     bakeText.x = 500
-    bakeText.y = 200
+    bakeText.y = 250
     bakeText.width = 900
     bakeText.height = 900
 
