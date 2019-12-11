@@ -69,7 +69,7 @@ local transitionOption2 =({
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
-
+-- function for moving the starting text 
 local function textMove( event )
     starImage.x = starImage.x +scrollSpeed
     starImage.y= starImage.y - scrollSpeed
@@ -77,6 +77,7 @@ local function textMove( event )
 
  end
 
+-- function for moving the starting text 
  local function textMove2( event )
     start2Image.x = start2Image.x - scrollSpeed
     start2Image.y= start2Image.y - scrollSpeed

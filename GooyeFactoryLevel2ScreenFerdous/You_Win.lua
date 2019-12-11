@@ -17,7 +17,7 @@ local widget = require( "widget" )
 -- Creating Scene Object
 local scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
 -- Naming Scene
-sceneName = "You_Win"
+sceneName = "You_win"
 -----------------------------------------------------------------------------------------
 -- local variable for sound effect
 local youWinSound =  audio.loadSound("Sounds/Correct.wav")

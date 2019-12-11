@@ -51,22 +51,11 @@ local function BackTransition()
 
 end
 -- function for going to level 2 screen
-local function gotoLevel2Screen()
-    composer.gotoScene( "Level2_screen", transitionOption2 )
+local function gotoLevelSelect()
+    composer.gotoScene( "levelSelect_screen", transitionOption2 )
 end
 -- function for going to questions screen
-local function gotoQuestions()
-    composer.gotoScene( "level2_questions", transitionOption3 )
-end
 
--- function for going to questions screen
-local function BackToLevel1()
-    composer.gotoScene( "Level2_screen", transitionOption3 )
-end
--- function for going to questions screen
-local function gotoLevel3()
-    composer.gotoScene( "Level2_screen", transitionOptions4 )
-end
 ---------------------------------------------------------------------------------------------------
 --Global Functions
 ---------------------------------------------------------------------------------------------------
@@ -87,7 +76,7 @@ function scene:create( event )
 backButton = widget.newButton( 
     {
 -- Setting Position
-    x = display.contentWidth*1/2,
+    x = display.contentWidth*1/1.5,
     y = display.contentHeight*15/17,
         -- Setting Dimensions
     width = 150,
@@ -108,64 +97,18 @@ backButton2 = widget.newButton(
     width = 150,
     height = 100,
     -- Setting Visual Properties
-    defaultFile = "Images/QuestionButtonUnPressedFerdous@2x.png",
-    overFile = "Images/QuestionButtonPressedFerdous.png",
+    defaultFile = "Images/LevelSelectUnPressedButtonFerdous@2x.png",
+    overFile = "Images/LevelSelectPressedButtonFerdous@2x.png",
     -- Setting Functional Properties
-    onRelease = gotoQuestions
+    onRelease = gotoLevelSelect
     })
 
---Creating button fo going back 2 level 2 screen
-backButton3 = widget.newButton( 
-    {
--- Setting Position
-    x = display.contentWidth*1/1.3,
-    y = display.contentHeight*15/17,
-        -- Setting Dimensions
-    width = 150,
-    height = 100,
-    -- Setting Visual Properties
-    defaultFile = "Images/BackToLevel2ButtonUnPressedFerdous@2x .png",
-    overFile = "Images/BackToLevel2ButtonPressed@2x.png",
-    -- Setting Functional Properties
-    onRelease = BackToLevel1
-    })
--- button for going to level 1
-backButton4 = widget.newButton( 
-    {
--- Setting Position
-    x = display.contentWidth*1/1.5,
-    y = display.contentHeight*15/22,
-        -- Setting Dimensions
-    width = 150,
-    height = 100,
-    -- Setting Visual Properties
-    defaultFile = "Images/BackToLevel1UnPressedButtonFerdous@2x.png",
-    overFile = "Images/BackToLevel1ButtonPressedFerdous@2x .png",
-    -- Setting Functional Properties
-    onRelease = BackToLevel1
-    })
--- button for going to level 3
-backButton5 = widget.newButton( 
-    {
--- Setting Position
-    x = display.contentWidth*1/3,
-    y = display.contentHeight*15/22,
-        -- Setting Dimensions
-    width = 150,
-    height = 100,
-    -- Setting Visual Properties
-    defaultFile = "Images/GoToLevel3ButtonUnPressedFerdous@2x.png",
-    overFile = "Images/GoToLevel3ButtonPressedFerdous@2x.png",
-    -- Setting Functional Properties
-    onRelease = gotoLevel3
-    })
+
+
      -- Associating display objects with this scenes 
     sceneGroup:insert( bkg_image )
     sceneGroup:insert( backButton )
     sceneGroup:insert( backButton2 )
-    sceneGroup:insert( backButton3 )
-    sceneGroup:insert( backButton4 )
-    sceneGroup:insert( backButton5 )
 
 end
 -----------------------------------------------------------------------------------------

@@ -370,7 +370,7 @@ function scene:create( event )
    
     -----------------------------------------------------------------------------------------
     --making a cover rectangle to have the background fully bolcked where the question is
-    cover = display.newImageRect("Images/questionFerdous.png",display.contentWidth, display.contentHeight)
+    cover = display.newImageRect("Images/question mark.png",display.contentWidth, display.contentHeight)
     cover.x = display.contentCenterX
     cover.y = display.contentCenterY
     cover.width = display.contentWidth
@@ -378,7 +378,7 @@ function scene:create( event )
     sceneGroup:insert(cover)
     -- create the question text object
     questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 75)
-    questionText:setTextColor(100/255, 255/255, 10/255)
+    questionText:setTextColor(0/255, 0/255, 255/255)
     --questionText:setFillColor( 0.2, 0.2, 0. )
   
 
