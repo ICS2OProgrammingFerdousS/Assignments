@@ -69,21 +69,6 @@ local transitionOption2 =({
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
--- function for moving the starting text 
-local function textMove( event )
-    starImage.x = starImage.x +scrollSpeed
-    starImage.y= starImage.y - scrollSpeed
-    starImage.width = 400
-
- end
-
--- function for moving the starting text 
- local function textMove2( event )
-    start2Image.x = start2Image.x - scrollSpeed
-    start2Image.y= start2Image.y - scrollSpeed
-    start2Image.width = 400
-
- end
 
  --------------------------------------------------------------------------------------------------------
 
@@ -351,8 +336,7 @@ local function AddAnswerBoxEventListeners()
     egg_image:addEventListener("touch", movingEggs)
     flour_image:addEventListener("touch", movingFlour)
     sugar_image:addEventListener("touch", movingSugar)
-    Runtime:addEventListener("enterFrame", textMove)
-    Runtime:addEventListener("enterFrame", textMove2)
+    
 
 
 end 
@@ -364,9 +348,7 @@ local function RemoveAnswerBoxEventListeners()
     egg_image:removeEventListener("touch", movingEggs)
     flour_image:removeEventListener("touch", movingFlour)
     sugar_image:removeEventListener("touch", movingSugar)
-    Runtime:removeEventListener("enterFrame", textMove)
-    Runtime:removeEventListener("enterFrame", textMove2)
-
+   
 
 end 
 
