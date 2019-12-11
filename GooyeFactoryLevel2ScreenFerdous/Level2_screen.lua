@@ -626,21 +626,6 @@ function scene:create( event )
     sceneGroup:insert(smallEggs)    
     smallEggs.isVisible = false
 
-    starImage = display.newImageRect("Images/cook.png", display.contentWidth, display.contentHeight)
-    starImage.x = 0
-    starImage.y = 750
-    starImage.width = 300
-    starImage.height = 300
-
-    sceneGroup:insert(starImage)
-
-    start2Image = display.newImageRect("Images/cook2.png", display.contentWidth, display.contentHeight)
-    start2Image.x = 1000
-    start2Image.y = 750
-    start2Image.width = 300
-    start2Image.height = 300
-
-    sceneGroup:insert(start2Image)
 end 
  -- function scene:create( event )
 
