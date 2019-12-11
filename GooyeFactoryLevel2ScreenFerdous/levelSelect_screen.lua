@@ -20,7 +20,7 @@ local scene = composer.newScene( sceneName ) -- This function doesn't accept a s
 --------------------------------------------------------------------------------------------
 -- local Sounds
 --------------------------------------------------------------------------------------------
-local youLost = audio.loadSound("Sounds/boo.mp3")
+local youLost = audio.loadSound("Sounds/Correct.wav")
 local youLostChannel
 
 
