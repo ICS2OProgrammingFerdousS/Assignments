@@ -444,6 +444,7 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = BackTransition
     })
+    
     -- insert all objects for this scene into the scene group
     -- adding text and colour for timer
     clockText= display.newText(secondsLeft, display.contentWidth/7, display.contentHeight/7, nil, 50)

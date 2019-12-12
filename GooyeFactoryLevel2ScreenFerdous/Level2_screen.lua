@@ -116,6 +116,7 @@ local function movingChocolate(touch)
         if (touch.phase == "began") then
             --boolean for click the gredian
             touchChocolate = true
+            instructionText.isVisible = false
             touchSoundChannel = audio.play(touchSound)
 
         --drag the objects to follow the mouse
@@ -168,6 +169,8 @@ local function movingFlour(touch)
         (touchButter == false) and (touchEggs == false) then 
 
         if (touch.phase == "began") then
+            instructionText.isVisible = false
+
 --let other boxes know it has been clicked
             touchFlour = true       
             touchSoundChannel = audio.play(touchSound)
@@ -213,6 +216,8 @@ local function movingButter(touch)
         (touchSugar == false) and (touchEggs == false) then
 
         if (touch.phase == "began") then
+            instructionText.isVisible = false
+
 -- boolean to  know it has been clicked
             touchButter = true  
             touchSoundChannel = audio.play(touchSound)
@@ -257,6 +262,8 @@ local function movingEggs(touch)
         (touchButter == false) and (touchSugar == false) then  
 
         if (touch.phase == "began") then
+            instructionText.isVisible = false
+
 --boolean know it has been clicked
             touchEggs = true 
              touchSoundChannel = audio.play(touchSound)
@@ -302,6 +309,8 @@ local function movingSugar(touch)
         (touchButter == false) and (touchEggs == false) then    
 
         if (touch.phase == "began") then
+            instructionText.isVisible = false
+
 --boolean to know it has been clicked
             touchSugar = true  
 
@@ -617,7 +626,7 @@ function scene:create( event )
     smallEggs.x = 0
     smallEggs.y = 750
     smallEggs.width = 50
-    smallEggs.height = 20
+    smallEggs.height = 20                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
     sceneGroup:insert(smallEggs)    
     smallEggs.isVisible = false
 
@@ -633,6 +642,15 @@ function scene:create( event )
     unmuteButton.isVisible = false
     sceneGroup:insert(muteButton)
     sceneGroup:insert(unmuteButton)
+
+    instructionText = display.newImageRect("Images/cook2.png", display.contentWidth, display.contentHeight)
+    instructionText.x = 500
+    instructionText.y = 300
+    instructionText.width = 700
+    instructionText.height = 500
+    sceneGroup:insert(instructionText)
+    instructionText.isVisible = true
+
 
 end 
  -- function scene:create( event )
