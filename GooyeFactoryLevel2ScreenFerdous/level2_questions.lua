@@ -81,7 +81,7 @@ local transitionOption2 =({
 -- transition effect variable
 local transitionOption3 =({
     effect="slideDown",
-    time = 500
+    time = 700
 })
 local transitionOption4 =({
     effect="zoomInOutFade",

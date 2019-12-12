@@ -54,6 +54,9 @@ local wrongAnswer2
 local wrongAnswer3
 local wrongAnswer4
 local scrollSpeed = 2
+ --variables for sounds mute and unMute
+local soundOn = true
+
 --------------------------------------------------------------------------------------
 --set variables for making scene transition
 ------------------------------------------------------------------------------------------
@@ -69,22 +72,38 @@ local transitionOption2 =({
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
+-- function for mute and 
+local function Mute( touch )
+    if(touch.phase == "ended")then
+--pause the sound
+        audio.pause(backgroundSoundChannel)
+--set boolean for sound status
+        soundOn = false
+        muteButton.isVisible = false
+        unmuteButton.isVisible = true
+    end 
+end
+--function for unMute
 
- --------------------------------------------------------------------------------------------------------
+local function secondButton( touch )
+    if(touch.phase == "ended")then
+--play the music 
+        audio.resume(backgroundSoundChannel)
+        soundOn = true
+        muteButton.isVisible = true
+        unmuteButton.isVisible = false
 
+        
+    end
+ end
 -- The function that will go to the main menu 
 
 local function BackTransition()
     composer.gotoScene( "main_menu", transitionOption2 )
-    --resetScene()
 end
 
 local function gotoQuestions( ... )
     composer.gotoScene("level2_questions", transitionOption)
-end
-
-local function restartLevel2( ... )
-    composer.gotoScene("Level2_screen", transitionOption2)
 end
 
 
@@ -134,9 +153,8 @@ local function movingChocolate(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            noButton.isVisible = true  
-            backButton.x =  500
-            backButton.y = 500 
+            backButton.x =  600
+            backButton.y = 424
 
         end
     end
@@ -184,9 +202,8 @@ local function movingFlour(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            noButton.isVisible = true   
-            backButton.x =  500
-            backButton.y = 500
+            backButton.x =  600
+            backButton.y = 424
         end
     end
 end
@@ -227,9 +244,8 @@ local function movingButter(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            noButton.isVisible = true  
-            backButton.x =  500
-            backButton.y = 500      
+            backButton.x =  600
+            backButton.y = 424   
         end
     end
 end
@@ -274,10 +290,8 @@ local function movingEggs(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            noButton.isVisible = true
-            backButton.x =  500
-            backButton.y = 500
-   
+            backButton.x =  600
+            backButton.y = 424
         end
     end
 end
@@ -323,9 +337,8 @@ local function movingSugar(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            noButton.isVisible = true
-            backButton.x =  500
-            backButton.y = 500
+            backButton.x =  600
+            backButton.y = 424
         end
 end
 
@@ -436,24 +449,6 @@ function scene:create( event )
 })
     yesButton.isVisible = false
     sceneGroup:insert(yesButton)
--- creating no button 
-    noButton = widget.newButton( 
-    {
--- Setting Position
-    x = display.contentWidth*1/1.5,
-    y = display.contentHeight*15/27,
-    -- Setting Dimensions
-    width = 100,
-    height = 106,
-    -- Setting Visual Properties
-    defaultFile = "Images/NoButtonPressedFerdous@2x.png",
-    overFile = "Images/NoButtonUnPressedFerdous@2x.png",
-    -- Setting Functional Properties
-    onRelease = restartLevel2
-    })
-    noButton.isVisible = false
-
-    sceneGroup:insert(noButton)
  -- Creating butter image 
     butter_image = display.newImageRect("Images/butter.png", display.contentWidth, display.contentHeight)
     butter_image.x = 960
@@ -626,6 +621,19 @@ function scene:create( event )
     sceneGroup:insert(smallEggs)    
     smallEggs.isVisible = false
 
+    --creating mute button
+    muteButton = display.newImageRect("Images/icon.png", 90, 90)
+    muteButton.x = 43
+    muteButton.y = 35
+    muteButton.isVisible = true
+--creating mut button
+    unmuteButton = display.newImageRect("Images/50.png", 90, 90)
+    unmuteButton.x = 43
+    unmuteButton.y = 35
+    unmuteButton.isVisible = false
+    sceneGroup:insert(muteButton)
+    sceneGroup:insert(unmuteButton)
+
 end 
  -- function scene:create( event )
 
@@ -642,11 +650,15 @@ function scene:show( event )
     if ( phase == "will" ) then
 -----------------------------------------------------------------------------------------
         elseif ( phase == "did" ) then
+            muteButton:addEventListener("touch", Mute)
+            unmuteButton:addEventListener("touch", secondButton )
+
         --calling the addEventListener function 
             AddAnswerBoxEventListeners()
         -- display background music
             backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1}) 
-
+           -- muteButton:addEventListener("touch", Mute)
+           -- unmuteButton:addEventListener("touch", secondButton )
     end
 
 end 
@@ -662,9 +674,14 @@ function scene:hide( event )
 -----------------------------------------------------------------------------------------
 -- Called immediately after scene goes off screen.
         elseif ( phase == "did" ) then
+            muteButton:removeEventListener("touch", Mute)
+            unmuteButton:removeEventListener("touch", secondButton )
+
             backgroundSoundChannel = audio.stop()
             RemoveAnswerBoxEventListeners()
             composer.removeScene("Level2_screen")
+           -- muteButton:removeEventListener("touch", Mute)
+           -- unmuteButton:removeEventListener("touch", secondButton )
 
 
     end

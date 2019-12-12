@@ -22,6 +22,8 @@ local playButton
 local creditsButton
 local instructionsButton
 
+local soundOn = false
+
 --VARIABLES for questions 
 -----------------------------------------------------------------------------------------
 -- LOCAL SOUNDS
@@ -134,6 +136,18 @@ function scene:create( event )
    
     -----------------------------------------------------------------------------------------
 
+   --creating mute button
+    muteButton = display.newImageRect("Images/icon.png", 90, 90)
+    muteButton.x = 10
+    muteButton.y = 10
+    muteButton.isVisible = true
+--creating mut button
+    unmuteButton = display.newImageRect("Images/icon2.png", 90, 90)
+    unmuteButton.x = 10
+    unmuteButton.y = 10
+    unmuteButton.isVisible = false
+    sceneGroup:insert(muteButton)
+    sceneGroup:insert(unmuteButton)
     -- Associating button widgets with this scene
     sceneGroup:insert( playButton )
     sceneGroup:insert( creditsButton )
@@ -153,6 +167,8 @@ function scene:show( event )
 -----------------------------------------------------------------------------------------
 -- Called when the scene is still off screen (but is about to come on screen).   
     if ( phase == "will" ) then
+      --  if(soundOn == false) then
+           -- soundChannel = audio.pause(sound)
  -- The function that will go to the main menu 
 ----------------------------------------------------------------------------------------
     -- Called when the scene is now on screen.
@@ -171,6 +187,7 @@ function scene:hide( event )
     local phase = event.phase
 -----------------------------------------------------------------------------------------
     if ( phase == "will" ) then
+        
         elseif ( phase == "did" ) then
         --stop background music
             soundChannel = audio.stop()
