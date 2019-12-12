@@ -40,16 +40,7 @@ local transitionOption2 =({
     effect="zoomInOutFade",
     time = 500
 })
---transition variables
-local transitionOption3 =({
-    effect="zoomOutInRotate",
-    time = 500
-})
---transition variables
-local transitionOptions4 = ({
-     effect = "fromTop",
-     time = 1000
-})
+
 
 --------------------------------------------------------------------------------------------------
 --local functions
@@ -68,9 +59,7 @@ local function gotoQuestions()
     composer.gotoScene( "level2_questions", transitionOption2 )
 end
 -- function for level 3
-local function GotoLevel3Screen()
-    composer.gotoScene( "Level2_screen", transitionOption4 )
-end
+
 ---------------------------------------------------------------------------------
 --Global functions
 ----------------------------------------------------------------------------------------
@@ -104,22 +93,8 @@ backButton1 = widget.newButton(
     onRelease = gotoQuestions
     })
 
-backButton2 = widget.newButton( 
-    {
--- Setting Position
-    x = display.contentWidth*1/2.1,
-    y = display.contentHeight*15/17,
-        -- Setting Dimensions
-    width = 150,
-    height = 100,
-    -- Setting Visual Properties
-    defaultFile = "Images/SkipLevelButtonUnPressedFerdous@2x .png",
-    overFile = "Images/SkipLevelButtonPressedFerdous@2x.png",
-    -- Setting Functional Properties
-    onRelease = GotoLevel3Screen
-    })
 
-backButton3 = widget.newButton( 
+backButton2 = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/1.4,
@@ -139,7 +114,6 @@ backButton3 = widget.newButton(
     sceneGroup:insert( bkg_image )
     sceneGroup:insert( backButton1 )
     sceneGroup:insert( backButton2 )
-    sceneGroup:insert( backButton3 )
 
 
 end

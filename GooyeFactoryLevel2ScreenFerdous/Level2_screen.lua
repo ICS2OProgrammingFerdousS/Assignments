@@ -503,85 +503,85 @@ function scene:create( event )
 
     
     butter_imageShort = display.newImageRect("Images/butter.png", display.contentWidth, display.contentHeight)
-    butter_imageShort.x = 160
-    butter_imageShort.y = 200
-    butter_imageShort.width =100
-    butter_imageShort.height = 100
+    butter_imageShort.x = 45
+    butter_imageShort.y = 370
+    butter_imageShort.width =60
+    butter_imageShort.height = 60
     sceneGroup:insert(butter_imageShort)
 
     --Creating checkMarks 
     checkMark = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
-    checkMark.x = 160
-    checkMark.y = 200
-    checkMark.width = 70
-    checkMark.height = 70
+    checkMark.x = 45
+    checkMark.y = 370
+    checkMark.width =60
+    checkMark.height = 60
     sceneGroup:insert(checkMark)
     checkMark.isVisible = false
 -- Creating small Images
     chocolate_imageShort = display.newImageRect("Images/Chocolate.png", display.contentWidth, display.contentHeight)
-    chocolate_imageShort.x = 260
+    chocolate_imageShort.x = 45
     chocolate_imageShort.y = 200
-    chocolate_imageShort.width = 70
-    chocolate_imageShort.height = 70
+    chocolate_imageShort.width = 60
+    chocolate_imageShort.height = 60
     sceneGroup:insert(chocolate_imageShort)
 
     --Creating checkMarks 
     checkMark2 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
-    checkMark2.x = 260
+    checkMark2.x = 45
     checkMark2.y = 200
-    checkMark2.width = 70
-    checkMark2.height = 70
+    checkMark2.width = 60
+    checkMark2.height = 60
     sceneGroup:insert(checkMark2)
     checkMark2.isVisible = false
 
 -- Creating small Images of objects
     flour_imageShort = display.newImageRect("Images/flour.png", display.contentWidth, display.contentHeight)
-    flour_imageShort.x = 350
-    flour_imageShort.y = 200
-    flour_imageShort.width = 90
-    flour_imageShort.height = 90
+    flour_imageShort.x = 45
+    flour_imageShort.y = 280
+    flour_imageShort.width = 60
+    flour_imageShort.height = 60
     sceneGroup:insert(flour_imageShort)
 
     --Creating checkMarks 
     checkMark3 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
-    checkMark3.x = 350
-    checkMark3.y = 200
-    checkMark3.width = 70
-    checkMark3.height = 70
+    checkMark3.x = 45
+    checkMark3.y = 280
+    checkMark3.width = 60
+    checkMark3.height = 60
     sceneGroup:insert(checkMark3)
     checkMark3.isVisible = false
 
 -- Creating small Images of objects
     sugar_imageShort = display.newImageRect("Images/sugar.png", display.contentWidth, display.contentHeight)
-    sugar_imageShort.x = 440
-    sugar_imageShort.y = 200
-    sugar_imageShort.width = 80
-    sugar_imageShort.height = 80
+    sugar_imageShort.x = 45
+    sugar_imageShort.y = 540
+    sugar_imageShort.width = 60
+    sugar_imageShort.height = 60
     sceneGroup:insert(sugar_imageShort)
 
     --Creating checkMarks 
     checkMark4 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
-    checkMark4.x = 440
-    checkMark4.y = 200
-    checkMark4.width = 70
-    checkMark4.height = 70
+    checkMark4.x = 45
+    checkMark4.y = 540
+    checkMark4.width = 60
+    checkMark4.height = 60
     sceneGroup:insert(checkMark4)
     checkMark4.isVisible = false
 
    -- Creating small Images of objects
    egg_imageShort = display.newImageRect("Images/eggs.png", display.contentWidth, display.contentHeight)
-   egg_imageShort.x = 530
-   egg_imageShort.y = 200
-   egg_imageShort.width = 80
-   egg_imageShort.height = 80
+   egg_imageShort.x = 45
+   egg_imageShort.y = 460
+   egg_imageShort.width = 60
+   egg_imageShort.height = 60
    sceneGroup:insert(egg_imageShort)
 
     --Creating checkMarks 
     checkMark5 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
-    checkMark5.x = 530
-    checkMark5.y = 200
-    checkMark5.width = 80
-    checkMark5.height = 80
+    checkMark5.x = 45
+    checkMark5.y = 460
+    checkMark5.width = 60
+    checkMark5.height = 60
     sceneGroup:insert(checkMark5)
     checkMark5.isVisible = false  
 
@@ -645,7 +645,7 @@ function scene:create( event )
 
     instructionText = display.newImageRect("Images/cook2.png", display.contentWidth, display.contentHeight)
     instructionText.x = 500
-    instructionText.y = 300
+    instructionText.y = 200
     instructionText.width = 700
     instructionText.height = 500
     sceneGroup:insert(instructionText)

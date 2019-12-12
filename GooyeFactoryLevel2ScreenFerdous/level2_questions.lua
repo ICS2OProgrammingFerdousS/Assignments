@@ -81,7 +81,7 @@ local transitionOption2 =({
 -- transition effect variable
 local transitionOption3 =({
     effect="slideDown",
-    time = 700
+    time = 500
 })
 local transitionOption4 =({
     effect="zoomInOutFade",
@@ -90,6 +90,31 @@ local transitionOption4 =({
 -----------------------------------------------------------------------------------------
 --LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
+
+-- function for mute and 
+local function Mute( touch )
+    if(touch.phase == "ended")then
+--pause the sound
+        audio.pause(soundChannel)
+--set boolean for sound status
+        soundOn = false
+        muteButton.isVisible = false
+        unmuteButton.isVisible = true
+    end 
+end
+--function for unMute
+
+local function secondButton( touch )
+    if(touch.phase == "ended")then
+--play the music 
+        audio.resume(soundChannel)
+        soundOn = true
+        muteButton.isVisible = true
+        unmuteButton.isVisible = false
+
+        
+    end
+ end
 
 -- function for going back to main menu screen
 
@@ -195,13 +220,13 @@ local function DisplayQuestion()
         elseif (randomQuestion == 2) then
             PositionAnswers()
     --creating the question depending on the selcetion number
-            questionText.text = "What is image of?"
+            questionText.text = "What is this image of?"
             rootImage.isVisible = true
     --creating answer text from list it corispondes with the animals list
             answerText.text = "Root"
     
             --creating wrong answers
-            wrongText1.text = "leaves"
+            wrongText1.text = "Leaves"
             wrongText2.text = "Branch"
             wrongText3.text = "Flower"
         elseif (randomQuestion == 3) then
@@ -215,12 +240,12 @@ local function DisplayQuestion()
             --creating wrong answers
             wrongText1.text = "Moonlight"
             wrongText2.text = "Juice"
-            wrongText3.text = "darkness"
+            wrongText3.text = "Darkness"
 
         elseif (randomQuestion == 4) then
             PositionAnswers()
             --creating the question depending on the selcetion number
-            questionText.text = "What is the\n stronget shape?"
+            questionText.text = "What is the\n strongest shape?"
             rootImage.isVisible = false
             --creating answer text from list it corispondes with the animals list
             answerText.text = "Triangle"
@@ -271,13 +296,13 @@ local function TouchListenerWrongAnswer(touch)
         -- pop sound when the objects touched
         popUpChannel = audio.play(popUp)
     -- Displaying the the right answer text
-        giveThenAnswer.text = "sorry wrong answer the correct \n answer is ".. answerText.text
+        giveThenAnswer.text = "Sorry, wrong answer. The correct \n answer is ".. answerText.text
     --make the text Visible
         giveThenAnswer.isVisible = true
     -- delaly for Displaying the you lose screen
-        timer.performWithDelay(3000, youLostScreen )
+        timer.performWithDelay(1500, youLostScreen )
     -- delaly for hidding the correct answer text
-        timer.performWithDelay(2000, HideCorrectAnswer)
+        timer.performWithDelay(1500, HideCorrectAnswer)
     end 
 end
 
@@ -290,13 +315,13 @@ local function TouchListenerWrongAnswer2(touch)
 
         popUpChannel = audio.play(popUp)
         -- Displaying the correct answer text if the user got wrong
-        giveThenAnswer.text = "sorry wrong answer the correct \n answer is ".. answerText.text
+        giveThenAnswer.text = "Sorry wrong answer. The correct \n answer is ".. answerText.text
     -- making the correct answer text Visible
         giveThenAnswer.isVisible = true
     -- delaly for Displaying you lose screen
-        timer.performWithDelay(3000, youLostScreen )    
+        timer.performWithDelay(1500, youLostScreen )    
 -- delaly for making the correct text inVisible
-        timer.performWithDelay(2000, HideCorrectAnswer)
+        timer.performWithDelay(1500, HideCorrectAnswer)
 
     end 
 end
@@ -307,13 +332,13 @@ local function TouchListenerWrongAnswer3(touch)
     -- DisplayQuestion pop sound when the objects touched
         popUpChannel = audio.play(popUp)
     -- Displaying the right answer text if the user got it wrong
-        giveThenAnswer.text = "sorry wrong answer the correct \n answer is ".. answerText.text
+        giveThenAnswer.text = "Sorry wrong answer. The correct \n answer is ".. answerText.text
     -- making the right answer text Visible
         giveThenAnswer.isVisible = true
     -- delaly for displying  you lose screen
-        timer.performWithDelay(3000, youLostScreen )
+        timer.performWithDelay(1500, youLostScreen )
     -- delaly for hidding the right answer
-        timer.performWithDelay(2000, HideCorrectAnswer)
+        timer.performWithDelay(1500, HideCorrectAnswer)
 
     end 
 end
@@ -383,16 +408,16 @@ function scene:create( event )
   
 
     -- create the answer text object & wrong answer text objects
-    answerText = display.newText("", X1, Y2, Arial, 40)
+    answerText = display.newText("", X1, Y2, Arial, 45)
     answerText.anchorX = 0
     answerText:setTextColor(255/255, 0/255, 0/255)
-    wrongText1 = display.newText("", X2, Y2, Arial, 40)
+    wrongText1 = display.newText("", X2, Y2, Arial, 45)
     wrongText1.anchorX = 0
     wrongText1:setTextColor(255/255, 0/255, 0/255)
-    wrongText2 = display.newText("", X1, Y1, Arial, 40)
+    wrongText2 = display.newText("", X1, Y1, Arial, 45)
     wrongText2.anchorX = 0
     wrongText2:setTextColor(255/255, 0/255, 0/255)
-    wrongText3 = display.newText("", X1, Y2, Arial, 40)
+    wrongText3 = display.newText("", X1, Y2, Arial, 45)
     wrongText3.anchorX = 0
     wrongText3:setTextColor(255/255, 0/255, 0/255)
 -- creating the text to give the right answer if the got wrong
@@ -444,13 +469,25 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = BackTransition
     })
+    muteButton = display.newImageRect("Images/icon.png", 90, 90)
+    muteButton.x = 45
+    muteButton.y = 40
+    muteButton.isVisible = true
+
+--creating mut button
+    unmuteButton = display.newImageRect("Images/50.png", 90, 90)
+    unmuteButton.x = 45
+    unmuteButton.y = 40
+    unmuteButton.isVisible = false
     
     -- insert all objects for this scene into the scene group
     -- adding text and colour for timer
     clockText= display.newText(secondsLeft, display.contentWidth/7, display.contentHeight/7, nil, 50)
-    clockText.x = 30
+    clockText.x = 500
     clockText.y = 45
     clockText:setTextColor(0.9, 0, 0)
+           --creating mute button
+  
 
     sceneGroup:insert(bkg)
     sceneGroup:insert(cover)
@@ -464,6 +501,8 @@ function scene:create( event )
     sceneGroup:insert(giveThenAnswer)
     sceneGroup:insert(backButton)
     sceneGroup:insert(backButton2)
+    sceneGroup:insert(muteButton)
+    sceneGroup:insert(unmuteButton)
 
 end --function scene:create( event )
 
@@ -482,6 +521,8 @@ function scene:show( event )
 -----------------------------------------------------------------------------------------
 
         elseif ( phase == "did" ) then
+            muteButton:addEventListener("touch", Mute)
+            unmuteButton:addEventListener("touch", secondButton )
         -- called the FUNCTION to display questions
             DisplayQuestion()
         -- call the function to change the answers positions
@@ -513,6 +554,8 @@ function scene:hide( event )
     -----------------------------------------------------------------------------------------
 
         elseif ( phase == "did" ) then
+            muteButton:removeEventListener("touch", Mute)
+            unmuteButton:removeEventListener("touch", secondButton )
         -- call the remove the event listeners FUNCTION
             RemoveTextListeners()
         -- reset scene after leave it 

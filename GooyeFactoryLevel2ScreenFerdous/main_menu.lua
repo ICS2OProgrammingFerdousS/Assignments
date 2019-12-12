@@ -34,18 +34,58 @@ local soundChannel
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
+local transitionOption =({
+    effect="zoomOutInRotate",
+    time = 400
+})
 
 
--- Creating Transition Function to Credits Page
+--transition variables
+local transitionOption2 =({
+    effect="zoomOutInRotate",
+    time = 700
+})
+
+--transition variables
+local transitionOptions4 = ({
+     effect = "fromTop",
+     time = 500
+})
+
+-- function for mute and 
+local function Mute( touch )
+    if(touch.phase == "ended")then
+--pause the sound
+        audio.pause(soundChannel)
+--set boolean for sound status
+        soundOn = false
+        muteButton.isVisible = false
+        unmuteButton.isVisible = true
+    end 
+end
+--function for unMute
+
+local function secondButton( touch )
+    if(touch.phase == "ended")then
+--play the music 
+        audio.resume(soundChannel)
+        soundOn = true
+        muteButton.isVisible = true
+        unmuteButton.isVisible = false
+
+        
+    end
+ end
+
 local function CreditsTransition( )       
-    composer.gotoScene( "Credit", {effect = "fromRight", time = 500})
+    composer.gotoScene( "Credit", transitionOptions4)
     clickSoundChannel = audio.play(clickSound)
 end 
 -----------------------------------------------------------------------------------------
 
  --Creating Transition to Level1 Screen
-local function Level1ScreenTransition( )
-    composer.gotoScene( "Level2_screen", {effect = "fromLeft", time = 500})
+local function Level2ScreenTransition( )
+    composer.gotoScene( "Level2_screen", transitionOption2)
     clickSoundChannel = audio.play(clickSound)
 
 
@@ -54,7 +94,7 @@ end
 
 -- INSERT LOCAL FUNCTION DEFINITION THAT GOES TO INSTRUCTIONS SCREEN 
 local function gotoInstructions( )
-    composer.gotoScene("Instruction", {effect = "fromBottom", time = 500})
+    composer.gotoScene("Instruction", transitionOption)
     clickSoundChannel = audio.play(clickSound)
 end
 -----------------------------------------------------------------------------------------
@@ -95,7 +135,7 @@ function scene:create( event )
          overFile = "Images/PlayButtonPressedAlex@2x.png", 150, 100,
          --
          -- When the button is released, call the Level1 screen transition function
-         onRelease = Level1ScreenTransition    
+         onRelease = Level2ScreenTransition    
  } )
     -----------------------------------------------------------------------------------------
 
@@ -138,22 +178,24 @@ function scene:create( event )
 
    --creating mute button
     muteButton = display.newImageRect("Images/icon.png", 90, 90)
-    muteButton.x = 10
-    muteButton.y = 10
+    muteButton.x = 50
+    muteButton.y = 40
     muteButton.isVisible = true
 --creating mut button
-    unmuteButton = display.newImageRect("Images/icon2.png", 90, 90)
-    unmuteButton.x = 10
-    unmuteButton.y = 10
+    unmuteButton = display.newImageRect("Images/50.png", 90, 90)
+    unmuteButton.x = 50
+    unmuteButton.y = 40
     unmuteButton.isVisible = false
     sceneGroup:insert(muteButton)
     sceneGroup:insert(unmuteButton)
-    -- Associating button widgets with this scene
+   
+    -- INSERT INSTRUCTIONS BUTTON INTO SCENE GROUP
+    sceneGroup:insert( instructionsButton )
+       --creating mute button
+   
     sceneGroup:insert( playButton )
     sceneGroup:insert( creditsButton )
     
-    -- INSERT INSTRUCTIONS BUTTON INTO SCENE GROUP
-    sceneGroup:insert( instructionsButton )
 end  
 
 -----------------------------------------------------------------------------------------
@@ -173,6 +215,8 @@ function scene:show( event )
 ----------------------------------------------------------------------------------------
     -- Called when the scene is now on screen.
         elseif ( phase == "did" ) then
+            muteButton:addEventListener("touch", Mute)
+            unmuteButton:addEventListener("touch", secondButton )
             soundChannel = audio.play(sound, {channel = 2, loops = -1})
     end
 end -- function scene:show( event )
@@ -189,6 +233,10 @@ function scene:hide( event )
     if ( phase == "will" ) then
         
         elseif ( phase == "did" ) then
+            muteButton:removeEventListener("touch", Mute)
+            unmuteButton:removeEventListener("touch", secondButton )
+            composer.removeScene("main_menu")
+
         --stop background music
             soundChannel = audio.stop()
      end
