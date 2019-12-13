@@ -8,7 +8,7 @@ local composer = require( "composer" )
 local widget = require( "widget" )
 
 -- Name the Scene
-sceneName = "Level1_screen"
+sceneName = "Level2_screen"
 scene = composer.newScene(sceneName)
 
 -----------------------------------------------------------------------------------------
@@ -18,13 +18,13 @@ local scene = composer.newScene( sceneName )
 --------------------------------------------------------------------------------
 --local sounds
 ---------------------------------------------------------------------------------
-local backgroundSound = audio.loadSound("Sounds/sweet.mp3")
+local backgroundSound = audio.loadStream("Sounds/sweet.mp3")
 local backgroundSoundChannel
 
-local touchSound = audio.loadSound("Sounds/PopSound.wav")
+local touchSound = audio.loadStream("Sounds/PopSound.wav")
 local touchSoundChannel
 
-local foodSound = audio.loadSound("Sounds/water.mp3")
+local foodSound = audio.loadStream("Sounds/water.mp3")
 local foodSoundChannel
 ----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
@@ -668,15 +668,21 @@ function scene:show( event )
     if ( phase == "will" ) then
 -----------------------------------------------------------------------------------------
         elseif ( phase == "did" ) then
+             if (soundOn == true)then
+                audio.resume(soundChannel)
+            else 
+                audio.pause(soundChannel)
+            end
+----------addEventListener
             muteButton:addEventListener("touch", Mute)
             unmuteButton:addEventListener("touch", secondButton )
 
         --calling the addEventListener function 
             AddAnswerBoxEventListeners()
+
         -- display background music
             backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1}) 
-           -- muteButton:addEventListener("touch", Mute)
-           -- unmuteButton:addEventListener("touch", secondButton )
+          
     end
 
 end 
@@ -692,15 +698,15 @@ function scene:hide( event )
 -----------------------------------------------------------------------------------------
 -- Called immediately after scene goes off screen.
         elseif ( phase == "did" ) then
+
+            --removing Eventlisteners
             muteButton:removeEventListener("touch", Mute)
             unmuteButton:removeEventListener("touch", secondButton )
 
             backgroundSoundChannel = audio.stop()
             RemoveAnswerBoxEventListeners()
             composer.removeScene("Level2_screen")
-           -- muteButton:removeEventListener("touch", Mute)
-           -- unmuteButton:removeEventListener("touch", secondButton )
-
+         
 
     end
 end --function scene:hide( event )

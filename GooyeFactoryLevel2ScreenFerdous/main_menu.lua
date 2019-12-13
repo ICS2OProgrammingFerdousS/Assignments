@@ -22,7 +22,7 @@ local playButton
 local creditsButton
 local instructionsButton
 
-local soundOn = false
+local soundOn = true
 
 --VARIABLES for questions 
 -----------------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ local soundOn = false
 -----------------------------------------------------------------------------------------
 -- backgroundSound
 local sound = audio.loadSound("Sounds/buddy.mp3")
-local soundChannel
+local soundChannel = audio.play(sound, {channel = 2, loops = -1})
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ local transitionOption =({
 --transition variables
 local transitionOption2 =({
     effect="zoomOutInRotate",
-    time = 700
+    time = 400
 })
 
 --transition variables
@@ -53,21 +53,21 @@ local transitionOptions4 = ({
 })
 
 -- function for mute and 
-local function Mute( touch )
+local function TurnSoundOff( touch )
     if(touch.phase == "ended")then
---pause the sound
+        --pause the sound
         audio.pause(soundChannel)
---set boolean for sound status
+        --set boolean for sound status
         soundOn = false
         muteButton.isVisible = false
         unmuteButton.isVisible = true
     end 
 end
---function for unMute
 
-local function secondButton( touch )
+--function for unMute
+local function TurnSoundOn( touch )
     if(touch.phase == "ended")then
---play the music 
+        --play the music 
         audio.resume(soundChannel)
         soundOn = true
         muteButton.isVisible = true
@@ -115,9 +115,6 @@ function scene:create( event )
     bkg_image.height = display.contentHeight
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg_image )
-    -- Send the background image to the back layer so all other objects can be on top
-    bkg_image:toBack()
-
 -----------------------------------------------------------------------------------------
 -- BUTTON WIDGETS
 -----------------------------------------------------------------------------------------   
@@ -181,6 +178,7 @@ function scene:create( event )
     muteButton.x = 50
     muteButton.y = 40
     muteButton.isVisible = true
+
 --creating mut button
     unmuteButton = display.newImageRect("Images/50.png", 90, 90)
     unmuteButton.x = 50
@@ -191,8 +189,6 @@ function scene:create( event )
    
     -- INSERT INSTRUCTIONS BUTTON INTO SCENE GROUP
     sceneGroup:insert( instructionsButton )
-       --creating mute button
-   
     sceneGroup:insert( playButton )
     sceneGroup:insert( creditsButton )
     
@@ -215,9 +211,13 @@ function scene:show( event )
 ----------------------------------------------------------------------------------------
     -- Called when the scene is now on screen.
         elseif ( phase == "did" ) then
-            muteButton:addEventListener("touch", Mute)
-            unmuteButton:addEventListener("touch", secondButton )
-            soundChannel = audio.play(sound, {channel = 2, loops = -1})
+            muteButton:addEventListener("touch", TurnSoundOn)
+            unmuteButton:addEventListener("touch", TurnSoundOff )
+            if (soundOn == true)then
+                audio.resume(soundChannel)
+            else 
+                audio.pause(soundChannel)
+            end
     end
 end -- function scene:show( event )
 
@@ -233,12 +233,11 @@ function scene:hide( event )
     if ( phase == "will" ) then
         
         elseif ( phase == "did" ) then
-            muteButton:removeEventListener("touch", Mute)
-            unmuteButton:removeEventListener("touch", secondButton )
+            muteButton:removeEventListener("touch", TurnSoundOn)
+            unmuteButton:removeEventListener("touch", TurnSoundOff )
             composer.removeScene("main_menu")
 
-        --stop background music
-            soundChannel = audio.stop()
+            audio.pause(soundChannel)           
      end
 end 
 
