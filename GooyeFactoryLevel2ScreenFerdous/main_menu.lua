@@ -30,7 +30,7 @@ local soundOn = true
 -----------------------------------------------------------------------------------------
 -- backgroundSound
 local sound = audio.loadSound("Sounds/buddy.mp3")
-local soundChannel = audio.play(sound, {channel = 2, loops = -1})
+local soundChannel
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ local transitionOptions4 = ({
 })
 
 -- function for mute and 
-local function TurnSoundOff( touch )
+local function first( touch )
     if(touch.phase == "ended")then
         --pause the sound
         audio.pause(soundChannel)
@@ -65,7 +65,7 @@ local function TurnSoundOff( touch )
 end
 
 --function for unMute
-local function TurnSoundOn( touch )
+local function second( touch )
     if(touch.phase == "ended")then
         --play the music 
         audio.resume(soundChannel)
@@ -107,6 +107,7 @@ function scene:create( event )
 -----------------------------------------------------------------------------------------
 -- BACKGROUND IMAGE & STATIC OBJECTS
 -----------------------------------------------------------------------------------------
+
  -- Insert the background image and set it to the center of the screen
     bkg_image = display.newImage("Images/MainMenuAlex@2x.png")
     bkg_image.x = display.contentCenterX
@@ -118,6 +119,8 @@ function scene:create( event )
 -----------------------------------------------------------------------------------------
 -- BUTTON WIDGETS
 -----------------------------------------------------------------------------------------   
+
+
     -- Creating Play Button
     playButton = widget.newButton( 
         {   
@@ -205,19 +208,15 @@ function scene:show( event )
 -----------------------------------------------------------------------------------------
 -- Called when the scene is still off screen (but is about to come on screen).   
     if ( phase == "will" ) then
-      --  if(soundOn == false) then
-           -- soundChannel = audio.pause(sound)
  -- The function that will go to the main menu 
 ----------------------------------------------------------------------------------------
     -- Called when the scene is now on screen.
         elseif ( phase == "did" ) then
-            muteButton:addEventListener("touch", TurnSoundOn)
-            unmuteButton:addEventListener("touch", TurnSoundOff )
-            if (soundOn == true)then
-                audio.resume(soundChannel)
-            else 
-                audio.pause(soundChannel)
-            end
+            muteButton:addEventListener("touch", first)
+            unmuteButton:addEventListener("touch", second)
+           
+            soundChannel  = audio.play(sound, {channel = 2, loops = -1})
+
     end
 end -- function scene:show( event )
 
@@ -231,15 +230,23 @@ function scene:hide( event )
     local phase = event.phase
 -----------------------------------------------------------------------------------------
     if ( phase == "will" ) then
+           
         
         elseif ( phase == "did" ) then
-            muteButton:removeEventListener("touch", TurnSoundOn)
-            unmuteButton:removeEventListener("touch", TurnSoundOff )
+            muteButton:removeEventListener("touch", first)
+            unmuteButton:removeEventListener("touch", second)
             composer.removeScene("main_menu")
+            soundChannel =  audio.stop()
 
-            audio.pause(soundChannel)           
+        if (soundOn == true)then
+            audio.pause(soundChannel)
+         else 
+            audio.resume(soundChannel)
+            end
+          
      end
-end 
+end
+
 
 -----------------------------------------------------------------------------------------
 

@@ -295,13 +295,13 @@ local function TouchListenerWrongAnswer(touch)
     if (touch.phase == "ended") then
         -- pop sound when the objects touched
         popUpChannel = audio.play(popUp)
-    -- Displaying the the right answer text
+        -- Displaying the the right answer text
         giveThenAnswer.text = "Sorry, wrong answer. The correct \n answer is ".. answerText.text
-    --make the text Visible
+        --make the text Visible
         giveThenAnswer.isVisible = true
-    -- delaly for Displaying the you lose screen
+        -- delaly for Displaying the you lose screen
         timer.performWithDelay(1500, youLostScreen )
-    -- delaly for hidding the correct answer text
+        -- delaly for hidding the correct answer text
         timer.performWithDelay(1500, HideCorrectAnswer)
     end 
 end
@@ -316,11 +316,11 @@ local function TouchListenerWrongAnswer2(touch)
         popUpChannel = audio.play(popUp)
         -- Displaying the correct answer text if the user got wrong
         giveThenAnswer.text = "Sorry wrong answer. The correct \n answer is ".. answerText.text
-    -- making the correct answer text Visible
+        -- making the correct answer text Visible
         giveThenAnswer.isVisible = true
-    -- delaly for Displaying you lose screen
+        -- delaly for Displaying you lose screen
         timer.performWithDelay(1500, youLostScreen )    
--- delaly for making the correct text inVisible
+        -- delaly for making the correct text inVisible
         timer.performWithDelay(1500, HideCorrectAnswer)
 
     end 
@@ -329,15 +329,15 @@ end
 local function TouchListenerWrongAnswer3(touch)
     userAnswer = wrongText3.text
     if (touch.phase == "ended") then
-    -- DisplayQuestion pop sound when the objects touched
+        -- DisplayQuestion pop sound when the objects touched
         popUpChannel = audio.play(popUp)
-    -- Displaying the right answer text if the user got it wrong
+        -- Displaying the right answer text if the user got it wrong
         giveThenAnswer.text = "Sorry wrong answer. The correct \n answer is ".. answerText.text
-    -- making the right answer text Visible
+        -- making the right answer text Visible
         giveThenAnswer.isVisible = true
-    -- delaly for displying  you lose screen
+        -- delaly for displying  you lose screen
         timer.performWithDelay(1500, youLostScreen )
-    -- delaly for hidding the right answer
+        -- delaly for hidding the right answer
         timer.performWithDelay(1500, HideCorrectAnswer)
 
     end 
@@ -517,7 +517,7 @@ function scene:show( event )
     if ( phase == "will" ) then
         DisplayQuestion()
         PositionAnswers()
--- Called when the scene is still off screen (but is about to come on screen).
+        -- Called when the scene is still off screen (but is about to come on screen).
 -----------------------------------------------------------------------------------------
 
         elseif ( phase == "did" ) then
@@ -556,11 +556,11 @@ function scene:hide( event )
         elseif ( phase == "did" ) then
             muteButton:removeEventListener("touch", Mute)
             unmuteButton:removeEventListener("touch", secondButton )
-        -- call the remove the event listeners FUNCTION
+            -- call the remove the event listeners FUNCTION
             RemoveTextListeners()
-        -- reset scene after leave it 
+            -- reset scene after leave it 
             composer.removeScene("level2_questions")
-        -- Displaying the background sound
+            -- Displaying the background sound
             soundChannel = audio.stop()
             --canceling the timer
             timer.cancel(countDownTimer)

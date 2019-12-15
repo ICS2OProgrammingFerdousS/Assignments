@@ -77,10 +77,10 @@ function scene:create( event )
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
 
--- button for going back to questions screen
+    -- button for going back to questions screen
 backButton1 = widget.newButton( 
     {
--- Setting Position
+    -- Setting Position
     x = display.contentWidth*1/4,
     y = display.contentHeight*15/17,
         -- Setting Dimensions
@@ -96,7 +96,7 @@ backButton1 = widget.newButton(
 
 backButton2 = widget.newButton( 
     {
--- Setting Position
+    -- Setting Position
     x = display.contentWidth*1/1.4,
     y = display.contentHeight*15/17,
         -- Setting Dimensions
@@ -129,7 +129,7 @@ function scene:show( event )
         -- Called when the scene is still off screen (but is about to come on screen).
     -----------------------------------------------------------------------------------------
         elseif ( phase == "did" ) then
-        -- display the background sound
+            -- display the background sound
             youLostChannel = audio.play(youLost)     
     end
 
