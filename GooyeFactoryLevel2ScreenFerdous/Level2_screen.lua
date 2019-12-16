@@ -710,7 +710,7 @@ function scene:hide( event )
 
         --FUNCTION for keeping the button mute and unMute
         if (soundOn == true)then
-            audio.pause(backgroundSound)
+            audio.pause(backgroundSoundChannel)
         else 
             audio.resume(backgroundSoundChannel)
         end
