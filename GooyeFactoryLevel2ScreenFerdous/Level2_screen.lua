@@ -171,12 +171,12 @@ local function movingFlour(touch)
         if (touch.phase == "began") then
             instructionText.isVisible = false
 
---let other boxes know it has been clicked
+            --let other boxes know it has been clicked
             touchFlour = true       
             touchSoundChannel = audio.play(touchSound)
 
         elseif (touch.phase == "moved") then
- --dragging function
+        --dragging function
             flour_image.x = touch.x
             flour_image.y = touch.y
         elseif (touch.phase == "ended") then
@@ -218,11 +218,11 @@ local function movingButter(touch)
         if (touch.phase == "began") then
             instructionText.isVisible = false
 
--- boolean to  know it has been clicked
+            -- boolean to  know it has been clicked
             touchButter = true  
             touchSoundChannel = audio.play(touchSound)
         elseif (touch.phase == "moved") then
---dragging function
+            --dragging function
             butter_image.x = touch.x
             butter_image.y = touch.y
         elseif (touch.phase == "ended") then
@@ -231,7 +231,7 @@ local function movingButter(touch)
             ((bowl_image.x + bowl_image.width/2) > butter_image.x ) and 
             ((bowl_image.y - bowl_image.height/2) < butter_image.y ) and 
             ((bowl_image.y + bowl_image.height/2) > butter_image.y ) ) then
--- setting the position of butter
+            -- setting the position of butter
                 butter_image.x = bowl_image.x
                 butter_image.y = bowl_image.y
                 foodSoundChannel = audio.play(foodSound)
@@ -264,12 +264,12 @@ local function movingEggs(touch)
         if (touch.phase == "began") then
             instructionText.isVisible = false
 
---boolean know it has been clicked
+            --boolean know it has been clicked
             touchEggs = true 
              touchSoundChannel = audio.play(touchSound)
 
         elseif (touch.phase == "moved") then
---dragging function
+        --dragging function
             egg_image.x = touch.x
             egg_image.y = touch.y
         elseif (touch.phase == "ended") then
@@ -278,7 +278,7 @@ local function movingEggs(touch)
             ((bowl_image.x + bowl_image.width/2) > egg_image.x ) and 
             ((bowl_image.y - bowl_image.height/2) < egg_image.y ) and 
             ((bowl_image.y + bowl_image.height/2) > egg_image.y ) ) then
--- setting the position of the objects to be in the center of the box
+            -- setting the position of the objects to be in the center of the box
                 egg_image.x = bowl_image.x
                 egg_image.y = bowl_image.y
                 foodSoundChannel = audio.play(foodSound)
@@ -311,13 +311,13 @@ local function movingSugar(touch)
         if (touch.phase == "began") then
             instructionText.isVisible = false
 
---boolean to know it has been clicked
+            --boolean to know it has been clicked
             touchSugar = true  
 
             touchSoundChannel = audio.play(touchSound)
 
         elseif (touch.phase == "moved") then
---dragging function
+            --dragging function
             sugar_image.x = touch.x
             sugar_image.y = touch.y
         elseif (touch.phase == "ended") then
@@ -326,7 +326,7 @@ local function movingSugar(touch)
             ((bowl_image.x + bowl_image.width/2) > sugar_image.x ) and 
             ((bowl_image.y - bowl_image.height/2) < sugar_image.y ) and 
             ((bowl_image.y + bowl_image.height/2) > sugar_image.y ) ) then
--- setting the position of the sugar to be in the center of the box
+            -- setting the position of the sugar to be in the center of the box
                 sugar_image.x = bowl_image.x
                 sugar_image.y = bowl_image.y
                 foodSoundChannel = audio.play(foodSound)
@@ -382,7 +382,7 @@ end
 
 -- The function called when the screen doesn't exist
 function scene:create( event )
--- Creating a group that associates objects with the scene
+    -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
     questionText = display.newText( "" , 0, 0, nil, 100)
     questionText.x = display.contentWidth * 0.7
@@ -396,7 +396,7 @@ function scene:create( event )
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
--- Associating display objects with this scene 
+    -- Associating display objects with this scene 
     sceneGroup:insert( bkg_image )
     -- Send the background image to the back layer so all other objects can be on top
     bkg_image:toBack()
@@ -407,7 +407,7 @@ function scene:create( event )
     readyImage.y = 610
     readyImage.width = 900
     readyImage.height = 700
--- Associating display objects with this scene 
+    -- Associating display objects with this scene 
     sceneGroup:insert( readyImage )
     readyImage.isVisible = false
 -----------------------------------------------------------------------------------------
@@ -417,7 +417,7 @@ function scene:create( event )
    -- Creating Back Button
     backButton = widget.newButton( 
     {
--- Setting Position
+    -- Setting Position
     x = display.contentWidth*1/8,
     y = display.contentHeight*15/16,
     -- Setting Dimensions
@@ -431,10 +431,10 @@ function scene:create( event )
 })
    
 -----------------------------------------------------------------------------------------
--- Associating Buttons with this scene
+    -- Associating Buttons with this scene
     sceneGroup:insert( backButton )
     
--- Creating bowl image
+    -- Creating bowl image
     bowl_image =display.newImageRect("Images/bowlPlaceholder.png", display.contentWidth, display.contentHeight) 
     bowl_image.x = 400
     bowl_image.y = 400
@@ -444,7 +444,7 @@ function scene:create( event )
     --Creating yes buttton
     yesButton = widget.newButton( 
     {
--- Setting Position
+    -- Setting Position
     x = display.contentWidth*1/3,
     y = display.contentHeight*15/27,
     -- Setting Dimensions
@@ -458,7 +458,7 @@ function scene:create( event )
 })
     yesButton.isVisible = false
     sceneGroup:insert(yesButton)
- -- Creating butter image 
+     -- Creating butter image 
     butter_image = display.newImageRect("Images/butter.png", display.contentWidth, display.contentHeight)
     butter_image.x = 960
     butter_image.y = 310
@@ -517,7 +517,7 @@ function scene:create( event )
     checkMark.height = 60
     sceneGroup:insert(checkMark)
     checkMark.isVisible = false
--- Creating small Images
+    -- Creating small Images
     chocolate_imageShort = display.newImageRect("Images/Chocolate.png", display.contentWidth, display.contentHeight)
     chocolate_imageShort.x = 45
     chocolate_imageShort.y = 200
@@ -534,7 +534,7 @@ function scene:create( event )
     sceneGroup:insert(checkMark2)
     checkMark2.isVisible = false
 
--- Creating small Images of objects
+    -- Creating small Images of objects
     flour_imageShort = display.newImageRect("Images/flour.png", display.contentWidth, display.contentHeight)
     flour_imageShort.x = 45
     flour_imageShort.y = 280
@@ -551,7 +551,7 @@ function scene:create( event )
     sceneGroup:insert(checkMark3)
     checkMark3.isVisible = false
 
--- Creating small Images of objects
+    -- Creating small Images of objects
     sugar_imageShort = display.newImageRect("Images/sugar.png", display.contentWidth, display.contentHeight)
     sugar_imageShort.x = 45
     sugar_imageShort.y = 540
@@ -668,17 +668,18 @@ function scene:show( event )
     if ( phase == "will" ) then
 -----------------------------------------------------------------------------------------
         elseif ( phase == "did" ) then
-             if (soundOn == true)then
-                audio.resume(soundChannel)
-            else 
-                audio.pause(soundChannel)
-            end
+            
 ----------addEventListener
             muteButton:addEventListener("touch", Mute)
             unmuteButton:addEventListener("touch", OnButton )
 
         --calling the addEventListener function 
             AddAnswerBoxEventListeners()
+             if (soundOn == true)then
+                audio.pause(backgroundSoundChannel)
+            else 
+                audio.resume(backgroundSoundChannel)
+            end
 
         -- display background music
             backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1}) 
