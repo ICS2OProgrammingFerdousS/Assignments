@@ -108,7 +108,7 @@ end
 
 
 
-local function movingChocolate(touch)
+local function movingVanilla(touch)
 
     if (touchButter == false) and (touchEggs == false) and 
         (touchFlour == false) and (touchSugar == false) then
@@ -210,7 +210,7 @@ local function movingFlour(touch)
         end
     end
 end
-local function movingButter(touch)
+local function movingMilk(touch)
 --only work if none of the other objects have been touched
     if (touchFlour == false) and (touchChocolate == false) and 
         (touchSugar == false) and (touchEggs == false) then
@@ -354,8 +354,8 @@ end
 
 
 local function AddAnswerBoxEventListeners()
-    chocolate_image:addEventListener("touch", movingChocolate)
-    butter_image:addEventListener("touch", movingButter)
+    chocolate_image:addEventListener("touch", movingVanilla)
+    butter_image:addEventListener("touch", movingMilk)
     egg_image:addEventListener("touch", movingEggs)
     flour_image:addEventListener("touch", movingFlour)
     sugar_image:addEventListener("touch", movingOil)
@@ -366,8 +366,8 @@ end
 
 -- Function that Removes Listeners to each objects
 local function RemoveAnswerBoxEventListeners()
-    chocolate_image:removeEventListener("touch", movingChocolate)
-    egg_image:removeEventListener("touch", movingButter)
+    chocolate_image:removeEventListener("touch", movingVanilla)
+    egg_image:removeEventListener("touch", movingMilk)
     egg_image:removeEventListener("touch", movingEggs)
     flour_image:removeEventListener("touch", movingFlour)
     sugar_image:removeEventListener("touch", movingOil)
