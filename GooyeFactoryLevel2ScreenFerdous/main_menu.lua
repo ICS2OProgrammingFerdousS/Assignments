@@ -30,7 +30,7 @@ local soundOn = true
 -----------------------------------------------------------------------------------------
 -- backgroundSound
 local sound = audio.loadSound("Sounds/buddy.mp3")
-local soundChannel
+local soundChannel =  audio.play(sound, {channel = 2, loops = -1})
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ local function first( touch )
 end
 
 --function for unMute
-local function second( touch )
+local function OnButton( touch )
     if(touch.phase == "ended")then
         --play the music 
         audio.resume(soundChannel)
@@ -213,9 +213,9 @@ function scene:show( event )
     -- Called when the scene is now on screen.
         elseif ( phase == "did" ) then
             muteButton:addEventListener("touch", first)
-            unmuteButton:addEventListener("touch", second)
+            unmuteButton:addEventListener("touch", OnButton)
            
-            soundChannel  = audio.play(sound, {channel = 2, loops = -1})
+           -- soundChannel  =
 
     end
 end -- function scene:show( event )
@@ -234,15 +234,15 @@ function scene:hide( event )
         
         elseif ( phase == "did" ) then
             muteButton:removeEventListener("touch", first)
-            unmuteButton:removeEventListener("touch", second)
+            unmuteButton:removeEventListener("touch", OnButton)
             composer.removeScene("main_menu")
             soundChannel =  audio.stop()
-
+            --FUNCTION for keeping the button mute and unMute
         if (soundOn == true)then
             audio.pause(soundChannel)
          else 
             audio.resume(soundChannel)
-            end
+        end
           
      end
 end

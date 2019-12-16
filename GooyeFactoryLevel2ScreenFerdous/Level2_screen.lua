@@ -707,6 +707,13 @@ function scene:hide( event )
             backgroundSoundChannel = audio.stop()
             RemoveAnswerBoxEventListeners()
             composer.removeScene("Level2_screen")
+
+        --FUNCTION for keeping the button mute and unMute
+        if (soundOn == true)then
+            audio.pause(backgroundSound)
+        else 
+            audio.resume(backgroundSoundChannel)
+        end
          
 
     end
