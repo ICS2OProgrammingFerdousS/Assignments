@@ -85,7 +85,7 @@ local function Mute( touch )
 end
 --function for unMute
 
-local function secondButton( touch )
+local function OnButton( touch )
     if(touch.phase == "ended")then
 --play the music 
         audio.resume(backgroundSoundChannel)
@@ -675,7 +675,7 @@ function scene:show( event )
             end
 ----------addEventListener
             muteButton:addEventListener("touch", Mute)
-            unmuteButton:addEventListener("touch", secondButton )
+            unmuteButton:addEventListener("touch", OnButton )
 
         --calling the addEventListener function 
             AddAnswerBoxEventListeners()
@@ -701,7 +701,7 @@ function scene:hide( event )
 
             --removing Eventlisteners
             muteButton:removeEventListener("touch", Mute)
-            unmuteButton:removeEventListener("touch", secondButton )
+            unmuteButton:removeEventListener("touch", OnButton )
 
             backgroundSoundChannel = audio.stop()
             RemoveAnswerBoxEventListeners()
