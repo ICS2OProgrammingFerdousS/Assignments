@@ -75,9 +75,9 @@ local transitionOption2 =({
 -- function for mute and 
 local function Mute( touch )
     if(touch.phase == "ended")then
---pause the sound
+        --pause the sound
         audio.pause(backgroundSoundChannel)
---set boolean for sound status
+        --set boolean for sound status
         soundOn = false
         muteButton.isVisible = false
         unmuteButton.isVisible = true
@@ -87,7 +87,7 @@ end
 
 local function OnButton( touch )
     if(touch.phase == "ended")then
---play the music 
+        --play the music 
         audio.resume(backgroundSoundChannel)
         soundOn = true
         muteButton.isVisible = true
