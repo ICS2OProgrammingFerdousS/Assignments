@@ -89,11 +89,10 @@ local function OnButton( touch )
     if(touch.phase == "ended")then
         --play the music 
         audio.resume(backgroundSoundChannel)
+        --set boolean for sound status
         soundOn = true
         muteButton.isVisible = true
         unmuteButton.isVisible = false
-
-        
     end
  end
 -- The function that will go to the main menu 
@@ -358,9 +357,6 @@ local function AddAnswerBoxEventListeners()
     egg_image:addEventListener("touch", movingEggs)
     flour_image:addEventListener("touch", movingFlour)
     sugar_image:addEventListener("touch", movingSugar)
-    
-
-
 end 
 
 -- Function that Removes Listeners to each objects
@@ -370,8 +366,6 @@ local function RemoveAnswerBoxEventListeners()
     egg_image:removeEventListener("touch", movingEggs)
     flour_image:removeEventListener("touch", movingFlour)
     sugar_image:removeEventListener("touch", movingSugar)
-   
-
 end 
 
 
@@ -631,16 +625,17 @@ function scene:create( event )
     smallEggs.isVisible = false
 
     --creating mute button
-    muteButton = display.newImageRect("Images/icon.png", 90, 90)
+    muteButton = display.newImageRect("Images/muteButton.png", 90, 90)
     muteButton.x = 43
     muteButton.y = 35
     muteButton.isVisible = true
+    sceneGroup:insert(muteButton)
+
 --creating mut button
-    unmuteButton = display.newImageRect("Images/50.png", 90, 90)
+    unmuteButton = display.newImageRect("Images/unmuteButton.png", 90, 90)
     unmuteButton.x = 43
     unmuteButton.y = 35
     unmuteButton.isVisible = false
-    sceneGroup:insert(muteButton)
     sceneGroup:insert(unmuteButton)
 
     instructionText = display.newImageRect("Images/cook2.png", display.contentWidth, display.contentHeight)
@@ -648,9 +643,8 @@ function scene:create( event )
     instructionText.y = 200
     instructionText.width = 700
     instructionText.height = 500
-    sceneGroup:insert(instructionText)
     instructionText.isVisible = true
-
+    sceneGroup:insert(instructionText)
 
 end 
  -- function scene:create( event )
@@ -673,17 +667,8 @@ function scene:show( event )
             muteButton:addEventListener("touch", Mute)
             unmuteButton:addEventListener("touch", OnButton )
 
-        --calling the addEventListener function 
+            --calling the addEventListener function 
             AddAnswerBoxEventListeners()
-             if (soundOn == true)then
-                audio.pause(backgroundSoundChannel)
-            else 
-                audio.resume(backgroundSoundChannel)
-            end
-
-        -- display background music
-            backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1}) 
-          
     end
 
 end 
@@ -698,24 +683,22 @@ function scene:hide( event )
     if ( phase == "will" ) then  
 -----------------------------------------------------------------------------------------
 -- Called immediately after scene goes off screen.
-        elseif ( phase == "did" ) then
+    elseif ( phase == "did" ) then
 
-            --removing Eventlisteners
-            muteButton:removeEventListener("touch", Mute)
-            unmuteButton:removeEventListener("touch", OnButton )
+        --removing Eventlisteners
+        muteButton:removeEventListener("touch", Mute)
+        unmuteButton:removeEventListener("touch", OnButton )
+        audio.stop(backgroundSoundChannel)
+        RemoveAnswerBoxEventListeners()
 
-            backgroundSoundChannel = audio.stop()
-            RemoveAnswerBoxEventListeners()
-            composer.removeScene("Level2_screen")
-
-        --FUNCTION for keeping the button mute and unMute
         if (soundOn == true)then
-            audio.pause(backgroundSoundChannel)
-        else 
-            audio.resume(backgroundSoundChannel)
-        end
-         
 
+            audio.pause(backgroundSoundChannel)
+
+        else 
+            backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1})                 
+
+        end
     end
 end --function scene:hide( event )
 
