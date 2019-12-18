@@ -206,67 +206,127 @@ end
 -- FUNCTION for Displaying Questions
 
 local function DisplayQuestion()
-    local randomQuestion = math.random (1,5)
+    local randomQuestion = math.random (1, 10)
     if (randomQuestion == 1) then
         rootImage.isVisible = false
         --creating the question depending on the selcetion number
-        questionText.text = "What color is\n the sky?"
+        questionText.text = "Which of the following is a sense organ?"
     --creating answer text from list it corispondes with the animals list
-        answerText.text = "Blue"
+        answerText.text = "Tongue"
         --creating wrong answers
-        wrongText1.text = "Green"
-        wrongText2.text = "Yellow"
-        wrongText3.text = "Purple"
+        wrongText1.text = "Hair "
+        wrongText2.text = "Bone "
+        wrongText3.text = "Foot"
         elseif (randomQuestion == 2) then
             PositionAnswers()
     --creating the question depending on the selcetion number
-            questionText.text = "What is this image of?"
-            rootImage.isVisible = true
+            questionText.text = "The sun is an example of which\n of the following?"
     --creating answer text from list it corispondes with the animals list
-            answerText.text = "Root"
+            answerText.text = "Star"
     
             --creating wrong answers
-            wrongText1.text = "Leaves"
-            wrongText2.text = "Branch"
-            wrongText3.text = "Flower"
+            wrongText1.text = "Comet"
+            wrongText2.text = "Planet"
+            wrongText3.text = "Galaxy"
         elseif (randomQuestion == 3) then
             PositionAnswers()
     --creating the question depending on the selcetion number
-            questionText.text = "What do plants need\n to grow?"
-            rootImage.isVisible = false
+            questionText.text = "Skunks spray a strong-smelling liquid to?"
     --creating answer text from list it corispondes with the animals list
-            answerText.text = "Water"
+            answerText.text = "Defend themselves"
     
             --creating wrong answers
-            wrongText1.text = "Moonlight"
-            wrongText2.text = "Juice"
-            wrongText3.text = "Darkness"
+            wrongText1.text = "attract prey"
+            wrongText2.text = "get rid of wastes "
+            wrongText3.text = " help nearby plants grow"
 
         elseif (randomQuestion == 4) then
             PositionAnswers()
             --creating the question depending on the selcetion number
-            questionText.text = "What is the\n strongest shape?"
-            rootImage.isVisible = false
+            questionText.text = " It sends messages to the brain\n to tell us about the sounds we hear?"
             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Triangle"
+            answerText.text = " Olfactory nerve"
             --creating wrong answers
-            wrongText1.text = "Square"
-            wrongText2.text = "Circle"
-            wrongText3.text = "Star"
+            wrongText1.text = " Auditory nerve"
+            wrongText2.text = " Optic nerve"
+            wrongText3.text = "Retina"
         elseif (randomQuestion == 5) then
             PositionAnswers()
             --creating the question depending on the selcetion number
-            questionText.text = "What kind of trees\n have flowers on them?"
-            rootImage.isVisible = false
+            questionText.text = "Nena is suffering from protein deficiency.\n Which of the following should she have in her diet?"
              --creating answer text from list it corispondes with the animals list
-            answerText.text = "Blossom tree"
+            answerText.text = "Bean"
                  --creating wrong answers
-            wrongText1.text = "Maple Trees"
-            wrongText2.text = "Oak Trees"
-            wrongText3.text = "Oval Trees"            
-    end
-end
+            wrongText1.text = "Carrot"
+            wrongText2.text = "Rice"
+            wrongText3.text = "Lettuce"          
 
+             elseif (randomQuestion == 6) then
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = " Raissa will transfer the bowl of food\n to another place. Her action shows?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Motion "
+                 --creating wrong answers
+            wrongText1.text = "Force"
+            wrongText2.text = "Pressure"
+            wrongText3.text = "Inertia"     
+
+             elseif (randomQuestion == 7) then
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = "It is where the white part of the\n eye becomes bloodshot or sore?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Conjunctivitis"
+                 --creating wrong answers
+            wrongText1.text = "Cataracts"
+            wrongText2.text = "Glaucoma"
+            wrongText3.text = "Strabismus"     
+             elseif (randomQuestion == 8) then
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = " True / False \n do you call the air around the Earth Atmosphere?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "True"
+                 --creating wrong answers
+            wrongText1.text = "False"
+            wrongText2.text = ""
+            wrongText3.text = ""    
+             elseif (randomQuestion == 9) then
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = "Which of the following have different texture?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Hollow blocks"
+                 --creating wrong answers
+            wrongText1.text = " Plastic cover"
+            wrongText2.text = " Satin cloth"
+            wrongText3.text = "Glass"      
+             elseif (randomQuestion == 10) then
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = "Which layer in the diagram contains the most organic material?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Layer"
+                 --creating wrong answers
+            wrongText1.text = "Layer"
+            wrongText2.text = "Rice"
+            wrongText3.text = "Lettuce"   
+             elseif (randomQuestion == 5) then
+
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = " True / False When too much water has condensed, clouds get heavy and water falls as rain. This is called Precipitation?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "True"
+                 --creating wrong answers
+            wrongText1.text = "False"
+            wrongText2.text = ""
+            wrongText3.text = ""            
+     end         
+end      
+            
+  
 
 -----------------------------------------------------------------------------------------
 --checking to see if the user pressed the right answer and bring them back to level 1

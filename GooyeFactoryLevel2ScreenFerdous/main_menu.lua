@@ -22,9 +22,6 @@ local playButton
 local creditsButton
 local instructionsButton
 
-local soundOn = true
-
---VARIABLES for questions 
 -----------------------------------------------------------------------------------------
 -- LOCAL SOUNDS
 -----------------------------------------------------------------------------------------
@@ -52,28 +49,6 @@ local transitionOptions4 = ({
      time = 500
 })
 
--- function for mute and 
-local function Mute( touch )
-    if(touch.phase == "ended")then
-        --pause the sound
-        audio.pause(soundChannel)
-        --set boolean for sound status
-        soundOn = false
-        muteButton.isVisible = false
-        unmuteButton.isVisible = true
-    end 
-end
-
---function for unMute
-local function OnButton( touch )
-    if(touch.phase == "ended")then
-        --play the music 
-        audio.resume(soundChannel)
-        soundOn = true
-        muteButton.isVisible = true
-        unmuteButton.isVisible = false 
-    end
- end
 
 local function CreditsTransition( )       
     composer.gotoScene( "Credit", transitionOptions4)
@@ -175,19 +150,19 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
    --creating mute button
-    muteButton = display.newImageRect("Images/muteButton.png", 90, 90)
-    muteButton.x = 50
-    muteButton.y = 40
-    muteButton.isVisible = true
-    sceneGroup:insert(muteButton)
+    --muteButton = display.newImageRect("Images/muteButton.png", 90, 90)
+    --muteButton.x = 50
+    --muteButton.y = 40
+    --muteButton.isVisible = true
+    --sceneGroup:insert(muteButton)
 
 
 --creating mut button
-    unmuteButton = display.newImageRect("Images/unmuteButton.png", 90, 90)
-    unmuteButton.x = 50
-    unmuteButton.y = 40
-    unmuteButton.isVisible = false
-    sceneGroup:insert(unmuteButton)
+    --unmuteButton = display.newImageRect("Images/unmuteButton.png", 90, 90)
+    --unmuteButton.x = 50
+    --unmuteButton.y = 40
+    --unmuteButton.isVisible = false
+    --sceneGroup:insert(unmuteButton)
 
    
     -- INSERT INSTRUCTIONS BUTTON INTO SCENE GROUP
@@ -212,8 +187,9 @@ function scene:show( event )
 ----------------------------------------------------------------------------------------
     -- Called when the scene is now on screen.
         elseif ( phase == "did" ) then
-            muteButton:addEventListener("touch", Mute)
-            unmuteButton:addEventListener("touch", OnButton)
+            --play music
+             soundChannel = audio.play(sound, {channel = 4, loops = -1}) 
+
            
     end
 end -- function scene:show( event )
@@ -231,19 +207,13 @@ function scene:hide( event )
            
         
     elseif ( phase == "did" ) then
-        muteButton:removeEventListener("touch", Mute)
-        unmuteButton:removeEventListener("touch", OnButton)
-        --composer.removeScene("main_menu")
+        --removeScene
+        composer.removeScene("main_menu")
+        --stop the music
         soundChannel =  audio.stop()
         --FUNCTION for keeping the button mute and unMute
        
-        if (soundOn == true)then
-            audio.pause(soundChannel)
-
-        else 
-            soundChannel = audio.play(sound, {channel = 4, loops = -1})                 
-
-        end
+        
     end
 end
 
