@@ -103,7 +103,7 @@ local function BackTransition()
 end
 
 local function gotoQuestions( ... )
-    composer.gotoScene("level2_questions", transitionOption)
+    composer.gotoScene("level4_questions", transitionOption)
 end
 
 
@@ -475,7 +475,7 @@ function scene:create( event )
     sceneGroup:insert(chocolate_image)
     
 -- Creating flour image 
-    flour_image = display.newImageRect("Images/flour.png", display.contentWidth, display.contentHeight)
+    flour_image = display.newImageRect("Images/vanilla bean.png", display.contentWidth, display.contentHeight)
     flour_image.x = 960
     flour_image.y = 225
     flour_image.width = 100
@@ -536,7 +536,7 @@ function scene:create( event )
     checkMark2.isVisible = false
 
 -- Creating small Images of objects
-    flour_imageShort = display.newImageRect("Images/flour.png", display.contentWidth, display.contentHeight)
+    flour_imageShort = display.newImageRect("Images/vanilla bean.png", display.contentWidth, display.contentHeight)
     flour_imageShort.x = 45
     flour_imageShort.y = 280
     flour_imageShort.width = 60
@@ -605,7 +605,7 @@ function scene:create( event )
     smallButter.isVisible = false
 
    -- Creating small Images of objects to stay in the bowl
-    smallFlour = display.newImageRect("Images/flour.png", display.contentWidth, display.contentHeight)
+    smallFlour = display.newImageRect("Images/vanilla bean.png", display.contentWidth, display.contentHeight)
     smallFlour.x = 500
     smallFlour.y = 370
     smallFlour.width = 50
