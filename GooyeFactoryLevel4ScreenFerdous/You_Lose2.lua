@@ -1,6 +1,6 @@
 --name: Ferdous
 -- title:You_Lose_screen.lua
--- Description: in this assignment we add the you lose screen 
+-- Description: in this assignment we add another the you lose screen if the user cannot put the ingradients before times finish.
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
