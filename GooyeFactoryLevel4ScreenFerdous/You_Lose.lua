@@ -56,7 +56,7 @@ end
 
 -- function for going back to the questions 
 local function gotoQuestions()
-    composer.gotoScene( "level2_questions", transitionOption2 )
+    composer.gotoScene( "level4_questions", transitionOption2 )
 end
 -- function for level 3
 
