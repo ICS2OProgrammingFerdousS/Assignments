@@ -19,7 +19,7 @@ local composer = require( "composer" )
 -----------------------------------------------------------------------------------------
 
 -- Go to the intro screen
-composer.gotoScene( "main_menu")
+composer.gotoScene( "level4_screen")
 --display.setDefault("background", 0.5, 0.7, 1)
 
 

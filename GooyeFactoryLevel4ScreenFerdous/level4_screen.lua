@@ -1,7 +1,7 @@
 --Title: Level2_screen
 -- Name: Ferdous Sediqi
 -- Course: ICS2O
--- in This this assigment i will make the level 2 screen.
+-- in This this assigment i will make the level 4 screen.
 -----------------------------------------------------------------------------------------
 -- Use Composer Library
 local composer = require( "composer" )
@@ -34,11 +34,11 @@ local readyText
 
 
 --variables for the touch of the objects
-local touchChocolate = false
-local touchButter = false
-local touchFlour = false
+local touchVanilla = false
+local touchMilk = false
+local touchVanillaBean = false
 local touchEggs = false
-local touchSugar = false
+local touchOil = false
 local wrongFlourTouch = 0
 
 --variables for the questions
@@ -54,6 +54,13 @@ local wrongAnswer2
 local wrongAnswer3
 local wrongAnswer4
 local scrollSpeed = 2
+
+-- The local variables for the timer
+local totalSeconds = 15
+local secondsLeft =  15
+local clockText 
+local countDownTimer
+
  --variables for sounds mute and unMute
 local soundOn = true
 
@@ -73,29 +80,29 @@ local transitionOption2 =({
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
 -- function for mute and 
-local function Mute( touch )
-    if(touch.phase == "ended")then
+--local function Mute( touch )
+   -- if(touch.phase == "ended")then
 --pause the sound
-        audio.pause(backgroundSoundChannel)
+      --  audio.pause(backgroundSoundChannel)
 --set boolean for sound status
-        soundOn = false
-        muteButton.isVisible = false
-        unmuteButton.isVisible = true
-    end 
-end
+        --soundOn = false
+      --  muteButton.isVisible = false
+    --    unmuteButton.isVisible = true
+  --  end 
+--end
 --function for unMute
 
-local function secondButton( touch )
-    if(touch.phase == "ended")then
+--local function secondButton( touch )
+  --  if(touch.phase == "ended")then
 --play the music 
-        audio.resume(backgroundSoundChannel)
-        soundOn = true
-        muteButton.isVisible = true
-        unmuteButton.isVisible = false
+    --    audio.resume(backgroundSoundChannel)
+      --  soundOn = true
+      --  muteButton.isVisible = true
+      --  unmuteButton.isVisible = false
 
         
-    end
- end
+  --  end
+ --end
 -- The function that will go to the main menu 
 
 local function BackTransition()
@@ -106,47 +113,51 @@ local function gotoQuestions( ... )
     composer.gotoScene("level4_questions", transitionOption)
 end
 
+local function GotoYouLose( ... )
+    composer.gotoScene("You_Lose", transitionOption)
+end
+
 
 
 local function movingVanilla(touch)
 
-    if (touchButter == false) and (touchEggs == false) and 
-        (touchFlour == false) and (touchSugar == false) then
+    if (touchMilk == false) and (touchOil == false) and 
+        (touchEggs == false) and (touchVanillaBean == false) then
 
         if (touch.phase == "began") then
             --boolean for click the gredian
-            touchChocolate = true
+            touchVanilla = true
             instructionText.isVisible = false
             touchSoundChannel = audio.play(touchSound)
 
         --drag the objects to follow the mouse
         elseif (touch.phase == "moved") then
-            chocolate_image.x = touch.x
-            chocolate_image.y = touch.y
+            vanilla_image.x = touch.x
+            vanilla_image.y = touch.y
 
         -- this occurs when they release the mouse
         elseif (touch.phase == "ended") then
 
-            touchChocolate = false
+            touchVanilla = false
 
-            if (((bowl_image.x - bowl_image.width/1) < chocolate_image.x ) and
-            ((bowl_image.x + bowl_image.width/2) > chocolate_image.x ) and 
-            ((bowl_image.y - bowl_image.height/2) < chocolate_image.y ) and 
-            ((bowl_image.y + bowl_image.height/2) > chocolate_image.y ) ) then
+            if (((bowl_image.x - bowl_image.width/1) < vanilla_image.x ) and
+            ((bowl_image.x + bowl_image.width/2) > vanilla_image.x ) and 
+            ((bowl_image.y - bowl_image.height/2) < vanilla_image.y ) and 
+            ((bowl_image.y + bowl_image.height/2) > vanilla_image.y ) ) then
 
                 -- setting the position of the chocolate to be in the center of the box
-                chocolate_image.x = bowl_image.x
-                chocolate_image.y = bowl_image.y
+                vanilla_image.x = bowl_image.x
+                vanilla_image.y = bowl_image.y
                 foodSoundChannel = audio.play(foodSound)
 
-                chocolate_image.isVisible = false                
+                vanilla_image.isVisible = false                
                 checkMark2.isVisible = true
-                smallChocolate.isVisible = true
+                smallVanilla.isVisible = true
               
             end
 
-            chocolate_image.x = 960
-            chocolate_image.y = 130
+            vanilla_image.x = 960
+            vanilla_image.y = 130
         end
 
         if(checkMark.isVisible == true)and (checkMark2.isVisible == true) and
@@ -163,40 +174,40 @@ end
 
 
 
-local function movingFlour(touch)
+local function MovingVanillaBean(touch)
 --only work if none of the other objects have been touched
-    if (touchSugar == false) and (touchChocolate == false) and 
-        (touchButter == false) and (touchEggs == false) then 
+    if (touchVanilla == false) and (touchOil == false) and 
+        (touchMilk == false) and (touchEggs == false) then 
 
         if (touch.phase == "began") then
             instructionText.isVisible = false
 
 --let other boxes know it has been clicked
-            touchFlour = true       
+            touchVanillaBean = true       
             touchSoundChannel = audio.play(touchSound)
 
         elseif (touch.phase == "moved") then
  --dragging function
-            flour_image.x = touch.x
-            flour_image.y = touch.y
+            vanillaBean_image.x = touch.x
+            vanillaBean_image.y = touch.y
         elseif (touch.phase == "ended") then
-            touchFlour = false
-            if (((bowl_image.x - bowl_image.width/1) < flour_image.x ) and
-            ((bowl_image.x + bowl_image.width/2) > flour_image.x ) and 
-            ((bowl_image.y - bowl_image.height/2) < flour_image.y ) and 
-            ((bowl_image.y + bowl_image.height/2) > flour_image.y ) ) then
+            touchVanillaBean = false
+            if (((bowl_image.x - bowl_image.width/1) < vanillaBean_image.x ) and
+            ((bowl_image.x + bowl_image.width/2) > vanillaBean_image.x ) and 
+            ((bowl_image.y - bowl_image.height/2) < vanillaBean_image.y ) and 
+            ((bowl_image.y + bowl_image.height/2) > vanillaBean_image.y ) ) then
             -- setting the position of the number to be in the center of the box
-                flour_image.x = bowl_image.x
-                flour_image.y = bowl_image.y
+                vanillaBean_image.x = bowl_image.x
+                vanillaBean_image.y = bowl_image.y
                 foodSoundChannel = audio.play(foodSound)
 
-                flour_image.isVisible = false
+                vanillaBean_image.isVisible = false
                 checkMark3.isVisible = true
-                smallFlour.isVisible = true
+                smallVanillaBean.isVisible = true
 
             end
-            flour_image.x = 960
-            flour_image.y = 225
+            vanillaBean_image.x = 960
+            vanillaBean_image.y = 225
        
         end
 
@@ -212,36 +223,36 @@ local function movingFlour(touch)
 end
 local function movingMilk(touch)
 --only work if none of the other objects have been touched
-    if (touchFlour == false) and (touchChocolate == false) and 
-        (touchSugar == false) and (touchEggs == false) then
+    if (touchVanillaBean == false) and (touchVanilla == false) and 
+        (touchOil == false) and (touchEggs == false) then
 
         if (touch.phase == "began") then
             instructionText.isVisible = false
 
 -- boolean to  know it has been clicked
-            touchButter = true  
+            touchMilk = true  
             touchSoundChannel = audio.play(touchSound)
         elseif (touch.phase == "moved") then
 --dragging function
-            butter_image.x = touch.x
-            butter_image.y = touch.y
+            milk_image.x = touch.x
+            milk_image.y = touch.y
         elseif (touch.phase == "ended") then
-            touchButter = false
-            if (((bowl_image.x - bowl_image.width/1) < butter_image.x ) and
-            ((bowl_image.x + bowl_image.width/2) > butter_image.x ) and 
-            ((bowl_image.y - bowl_image.height/2) < butter_image.y ) and 
-            ((bowl_image.y + bowl_image.height/2) > butter_image.y ) ) then
+            touchMilk = false
+            if (((bowl_image.x - bowl_image.width/1) < milk_image.x ) and
+            ((bowl_image.x + bowl_image.width/2) > milk_image.x ) and 
+            ((bowl_image.y - bowl_image.height/2) < milk_image.y ) and 
+            ((bowl_image.y + bowl_image.height/2) > milk_image.y ) ) then
 -- setting the position of butter
-                butter_image.x = bowl_image.x
-                butter_image.y = bowl_image.y
+                milk_image.x = bowl_image.x
+                milk_image.y = bowl_image.y
                 foodSoundChannel = audio.play(foodSound)
-                butter_image.isVisible = false
+                milk_image.isVisible = false
                 checkMark.isVisible = true
-                smallButter.isVisible = true
+                smallMilk.isVisible = true
 
         end
-                 butter_image.x = 960
-                 butter_image.y = 310
+                 milk_image.x = 960
+                 milk_image.y = 310
      end
 
         if(checkMark.isVisible == true) and (checkMark2.isVisible == true) and
@@ -258,8 +269,8 @@ end
 
 local function movingEggs(touch)
 --only work if none of the other objects have been touched
-    if (touchFlour == false) and (touchChocolate == false) and
-        (touchButter == false) and (touchSugar == false) then  
+    if (touchMilk == false) and (touchOil == false) and
+        (touchVanilla == false) and (touchVanillaBean == false) then  
 
         if (touch.phase == "began") then
             instructionText.isVisible = false
@@ -305,40 +316,40 @@ end
 
 local function movingOil(touch)
 --only work if none of the other objects have been touched
-    if (touchFlour == false) and (touchChocolate == false) and 
-        (touchButter == false) and (touchEggs == false) then    
+    if (touchVanilla == false) and (touchVanillaBean == false) and 
+        (touchMilk == false) and (touchEggs == false) then    
 
         if (touch.phase == "began") then
             instructionText.isVisible = false
 
 --boolean to know it has been clicked
-            touchSugar = true  
+            touchOil = true  
 
             touchSoundChannel = audio.play(touchSound)
 
         elseif (touch.phase == "moved") then
 --dragging function
-            sugar_image.x = touch.x
-            sugar_image.y = touch.y
+            oil_image.x = touch.x
+            oil_image.y = touch.y
         elseif (touch.phase == "ended") then
-            touchSugar = false
-            if (((bowl_image.x - bowl_image.width/1) < sugar_image.x ) and
-            ((bowl_image.x + bowl_image.width/2) > sugar_image.x ) and 
-            ((bowl_image.y - bowl_image.height/2) < sugar_image.y ) and 
-            ((bowl_image.y + bowl_image.height/2) > sugar_image.y ) ) then
+            touchOil = false
+            if (((bowl_image.x - bowl_image.width/1) < oil_image.x ) and
+            ((bowl_image.x + bowl_image.width/2) > oil_image.x ) and 
+            ((bowl_image.y - bowl_image.height/2) < oil_image.y ) and 
+            ((bowl_image.y + bowl_image.height/2) > oil_image.y ) ) then
 -- setting the position of the sugar to be in the center of the box
-                sugar_image.x = bowl_image.x
-                sugar_image.y = bowl_image.y
+                oil_image.x = bowl_image.x
+                oil_image.y = bowl_image.y
                 foodSoundChannel = audio.play(foodSound)
 
-                sugar_image.isVisible = false
+                oil_image.isVisible = false
                 checkMark4.isVisible = true
-                smallSugar.isVisible = true
-                smallChocolate.isVisible = false
+                smallOil.isVisible = true
+                smallVanilla.isVisible = false
                 smallEggs.isVisible = false
             end
-            sugar_image.x = 960
-            sugar_image.y = 520
+            oil_image.x = 960
+            oil_image.y = 520
         end
     end
         if(checkMark.isVisible == true) and (checkMark2.isVisible == true) and
@@ -351,14 +362,29 @@ local function movingOil(touch)
         end
 end
 
+-- timer counting function 
+local function UpdateTime( )
+    secondsLeft = secondsLeft - 1
+    clockText.text = secondsLeft .. ""
+    if(secondsLeft == 0)then
+        secondsLeft = totalSeconds
+        GotoYouLose()
+
+
+    end
+end
+-- FUNCTION start the timer again
+local  function startTimer( )
+  countDownTimer = timer.performWithDelay(1000, UpdateTime, 0)
+end
 
 
 local function AddAnswerBoxEventListeners()
-    chocolate_image:addEventListener("touch", movingVanilla)
-    butter_image:addEventListener("touch", movingMilk)
+    vanilla_image:addEventListener("touch", movingVanilla)
+    milk_image:addEventListener("touch", movingMilk)
     egg_image:addEventListener("touch", movingEggs)
-    flour_image:addEventListener("touch", movingFlour)
-    sugar_image:addEventListener("touch", movingOil)
+    vanillaBean_image:addEventListener("touch", MovingVanillaBean)
+    oil_image:addEventListener("touch", movingOil)
     
 
 
@@ -366,11 +392,11 @@ end
 
 -- Function that Removes Listeners to each objects
 local function RemoveAnswerBoxEventListeners()
-    chocolate_image:removeEventListener("touch", movingVanilla)
-    egg_image:removeEventListener("touch", movingMilk)
+    vanilla_image:removeEventListener("touch", movingVanilla)
+    milk_image:removeEventListener("touch", movingMilk)
     egg_image:removeEventListener("touch", movingEggs)
-    flour_image:removeEventListener("touch", movingFlour)
-    sugar_image:removeEventListener("touch", movingOil)
+    vanillaBean_image:removeEventListener("touch", MovingVanillaBean)
+    oil_image:removeEventListener("touch", movingOil)
    
 
 end 
@@ -460,27 +486,27 @@ function scene:create( event )
     yesButton.isVisible = false
     sceneGroup:insert(yesButton)
  -- Creating butter image 
-    butter_image = display.newImageRect("Images/milk.png", display.contentWidth, display.contentHeight)
-    butter_image.x = 960
-    butter_image.y = 310
-    butter_image.width = 100
-    butter_image.height = 100
-    sceneGroup:insert( butter_image )
+    milk_image = display.newImageRect("Images/milk.png", display.contentWidth, display.contentHeight)
+    milk_image.x = 960
+    milk_image.y = 310
+    milk_image.width = 100
+    milk_image.height = 100
+    sceneGroup:insert( milk_image )
    --Creating chocolate image 
-    chocolate_image = display.newImageRect("Images/vanilla.png", display.contentWidth, display.contentHeight)
-    chocolate_image.x = 960
-    chocolate_image.y = 130
-    chocolate_image.width = 90
-    chocolate_image.height = 50
-    sceneGroup:insert(chocolate_image)
+    vanilla_image = display.newImageRect("Images/vanilla.png", display.contentWidth, display.contentHeight)
+    vanilla_image.x = 960
+    vanilla_image.y = 130
+    vanilla_image.width = 90
+    vanilla_image.height = 50
+    sceneGroup:insert(vanilla_image)
     
 -- Creating flour image 
-    flour_image = display.newImageRect("Images/vanilla bean.png", display.contentWidth, display.contentHeight)
-    flour_image.x = 960
-    flour_image.y = 225
-    flour_image.width = 100
-    flour_image.height = 100
-    sceneGroup:insert(flour_image)
+    vanillaBean_image = display.newImageRect("Images/vanilla bean.png", display.contentWidth, display.contentHeight)
+    vanillaBean_image.x = 960
+    vanillaBean_image.y = 225
+    vanillaBean_image.width = 100
+    vanillaBean_image.height = 100
+    sceneGroup:insert(vanillaBean_image)
 
 
     
@@ -494,21 +520,21 @@ function scene:create( event )
 
 
     -- Creating sugar image 
-    sugar_image = display.newImageRect("Images/oil.png", display.contentWidth, display.contentHeight)
-    sugar_image.x = 960
-    sugar_image.y = 520
-    sugar_image.width = 100
-    sugar_image.height = 100
-    sceneGroup:insert(sugar_image)
+    oil_image = display.newImageRect("Images/oil.png", display.contentWidth, display.contentHeight)
+    oil_image.x = 960
+    oil_image.y = 520
+    oil_image.width = 100
+    oil_image.height = 100
+    sceneGroup:insert(oil_image)
 
 
     
-    butter_imageShort = display.newImageRect("Images/butter.png", display.contentWidth, display.contentHeight)
-    butter_imageShort.x = 45
-    butter_imageShort.y = 370
-    butter_imageShort.width =60
-    butter_imageShort.height = 60
-    sceneGroup:insert(butter_imageShort)
+    milk_imageShort = display.newImageRect("Images/milk.png", display.contentWidth, display.contentHeight)
+    milk_imageShort.x = 45
+    milk_imageShort.y = 370
+    milk_imageShort.width =60
+    milk_imageShort.height = 60
+    sceneGroup:insert(milk_imageShort)
 
     --Creating checkMarks 
     checkMark = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
@@ -519,12 +545,12 @@ function scene:create( event )
     sceneGroup:insert(checkMark)
     checkMark.isVisible = false
 -- Creating small Images
-    chocolate_imageShort = display.newImageRect("Images/vanilla.png", display.contentWidth, display.contentHeight)
-    chocolate_imageShort.x = 45
-    chocolate_imageShort.y = 200
-    chocolate_imageShort.width = 60
-    chocolate_imageShort.height = 60
-    sceneGroup:insert(chocolate_imageShort)
+    vanilla_imageShort = display.newImageRect("Images/vanilla.png", display.contentWidth, display.contentHeight)
+    vanilla_imageShort.x = 45
+    vanilla_imageShort.y = 200
+    vanilla_imageShort.width = 60
+    vanilla_imageShort.height = 60
+    sceneGroup:insert(vanilla_imageShort)
 
     --Creating checkMarks 
     checkMark2 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
@@ -536,12 +562,12 @@ function scene:create( event )
     checkMark2.isVisible = false
 
 -- Creating small Images of objects
-    flour_imageShort = display.newImageRect("Images/vanilla bean.png", display.contentWidth, display.contentHeight)
-    flour_imageShort.x = 45
-    flour_imageShort.y = 280
-    flour_imageShort.width = 60
-    flour_imageShort.height = 60
-    sceneGroup:insert(flour_imageShort)
+    vanillaBean_imageShort = display.newImageRect("Images/vanilla bean.png", display.contentWidth, display.contentHeight)
+    vanillaBean_imageShort.x = 45
+    vanillaBean_imageShort.y = 280
+    vanillaBean_imageShort.width = 60
+    vanillaBean_imageShort.height = 60
+    sceneGroup:insert(vanillaBean_imageShort)
 
     --Creating checkMarks 
     checkMark3 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
@@ -553,12 +579,12 @@ function scene:create( event )
     checkMark3.isVisible = false
 
 -- Creating small Images of objects
-    sugar_imageShort = display.newImageRect("Images/sugar.png", display.contentWidth, display.contentHeight)
-    sugar_imageShort.x = 45
-    sugar_imageShort.y = 540
-    sugar_imageShort.width = 60
-    sugar_imageShort.height = 60
-    sceneGroup:insert(sugar_imageShort)
+    oil_imageShort = display.newImageRect("Images/oil.png", display.contentWidth, display.contentHeight)
+    oil_imageShort.x = 45
+    oil_imageShort.y = 540
+    oil_imageShort.width = 60
+    oil_imageShort.height = 60
+    sceneGroup:insert(oil_imageShort)
 
     --Creating checkMarks 
     checkMark4 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
@@ -587,40 +613,40 @@ function scene:create( event )
     checkMark5.isVisible = false  
 
    -- Creating small Images of objects to stay in the bowl
-    smallChocolate = display.newImageRect("Images/vanilla.png", display.contentWidth, display.contentHeight)
-    smallChocolate.x = 500
-    smallChocolate.y = 370
-    smallChocolate.width = 50
-    smallChocolate.height = 20
-    sceneGroup:insert(smallChocolate)    
-    smallChocolate.isVisible = false
+    smallVanilla = display.newImageRect("Images/vanilla.png", display.contentWidth, display.contentHeight)
+    smallVanilla.x = 500
+    smallVanilla.y = 370
+    smallVanilla.width = 50
+    smallVanilla.height = 20
+    sceneGroup:insert(smallVanilla)    
+    smallVanilla.isVisible = false
 
    -- Creating small Images of objects to stay in the bowl
-    smallButter = display.newImageRect("Images/milk.png", display.contentWidth, display.contentHeight)
-    smallButter.x = 500
-    smallButter.y = 370
-    smallButter.width = 50
-    smallButter.height = 20
-    sceneGroup:insert(smallButter)    
-    smallButter.isVisible = false
+    smallMilk = display.newImageRect("Images/milk.png", display.contentWidth, display.contentHeight)
+    smallMilk.x = 500
+    smallMilk.y = 370
+    smallMilk.width = 50
+    smallMilk.height = 20
+    sceneGroup:insert(smallMilk)    
+    smallMilk.isVisible = false
 
    -- Creating small Images of objects to stay in the bowl
-    smallFlour = display.newImageRect("Images/vanilla bean.png", display.contentWidth, display.contentHeight)
-    smallFlour.x = 500
-    smallFlour.y = 370
-    smallFlour.width = 50
-    smallFlour.height = 20
-    sceneGroup:insert(smallFlour)    
-    smallFlour.isVisible = false
+    smallVanillaBean = display.newImageRect("Images/vanilla bean.png", display.contentWidth, display.contentHeight)
+    smallVanillaBean.x = 500
+    smallVanillaBean.y = 370
+    smallVanillaBean.width = 50
+    smallVanillaBean.height = 20
+    sceneGroup:insert(smallVanillaBean)    
+    smallVanillaBean.isVisible = false
 
    -- Creating small Images of objects to stay in the bowl
-    smallSugar = display.newImageRect("Images/oil.png", display.contentWidth, display.contentHeight)
-    smallSugar.x = 500
-    smallSugar.y = 370
-    smallSugar.width = 50
-    smallSugar.height = 20
-    sceneGroup:insert(smallSugar)    
-    smallSugar.isVisible = false
+    smallOil = display.newImageRect("Images/oil.png", display.contentWidth, display.contentHeight)
+    smallOil.x = 500
+    smallOil.y = 370
+    smallOil.width = 50
+    smallOil.height = 20
+    sceneGroup:insert(smallOil)    
+    smallOil.isVisible = false
 
    -- Creating small Images of objects to stay in the bowl
     smallEggs = display.newImageRect("Images/eggs.png", display.contentWidth, display.contentHeight)
@@ -652,6 +678,13 @@ function scene:create( event )
     sceneGroup:insert(instructionText)
     instructionText.isVisible = true
 
+      -- adding text and colour for timer
+    clockText= display.newText( secondsLeft, display.contentWidth/7, display.contentHeight/7, nil, 50)
+    clockText.x = 500
+    clockText.y = 45
+    clockText:setTextColor(0.9, 0, 0)
+    sceneGroup:insert(clockText)
+
 
 end 
  -- function scene:create( event )
@@ -675,12 +708,13 @@ function scene:show( event )
                 audio.pause(soundChannel)
             end
 ----------addEventListener
-            muteButton:addEventListener("touch", Mute)
-            unmuteButton:addEventListener("touch", secondButton )
+        --    muteButton:addEventListener("touch", Mute)
+--            unmuteButton:addEventListener("touch", secondButton )
 
         --calling the addEventListener function 
             AddAnswerBoxEventListeners()
-
+            -- start timer 
+            startTimer()
         -- display background music
             backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1}) 
           
@@ -701,14 +735,14 @@ function scene:hide( event )
         elseif ( phase == "did" ) then
 
             --removing Eventlisteners
-            muteButton:removeEventListener("touch", Mute)
-            unmuteButton:removeEventListener("touch", secondButton )
+         --   muteButton:removeEventListener("touch", Mute)
+          --  unmuteButton:removeEventListener("touch", secondButton )
 
             backgroundSoundChannel = audio.stop()
             RemoveAnswerBoxEventListeners()
             composer.removeScene("level4_screen")
-         
-
+             --canceling the timer
+            timer.cancel(countDownTimer)
     end
 end --function scene:hide( event )
 
