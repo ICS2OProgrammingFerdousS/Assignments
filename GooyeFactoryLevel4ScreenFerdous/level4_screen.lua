@@ -452,7 +452,7 @@ function scene:create( event )
     height = 106,
     -- Setting Visual Properties
      defaultFile = "Images/BackButtonUnPressedFerdous@2x.png",
-    overFile = "Images/BackButtonPressedFerdous@2x - Copy.png",
+    overFile = "Images/BackButtonPressedFerdous@2x.png",
     -- Setting Functional Properties
     onRelease = BackTransition
 })

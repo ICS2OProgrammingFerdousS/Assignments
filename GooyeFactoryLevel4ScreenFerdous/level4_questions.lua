@@ -206,7 +206,7 @@ end
 -- FUNCTION for Displaying Questions
 
 local function DisplayQuestion()
-    local randomQuestion = math.random (1,5)
+    local randomQuestion = math.random (1, 10)
     if (randomQuestion == 1) then
         rootImage.isVisible = false
         --creating the question depending on the selcetion number
@@ -263,9 +263,63 @@ local function DisplayQuestion()
                  --creating wrong answers
             wrongText1.text = "Maple Trees"
             wrongText2.text = "Oak Trees"
-            wrongText3.text = "Oval Trees"            
-    end
+            wrongText3.text = "Oval Trees"    
+                   elseif (randomQuestion == 6) then
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = " Raissa will transfer the bowl of food\n to another place. Her action shows?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Motion "
+                 --creating wrong answers
+            wrongText1.text = "Force"
+            wrongText2.text = "Pressure"
+            wrongText3.text = "Inertia"     
+
+             elseif (randomQuestion == 7) then
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = "It is where the white part of the\n eye becomes bloodshot or sore?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Conjunctivitis"
+                 --creating wrong answers
+            wrongText1.text = "Cataracts"
+            wrongText2.text = "Glaucoma"
+            wrongText3.text = "Strabismus"     
+             elseif (randomQuestion == 8) then
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = " True / False \n do you call the air around the Earth Atmosphere?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "True"
+                 --creating wrong answers
+            wrongText1.text = "False"
+            wrongText2.text = ""
+            wrongText3.text = ""    
+             elseif (randomQuestion == 9) then
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = "Which of the following have different texture?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Hollow blocks"
+                 --creating wrong answers
+            wrongText1.text = " Plastic cover"
+            wrongText2.text = " Satin cloth"
+            wrongText3.text = "Glass"      
+             elseif (randomQuestion == 10) then
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = "Which layer in the diagram contains the most organic material?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Layer"
+                 --creating wrong answers
+            wrongText1.text = "Layer"
+            wrongText2.text = "Rice"
+            wrongText3.text = "Lettuce"   
+           
+        end      
+                    
 end
+
 
 
 -----------------------------------------------------------------------------------------
@@ -279,7 +333,7 @@ local function TouchListenerAnswer(touch)
         -- counting the right answer
         totalAnswer = totalAnswer + 1
 -- make condition for winning the game 
-        if(totalAnswer == 5)then
+        if(totalAnswer == 8)then
            yourcake()
         end 
     end
@@ -348,7 +402,7 @@ local function UpdateTime( )
     clockText.text = secondsLeft .. ""
     if(secondsLeft == 0)then
         secondsLeft = totalSeconds
-        composer.gotoScene("You_Lose")
+        composer.gotoScene("You_Lose2")
 
 
 
@@ -402,22 +456,22 @@ function scene:create( event )
     cover.height = display.contentHeight 
     sceneGroup:insert(cover)
     -- create the question text object
-    questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 75)
+    questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
     questionText:setTextColor(0/255, 0/255, 255/255)
     --questionText:setFillColor( 0.2, 0.2, 0. )
   
 
     -- create the answer text object & wrong answer text objects
-    answerText = display.newText("", X1, Y2, Arial, 45)
+    answerText = display.newText("", X1, Y2, Arial, 35)
     answerText.anchorX = 0
     answerText:setTextColor(255/255, 0/255, 0/255)
-    wrongText1 = display.newText("", X2, Y2, Arial, 45)
+    wrongText1 = display.newText("", X2, Y2, Arial, 35)
     wrongText1.anchorX = 0
     wrongText1:setTextColor(255/255, 0/255, 0/255)
-    wrongText2 = display.newText("", X1, Y1, Arial, 45)
+    wrongText2 = display.newText("", X1, Y1, Arial, 35)
     wrongText2.anchorX = 0
     wrongText2:setTextColor(255/255, 0/255, 0/255)
-    wrongText3 = display.newText("", X1, Y2, Arial, 45)
+    wrongText3 = display.newText("", X1, Y2, Arial, 35)
     wrongText3.anchorX = 0
     wrongText3:setTextColor(255/255, 0/255, 0/255)
 -- creating the text to give the right answer if the got wrong
@@ -465,7 +519,7 @@ function scene:create( event )
     height = 100,
     -- Setting Visual Properties
      defaultFile = "Images/BackButtonUnPressedFerdous@2x.png",
-    overFile = "Images/BackButtonPressedFerdous@2x - Copy.png",
+    overFile = "Images/BackButtonPressedFerdous@2x.png",
     -- Setting Functional Properties
     onRelease = BackTransition
     })
