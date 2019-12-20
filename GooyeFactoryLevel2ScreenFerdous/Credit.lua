@@ -9,6 +9,7 @@ local widget = require( "widget" )
 sceneName = "Credit"
 -- Creating Scene Object
 scene = composer.newScene( sceneName ) 
+
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
@@ -17,6 +18,7 @@ local backButton
 -- Adding background sound to the scene
 local backgroundMusic = audio.loadSound("Sounds/jazzy.mp3")
 local backgroundMusicChannel
+
 -- adding click sound
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS

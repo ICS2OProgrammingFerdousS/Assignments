@@ -54,8 +54,6 @@ local wrongAnswer2
 local wrongAnswer3
 local wrongAnswer4
 local scrollSpeed = 2
- --variables for sounds mute and unMute
-local soundOn = true
 
 --------------------------------------------------------------------------------------
 --set variables for making scene transition
@@ -75,26 +73,30 @@ local transitionOption2 =({
 -- function for mute and 
 local function Mute( touch )
     if(touch.phase == "ended")then
+        print ("***clicked on Mute")
         --pause the sound
-        audio.pause(backgroundSoundChannel)
+        audio.resume(backgroundSoundChannel)
         --set boolean for sound status
-        soundOn = false
+        soundOn = true
         muteButton.isVisible = false
         unmuteButton.isVisible = true
     end 
 end
+
 --function for unMute
 
-local function OnButton( touch )
+local function Unmute( touch )
     if(touch.phase == "ended")then
+        print ("***clicked on Unmute")
         --play the music 
-        audio.resume(backgroundSoundChannel)
+        audio.pause(backgroundSoundChannel)
         --set boolean for sound status
-        soundOn = true
+        soundOn = false
         muteButton.isVisible = true
         unmuteButton.isVisible = false
     end
 end
+
 -- The function that will go to the main menu 
 
 local function BackTransition()
@@ -368,6 +370,16 @@ local function RemoveAnswerBoxEventListeners()
     sugar_image:removeEventListener("touch", movingSugar)
 end 
 
+local function ResetIngredients()
+    -- reset the original sugar image
+    sugar_image.x = 960
+    sugar_image.y = 500
+    sugar_image.isVisible = true
+    smallSugar.isVisible = false
+    checkMark4.isVisible = false
+
+end
+
 
 
 -----------------------------------------------------------------------------------------
@@ -628,14 +640,14 @@ function scene:create( event )
     muteButton = display.newImageRect("Images/muteButton.png", 90, 90)
     muteButton.x = 43
     muteButton.y = 35
-    muteButton.isVisible = true
+    muteButton.isVisible = false
     sceneGroup:insert(muteButton)
 
 --creating mut button
     unmuteButton = display.newImageRect("Images/unmuteButton.png", 90, 90)
     unmuteButton.x = 43
     unmuteButton.y = 35
-    unmuteButton.isVisible = false
+    unmuteButton.isVisible = true
     sceneGroup:insert(unmuteButton)
 
     instructionText = display.newImageRect("Images/cook2.png", display.contentWidth, display.contentHeight)
@@ -662,13 +674,23 @@ function scene:show( event )
     if ( phase == "will" ) then
 -----------------------------------------------------------------------------------------
    elseif ( phase == "did" ) then
-    --calling the addEventListener function 
-    AddAnswerBoxEventListeners()
+        ResetIngredients()
+        --calling the addEventListener function 
+        AddAnswerBoxEventListeners()
 
-    muteButton:addEventListener("touch", Mute)
-    unmuteButton:addEventListener("touch", OnButton )
-    -- playing sound 
-    backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1})   
+        muteButton:addEventListener("touch", Mute)
+        unmuteButton:addEventListener("touch", Unmute )
+        -- playing sound 
+        backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1})  
+        if(soundOn == true) then
+            audio.resume(backgroundSoundChannel)
+            muteButton.isVisible = false
+            unmuteButton.isVisible = true
+        else
+            audio.pause(backgroundSoundChannel)
+            muteButton.isVisible = true
+            unmuteButton.isVisible = false
+        end
     end
 end 
 -----------------------------------------------------------------------------------------
@@ -687,19 +709,8 @@ function scene:hide( event )
         RemoveAnswerBoxEventListeners()
 
         muteButton:removeEventListener("touch", Mute)
-        unmuteButton:removeEventListener("touch", OnButton )
-
-         if(soundOn == true)then
-            audio.play(backgroundSoundChannel)
-        else
-            audio.pause(backgroundSoundChannel)
-
-        --stop background music        
-        --backgroundSoundChannel =  audio.stop()
-
-        --restart the scene 
-        composer.removeScene("Level2_screen")
-        end
+        unmuteButton:removeEventListener("touch", Unmute )
+        audio.stop(backgroundSoundChannel)
     end
 end
  --function scene:hide( event )

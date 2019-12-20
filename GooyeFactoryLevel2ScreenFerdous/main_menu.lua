@@ -13,6 +13,13 @@ sceneName = "main_menu"
 -----------------------------------------------------------------------------------------
 -- Creating Scene Object
 local scene = composer.newScene( mainMenu )
+
+-----------------------------------------------------------------------------------------
+-- GLOBAL SOUNDS
+-----------------------------------------------------------------------------------------
+--variables for sounds mute and unMute
+soundOn = true
+
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
@@ -29,8 +36,7 @@ local instructionsButton
 local sound = audio.loadSound("Sounds/buddy.mp3")
 local soundChannel 
 
---variables for sounds mute and unMute
-local soundOn = true
+
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -38,22 +44,24 @@ local soundOn = true
 -- function for mute and 
 local function Mute( touch )
     if(touch.phase == "ended")then
+        print ("***clicked on Mute")
         --pause the sound
-        audio.pause(backgroundSoundChannel)
+        audio.resume(soundChannel)
         --set boolean for sound status
-        soundOn = false
+        soundOn = true
         muteButton.isVisible = false
         unmuteButton.isVisible = true
     end 
 end
 --function for unMute
 
-local function OnButton( touch )
+local function Unmute( touch )
     if(touch.phase == "ended")then
+        print ("***clicked on Unmute")
         --play the music 
-        audio.resume(backgroundSoundChannel)
+        audio.pause(soundChannel)
         --set boolean for sound status
-        soundOn = true
+        soundOn = false
         muteButton.isVisible = true
         unmuteButton.isVisible = false
     end
@@ -181,7 +189,7 @@ function scene:create( event )
     muteButton = display.newImageRect("Images/muteButton.png", 90, 90)
     muteButton.x = 50
     muteButton.y = 40
-    muteButton.isVisible = true
+    muteButton.isVisible = false
     sceneGroup:insert(muteButton)
 
 
@@ -189,7 +197,7 @@ function scene:create( event )
     unmuteButton = display.newImageRect("Images/unmuteButton.png", 90, 90)
     unmuteButton.x = 50
     unmuteButton.y = 40
-    unmuteButton.isVisible = false
+    unmuteButton.isVisible = true
     sceneGroup:insert(unmuteButton)
 
    
@@ -215,10 +223,20 @@ function scene:show( event )
 ----------------------------------------------------------------------------------------
     -- Called when the scene is now on screen.
     elseif ( phase == "did" ) then
-            --play music
-        soundChannel = audio.play(sound, {channel = 4, loops = -1}) 
         muteButton:addEventListener("touch", Mute)
-        unmuteButton:addEventListener("touch", OnButton )      
+        unmuteButton:addEventListener("touch", Unmute )    
+        --play music
+        soundChannel = audio.play(sound, {channel = 6, loops = -1}) 
+        if(soundOn == true) then
+            audio.resume(soundChannel)
+            muteButton.isVisible = false
+            unmuteButton.isVisible = true
+        else
+            audio.pause(soundChannel)
+            muteButton.isVisible = true
+            unmuteButton.isVisible = false
+        end
+          
     end
 end -- function scene:show( event )
 
@@ -235,20 +253,10 @@ function scene:hide( event )
            
         
     elseif ( phase == "did" ) then
-        --removeScene
-        composer.removeScene("main_menu")
         --stop the music
         muteButton:removeEventListener("touch", Mute)
-        unmuteButton:removeEventListener("touch", OnButton )
-        if(soundOn == true)then
-            audio.play(soundChannel)
-        else
-            audio.pause(soundChannel)
-        end
-       -- soundChannel =  audio.stop()
-        --FUNCTION for keeping the button mute and unMute
-       
-        
+        unmuteButton:removeEventListener("touch", Unmute )
+        audio.stop(soundChannel)  
     end
 end
 
