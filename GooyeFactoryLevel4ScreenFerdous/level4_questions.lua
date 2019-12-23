@@ -124,7 +124,7 @@ end
 -- function for going to level 2 screen 
 
 local function gotoLevel2Screen()
-    composer.gotoScene( "Level2_screen", transitionOption2 )
+    composer.gotoScene( "level4_screen", transitionOption2 )
 end
 
 -- function for going to you win screen
@@ -512,8 +512,8 @@ function scene:create( event )
     backButton2 = widget.newButton( 
     {
 -- Setting Position
-    x = display.contentWidth*1/12,
-    y = display.contentHeight*15/17,
+    x = display.contentWidth*1/1.2,
+    y = display.contentHeight*15/16.5,
         -- Setting Dimensions
     width = 150,
     height = 100,

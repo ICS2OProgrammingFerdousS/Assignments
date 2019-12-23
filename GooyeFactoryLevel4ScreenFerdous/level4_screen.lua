@@ -165,8 +165,6 @@ local function movingVanilla(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            backButton.x =  600
-            backButton.y = 424
 
         end
     end
@@ -216,8 +214,7 @@ local function MovingVanillaBean(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            backButton.x =  600
-            backButton.y = 424
+            
         end
     end
 end
@@ -260,8 +257,7 @@ local function movingMilk(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            backButton.x =  600
-            backButton.y = 424   
+            
         end
     end
 end
@@ -308,8 +304,7 @@ local function movingEggs(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            backButton.x =  600
-            backButton.y = 424
+           
         end
     end
 end
@@ -357,8 +352,7 @@ local function movingOil(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            backButton.x =  600
-            backButton.y = 424
+           
         end
 end
 
@@ -401,6 +395,34 @@ local function RemoveAnswerBoxEventListeners()
 
 end 
 
+local function ResetIngredients()
+    -- reset the original sugar image
+    oil_image.x = 960
+    oil_image.y = 520
+    oil_image.isVisible = true
+    smallOil.isVisible = false
+    checkMark4.isVisible = false
+    vanillaBean_image.x = 960
+    vanillaBean_image.y = 225
+    vanillaBean_image.isVisible = true
+    smallVanillaBean.isVisible = false
+    checkMark3.isVisible = false
+    egg_image.x = 960
+    egg_image.y = 410
+    egg_image.isVisible = true
+    smallEggs.isVisible = false
+    checkMark5.isVisible = false
+    milk_image.x = 960
+    milk_image.y = 310
+    milk_image.isVisible = true
+    smallMilk.isVisible = false
+    checkMark.isVisible = false
+    vanilla_image.x = 960
+    vanilla_image.y = 130
+    vanilla_image.isVisible = true
+    smallVanilla.isVisible = false
+    checkMark2.isVisible =  false
+end
 
 
 -----------------------------------------------------------------------------------------
@@ -702,7 +724,9 @@ function scene:show( event )
     if ( phase == "will" ) then
 -----------------------------------------------------------------------------------------
         elseif ( phase == "did" ) then
-             if (soundOn == true)then
+            ResetIngredients()
+
+            if (soundOn == true)then
                 audio.resume(soundChannel)
             else 
                 audio.pause(soundChannel)
@@ -733,16 +757,20 @@ function scene:hide( event )
 -----------------------------------------------------------------------------------------
 -- Called immediately after scene goes off screen.
         elseif ( phase == "did" ) then
-
             --removing Eventlisteners
          --   muteButton:removeEventListener("touch", Mute)
           --  unmuteButton:removeEventListener("touch", secondButton )
 
             backgroundSoundChannel = audio.stop()
             RemoveAnswerBoxEventListeners()
-            composer.removeScene("level4_screen")
              --canceling the timer
             timer.cancel(countDownTimer)
+            secondsLeft = totalSeconds
+            readyImage.isVisible = false
+            backButton.x = 150
+            backButton.y = 700
+            yesButton.isVisible = false
+           
     end
 end --function scene:hide( event )
 

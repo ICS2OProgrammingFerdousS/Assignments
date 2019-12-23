@@ -105,6 +105,7 @@ end
 
 local function gotoQuestions( ... )
     composer.gotoScene("level2_questions", transitionOption)
+  
 end
 
 
@@ -155,8 +156,7 @@ local function movingChocolate(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            backButton.x =  600
-            backButton.y = 424
+          
 
         end
     end
@@ -206,8 +206,8 @@ local function movingFlour(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            backButton.x =  600
-            backButton.y = 424
+            
+
         end
     end
 end
@@ -250,8 +250,8 @@ local function movingButter(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            backButton.x =  600
-            backButton.y = 424   
+          
+
         end
     end
 end
@@ -298,8 +298,9 @@ local function movingEggs(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            backButton.x =  600
-            backButton.y = 424
+            
+
+
         end
     end
 end
@@ -347,8 +348,7 @@ local function movingSugar(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            backButton.x =  600
-            backButton.y = 424
+           
         end
 end
 
@@ -377,7 +377,28 @@ local function ResetIngredients()
     sugar_image.isVisible = true
     smallSugar.isVisible = false
     checkMark4.isVisible = false
+    flour_image.x = 960
+    flour_image.y = 225
+    flour_image.isVisible = true
+    smallFlour.isVisible = false
+    checkMark3.isVisible = false
+    egg_image.x = 960
+    egg_image.y = 410
+    egg_image.isVisible = true
+    smallEggs.isVisible = false
+    checkMark5.isVisible = false
+    butter_image.x = 960
+    butter_image.y = 310
+    butter_image.isVisible = true
+    smallButter.isVisible = false
+    checkMark.isVisible = false
+    chocolate_image.x = 960
+    chocolate_image.y = 130
+    chocolate_image.isVisible = true
+    smallChocolate.isVisible = false
+    checkMark2.isVisible =  false
 
+    
 end
 
 
@@ -420,7 +441,19 @@ function scene:create( event )
 -- BUTTON WIDGETS
 -----------------------------------------------------------------------------------------
 
-   -- Creating Back Button
+    
+-----------------------------------------------------------------------------------------
+    -- Associating Buttons with this scene
+    
+    -- Creating bowl image
+    bowl_image =display.newImageRect("Images/bowlPlaceholder.png", display.contentWidth, display.contentHeight) 
+    bowl_image.x = 400
+    bowl_image.y = 400
+    bowl_image.width = 150
+    bowl_image.height = 150
+    sceneGroup:insert(bowl_image)
+
+    -- Creating Back Button
     backButton = widget.newButton( 
     {
     -- Setting Position
@@ -431,28 +464,19 @@ function scene:create( event )
     height = 106,
     -- Setting Visual Properties
      defaultFile = "Images/BackButtonUnPressedFerdous@2x.png",
-    overFile = "Images/BackButtonPressedFerdous@2x - Copy.png",
+    overFile = "Images/BackButtonPressedFerdous@2x.png",
     -- Setting Functional Properties
     onRelease = BackTransition
 })
-   
------------------------------------------------------------------------------------------
-    -- Associating Buttons with this scene
     sceneGroup:insert( backButton )
-    
-    -- Creating bowl image
-    bowl_image =display.newImageRect("Images/bowlPlaceholder.png", display.contentWidth, display.contentHeight) 
-    bowl_image.x = 400
-    bowl_image.y = 400
-    bowl_image.width = 150
-    bowl_image.height = 150
-    sceneGroup:insert(bowl_image)
+
+ 
     --Creating yes buttton
     yesButton = widget.newButton( 
     {
     -- Setting Position
-    x = display.contentWidth*1/3,
-    y = display.contentHeight*15/27,
+    x = display.contentWidth*1/2.5,
+    y = display.contentHeight*15/25,
     -- Setting Dimensions
     width = 100,
     height = 106,
@@ -629,8 +653,8 @@ function scene:create( event )
 
    -- Creating small Images of objects to stay in the bowl
     smallEggs = display.newImageRect("Images/eggs.png", display.contentWidth, display.contentHeight)
-    smallEggs.x = 0
-    smallEggs.y = 750
+    smallEggs.x = 400
+    smallEggs.y = 390
     smallEggs.width = 50
     smallEggs.height = 20                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
     sceneGroup:insert(smallEggs)    
@@ -674,6 +698,7 @@ function scene:show( event )
     if ( phase == "will" ) then
 -----------------------------------------------------------------------------------------
    elseif ( phase == "did" ) then
+        
         ResetIngredients()
         --calling the addEventListener function 
         AddAnswerBoxEventListeners()
@@ -711,6 +736,8 @@ function scene:hide( event )
         muteButton:removeEventListener("touch", Mute)
         unmuteButton:removeEventListener("touch", Unmute )
         audio.stop(backgroundSoundChannel)
+        readyImage.isVisible = false
+        yesButton.isVisible = false
     end
 end
  --function scene:hide( event )

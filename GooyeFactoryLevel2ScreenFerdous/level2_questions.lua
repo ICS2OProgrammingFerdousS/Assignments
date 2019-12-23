@@ -90,31 +90,31 @@ local transitionOption4 =({
 -----------------------------------------------------------------------------------------
 --LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
-
--- function for mute and 
 local function Mute( touch )
     if(touch.phase == "ended")then
---pause the sound
-        audio.pause(soundChannel)
---set boolean for sound status
-        soundOn = false
+        print ("***clicked on Mute")
+        --pause the sound
+        audio.resume(soundChannel)
+        --set boolean for sound status
+        soundOn = true
         muteButton.isVisible = false
         unmuteButton.isVisible = true
     end 
 end
+
 --function for unMute
 
-local function secondButton( touch )
+local function Unmute( touch )
     if(touch.phase == "ended")then
---play the music 
-        audio.resume(soundChannel)
-        soundOn = true
+        print ("***clicked on Unmute")
+        --play the music 
+        audio.pause(soundChannel)
+        --set boolean for sound status
+        soundOn = false
         muteButton.isVisible = true
         unmuteButton.isVisible = false
-
-        
     end
- end
+end
 
 -- function for going back to main menu screen
 
@@ -390,6 +390,9 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
     --covering the other scene with a rectangle so it looks faded and stops touch from going through
     bkg = display.newRect(display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight)
+
+    sceneGroup:insert(bkg)
+
     --setting to a semi black colour
     bkg:setFillColor(0,0,0,0.5)
    
@@ -444,7 +447,7 @@ function scene:create( event )
     backButton = widget.newButton( 
     {
 -- Setting Position
-    x = display.contentWidth*1/1.1,
+    x = display.contentWidth*15/30,
     y = display.contentHeight*15/17,
         -- Setting Dimensions
     width = 150,
@@ -455,30 +458,39 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = gotoLevel2Screen
     })
+    sceneGroup:insert(backButton)
+
     backButton2 = widget.newButton( 
     {
 -- Setting Position
-    x = display.contentWidth*1/12,
-    y = display.contentHeight*15/17,
+    x = display.contentWidth*1/1.1,
+    y = display.contentHeight*15.6/17,
         -- Setting Dimensions
     width = 150,
     height = 100,
     -- Setting Visual Properties
      defaultFile = "Images/BackButtonUnPressedFerdous@2x.png",
-    overFile = "Images/BackButtonPressedFerdous@2x - Copy.png",
+    overFile = "Images/BackButtonPressedFerdous@2x.png",
     -- Setting Functional Properties
     onRelease = BackTransition
     })
-    muteButton = display.newImageRect("Images/icon.png", 90, 90)
+    sceneGroup:insert(backButton2)
+
+
+    muteButton = display.newImageRect("Images/muteButton.png", 90, 90)
     muteButton.x = 45
     muteButton.y = 40
-    muteButton.isVisible = true
+    muteButton.isVisible = false
+    sceneGroup:insert(muteButton)
+
 
 --creating mut button
-    unmuteButton = display.newImageRect("Images/50.png", 90, 90)
+    unmuteButton = display.newImageRect("Images/unmuteButton.png", 90, 90)
     unmuteButton.x = 45
     unmuteButton.y = 40
-    unmuteButton.isVisible = false
+    unmuteButton.isVisible = true
+    sceneGroup:insert(unmuteButton)
+
     
     -- insert all objects for this scene into the scene group
     -- adding text and colour for timer
@@ -488,9 +500,6 @@ function scene:create( event )
     clockText:setTextColor(0.9, 0, 0)
            --creating mute button
   
-
-    sceneGroup:insert(bkg)
-    sceneGroup:insert(cover)
     sceneGroup:insert(clockText)
     sceneGroup:insert(questionText)
     sceneGroup:insert(answerText)
@@ -499,10 +508,6 @@ function scene:create( event )
     sceneGroup:insert(wrongText3)
     sceneGroup:insert(rootImage)
     sceneGroup:insert(giveThenAnswer)
-    sceneGroup:insert(backButton)
-    sceneGroup:insert(backButton2)
-    sceneGroup:insert(muteButton)
-    sceneGroup:insert(unmuteButton)
 
 end --function scene:create( event )
 
@@ -522,7 +527,7 @@ function scene:show( event )
 
         elseif ( phase == "did" ) then
             muteButton:addEventListener("touch", Mute)
-            unmuteButton:addEventListener("touch", secondButton )
+            unmuteButton:addEventListener("touch", Unmute )
         -- called the FUNCTION to display questions
             DisplayQuestion()
         -- call the function to change the answers positions
@@ -533,8 +538,19 @@ function scene:show( event )
             startTimer()
         -- play the background sound
             soundChannel = audio.play(sound, {channel = 5, loops = -1})
+            if(soundOn == true) then
+            audio.resume(soundChannel)
+            muteButton.isVisible = false
+            unmuteButton.isVisible = true
+        else
+            audio.pause(soundChannel)
+            muteButton.isVisible = true
+            unmuteButton.isVisible = false
+        end
 
     end
+    backButton.x = 100
+    backButton.y = 700
 
 end 
 
@@ -555,15 +571,16 @@ function scene:hide( event )
 
         elseif ( phase == "did" ) then
             muteButton:removeEventListener("touch", Mute)
-            unmuteButton:removeEventListener("touch", secondButton )
+            unmuteButton:removeEventListener("touch", Unmute )
             -- call the remove the event listeners FUNCTION
             RemoveTextListeners()
             -- reset scene after leave it 
-            composer.removeScene("level2_questions")
+            --composer.removeScene("level2_questions")
             -- Displaying the background sound
-            soundChannel = audio.stop()
+            audio.stop(soundChannel)
             --canceling the timer
             timer.cancel(countDownTimer)
+            secondsLeft = totalSeconds
     end
 
 end 

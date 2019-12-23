@@ -146,6 +146,8 @@ function scene:create( event )
          -- When the button is released, call the Level1 screen transition function
          onRelease = Level2ScreenTransition    
  } )
+    sceneGroup:insert( playButton )
+
     -----------------------------------------------------------------------------------------
 
     -- Creating Credits Button
@@ -164,6 +166,7 @@ function scene:create( event )
         -- When the button is released, call the Credits transition function
         onRelease = CreditsTransition
 } ) 
+    sceneGroup:insert( creditsButton )
 
     -----------------------------------------------------------------------------------------
 
@@ -182,7 +185,8 @@ function scene:create( event )
         -- When the button is released, call the Credits transition function
         onRelease = gotoInstructions
 } ) 
-   
+    sceneGroup:insert( instructionsButton )
+
     -----------------------------------------------------------------------------------------
 
    --creating mute button
@@ -202,9 +206,6 @@ function scene:create( event )
 
    
     -- INSERT INSTRUCTIONS BUTTON INTO SCENE GROUP
-    sceneGroup:insert( instructionsButton )
-    sceneGroup:insert( playButton )
-    sceneGroup:insert( creditsButton )
     
 end  
 
