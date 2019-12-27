@@ -148,8 +148,8 @@ function scene:hide( event )
 
         elseif ( phase == "did" ) then
     --    display the sound effect
-            composer.removeScene("You_Win")
-            bakeText.isVisible = false
+            --composer.removeScene("You_Win")
+            --bakeText.isVisible = false
 
 
 end --function scene:hide( event )

@@ -94,27 +94,30 @@ local transitionOption4 =({
 -- function for mute and 
 local function Mute( touch )
     if(touch.phase == "ended")then
---pause the sound
-        audio.pause(soundChannel)
---set boolean for sound status
-        soundOn = false
+        print ("***clicked on Mute")
+        --pause the sound
+        audio.resume(soundChannel)
+        --set boolean for sound status
+        soundOn = true
         muteButton.isVisible = false
         unmuteButton.isVisible = true
     end 
 end
+
 --function for unMute
 
-local function secondButton( touch )
+local function Unmute( touch )
     if(touch.phase == "ended")then
---play the music 
-        audio.resume(soundChannel)
-        soundOn = true
+        print ("***clicked on Unmute")
+        --play the music 
+        audio.pause(soundChannel)
+        --set boolean for sound status
+        soundOn = false
         muteButton.isVisible = true
         unmuteButton.isVisible = false
-
-        
     end
- end
+end
+
 
 -- function for going back to main menu screen
 
@@ -264,8 +267,10 @@ local function DisplayQuestion()
             wrongText1.text = "Maple Trees"
             wrongText2.text = "Oak Trees"
             wrongText3.text = "Oval Trees"    
-                   elseif (randomQuestion == 6) then
+        elseif (randomQuestion == 6) then
             PositionAnswers()
+            rootImage.isVisible = false
+
             --creating the question depending on the selcetion number
             questionText.text = " Raissa will transfer the bowl of food\n to another place. Her action shows?"
              --creating answer text from list it corispondes with the animals list
@@ -275,8 +280,10 @@ local function DisplayQuestion()
             wrongText2.text = "Pressure"
             wrongText3.text = "Inertia"     
 
-             elseif (randomQuestion == 7) then
+        elseif (randomQuestion == 7) then
             PositionAnswers()
+            rootImage.isVisible = false
+
             --creating the question depending on the selcetion number
             questionText.text = "It is where the white part of the\n eye becomes bloodshot or sore?"
              --creating answer text from list it corispondes with the animals list
@@ -285,8 +292,10 @@ local function DisplayQuestion()
             wrongText1.text = "Cataracts"
             wrongText2.text = "Glaucoma"
             wrongText3.text = "Strabismus"     
-             elseif (randomQuestion == 8) then
+        elseif (randomQuestion == 8) then
             PositionAnswers()
+            rootImage.isVisible = false
+
             --creating the question depending on the selcetion number
             questionText.text = " True / False \n do you call the air around the Earth Atmosphere?"
              --creating answer text from list it corispondes with the animals list
@@ -295,7 +304,9 @@ local function DisplayQuestion()
             wrongText1.text = "False"
             wrongText2.text = ""
             wrongText3.text = ""    
-             elseif (randomQuestion == 9) then
+        elseif (randomQuestion == 9) then
+            rootImage.isVisible = false
+
             PositionAnswers()
             --creating the question depending on the selcetion number
             questionText.text = "Which of the following have different texture?"
@@ -305,7 +316,8 @@ local function DisplayQuestion()
             wrongText1.text = " Plastic cover"
             wrongText2.text = " Satin cloth"
             wrongText3.text = "Glass"      
-             elseif (randomQuestion == 10) then
+        elseif (randomQuestion == 10) then
+            rootImage.isVisible = false
             PositionAnswers()
             --creating the question depending on the selcetion number
             questionText.text = "Which layer in the diagram contains the most organic material?"
@@ -338,6 +350,8 @@ local function TouchListenerAnswer(touch)
         end 
     end
 end
+
+
 -- FUNCTION for hidding the correct answer text
 local function HideCorrectAnswer( ... )
     giveThenAnswer.isVisible = false
@@ -446,7 +460,8 @@ function scene:create( event )
     bkg = display.newRect(display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight)
     --setting to a semi black colour
     bkg:setFillColor(0,0,0,0.5)
-   
+    sceneGroup:insert(bkg)
+
     -----------------------------------------------------------------------------------------
     --making a cover rectangle to have the background fully bolcked where the question is
     cover = display.newImageRect("Images/question mark.png",display.contentWidth, display.contentHeight)
@@ -474,6 +489,7 @@ function scene:create( event )
     wrongText3 = display.newText("", X1, Y2, Arial, 35)
     wrongText3.anchorX = 0
     wrongText3:setTextColor(255/255, 0/255, 0/255)
+
 -- creating the text to give the right answer if the got wrong
     giveThenAnswer =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 50)
     giveThenAnswer.x = 500
@@ -523,28 +539,27 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = BackTransition
     })
-    muteButton = display.newImageRect("Images/icon.png", 90, 90)
+    muteButton = display.newImageRect("Images/muteButton.png", 90, 90)
     muteButton.x = 45
     muteButton.y = 40
-    muteButton.isVisible = true
+    muteButton.isVisible = false
+    sceneGroup:insert(muteButton)
 
 --creating mut button
-    unmuteButton = display.newImageRect("Images/50.png", 90, 90)
+    unmuteButton = display.newImageRect("Images/unmuteButton.png", 90, 90)
     unmuteButton.x = 45
     unmuteButton.y = 40
-    unmuteButton.isVisible = false
+    unmuteButton.isVisible = true
+    sceneGroup:insert(unmuteButton)
+
     
-    -- insert all objects for this scene into the scene group
     -- adding text and colour for timer
     clockText= display.newText(secondsLeft, display.contentWidth/7, display.contentHeight/7, nil, 50)
     clockText.x = 500
     clockText.y = 45
     clockText:setTextColor(0.9, 0, 0)
-           --creating mute button
-  
 
-    sceneGroup:insert(bkg)
-    sceneGroup:insert(cover)
+    -- insert all objects for this scene into the scene group
     sceneGroup:insert(clockText)
     sceneGroup:insert(questionText)
     sceneGroup:insert(answerText)
@@ -555,8 +570,6 @@ function scene:create( event )
     sceneGroup:insert(giveThenAnswer)
     sceneGroup:insert(backButton)
     sceneGroup:insert(backButton2)
-    sceneGroup:insert(muteButton)
-    sceneGroup:insert(unmuteButton)
 
 end --function scene:create( event )
 
@@ -571,25 +584,34 @@ function scene:show( event )
     if ( phase == "will" ) then
         DisplayQuestion()
         PositionAnswers()
+        totalAnswer = 0
 -- Called when the scene is still off screen (but is about to come on screen).
 -----------------------------------------------------------------------------------------
 
-        elseif ( phase == "did" ) then
-            muteButton:addEventListener("touch", Mute)
-            unmuteButton:addEventListener("touch", secondButton )
+    elseif ( phase == "did" ) then
+        totalAnswer = 0
+        muteButton:addEventListener("touch", Mute)
+        unmuteButton:addEventListener("touch", Unmute )
         -- called the FUNCTION to display questions
-            DisplayQuestion()
+         DisplayQuestion()
         -- call the function to change the answers positions
-            PositionAnswers()
+         PositionAnswers()
             -- called texts 
-            AddTextListeners()
+        AddTextListeners()
         -- start timer 
-            startTimer()
+        startTimer()
         -- play the background sound
-            soundChannel = audio.play(sound, {channel = 5, loops = -1})
-
+        soundChannel = audio.play(sound, {channel = 5, loops = -1})
+        if(soundOn == true) then
+            audio.resume(soundChannel)
+            muteButton.isVisible = false
+            unmuteButton.isVisible = true
+        else
+            audio.pause(soundChannel)
+            muteButton.isVisible = true
+            unmuteButton.isVisible = false
+        end
     end
-
 end 
 
 -----------------------------------------------------------------------------------------
@@ -606,18 +628,19 @@ function scene:hide( event )
         -- Example: stop timers, stop animation, stop audio, etc.
         --parent:resumeGame()
     -----------------------------------------------------------------------------------------
-
-        elseif ( phase == "did" ) then
-            muteButton:removeEventListener("touch", Mute)
-            unmuteButton:removeEventListener("touch", secondButton )
+    elseif ( phase == "did" ) then
+        muteButton:removeEventListener("touch", Mute)
+        unmuteButton:removeEventListener("touch", Unmute )
         -- call the remove the event listeners FUNCTION
-            RemoveTextListeners()
+        RemoveTextListeners()
         -- reset scene after leave it 
-            composer.removeScene("level4_questions")
+            --composer.removeScene("level4_questions")
         -- Displaying the background sound
-            soundChannel = audio.stop()
+        soundChannel = audio.stop()
             --canceling the timer
-            timer.cancel(countDownTimer)
+        timer.cancel(countDownTimer)
+        secondsLeft = totalSeconds
+        totalAnswer = 0
     end
 
 end 

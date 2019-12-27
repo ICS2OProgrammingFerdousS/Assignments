@@ -539,13 +539,13 @@ function scene:show( event )
         -- play the background sound
             soundChannel = audio.play(sound, {channel = 5, loops = -1})
             if(soundOn == true) then
-            audio.resume(soundChannel)
-            muteButton.isVisible = false
-            unmuteButton.isVisible = true
-        else
-            audio.pause(soundChannel)
-            muteButton.isVisible = true
-            unmuteButton.isVisible = false
+                audio.resume(soundChannel)
+                muteButton.isVisible = false
+                unmuteButton.isVisible = true
+            else
+                audio.pause(soundChannel)
+                muteButton.isVisible = true
+                unmuteButton.isVisible = false
         end
 
     end
@@ -563,6 +563,7 @@ function scene:hide( event )
     local phase = event.phase
 -----------------------------------------------------------------------------------------
      if ( phase == "will" ) then
+
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.

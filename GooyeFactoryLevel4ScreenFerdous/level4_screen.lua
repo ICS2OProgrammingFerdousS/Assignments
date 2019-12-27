@@ -62,7 +62,6 @@ local clockText
 local countDownTimer
 
  --variables for sounds mute and unMute
-local soundOn = true
 
 --------------------------------------------------------------------------------------
 --set variables for making scene transition
@@ -80,29 +79,29 @@ local transitionOption2 =({
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
 -- function for mute and 
---local function Mute( touch )
-   -- if(touch.phase == "ended")then
---pause the sound
-      --  audio.pause(backgroundSoundChannel)
---set boolean for sound status
-        --soundOn = false
-      --  muteButton.isVisible = false
-    --    unmuteButton.isVisible = true
-  --  end 
---end
+local function Mute( touch )
+    if(touch.phase == "ended")then
+        --pause the sound
+        audio.resume(backgroundSoundChannel)
+        --set boolean for sound status
+        soundOn = true
+        muteButton.isVisible = false
+        unmuteButton.isVisible = true
+    end 
+end
+
 --function for unMute
 
---local function secondButton( touch )
-  --  if(touch.phase == "ended")then
---play the music 
-    --    audio.resume(backgroundSoundChannel)
-      --  soundOn = true
-      --  muteButton.isVisible = true
-      --  unmuteButton.isVisible = false
-
-        
-  --  end
- --end
+local function Unmute( touch )
+    if(touch.phase == "ended")then
+        --play the music 
+        audio.pause(backgroundSoundChannel)
+        --set boolean for sound status
+        soundOn = false
+        muteButton.isVisible = true
+        unmuteButton.isVisible = false
+    end
+end
 -- The function that will go to the main menu 
 
 local function BackTransition()
@@ -114,10 +113,12 @@ local function gotoQuestions( ... )
 end
 
 local function GotoYouLose( ... )
-    composer.gotoScene("You_Lose", transitionOption)
+    composer.gotoScene("You_Lose2", transitionOption)
 end
 
-
+local function  yesButtonFunction()
+    yesButton.isVisible = true
+end
 
 local function movingVanilla(touch)
 
@@ -213,8 +214,7 @@ local function MovingVanillaBean(touch)
             (checkMark3.isVisible == true) and(checkMark4.isVisible == true) and
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
-            yesButton.isVisible = true
-            
+            yesButtonFunction()            
         end
     end
 end
@@ -256,7 +256,7 @@ local function movingMilk(touch)
             (checkMark3.isVisible == true) and (checkMark4.isVisible == true) and
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
-            yesButton.isVisible = true
+            yesButtonFunction()            
             
         end
     end
@@ -303,7 +303,7 @@ local function movingEggs(touch)
             (checkMark3.isVisible == true) and (checkMark4.isVisible == true) and
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
-            yesButton.isVisible = true
+            yesButtonFunction()            
            
         end
     end
@@ -351,7 +351,7 @@ local function movingOil(touch)
             (checkMark3.isVisible == true) and (checkMark4.isVisible == true) and
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
-            yesButton.isVisible = true
+            yesButtonFunction()            
            
         end
 end
@@ -422,6 +422,7 @@ local function ResetIngredients()
     vanilla_image.isVisible = true
     smallVanilla.isVisible = false
     checkMark2.isVisible =  false
+    yesButton.isVisible = false
 end
 
 
@@ -505,8 +506,9 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = gotoQuestions
 })
-    yesButton.isVisible = false
     sceneGroup:insert(yesButton)
+    yesButton.isVisible = false
+
  -- Creating butter image 
     milk_image = display.newImageRect("Images/milk.png", display.contentWidth, display.contentHeight)
     milk_image.x = 960
@@ -680,16 +682,17 @@ function scene:create( event )
     smallEggs.isVisible = false
 
     --creating mute button
-    muteButton = display.newImageRect("Images/icon.png", 90, 90)
+    muteButton = display.newImageRect("Images/muteButton.png", 90, 90)
     muteButton.x = 43
     muteButton.y = 35
-    muteButton.isVisible = true
+    muteButton.isVisible = false
+    sceneGroup:insert(muteButton)
+
 --creating mut button
-    unmuteButton = display.newImageRect("Images/50.png", 90, 90)
+    unmuteButton = display.newImageRect("Images/unmuteButton.png", 90, 90)
     unmuteButton.x = 43
     unmuteButton.y = 35
-    unmuteButton.isVisible = false
-    sceneGroup:insert(muteButton)
+    unmuteButton.isVisible = true
     sceneGroup:insert(unmuteButton)
 
     instructionText = display.newImageRect("Images/cook2.png", display.contentWidth, display.contentHeight)
@@ -723,24 +726,28 @@ function scene:show( event )
 -- Called when the scene is still off screen (but is about to come on screen).
     if ( phase == "will" ) then
 -----------------------------------------------------------------------------------------
-        elseif ( phase == "did" ) then
-            ResetIngredients()
-
-            if (soundOn == true)then
-                audio.resume(soundChannel)
-            else 
-                audio.pause(soundChannel)
-            end
+    elseif ( phase == "did" ) then
+        ResetIngredients()
+        muteButton:addEventListener("touch", Mute)
+        unmuteButton:addEventListener("touch", Unmute )
+        backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1}) 
+            if(soundOn == true) then
+                audio.resume(backgroundSoundChannel)
+                muteButton.isVisible = false
+                unmuteButton.isVisible = true
+            else
+                audio.pause(backgroundSoundChannel)
+                muteButton.isVisible = true
+                unmuteButton.isVisible = false
+        end
 ----------addEventListener
-        --    muteButton:addEventListener("touch", Mute)
---            unmuteButton:addEventListener("touch", secondButton )
+    
 
         --calling the addEventListener function 
             AddAnswerBoxEventListeners()
             -- start timer 
             startTimer()
         -- display background music
-            backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1}) 
           
     end
 
@@ -753,23 +760,24 @@ function scene:hide( event )
     local sceneGroup = self.view
     local phase = event.phase
 ----------------------------------------------------------------------------------------
-    if ( phase == "will" ) then  
+    if ( phase == "will" ) then 
+
 -----------------------------------------------------------------------------------------
 -- Called immediately after scene goes off screen.
-        elseif ( phase == "did" ) then
-            --removing Eventlisteners
-         --   muteButton:removeEventListener("touch", Mute)
-          --  unmuteButton:removeEventListener("touch", secondButton )
-
-            backgroundSoundChannel = audio.stop()
-            RemoveAnswerBoxEventListeners()
-             --canceling the timer
-            timer.cancel(countDownTimer)
-            secondsLeft = totalSeconds
-            readyImage.isVisible = false
-            backButton.x = 150
-            backButton.y = 700
-            yesButton.isVisible = false
+    elseif ( phase == "did" ) then
+        --removing Eventlisteners
+        muteButton:removeEventListener("touch", Mute)
+        unmuteButton:removeEventListener("touch", Unmute )
+        audio.stop(backgroundSoundChannel)
+        RemoveAnswerBoxEventListeners()
+        --canceling the timer
+        timer.cancel(countDownTimer)
+        secondsLeft = totalSeconds
+        readyImage.isVisible = false
+        backButton.x = 150
+        backButton.y = 700
+        yesButton.isVisible = false
+ 
            
     end
 end --function scene:hide( event )

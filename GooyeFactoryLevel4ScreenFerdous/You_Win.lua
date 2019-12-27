@@ -33,8 +33,8 @@ local function YouWin( )
 end   
 
 
-local function gotoMainMenu( )
-    composer.gotoScene( "main_menu", {effect = "fromLeft", time = 1000})
+local function GotoLevelScelect( )
+    composer.gotoScene( "levelSelect_screen", {effect = "fromLeft", time = 1000})
 
 end   
 
@@ -80,6 +80,10 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = YouWin
 })
+    sceneGroup:insert( bakeText )
+
+    sceneGroup:insert( yesButton )
+
     -- Setting Position
    noButton = widget.newButton( 
     {
@@ -90,14 +94,12 @@ function scene:create( event )
     width = 100,
     height = 106,
     -- Setting Visual Properties
-    defaultFile = "Images/NoButtonPressedFerdous@2x.png",
-    overFile = "Images/NoButtonUnPressedFerdous@2x.png",
+    defaultFile = "Images/LevelSelectUnPressedButtonFerdous@2x.png",
+    overFile = "Images/LevelSelectPressedButtonFerdous@2x.png",
     -- Setting Functional Properties
-    onRelease = gotoMainMenu
+    onRelease = GotoLevelScelect
     })
-    sceneGroup:insert( yesButton )
     sceneGroup:insert( noButton )
-    sceneGroup:insert( bakeText )
 
 
 
@@ -148,8 +150,8 @@ function scene:hide( event )
 
         elseif ( phase == "did" ) then
     --    display the sound effect
-            composer.removeScene("You_Win")
-            bakeText.isVisible = false
+            --composer.removeScene("You_Win")
+            --bakeText.isVisible = false
 
 
 end --function scene:hide( event )

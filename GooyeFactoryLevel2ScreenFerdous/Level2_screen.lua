@@ -73,7 +73,6 @@ local transitionOption2 =({
 -- function for mute and 
 local function Mute( touch )
     if(touch.phase == "ended")then
-        print ("***clicked on Mute")
         --pause the sound
         audio.resume(backgroundSoundChannel)
         --set boolean for sound status
@@ -87,7 +86,6 @@ end
 
 local function Unmute( touch )
     if(touch.phase == "ended")then
-        print ("***clicked on Unmute")
         --play the music 
         audio.pause(backgroundSoundChannel)
         --set boolean for sound status
@@ -397,7 +395,7 @@ local function ResetIngredients()
     chocolate_image.isVisible = true
     smallChocolate.isVisible = false
     checkMark2.isVisible =  false
-
+    yesButton.isVisible = false
     
 end
 
@@ -661,14 +659,14 @@ function scene:create( event )
     smallEggs.isVisible = false
 
     --creating mute button
-    muteButton = display.newImageRect("Images/muteButton.png", 90, 90)
+    muteButton = display.newImageRect("Images/muteButton.png", 90, 90, display.contentWidth, display.contentHeight)
     muteButton.x = 43
     muteButton.y = 35
     muteButton.isVisible = false
     sceneGroup:insert(muteButton)
 
 --creating mut button
-    unmuteButton = display.newImageRect("Images/unmuteButton.png", 90, 90)
+    unmuteButton = display.newImageRect("Images/unmuteButton.png", 90, 90,  display.contentWidth, display.contentHeight)
     unmuteButton.x = 43
     unmuteButton.y = 35
     unmuteButton.isVisible = true
@@ -696,15 +694,17 @@ function scene:show( event )
 -----------------------------------------------------------------------------------------
 -- Called when the scene is still off screen (but is about to come on screen).
     if ( phase == "will" ) then
+
 -----------------------------------------------------------------------------------------
    elseif ( phase == "did" ) then
-        
+    
+        muteButton:addEventListener("touch", Mute)
+        unmuteButton:addEventListener("touch", Unmute )
+
         ResetIngredients()
         --calling the addEventListener function 
         AddAnswerBoxEventListeners()
 
-        muteButton:addEventListener("touch", Mute)
-        unmuteButton:addEventListener("touch", Unmute )
         -- playing sound 
         backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1})  
         if(soundOn == true) then
@@ -727,14 +727,17 @@ function scene:hide( event )
     local phase = event.phase
 ----------------------------------------------------------------------------------------
     if ( phase == "will" ) then  
+       
+
 -----------------------------------------------------------------------------------------
 -- Called immediately after scene goes off screen.
     elseif ( phase == "did" ) then
+        muteButton:removeEventListener("touch", Mute)
+        unmuteButton:removeEventListener("touch", Unmute )
         --remove EventListener
         RemoveAnswerBoxEventListeners()
 
-        muteButton:removeEventListener("touch", Mute)
-        unmuteButton:removeEventListener("touch", Unmute )
+       
         audio.stop(backgroundSoundChannel)
         readyImage.isVisible = false
         yesButton.isVisible = false

@@ -20,14 +20,43 @@ local backgroundMusic = audio.loadSound("Sounds/jazzy.mp3")
 local backgroundMusicChannel
 
 -- adding click sound
+
+-- Creating Transitioning Function back to main menu
+local transitionOption =({
+    effect="fromLeft",
+    time = 500
+})
+
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
--- Creating Transitioning Function back to main menu
-local transitionOption =({
-	effect="fromLeft",
-    time = 500
-})
+
+local function Mute( touch )
+    if(touch.phase == "ended")then
+        print ("***clicked on Mute")
+        --pause the sound
+        audio.resume(backgroundMusicChannel)
+        --set boolean for sound status
+        soundOn = true
+        muteButton.isVisible = false
+        unmuteButton.isVisible = true
+    end 
+end
+
+--function for unMute
+
+local function Unmute( touch )
+    if(touch.phase == "ended")then
+        print ("***clicked on Unmute")
+        --play the music 
+        audio.pause(backgroundMusicChannel)
+        --set boolean for sound status
+        soundOn = false
+        muteButton.isVisible = true
+        unmuteButton.isVisible = false
+    end
+end
+
 local function BackTransition( )
 	composer.gotoScene( "main_menu", transitionOption)
 
@@ -73,6 +102,20 @@ function scene:create( event )
 -----------------------------------------------------------------------------------------
 -- Associating Buttons with this scene
 	sceneGroup:insert( backButton ) 
+
+        --creating mute button
+    muteButton = display.newImageRect("Images/muteButton.png", 90, 90, display.contentWidth, display.contentHeight)
+    muteButton.x = 43
+    muteButton.y = 35
+    muteButton.isVisible = false
+    sceneGroup:insert(muteButton)
+
+--creating mut button
+    unmuteButton = display.newImageRect("Images/unmuteButton.png", 90, 90,  display.contentWidth, display.contentHeight)
+    unmuteButton.x = 43
+    unmuteButton.y = 35
+    unmuteButton.isVisible = true
+    sceneGroup:insert(unmuteButton)
 end 
 --function scene:create( event )
 
@@ -87,9 +130,19 @@ function scene:show( event )
  -- Called when the scene is still off Bscreen (but is about to come on screen).
  -----------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
+        muteButton:addEventListener("touch", Mute)
+        unmuteButton:addEventListener("touch", Unmute )
      --display backgroundMusic
-    backgroundMusicChannel = audio.play(backgroundMusic, {channel = 3, loops = -1})
-
+        backgroundMusicChannel = audio.play(backgroundMusic, {channel = 3, loops = -1})
+        if(soundOn == true) then
+            audio.resume(backgroundMusicChannel)
+            muteButton.isVisible = false
+            unmuteButton.isVisible = true
+        else
+            audio.pause(backgroundMusicChannel)
+            muteButton.isVisible = true
+            unmuteButton.isVisible = false
+        end
     end
 end 
 
@@ -106,6 +159,8 @@ function scene:hide( event )
         --stpping the function the backgroundMusic after scene
 
     elseif ( phase == "did" ) then
+        muteButton:removeEventListener("touch", Mute)
+        unmuteButton:removeEventListener("touch", Unmute )
        -- audio.stop(backgroundMusicChannel)
        	backgroundMusicChannel = audio.stop()
 

@@ -19,7 +19,7 @@ local composer = require( "composer" )
 -----------------------------------------------------------------------------------------
 
 -- Go to the intro screen
-composer.gotoScene( "level2_questions")
+composer.gotoScene( "main_menu")
 --display.setDefault("background", 0.5, 0.7, 1)
 
 
