@@ -66,7 +66,7 @@ function scene:create( event )
     bakeText.height = 900
 
 
-    yesButton = widget.newButton( 
+    BakeCake = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/3,
@@ -80,9 +80,8 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = YouWin
 })
-    sceneGroup:insert( bakeText )
+    sceneGroup:insert( BakeCake )
 
-    sceneGroup:insert( yesButton )
 
     -- Setting Position
    noButton = widget.newButton( 
@@ -126,7 +125,6 @@ function scene:show( event )
         elseif ( phase == "did" ) then
         -- display the win sound
             yowWinSoundChannel = audio.play(youWinSound)
-
     end
 
 end -- function scene:show( event )
@@ -152,6 +150,7 @@ function scene:hide( event )
     --    display the sound effect
             --composer.removeScene("You_Win")
             --bakeText.isVisible = false
+            bakeText.isVisible = false
 
 
 end --function scene:hide( event )

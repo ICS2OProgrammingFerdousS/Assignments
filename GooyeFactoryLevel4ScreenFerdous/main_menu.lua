@@ -133,6 +133,8 @@ function scene:create( event )
          -- When the button is released, call the Level1 screen transition function
          onRelease = Level2ScreenTransition    
  } )
+    sceneGroup:insert( playButton )
+
     -----------------------------------------------------------------------------------------
 
     -- Creating Credits Button
@@ -151,6 +153,7 @@ function scene:create( event )
         -- When the button is released, call the Credits transition function
         onRelease = CreditsTransition
 } ) 
+    sceneGroup:insert( creditsButton )
 
     -----------------------------------------------------------------------------------------
 
@@ -169,14 +172,15 @@ function scene:create( event )
         -- When the button is released, call the Credits transition function
         onRelease = gotoInstructions
 } ) 
-   
+    sceneGroup:insert( instructionsButton )
+ 
     -----------------------------------------------------------------------------------------
 
    --creating mute button
     muteButton = display.newImageRect("Images/muteButton.png", 90, 90)
     muteButton.x = 50
     muteButton.y = 40
-    muteButton.isVisible = true
+    muteButton.isVisible = false
     sceneGroup:insert(muteButton)
 
 
@@ -184,13 +188,10 @@ function scene:create( event )
     unmuteButton = display.newImageRect("Images/unmuteButton.png", 90, 90)
     unmuteButton.x = 50
     unmuteButton.y = 40
-    unmuteButton.isVisible = false
+    unmuteButton.isVisible = true
     sceneGroup:insert(unmuteButton)
    
     -- INSERT INSTRUCTIONS BUTTON INTO SCENE GROUP
-    sceneGroup:insert( instructionsButton )
-    sceneGroup:insert( playButton )
-    sceneGroup:insert( creditsButton )
     
 end  
 
@@ -210,18 +211,17 @@ function scene:show( event )
  -- The function that will go to the main menu 
 ----------------------------------------------------------------------------------------
     -- Called when the scene is now on screen.
-        elseif ( phase == "did" ) then
-            
-            muteButton:addEventListener("touch", Mute)
-            unmuteButton:addEventListener("touch", Unmute )
-             if(soundOn == true) then
-                audio.resume(soundChannel)
-                muteButton.isVisible = false
-                unmuteButton.isVisible = true
-            else
-                audio.pause(soundChannel)
-                muteButton.isVisible = true
-                unmuteButton.isVisible = false
+    elseif ( phase == "did" ) then
+        muteButton:addEventListener("touch", Mute)
+        unmuteButton:addEventListener("touch", Unmute )
+        if(soundOn == true) then
+            audio.resume(soundChannel)
+            muteButton.isVisible = false
+            unmuteButton.isVisible = true
+        else
+            audio.pause(soundChannel)
+            muteButton.isVisible = true
+            unmuteButton.isVisible = false
         end
     end
 end -- function scene:show( event )
@@ -237,10 +237,10 @@ function scene:hide( event )
 -----------------------------------------------------------------------------------------
     if ( phase == "will" ) then
         
-        elseif ( phase == "did" ) then
-            muteButton:removeEventListener("touch", Mute)
-            unmuteButton:removeEventListener("touch", Unmute )
-            audio.pause(soundChannel)           
+    elseif ( phase == "did" ) then
+        muteButton:removeEventListener("touch", Mute)
+        unmuteButton:removeEventListener("touch", Unmute )
+        audio.pause(soundChannel)           
      end
 end 
 

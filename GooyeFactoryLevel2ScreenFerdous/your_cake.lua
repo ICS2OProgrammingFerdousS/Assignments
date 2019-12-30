@@ -52,7 +52,7 @@ local function BackTransition()
 end
 -- function for going to level 2 screen
 local function gotoLevelSelect()
-    composer.gotoScene( "levelSelect_screen", transitionOption2 )
+    composer.gotoScene( "levelSelect_screen" )
 end
 -- function for going to questions screen
 
@@ -72,8 +72,10 @@ function scene:create( event )
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
+    sceneGroup:insert( bkg_image )
+
 -- create the going back
-backButton = widget.newButton( 
+    MainMenu = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/1.5,
@@ -83,12 +85,14 @@ backButton = widget.newButton(
     height = 100,
     -- Setting Visual Properties
      defaultFile = "Images/BackButtonUnPressedFerdous@2x.png",
-    overFile = "Images/BackButtonPressedFerdous@2x - Copy.png",
+    overFile = "Images/BackButtonPressedFerdous@2x.png",
     -- Setting Functional Properties
     onRelease = BackTransition
     })
+    sceneGroup:insert( MainMenu )
+
 -- Creating button for going to questions screen
-backButton2 = widget.newButton( 
+    backButton2 = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/4,
@@ -103,11 +107,6 @@ backButton2 = widget.newButton(
     onRelease = gotoLevelSelect
     })
 
-
-
-     -- Associating display objects with this scenes 
-    sceneGroup:insert( bkg_image )
-    sceneGroup:insert( backButton )
     sceneGroup:insert( backButton2 )
 
 end
@@ -126,10 +125,9 @@ function scene:show( event )
         -- Called when the scene is still off screen (but is about to come on screen).
 
     -----------------------------------------------------------------------------------------
-
-        elseif ( phase == "did" ) then
+    elseif ( phase == "did" ) then
         -- display the win sound
-            yowWinSoundChannel = audio.play(youWinSound)
+        yowWinSoundChannel = audio.play(youWinSound)
     end
 end -- function scene:show( event )
 
@@ -147,9 +145,7 @@ function scene:hide( event )
     -----------------------------------------------------------------------------------------
 
     if ( phase == "will" ) then
-
-
-        elseif ( phase == "did" ) then
+    elseif ( phase == "did" ) then
     end 
 end
 -----------------------------------------------------------------------------------------

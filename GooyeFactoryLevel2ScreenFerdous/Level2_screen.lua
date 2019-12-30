@@ -394,9 +394,7 @@ local function ResetIngredients()
     chocolate_image.y = 130
     chocolate_image.isVisible = true
     smallChocolate.isVisible = false
-    checkMark2.isVisible =  false
-    yesButton.isVisible = false
-    
+    checkMark2.isVisible =  false    
 end
 
 
@@ -597,12 +595,12 @@ function scene:create( event )
     checkMark4.isVisible = false
 
    -- Creating small Images of objects
-   egg_imageShort = display.newImageRect("Images/eggs.png", display.contentWidth, display.contentHeight)
-   egg_imageShort.x = 45
-   egg_imageShort.y = 460
-   egg_imageShort.width = 60
-   egg_imageShort.height = 60
-   sceneGroup:insert(egg_imageShort)
+    egg_imageShort = display.newImageRect("Images/eggs.png", display.contentWidth, display.contentHeight)
+    egg_imageShort.x = 45
+    egg_imageShort.y = 460
+    egg_imageShort.width = 60
+    egg_imageShort.height = 60
+    sceneGroup:insert(egg_imageShort)
 
     --Creating checkMarks 
     checkMark5 = display.newImageRect("Images/Mark.png", display.contentWidth, display.contentHeight)
@@ -697,7 +695,7 @@ function scene:show( event )
 
 -----------------------------------------------------------------------------------------
    elseif ( phase == "did" ) then
-    
+        yesButton.isVisible = false
         muteButton:addEventListener("touch", Mute)
         unmuteButton:addEventListener("touch", Unmute )
 
@@ -728,7 +726,6 @@ function scene:hide( event )
 ----------------------------------------------------------------------------------------
     if ( phase == "will" ) then  
        
-
 -----------------------------------------------------------------------------------------
 -- Called immediately after scene goes off screen.
     elseif ( phase == "did" ) then

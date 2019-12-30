@@ -33,8 +33,8 @@ local function YouWin( )
 end   
 
 
-local function gotoMainMenu( )
-    composer.gotoScene( "main_menu", {effect = "fromLeft", time = 1000})
+local function GotoLevelSelect( )
+    composer.gotoScene( "levelSelect_screen", {effect = "fromLeft", time = 1000})
 
 end   
 
@@ -64,9 +64,10 @@ function scene:create( event )
     bakeText.y = 250
     bakeText.width = 900
     bakeText.height = 900
+    sceneGroup:insert( bakeText )
 
 
-    yesButton = widget.newButton( 
+    BakeCake = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/3,
@@ -80,6 +81,8 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = YouWin
 })
+    sceneGroup:insert( BakeCake )
+
     -- Setting Position
    noButton = widget.newButton( 
     {
@@ -93,11 +96,10 @@ function scene:create( event )
     defaultFile = "Images/NoButtonPressedFerdous@2x.png",
     overFile = "Images/NoButtonUnPressedFerdous@2x.png",
     -- Setting Functional Properties
-    onRelease = gotoMainMenu
+    onRelease = GotoLevelSelect
     })
-    sceneGroup:insert( yesButton )
     sceneGroup:insert( noButton )
-    sceneGroup:insert( bakeText )
+
 
 
 
@@ -121,9 +123,9 @@ function scene:show( event )
 
     -----------------------------------------------------------------------------------------
 
-        elseif ( phase == "did" ) then
+    elseif ( phase == "did" ) then
         -- display the win sound
-            yowWinSoundChannel = audio.play(youWinSound)
+        yowWinSoundChannel = audio.play(youWinSound)
 
     end
 
@@ -146,13 +148,11 @@ function scene:hide( event )
     if ( phase == "will" ) then
     -----------------------------------------------------------------------------------------
 
-        elseif ( phase == "did" ) then
-    --    display the sound effect
-            --composer.removeScene("You_Win")
-            --bakeText.isVisible = false
+    elseif ( phase == "did" ) then
+  
 
 
-end --function scene:hide( event )
+    end --function scene:hide( event )
 end
 -----------------------------------------------------------------------------------------
 

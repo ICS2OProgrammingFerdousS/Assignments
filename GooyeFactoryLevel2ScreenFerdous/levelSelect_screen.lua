@@ -73,10 +73,7 @@ end
 local function GotoLevel1Screen()
     composer.gotoScene( "Level2_screen", transitionOption3 )
 end
--- function for level 3
-local function GotoLevel3Screen()
-    composer.gotoScene( "Level2_screen", transitionOption4 )
-end
+
 ---------------------------------------------------------------------------------
 --Global functions
 ----------------------------------------------------------------------------------------
@@ -93,9 +90,10 @@ function scene:create( event )
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
+    sceneGroup:insert( bkg_image )
 
 -- button for going back to main menu screen
-    backButton = widget.newButton( 
+    mainMenuButton = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/2,
@@ -104,11 +102,13 @@ function scene:create( event )
     width = 150,
     height = 100,
     -- Setting Visual Properties
-    defaultFile = "Images/BackButtonUnPressedFerdous@2x.png",
-    overFile = "Images/BackButtonPressedFerdous@2x.png",
+    defaultFile = "Images/backButtonUnpressedAlex.png",
+    overFile = "Images/BackButtonPressedAlex@2x.png",
     -- Setting Functional Properties
     onRelease = BackTransition
     })
+    sceneGroup:insert( mainMenuButton )
+
 
 -- button for going back to questions screen
     backButton2 = widget.newButton( 
@@ -125,6 +125,7 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = gotoQuestions
     })
+    sceneGroup:insert( backButton2 )
 
 --creation button for going to level 2 screen 
     backButton3 = widget.newButton( 
@@ -141,10 +142,12 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = gotoLevel2Screen
     })
+    sceneGroup:insert( backButton3 )
+
     backButton4 = widget.newButton( 
     {
 -- Setting Position
-    x = display.contentWidth*1/1.3,
+    x = display.contentWidth*1/1.5,
     y = display.contentHeight*15/22,
         -- Setting Dimensions
     width = 150,
@@ -155,11 +158,12 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = gotoLevel2Screen
     })
+    sceneGroup:insert( backButton4 )
 
     backButton5 = widget.newButton( 
     {
 -- Setting Position
-    x = display.contentWidth*1/2,
+    x = display.contentWidth*1/3,
     y = display.contentHeight*15/22,
         -- Setting Dimensions
     width = 150,
@@ -170,32 +174,12 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = GotoLevel3Screen
     })
+    sceneGroup:insert( backButton5 )
 
-    backButton6 = widget.newButton( 
-    {
--- Setting Position
-    x = display.contentWidth*1/4,
-    y = display.contentHeight*15/22,
-        -- Setting Dimensions
-    width = 150,
-    height = 100,
-    -- Setting Visual Properties
-    defaultFile = "Images/GoToLevel3ButtonUnPressedFerdous@2x.png",
-    overFile = "Images/GoToLevel3ButtonPressedFerdous@2x.png",
-    -- Setting Functional Properties
-    onRelease = GotoLevel3Screen
-    })
 
 
 -----------------------------------------------------------------------------------------
     -- Associating display objects with this scenes 
-    sceneGroup:insert( bkg_image )
-    sceneGroup:insert( backButton )
-    sceneGroup:insert( backButton2 )
-    sceneGroup:insert( backButton3 )
-    sceneGroup:insert( backButton4 )
-    sceneGroup:insert( backButton5 )
-    sceneGroup:insert(backButton6)
 
 end
 
@@ -209,9 +193,9 @@ function scene:show( event )
     if ( phase == "will" ) then
         -- Called when the scene is still off screen (but is about to come on screen).
     -----------------------------------------------------------------------------------------
-        elseif ( phase == "did" ) then
+    elseif ( phase == "did" ) then
             -- display the background sound
-            youLostChannel = audio.play(youLost)     
+        youLostChannel = audio.play(youLost)     
     end
 
 end -- function scene:show( event )
@@ -227,7 +211,7 @@ function scene:hide( event )
  -----------------------------------------------------------------------------------------
     if ( phase == "will" ) then
 -----------------------------------------------------------------------------------------
-        elseif ( phase == "did" ) then
+    elseif ( phase == "did" ) then
     end
 end 
 

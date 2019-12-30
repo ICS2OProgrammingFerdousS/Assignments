@@ -8,7 +8,7 @@
 -- Use Composer Libraries
 local composer = require( "composer" )
 local widget = require( "widget" )
-local physics = require( "physics")
+--local physics = require( "physics")
 
 -- Creating Scene Object
 local scene = composer.newScene( sceneName )
@@ -525,27 +525,28 @@ function scene:show( event )
         -- Called when the scene is still off screen (but is about to come on screen).
 -----------------------------------------------------------------------------------------
 
-        elseif ( phase == "did" ) then
-            muteButton:addEventListener("touch", Mute)
-            unmuteButton:addEventListener("touch", Unmute )
+    elseif ( phase == "did" ) then
+        totalAnswer = 0
+        muteButton:addEventListener("touch", Mute)
+        unmuteButton:addEventListener("touch", Unmute )
         -- called the FUNCTION to display questions
-            DisplayQuestion()
+        DisplayQuestion()
         -- call the function to change the answers positions
-            PositionAnswers()
-            -- called texts 
-            AddTextListeners()
+        PositionAnswers()
+        -- called texts 
+        AddTextListeners()
         -- start timer 
-            startTimer()
+        startTimer()
         -- play the background sound
-            soundChannel = audio.play(sound, {channel = 5, loops = -1})
-            if(soundOn == true) then
-                audio.resume(soundChannel)
-                muteButton.isVisible = false
-                unmuteButton.isVisible = true
-            else
-                audio.pause(soundChannel)
-                muteButton.isVisible = true
-                unmuteButton.isVisible = false
+        soundChannel = audio.play(sound, {channel = 5, loops = -1})
+        if(soundOn == true) then
+            audio.resume(soundChannel)
+            muteButton.isVisible = false
+            unmuteButton.isVisible = true
+        else
+            audio.pause(soundChannel)
+            muteButton.isVisible = true
+            unmuteButton.isVisible = false
         end
 
     end
@@ -562,7 +563,7 @@ function scene:hide( event )
     local sceneGroup = self.view
     local phase = event.phase
 -----------------------------------------------------------------------------------------
-     if ( phase == "will" ) then
+    if ( phase == "will" ) then
 
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
@@ -570,18 +571,18 @@ function scene:hide( event )
         --parent:resumeGame()
     -----------------------------------------------------------------------------------------
 
-        elseif ( phase == "did" ) then
-            muteButton:removeEventListener("touch", Mute)
-            unmuteButton:removeEventListener("touch", Unmute )
-            -- call the remove the event listeners FUNCTION
-            RemoveTextListeners()
+    elseif ( phase == "did" ) then
+        muteButton:removeEventListener("touch", Mute)
+        unmuteButton:removeEventListener("touch", Unmute )
+        -- call the remove the event listeners FUNCTION
+        RemoveTextListeners()
             -- reset scene after leave it 
             --composer.removeScene("level2_questions")
             -- Displaying the background sound
-            audio.stop(soundChannel)
+         audio.stop(soundChannel)
             --canceling the timer
-            timer.cancel(countDownTimer)
-            secondsLeft = totalSeconds
+         timer.cancel(countDownTimer)
+         secondsLeft = totalSeconds
     end
 
 end 

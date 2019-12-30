@@ -473,6 +473,8 @@ function scene:create( event )
     -- create the question text object
     questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
     questionText:setTextColor(0/255, 0/255, 255/255)
+    sceneGroup:insert(questionText)
+
     --questionText:setFillColor( 0.2, 0.2, 0. )
   
 
@@ -480,15 +482,22 @@ function scene:create( event )
     answerText = display.newText("", X1, Y2, Arial, 35)
     answerText.anchorX = 0
     answerText:setTextColor(255/255, 0/255, 0/255)
+    sceneGroup:insert(answerText)
+
     wrongText1 = display.newText("", X2, Y2, Arial, 35)
     wrongText1.anchorX = 0
     wrongText1:setTextColor(255/255, 0/255, 0/255)
+    sceneGroup:insert(wrongText1)
+
     wrongText2 = display.newText("", X1, Y1, Arial, 35)
     wrongText2.anchorX = 0
     wrongText2:setTextColor(255/255, 0/255, 0/255)
+    sceneGroup:insert(wrongText2)
+
     wrongText3 = display.newText("", X1, Y2, Arial, 35)
     wrongText3.anchorX = 0
     wrongText3:setTextColor(255/255, 0/255, 0/255)
+    sceneGroup:insert(wrongText3)
 
 -- creating the text to give the right answer if the got wrong
     giveThenAnswer =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 50)
@@ -496,6 +505,8 @@ function scene:create( event )
     giveThenAnswer.y = 500
     giveThenAnswer.isVisible = false
     giveThenAnswer:setTextColor(0, 0, 0.9)
+    sceneGroup:insert(giveThenAnswer)
+
     --creationg bake text
     bakeText =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
     bakeText.x = 500
@@ -510,6 +521,7 @@ function scene:create( event )
     rootImage.width = 200
     rootImage.height = 200
     rootImage.isVisible = false
+    sceneGroup:insert(rootImage)
 
     backButton = widget.newButton( 
     {
@@ -525,6 +537,8 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = gotoLevel2Screen
     })
+    sceneGroup:insert(backButton)
+
     backButton2 = widget.newButton( 
     {
 -- Setting Position
@@ -539,6 +553,8 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = BackTransition
     })
+    sceneGroup:insert(backButton2)
+
     muteButton = display.newImageRect("Images/muteButton.png", 90, 90)
     muteButton.x = 45
     muteButton.y = 40
@@ -558,19 +574,7 @@ function scene:create( event )
     clockText.x = 500
     clockText.y = 45
     clockText:setTextColor(0.9, 0, 0)
-
-    -- insert all objects for this scene into the scene group
     sceneGroup:insert(clockText)
-    sceneGroup:insert(questionText)
-    sceneGroup:insert(answerText)
-    sceneGroup:insert(wrongText1)
-    sceneGroup:insert(wrongText2)
-    sceneGroup:insert(wrongText3)
-    sceneGroup:insert(rootImage)
-    sceneGroup:insert(giveThenAnswer)
-    sceneGroup:insert(backButton)
-    sceneGroup:insert(backButton2)
-
 end --function scene:create( event )
 
 -----------------------------------------------------------------------------------------

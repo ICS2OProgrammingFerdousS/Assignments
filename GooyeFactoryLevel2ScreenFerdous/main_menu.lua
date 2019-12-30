@@ -88,15 +88,13 @@ local transitionOptions4 = ({
 
 local function CreditsTransition( )       
     composer.gotoScene( "Credit", transitionOptions4)
-    clickSoundChannel = audio.play(clickSound)
+
 end 
 -----------------------------------------------------------------------------------------
 
  --Creating Transition to Level1 Screen
 local function Level2ScreenTransition( )
     composer.gotoScene( "Level2_screen", transitionOption2)
-    clickSoundChannel = audio.play(clickSound)
-
 
 end   
 -----------------------------------------------------------------------------------------
@@ -104,7 +102,6 @@ end
 -- INSERT LOCAL FUNCTION DEFINITION THAT GOES TO INSTRUCTIONS SCREEN 
 local function gotoInstructions( )
     composer.gotoScene("Instruction", transitionOption)
-    clickSoundChannel = audio.play(clickSound)
 end
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -231,8 +228,7 @@ function scene:show( event )
             audio.pause(soundChannel)
             muteButton.isVisible = true
             unmuteButton.isVisible = false
-        end
-          
+        end     
     end
 end -- function scene:show( event )
 

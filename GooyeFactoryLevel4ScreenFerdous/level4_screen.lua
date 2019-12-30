@@ -113,10 +113,10 @@ local function gotoQuestions( ... )
 end
 
 local function GotoYouLose( ... )
-    composer.gotoScene("You_Lose2", transitionOption)
+    composer.gotoScene("You_Lose2")
 end
 
-local function  yesButtonFunction()
+local function  yesButtonVisible()
     yesButton.isVisible = true
 end
 
@@ -131,12 +131,12 @@ local function movingVanilla(touch)
             instructionText.isVisible = false
             touchSoundChannel = audio.play(touchSound)
 
-        --drag the objects to follow the mouse
+            --drag the objects to follow the mouse
         elseif (touch.phase == "moved") then
             vanilla_image.x = touch.x
             vanilla_image.y = touch.y
 
-        -- this occurs when they release the mouse
+            -- this occurs when they release the mouse
         elseif (touch.phase == "ended") then
 
             touchVanilla = false
@@ -166,7 +166,7 @@ local function movingVanilla(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-
+            yesButtonVisible()
         end
     end
 end
@@ -181,12 +181,12 @@ local function MovingVanillaBean(touch)
         if (touch.phase == "began") then
             instructionText.isVisible = false
 
---let other boxes know it has been clicked
+            --let see other objects know it has been clicked
             touchVanillaBean = true       
             touchSoundChannel = audio.play(touchSound)
 
         elseif (touch.phase == "moved") then
- --dragging function
+            --dragging function
             vanillaBean_image.x = touch.x
             vanillaBean_image.y = touch.y
         elseif (touch.phase == "ended") then
@@ -214,23 +214,23 @@ local function MovingVanillaBean(touch)
             (checkMark3.isVisible == true) and(checkMark4.isVisible == true) and
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
-            yesButtonFunction()            
+            yesButtonVisible()            
         end
     end
 end
 local function movingMilk(touch)
---only work if none of the other objects have been touched
+        --only work if none of the other objects have been touched
     if (touchVanillaBean == false) and (touchVanilla == false) and 
         (touchOil == false) and (touchEggs == false) then
 
         if (touch.phase == "began") then
             instructionText.isVisible = false
 
--- boolean to  know it has been clicked
+            -- boolean to  know it has been clicked
             touchMilk = true  
             touchSoundChannel = audio.play(touchSound)
         elseif (touch.phase == "moved") then
---dragging function
+            --dragging function
             milk_image.x = touch.x
             milk_image.y = touch.y
         elseif (touch.phase == "ended") then
@@ -239,7 +239,7 @@ local function movingMilk(touch)
             ((bowl_image.x + bowl_image.width/2) > milk_image.x ) and 
             ((bowl_image.y - bowl_image.height/2) < milk_image.y ) and 
             ((bowl_image.y + bowl_image.height/2) > milk_image.y ) ) then
--- setting the position of butter
+                -- setting the position of butter
                 milk_image.x = bowl_image.x
                 milk_image.y = bowl_image.y
                 foodSoundChannel = audio.play(foodSound)
@@ -256,7 +256,7 @@ local function movingMilk(touch)
             (checkMark3.isVisible == true) and (checkMark4.isVisible == true) and
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
-            yesButtonFunction()            
+            yesButtonVisible()            
             
         end
     end
@@ -271,12 +271,12 @@ local function movingEggs(touch)
         if (touch.phase == "began") then
             instructionText.isVisible = false
 
---boolean know it has been clicked
+            --boolean know it has been clicked
             touchEggs = true 
-             touchSoundChannel = audio.play(touchSound)
+            touchSoundChannel = audio.play(touchSound)
 
         elseif (touch.phase == "moved") then
---dragging function
+            --dragging function
             egg_image.x = touch.x
             egg_image.y = touch.y
         elseif (touch.phase == "ended") then
@@ -285,7 +285,7 @@ local function movingEggs(touch)
             ((bowl_image.x + bowl_image.width/2) > egg_image.x ) and 
             ((bowl_image.y - bowl_image.height/2) < egg_image.y ) and 
             ((bowl_image.y + bowl_image.height/2) > egg_image.y ) ) then
--- setting the position of the objects to be in the center of the box
+                -- setting the position of the objects to be in the center of the box
                 egg_image.x = bowl_image.x
                 egg_image.y = bowl_image.y
                 foodSoundChannel = audio.play(foodSound)
@@ -303,7 +303,7 @@ local function movingEggs(touch)
             (checkMark3.isVisible == true) and (checkMark4.isVisible == true) and
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
-            yesButtonFunction()            
+            yesButtonVisible()            
            
         end
     end
@@ -317,13 +317,13 @@ local function movingOil(touch)
         if (touch.phase == "began") then
             instructionText.isVisible = false
 
---boolean to know it has been clicked
+            --boolean to know it has been clicked
             touchOil = true  
 
             touchSoundChannel = audio.play(touchSound)
 
         elseif (touch.phase == "moved") then
---dragging function
+            --dragging function
             oil_image.x = touch.x
             oil_image.y = touch.y
         elseif (touch.phase == "ended") then
@@ -332,7 +332,7 @@ local function movingOil(touch)
             ((bowl_image.x + bowl_image.width/2) > oil_image.x ) and 
             ((bowl_image.y - bowl_image.height/2) < oil_image.y ) and 
             ((bowl_image.y + bowl_image.height/2) > oil_image.y ) ) then
--- setting the position of the sugar to be in the center of the box
+                -- setting the position of the sugar to be in the center of the box
                 oil_image.x = bowl_image.x
                 oil_image.y = bowl_image.y
                 foodSoundChannel = audio.play(foodSound)
@@ -351,7 +351,7 @@ local function movingOil(touch)
             (checkMark3.isVisible == true) and (checkMark4.isVisible == true) and
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
-            yesButtonFunction()            
+            yesButtonVisible()            
            
         end
 end
@@ -483,7 +483,7 @@ function scene:create( event )
 -----------------------------------------------------------------------------------------
 -- Associating Buttons with this scene
     sceneGroup:insert( backButton )
-    
+  
 -- Creating bowl image
     bowl_image =display.newImageRect("Images/bowlPlaceholder.png", display.contentWidth, display.contentHeight) 
     bowl_image.x = 500
@@ -492,22 +492,7 @@ function scene:create( event )
     bowl_image.height = 150
     sceneGroup:insert(bowl_image)
     --Creating yes buttton
-    yesButton = widget.newButton( 
-    {
--- Setting Position
-    x = display.contentWidth*1/3,
-    y = display.contentHeight*15/27,
-    -- Setting Dimensions
-    width = 100,
-    height = 106,
-    -- Setting Visual Properties
-    defaultFile = "Images/YesButtonPressedFerdous@2x.png",
-    overFile = "Images/YesButtonUnPressedFerdous@2x.png",
-    -- Setting Functional Properties
-    onRelease = gotoQuestions
-})
-    sceneGroup:insert(yesButton)
-    yesButton.isVisible = false
+   
 
  -- Creating butter image 
     milk_image = display.newImageRect("Images/milk.png", display.contentWidth, display.contentHeight)
@@ -709,7 +694,22 @@ function scene:create( event )
     clockText.y = 45
     clockText:setTextColor(0.9, 0, 0)
     sceneGroup:insert(clockText)
-
+    yesButton = widget.newButton( 
+    {
+-- Setting Position
+    x = display.contentWidth*1/2,
+    y = display.contentHeight*15/27,
+    -- Setting Dimensions
+    width = 100,
+    height = 106,
+    -- Setting Visual Properties
+    defaultFile = "Images/YesButtonPressedFerdous@2x.png",
+    overFile = "Images/YesButtonUnPressedFerdous@2x.png",
+    -- Setting Functional Properties
+    onRelease = gotoQuestions
+})
+    sceneGroup:insert(yesButton)
+    yesButton.isVisible = false
 
 end 
  -- function scene:create( event )

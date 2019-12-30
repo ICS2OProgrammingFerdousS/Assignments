@@ -72,8 +72,10 @@ function scene:create( event )
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
+    sceneGroup:insert( bkg_image )
+
 -- create the going back
-backButton = widget.newButton( 
+    MainMenuButton = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/1.5,
@@ -87,8 +89,10 @@ backButton = widget.newButton(
     -- Setting Functional Properties
     onRelease = BackTransition
     })
+    sceneGroup:insert( MainMenuButton )
+
 -- Creating button for going to questions screen
-backButton2 = widget.newButton( 
+    backButton2 = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/4,
@@ -103,11 +107,6 @@ backButton2 = widget.newButton(
     onRelease = gotoLevelSelect
     })
 
-
-
-     -- Associating display objects with this scenes 
-    sceneGroup:insert( bkg_image )
-    sceneGroup:insert( backButton )
     sceneGroup:insert( backButton2 )
 
 end

@@ -64,18 +64,18 @@ end
 -- function for going to level 2 screen 
 
 local function gotoLevel2Screen()
-    composer.gotoScene( "Level2_screen", transitionOption2 )
+    composer.gotoScene( "level4_screen", transitionOption2 )
 end
 -- function for going back to the questions 
 local function gotoQuestions()
-    composer.gotoScene( "level2_questions", transitionOption2 )
+    composer.gotoScene( "level4_questions", transitionOption2 )
 end
 local function GotoLevel1Screen()
-    composer.gotoScene( "Level2_screen", transitionOption3 )
+    composer.gotoScene( "level4_screen", transitionOption3 )
 end
 -- function for level 3
 local function GotoLevel3Screen()
-    composer.gotoScene( "Level2_screen", transitionOption4 )
+    composer.gotoScene( "level4_screen", transitionOption4 )
 end
 ---------------------------------------------------------------------------------
 --Global functions
@@ -93,9 +93,10 @@ function scene:create( event )
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
+    sceneGroup:insert( bkg_image )
 
 -- button for going back to main menu screen
-    backButton = widget.newButton( 
+    mainMenuButton = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/2,
@@ -109,6 +110,7 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = BackTransition
     })
+    sceneGroup:insert( mainMenuButton )
 
 -- button for going back to questions screen
     backButton2 = widget.newButton( 
@@ -125,6 +127,7 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = gotoQuestions
     })
+    sceneGroup:insert( backButton2 )
 
 --creation button for going to level 2 screen 
     backButton3 = widget.newButton( 
@@ -141,6 +144,8 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = gotoLevel2Screen
     })
+    sceneGroup:insert( backButton3 )
+
     backButton4 = widget.newButton( 
     {
 -- Setting Position
@@ -155,6 +160,7 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = gotoLevel2Screen
     })
+    sceneGroup:insert( backButton4 )
 
     backButton5 = widget.newButton( 
     {
@@ -170,6 +176,7 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = GotoLevel3Screen
     })
+    sceneGroup:insert( backButton5 )
 
     backButton6 = widget.newButton( 
     {
@@ -186,15 +193,6 @@ function scene:create( event )
     onRelease = GotoLevel3Screen
     })
 
-
------------------------------------------------------------------------------------------
-    -- Associating display objects with this scenes 
-    sceneGroup:insert( bkg_image )
-    sceneGroup:insert( backButton )
-    sceneGroup:insert( backButton2 )
-    sceneGroup:insert( backButton3 )
-    sceneGroup:insert( backButton4 )
-    sceneGroup:insert( backButton5 )
     sceneGroup:insert(backButton6)
 
 end
@@ -227,7 +225,7 @@ function scene:hide( event )
  -----------------------------------------------------------------------------------------
     if ( phase == "will" ) then
 -----------------------------------------------------------------------------------------
-        elseif ( phase == "did" ) then
+    elseif ( phase == "did" ) then
     end
 end 
 
