@@ -171,8 +171,8 @@ function scene:create( event )
     width = 150,
     height = 100,
     -- Setting Visual Properties
-    defaultFile = "Images/SkipLevelButtonUnPressedFerdous@2x .png",
-    overFile = "Images/SkipLevelButtonPressedFerdous@2x.png",
+    defaultFile = "Images/GoToLevel4ButtonUnPressedFerdous@2x.png",
+    overFile = "Images/GoToLevel4ButtonPressedFerdous@2x.png",
     -- Setting Functional Properties
     onRelease = GotoLevel3Screen
     })

@@ -57,6 +57,8 @@ local textTouched = false
 -- variables for counting the right answers
 local totalAnswer = 0
 
+local numWrong = 0
+
 -- The local variables for the timer
 local totalSeconds = 60
 local secondsLeft =  60
@@ -209,7 +211,7 @@ end
 -- FUNCTION for Displaying Questions
 
 local function DisplayQuestion()
-    local randomQuestion = math.random (1, 10)
+    local randomQuestion = math.random (1, 15)
     if (randomQuestion == 1) then
         rootImage.isVisible = false
         --creating the question depending on the selcetion number
@@ -309,7 +311,7 @@ local function DisplayQuestion()
 
             PositionAnswers()
             --creating the question depending on the selcetion number
-            questionText.text = "Which of the following have different texture?"
+            questionText.text = "Which of the following\n have different texture?"
              --creating answer text from list it corispondes with the animals list
             answerText.text = "Hollow blocks"
                  --creating wrong answers
@@ -320,15 +322,95 @@ local function DisplayQuestion()
             rootImage.isVisible = false
             PositionAnswers()
             --creating the question depending on the selcetion number
-            questionText.text = "Which layer in the diagram contains the most organic material?"
+            questionText.text = "Which layer in the diagram\n contains the most organic material?"
              --creating answer text from list it corispondes with the animals list
             answerText.text = "Layer"
                  --creating wrong answers
-            wrongText1.text = "Layer"
+            wrongText1.text = ""
             wrongText2.text = "Rice"
             wrongText3.text = "Lettuce"   
-           
+        elseif (randomQuestion == 11) then
+            rootImage.isVisible = false
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = "Plants need which of the following to live?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Air, Water"
+                 --creating wrong answers
+            wrongText1.text = "Oxygen"
+            wrongText2.text = "Monnlight"
+            wrongText3.text = "Shade And Food" 
+
+         elseif (randomQuestion == 11) then
+            rootImage.isVisible = false
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = "Why are leaves green?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Because of cholorophyll"
+                 --creating wrong answers
+            wrongText1.text = "Because its hereditary"
+            wrongText2.text = "Because they are died that colour"
+            wrongText3.text = "" 
+
+        elseif (randomQuestion == 12) then
+            rootImage.isVisible = false
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = " What are the two types of\n plants that produce seeds?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Flowering and conifer"
+                 --creating wrong answers
+            wrongText1.text = "Trees and moss"
+            wrongText2.text = "Animal and plant cells"
+            wrongText3.text = " Cactus and flowers" 
+        elseif (randomQuestion == 13) then
+            rootImage.isVisible = false
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = " Which planet is known as the red planet?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Mars"
+                 --creating wrong answers
+            wrongText1.text = "Earth"
+            wrongText2.text = "Venus"
+            wrongText3.text = "Jupiter" 
+
+        elseif (randomQuestion == 13) then
+            rootImage.isVisible = false
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = "What is the part of the plant that\n uses light to make food?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Leaves"
+                 --creating wrong answers
+            wrongText1.text = "Flowers"
+            wrongText2.text = "Roots"
+            wrongText3.text = "Stem" 
+        elseif (randomQuestion == 14) then
+            rootImage.isVisible = false
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = "What part hold the plant in the\n ground and takes water from the soil?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Stem"
+                 --creating wrong answers
+            wrongText1.text = "Flowers"
+            wrongText2.text = "Roots"
+            wrongText3.text = "Stem" 
+        elseif (randomQuestion == 15) then
+            rootImage.isVisible = false
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = "The plants that live in dry places Their roots are?."
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Long"
+                 --creating wrong answers
+            wrongText1.text = "Short"
+            wrongText2.text = "Small"
+            wrongText3.text = "None of them" 
         end      
+
                     
 end
 
@@ -367,10 +449,15 @@ local function TouchListenerWrongAnswer(touch)
         giveThenAnswer.text = "Sorry, wrong answer. The correct \n answer is ".. answerText.text
     --make the text Visible
         giveThenAnswer.isVisible = true
+            numWrong = numWrong + 1
+            DisplayQuestion()
+            if(numWrong == 3) then
     -- delaly for Displaying the you lose screen
-        timer.performWithDelay(1500, youLostScreen )
+                timer.performWithDelay(1500, youLostScreen )
+            end
     -- delaly for hidding the correct answer text
         timer.performWithDelay(1500, HideCorrectAnswer)
+           
     end 
 end
 
@@ -386,8 +473,12 @@ local function TouchListenerWrongAnswer2(touch)
         giveThenAnswer.text = "Sorry wrong answer. The correct \n answer is ".. answerText.text
     -- making the correct answer text Visible
         giveThenAnswer.isVisible = true
-    -- delaly for Displaying you lose screen
-        timer.performWithDelay(1500, youLostScreen )    
+        numWrong = numWrong + 1
+        DisplayQuestion()
+            if(numWrong == 3) then
+    -- delaly for Displaying the you lose screen
+                timer.performWithDelay(1500, youLostScreen )
+        end
 -- delaly for making the correct text inVisible
         timer.performWithDelay(1500, HideCorrectAnswer)
 
@@ -403,8 +494,12 @@ local function TouchListenerWrongAnswer3(touch)
         giveThenAnswer.text = "Sorry wrong answer. The correct \n answer is ".. answerText.text
     -- making the right answer text Visible
         giveThenAnswer.isVisible = true
-    -- delaly for displying  you lose screen
-        timer.performWithDelay(1500, youLostScreen )
+        numWrong = numWrong + 1
+        DisplayQuestion()
+            if(numWrong == 3) then
+    -- delaly for Displaying the you lose screen
+                timer.performWithDelay(1500, youLostScreen )
+            end
     -- delaly for hidding the right answer
         timer.performWithDelay(1500, HideCorrectAnswer)
 
@@ -416,7 +511,7 @@ local function UpdateTime( )
     clockText.text = secondsLeft .. ""
     if(secondsLeft == 0)then
         secondsLeft = totalSeconds
-        composer.gotoScene("You_Lose2")
+        composer.gotoScene("You_Lose")
 
 
 
@@ -589,6 +684,7 @@ function scene:show( event )
         DisplayQuestion()
         PositionAnswers()
         totalAnswer = 0
+        numWrong = 0
 -- Called when the scene is still off screen (but is about to come on screen).
 -----------------------------------------------------------------------------------------
 
@@ -645,6 +741,7 @@ function scene:hide( event )
         timer.cancel(countDownTimer)
         secondsLeft = totalSeconds
         totalAnswer = 0
+        numWrong = 0
     end
 
 end 

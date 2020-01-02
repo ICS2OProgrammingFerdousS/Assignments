@@ -154,7 +154,8 @@ local function movingChocolate(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-          
+            backToMainMenu.x = 407
+            backToMainMenu.y = 600
 
         end
     end
@@ -204,7 +205,9 @@ local function movingFlour(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-            
+            backToMainMenu.x = 407
+            backToMainMenu.y = 600
+
 
         end
     end
@@ -248,7 +251,9 @@ local function movingButter(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-          
+            backToMainMenu.x = 407
+            backToMainMenu.y = 600
+    
 
         end
     end
@@ -295,8 +300,9 @@ local function movingEggs(touch)
             (checkMark3.isVisible == true) and (checkMark4.isVisible == true) and
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
-            yesButton.isVisible = true
-            
+            yesButton.isVisible = true   
+            backToMainMenu.x = 407
+            backToMainMenu.y = 600
 
 
         end
@@ -346,7 +352,9 @@ local function movingSugar(touch)
             (checkMark5.isVisible == true) then
             readyImage.isVisible = true
             yesButton.isVisible = true
-           
+            backToMainMenu.x = 407
+            backToMainMenu.y = 600
+ 
         end
 end
 
@@ -450,7 +458,7 @@ function scene:create( event )
     sceneGroup:insert(bowl_image)
 
     -- Creating Back Button
-    backButton = widget.newButton( 
+    backToMainMenu = widget.newButton( 
     {
     -- Setting Position
     x = display.contentWidth*1/8,
@@ -464,7 +472,7 @@ function scene:create( event )
     -- Setting Functional Properties
     onRelease = BackTransition
 })
-    sceneGroup:insert( backButton )
+    sceneGroup:insert( backToMainMenu )
 
  
     --Creating yes buttton
@@ -738,6 +746,8 @@ function scene:hide( event )
         audio.stop(backgroundSoundChannel)
         readyImage.isVisible = false
         yesButton.isVisible = false
+        backToMainMenu.x = 150
+        backToMainMenu.y = 715
     end
 end
  --function scene:hide( event )
