@@ -211,7 +211,7 @@ end
 -- FUNCTION for Displaying Questions
 
 local function DisplayQuestion()
-    local randomQuestion = math.random (1, 15)
+    local randomQuestion = math.random (1, 17)
     if (randomQuestion == 1) then
         rootImage.isVisible = false
         --creating the question depending on the selcetion number
@@ -349,21 +349,21 @@ local function DisplayQuestion()
              --creating answer text from list it corispondes with the animals list
             answerText.text = "Because of cholorophyll"
                  --creating wrong answers
-            wrongText1.text = "Because its hereditary"
-            wrongText2.text = "Because they are died that colour"
+            wrongText1.text = "Because its \nhereditary"
+            wrongText2.text = "Because they are\n died that colour"
             wrongText3.text = "" 
 
         elseif (randomQuestion == 12) then
             rootImage.isVisible = false
             PositionAnswers()
             --creating the question depending on the selcetion number
-            questionText.text = " What are the two types of\n plants that produce seeds?"
+            questionText.text = " Which group of animal does not have a backbone?"
              --creating answer text from list it corispondes with the animals list
-            answerText.text = "Flowering and conifer"
+            answerText.text = "arachnid"
                  --creating wrong answers
-            wrongText1.text = "Trees and moss"
-            wrongText2.text = "Animal and plant cells"
-            wrongText3.text = " Cactus and flowers" 
+            wrongText1.text = "fish"
+            wrongText2.text = "bird"
+            wrongText3.text = "amphibian" 
         elseif (randomQuestion == 13) then
             rootImage.isVisible = false
             PositionAnswers()
@@ -398,7 +398,7 @@ local function DisplayQuestion()
             wrongText1.text = "Flowers"
             wrongText2.text = "Roots"
             wrongText3.text = "Stem" 
-        elseif (randomQuestion == 15) then
+        elseif (randomQuestion == 16) then
             rootImage.isVisible = false
             PositionAnswers()
             --creating the question depending on the selcetion number
@@ -409,6 +409,50 @@ local function DisplayQuestion()
             wrongText1.text = "Short"
             wrongText2.text = "Small"
             wrongText3.text = "None of them" 
+        elseif (randomQuestion == 17) then
+            rootImage.isVisible = false
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = "What do fishes use to breathe in water?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Gills"
+                 --creating wrong answers
+            wrongText1.text = "Lungs"
+            wrongText2.text = "Fins"
+            wrongText3.text = "Tail" 
+        elseif (randomQuestion == 18) then
+            rootImage.isVisible = false
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = "Which part of a plant holds it upright\n and moves it towards light?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Stem"
+                 --creating wrong answers
+            wrongText1.text = "Roots"
+            wrongText2.text = "Flower"
+            wrongText3.text = "Leaves" 
+        elseif (randomQuestion == 19) then
+            rootImage.isVisible = false
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = "What the All pushes and pulls called?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Force"
+                 --creating wrong answers
+            wrongText1.text = "Weight"
+            wrongText2.text = "Gravity"
+            wrongText3.text = "Energy" 
+        elseif (randomQuestion == 10) then
+            rootImage.isVisible = false
+            PositionAnswers()
+            --creating the question depending on the selcetion number
+            questionText.text = "What are the ends of magnets called?"
+             --creating answer text from list it corispondes with the animals list
+            answerText.text = "Poles"
+                 --creating wrong answers
+            wrongText1.text = "Equator"
+            wrongText2.text = "Circuits"
+            wrongText3.text = "Axis" 
         end      
 
                     
@@ -427,7 +471,7 @@ local function TouchListenerAnswer(touch)
         -- counting the right answer
         totalAnswer = totalAnswer + 1
 -- make condition for winning the game 
-        if(totalAnswer == 8)then
+        if(totalAnswer == 13)then
            yourcake()
         end 
     end
@@ -599,7 +643,7 @@ function scene:create( event )
     giveThenAnswer.x = 500
     giveThenAnswer.y = 500
     giveThenAnswer.isVisible = false
-    giveThenAnswer:setTextColor(0, 0, 0.9)
+    giveThenAnswer:setTextColor(0, 0, 0)
     sceneGroup:insert(giveThenAnswer)
 
     --creationg bake text
