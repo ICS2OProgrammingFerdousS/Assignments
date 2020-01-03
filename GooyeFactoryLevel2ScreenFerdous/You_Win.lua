@@ -150,9 +150,7 @@ function scene:hide( event )
 
     elseif ( phase == "did" ) then
   
-
-
-    end --function scene:hide( event )
+    end 
 end
 -----------------------------------------------------------------------------------------
 

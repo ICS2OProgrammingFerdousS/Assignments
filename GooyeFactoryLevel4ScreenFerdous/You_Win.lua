@@ -59,12 +59,6 @@ function scene:create( event )
     sceneGroup:insert( bkg_image )
     -- creating baking button 
      --creationg bake text
-    bakeText =  display.newImage("Images/textFerdous.png")
-    bakeText.x = 500
-    bakeText.y = 250
-    bakeText.width = 900
-    bakeText.height = 900
-
 
     BakeCake = widget.newButton( 
     {
@@ -122,11 +116,10 @@ function scene:show( event )
 
     -----------------------------------------------------------------------------------------
 
-        elseif ( phase == "did" ) then
+    elseif ( phase == "did" ) then
         -- display the win sound
-            yowWinSoundChannel = audio.play(youWinSound)
+        yowWinSoundChannel = audio.play(youWinSound)
     end
-
 end -- function scene:show( event )
 
 -----------------------------------------------------------------------------------------

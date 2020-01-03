@@ -186,6 +186,12 @@ function scene:create( event )
 
     -----------------------------------------------------------------------------------------
 
+ --creating mute button
+    muteButton = display.newImageRect("Images/muteButton.png", 90, 90)
+    muteButton.x = 50
+    muteButton.y = 40
+    muteButton.isVisible = false
+    sceneGroup:insert(muteButton)   
 --creating mut button
     unmuteButton = display.newImageRect("Images/unmuteButton.png", 90, 90)
     unmuteButton.x = 50
@@ -193,12 +199,7 @@ function scene:create( event )
     unmuteButton.isVisible = true
     sceneGroup:insert(unmuteButton)
 
-   --creating mute button
-    muteButton = display.newImageRect("Images/muteButton.png", 90, 90)
-    muteButton.x = 50
-    muteButton.y = 40
-    muteButton.isVisible = false
-    sceneGroup:insert(muteButton)    
+   
 end  
 
 -----------------------------------------------------------------------------------------

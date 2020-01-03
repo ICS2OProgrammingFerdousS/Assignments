@@ -211,7 +211,7 @@ end
 -- FUNCTION for Displaying Questions
 
 local function DisplayQuestion()
-    local randomQuestion = math.random (1, 17)
+    local randomQuestion = math.random (1, 20)
     if (randomQuestion == 1) then
         rootImage.isVisible = false
         --creating the question depending on the selcetion number
@@ -322,13 +322,13 @@ local function DisplayQuestion()
             rootImage.isVisible = false
             PositionAnswers()
             --creating the question depending on the selcetion number
-            questionText.text = "Which layer in the diagram\n contains the most organic material?"
+            questionText.text = "In which form does water have a definite shape and volume?"
              --creating answer text from list it corispondes with the animals list
-            answerText.text = "Layer"
+            answerText.text = "Ice"
                  --creating wrong answers
-            wrongText1.text = ""
-            wrongText2.text = "Rice"
-            wrongText3.text = "Lettuce"   
+            wrongText1.text = "Liquid water"
+            wrongText2.text = " Water vapor"
+            wrongText3.text = "clouds"   
         elseif (randomQuestion == 11) then
             rootImage.isVisible = false
             PositionAnswers()
@@ -340,18 +340,6 @@ local function DisplayQuestion()
             wrongText1.text = "Oxygen"
             wrongText2.text = "Monnlight"
             wrongText3.text = "Shade And Food" 
-
-         elseif (randomQuestion == 11) then
-            rootImage.isVisible = false
-            PositionAnswers()
-            --creating the question depending on the selcetion number
-            questionText.text = "Why are leaves green?"
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Because of cholorophyll"
-                 --creating wrong answers
-            wrongText1.text = "Because its \nhereditary"
-            wrongText2.text = "Because they are\n died that colour"
-            wrongText3.text = "" 
 
         elseif (randomQuestion == 12) then
             rootImage.isVisible = false
@@ -376,7 +364,7 @@ local function DisplayQuestion()
             wrongText2.text = "Venus"
             wrongText3.text = "Jupiter" 
 
-        elseif (randomQuestion == 13) then
+        elseif (randomQuestion == 14) then
             rootImage.isVisible = false
             PositionAnswers()
             --creating the question depending on the selcetion number
@@ -387,7 +375,7 @@ local function DisplayQuestion()
             wrongText1.text = "Flowers"
             wrongText2.text = "Roots"
             wrongText3.text = "Stem" 
-        elseif (randomQuestion == 14) then
+        elseif (randomQuestion == 15) then
             rootImage.isVisible = false
             PositionAnswers()
             --creating the question depending on the selcetion number
@@ -442,7 +430,7 @@ local function DisplayQuestion()
             wrongText1.text = "Weight"
             wrongText2.text = "Gravity"
             wrongText3.text = "Energy" 
-        elseif (randomQuestion == 10) then
+        elseif (randomQuestion == 20) then
             rootImage.isVisible = false
             PositionAnswers()
             --creating the question depending on the selcetion number
@@ -453,9 +441,7 @@ local function DisplayQuestion()
             wrongText1.text = "Equator"
             wrongText2.text = "Circuits"
             wrongText3.text = "Axis" 
-        end      
-
-                    
+        end                      
 end
 
 
@@ -470,7 +456,7 @@ local function TouchListenerAnswer(touch)
         DisplayQuestion()
         -- counting the right answer
         totalAnswer = totalAnswer + 1
--- make condition for winning the game 
+        -- make condition for winning the game 
         if(totalAnswer == 13)then
            yourcake()
         end 
@@ -489,17 +475,17 @@ local function TouchListenerWrongAnswer(touch)
     if (touch.phase == "ended") then
         -- pop sound when the objects touched
         popUpChannel = audio.play(popUp)
-    -- Displaying the the right answer text
+        -- Displaying the the right answer text
         giveThenAnswer.text = "Sorry, wrong answer. The correct \n answer is ".. answerText.text
-    --make the text Visible
+        --make the text Visible
         giveThenAnswer.isVisible = true
             numWrong = numWrong + 1
             DisplayQuestion()
             if(numWrong == 3) then
-    -- delaly for Displaying the you lose screen
-                timer.performWithDelay(1500, youLostScreen )
+                -- delaly for Displaying the you lose screen
+                timer.performWithDelay(1000, youLostScreen )
             end
-    -- delaly for hidding the correct answer text
+        -- delaly for hidding the correct answer text
         timer.performWithDelay(1500, HideCorrectAnswer)
            
     end 
@@ -519,32 +505,31 @@ local function TouchListenerWrongAnswer2(touch)
         giveThenAnswer.isVisible = true
         numWrong = numWrong + 1
         DisplayQuestion()
-            if(numWrong == 3) then
-    -- delaly for Displaying the you lose screen
-                timer.performWithDelay(1500, youLostScreen )
+        if(numWrong == 3) then
+            -- delaly for Displaying the you lose screen
+            timer.performWithDelay(1000, youLostScreen )
         end
 -- delaly for making the correct text inVisible
         timer.performWithDelay(1500, HideCorrectAnswer)
-
     end 
 end
 -- function for 3 wrong answer
 local function TouchListenerWrongAnswer3(touch)
     userAnswer = wrongText3.text
     if (touch.phase == "ended") then
-    -- DisplayQuestion pop sound when the objects touched
+        -- DisplayQuestion pop sound when the objects touched
         popUpChannel = audio.play(popUp)
-    -- Displaying the right answer text if the user got it wrong
+        -- Displaying the right answer text if the user got it wrong
         giveThenAnswer.text = "Sorry wrong answer. The correct \n answer is ".. answerText.text
-    -- making the right answer text Visible
+        -- making the right answer text Visible
         giveThenAnswer.isVisible = true
         numWrong = numWrong + 1
         DisplayQuestion()
-            if(numWrong == 3) then
-    -- delaly for Displaying the you lose screen
-                timer.performWithDelay(1500, youLostScreen )
-            end
-    -- delaly for hidding the right answer
+        if(numWrong == 3) then
+        -- delaly for Displaying the you lose screen
+            timer.performWithDelay(1000, youLostScreen )
+        end
+        -- delaly for hidding the right answer
         timer.performWithDelay(1500, HideCorrectAnswer)
 
     end 
@@ -556,9 +541,6 @@ local function UpdateTime( )
     if(secondsLeft == 0)then
         secondsLeft = totalSeconds
         composer.gotoScene("You_Lose")
-
-
-
     end
 end
 -- FUNCTION start the timer again
@@ -766,7 +748,7 @@ function scene:hide( event )
     local sceneGroup = self.view
     local phase = event.phase
 -----------------------------------------------------------------------------------------
-     if ( phase == "will" ) then
+    if ( phase == "will" ) then
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
@@ -787,7 +769,6 @@ function scene:hide( event )
         totalAnswer = 0
         numWrong = 0
     end
-
 end 
 
 -----------------------------------------------------------------------------------------

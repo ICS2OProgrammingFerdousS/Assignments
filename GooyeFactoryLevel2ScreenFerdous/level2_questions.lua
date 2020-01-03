@@ -278,7 +278,7 @@ local function TouchListenerAnswer(touch)
         DisplayQuestion()
         -- counting the right answer
         totalAnswer = totalAnswer + 1
--- make condition for winning the game 
+        -- make condition for winning the game 
         if(totalAnswer == 5)then
            yourcake()
         end 
@@ -311,8 +311,7 @@ end
 local function TouchListenerWrongAnswer2(touch)
     userAnswer = wrongText2.text
     if (touch.phase == "ended") then
-    --pop sound when the objects touched
-
+        --pop sound when the objects touched
         popUpChannel = audio.play(popUp)
         -- Displaying the correct answer text if the user got wrong
         giveThenAnswer.text = "Sorry wrong answer. The correct \n answer is ".. answerText.text
@@ -322,7 +321,6 @@ local function TouchListenerWrongAnswer2(touch)
         timer.performWithDelay(1500, youLostScreen )    
         -- delaly for making the correct text inVisible
         timer.performWithDelay(1500, HideCorrectAnswer)
-
     end 
 end
 -- function for 3 wrong answer
@@ -349,9 +347,6 @@ local function UpdateTime( )
     if(secondsLeft == 0)then
         secondsLeft = totalSeconds
         composer.gotoScene("You_Lose")
-
-
-
     end
 end
 -- FUNCTION start the timer again
@@ -408,27 +403,38 @@ function scene:create( event )
     questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 75)
     questionText:setTextColor(0/255, 0/255, 255/255)
     --questionText:setFillColor( 0.2, 0.2, 0. )
-  
+    sceneGroup:insert(questionText)
+
 
     -- create the answer text object & wrong answer text objects
     answerText = display.newText("", X1, Y2, Arial, 45)
     answerText.anchorX = 0
     answerText:setTextColor(255/255, 0/255, 0/255)
+    sceneGroup:insert(answerText)
+
     wrongText1 = display.newText("", X2, Y2, Arial, 45)
     wrongText1.anchorX = 0
     wrongText1:setTextColor(255/255, 0/255, 0/255)
+    sceneGroup:insert(wrongText1)
+
     wrongText2 = display.newText("", X1, Y1, Arial, 45)
     wrongText2.anchorX = 0
     wrongText2:setTextColor(255/255, 0/255, 0/255)
+    sceneGroup:insert(wrongText2)
+
     wrongText3 = display.newText("", X1, Y2, Arial, 45)
     wrongText3.anchorX = 0
     wrongText3:setTextColor(255/255, 0/255, 0/255)
--- creating the text to give the right answer if the got wrong
+    sceneGroup:insert(wrongText3)
+
+    -- creating the text to give the right answer if the got wrong
     giveThenAnswer =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 50)
     giveThenAnswer.x = 500
     giveThenAnswer.y = 500
     giveThenAnswer.isVisible = false
     giveThenAnswer:setTextColor(0, 0, 0.9)
+    sceneGroup:insert(giveThenAnswer)
+
     --creationg bake text
     bakeText =  display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 40)
     bakeText.x = 500
@@ -443,10 +449,11 @@ function scene:create( event )
     rootImage.width = 200
     rootImage.height = 200
     rootImage.isVisible = false
+    sceneGroup:insert(rootImage)
 
     backButton = widget.newButton( 
     {
--- Setting Position
+    -- Setting Position
     x = display.contentWidth*15/30,
     y = display.contentHeight*15/17,
         -- Setting Dimensions
@@ -462,7 +469,7 @@ function scene:create( event )
 
     backButton2 = widget.newButton( 
     {
--- Setting Position
+    -- Setting Position
     x = display.contentWidth*1/1.1,
     y = display.contentHeight*15.6/17,
         -- Setting Dimensions
@@ -476,7 +483,7 @@ function scene:create( event )
     })
     sceneGroup:insert(backButton2)
 
-
+    --creating mute button
     muteButton = display.newImageRect("Images/muteButton.png", 90, 90)
     muteButton.x = 45
     muteButton.y = 40
@@ -484,7 +491,7 @@ function scene:create( event )
     sceneGroup:insert(muteButton)
 
 
---creating mut button
+    --creating unmute button
     unmuteButton = display.newImageRect("Images/unmuteButton.png", 90, 90)
     unmuteButton.x = 45
     unmuteButton.y = 40
@@ -501,13 +508,6 @@ function scene:create( event )
            --creating mute button
   
     sceneGroup:insert(clockText)
-    sceneGroup:insert(questionText)
-    sceneGroup:insert(answerText)
-    sceneGroup:insert(wrongText1)
-    sceneGroup:insert(wrongText2)
-    sceneGroup:insert(wrongText3)
-    sceneGroup:insert(rootImage)
-    sceneGroup:insert(giveThenAnswer)
 
 end --function scene:create( event )
 
@@ -576,15 +576,14 @@ function scene:hide( event )
         unmuteButton:removeEventListener("touch", Unmute )
         -- call the remove the event listeners FUNCTION
         RemoveTextListeners()
-            -- reset scene after leave it 
-            --composer.removeScene("level2_questions")
-            -- Displaying the background sound
+        -- reset scene after leave it 
+        --composer.removeScene("level2_questions")
+        -- Displaying the background sound
          audio.stop(soundChannel)
-            --canceling the timer
+        --canceling the timer
          timer.cancel(countDownTimer)
          secondsLeft = totalSeconds
     end
-
 end 
 
 -----------------------------------------------------------------------------------------

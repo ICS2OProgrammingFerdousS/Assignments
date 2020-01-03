@@ -164,7 +164,7 @@ end
 
 
 local function movingFlour(touch)
---only work if none of the other objects have been touched
+    --only work if none of the other objects have been touched
     if (touchSugar == false) and (touchChocolate == false) and 
         (touchButter == false) and (touchEggs == false) then 
 
@@ -213,7 +213,7 @@ local function movingFlour(touch)
     end
 end
 local function movingButter(touch)
---only work if none of the other objects have been touched
+    --only work if none of the other objects have been touched
     if (touchFlour == false) and (touchChocolate == false) and 
         (touchSugar == false) and (touchEggs == false) then
 
@@ -261,7 +261,7 @@ end
 
 
 local function movingEggs(touch)
---only work if none of the other objects have been touched
+    --only work if none of the other objects have been touched
     if (touchFlour == false) and (touchChocolate == false) and
         (touchButter == false) and (touchSugar == false) then  
 
@@ -310,7 +310,7 @@ local function movingEggs(touch)
 end
 
 local function movingSugar(touch)
---only work if none of the other objects have been touched
+    --only work if none of the other objects have been touched
     if (touchFlour == false) and (touchChocolate == false) and 
         (touchButter == false) and (touchEggs == false) then    
 
@@ -687,7 +687,6 @@ function scene:create( event )
     sceneGroup:insert(instructionText)
 
 end 
- -- function scene:create( event )
 
 --------------------------------------------------------------------------------------------
 

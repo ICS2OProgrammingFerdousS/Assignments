@@ -76,9 +76,10 @@ function scene:create( event )
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
+    sceneGroup:insert( bkg_image )
 
 -- button for going back to questions screen
-backButton1 = widget.newButton( 
+    backButton1 = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/4,
@@ -93,8 +94,9 @@ backButton1 = widget.newButton(
     onRelease = gotoMainMenu
     })
 
+    sceneGroup:insert( backButton1 )
 
-backButton2 = widget.newButton( 
+    backButton2 = widget.newButton( 
     {
 -- Setting Position
     x = display.contentWidth*1/1.4,
@@ -108,11 +110,7 @@ backButton2 = widget.newButton(
     -- Setting Functional Properties
     onRelease = BackTransition
     })
-
------------------------------------------------------------------------------------------
     -- Associating display objects with this scenes 
-    sceneGroup:insert( bkg_image )
-    sceneGroup:insert( backButton1 )
     sceneGroup:insert( backButton2 )
 
 
@@ -128,9 +126,9 @@ function scene:show( event )
     if ( phase == "will" ) then
         -- Called when the scene is still off screen (but is about to come on screen).
     -----------------------------------------------------------------------------------------
-        elseif ( phase == "did" ) then
+    elseif ( phase == "did" ) then
         -- display the background sound
-            youLostChannel = audio.play(youLost)     
+        youLostChannel = audio.play(youLost)     
     end
 
 end -- function scene:show( event )
@@ -146,7 +144,7 @@ function scene:hide( event )
  -----------------------------------------------------------------------------------------
     if ( phase == "will" ) then
 -----------------------------------------------------------------------------------------
-        elseif ( phase == "did" ) then
+    elseif ( phase == "did" ) then
     end
 end 
 

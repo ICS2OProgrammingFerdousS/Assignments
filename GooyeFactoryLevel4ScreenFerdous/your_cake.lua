@@ -125,10 +125,9 @@ function scene:show( event )
         -- Called when the scene is still off screen (but is about to come on screen).
 
     -----------------------------------------------------------------------------------------
-
-        elseif ( phase == "did" ) then
+    elseif ( phase == "did" ) then
         -- display the win sound
-            yowWinSoundChannel = audio.play(youWinSound)
+        yowWinSoundChannel = audio.play(youWinSound)
     end
 end -- function scene:show( event )
 
@@ -148,7 +147,7 @@ function scene:hide( event )
     if ( phase == "will" ) then
 
 
-        elseif ( phase == "did" ) then
+    elseif ( phase == "did" ) then
     end 
 end
 -----------------------------------------------------------------------------------------

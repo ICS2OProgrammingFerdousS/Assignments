@@ -207,9 +207,9 @@ function scene:show( event )
     if ( phase == "will" ) then
         -- Called when the scene is still off screen (but is about to come on screen).
     -----------------------------------------------------------------------------------------
-        elseif ( phase == "did" ) then
+    elseif ( phase == "did" ) then
         -- display the background sound
-            youLostChannel = audio.play(youLost)     
+        youLostChannel = audio.play(youLost)     
     end
 
 end -- function scene:show( event )

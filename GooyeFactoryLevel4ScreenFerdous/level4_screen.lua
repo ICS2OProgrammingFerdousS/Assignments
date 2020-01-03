@@ -730,6 +730,7 @@ function scene:show( event )
         ResetIngredients()
         muteButton:addEventListener("touch", Mute)
         unmuteButton:addEventListener("touch", Unmute )
+        -- display background music
         backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1}) 
             if(soundOn == true) then
                 audio.resume(backgroundSoundChannel)
@@ -739,18 +740,12 @@ function scene:show( event )
                 audio.pause(backgroundSoundChannel)
                 muteButton.isVisible = true
                 unmuteButton.isVisible = false
-        end
-----------addEventListener
-    
-
+            end
         --calling the addEventListener function 
-            AddAnswerBoxEventListeners()
+        AddAnswerBoxEventListeners()
             -- start timer 
-            startTimer()
-        -- display background music
-          
+        startTimer()
     end
-
 end 
 -----------------------------------------------------------------------------------------
 

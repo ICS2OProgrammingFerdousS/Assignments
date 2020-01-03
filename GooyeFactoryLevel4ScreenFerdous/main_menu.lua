@@ -30,7 +30,7 @@ local instructionsButton
 -----------------------------------------------------------------------------------------
 -- backgroundSound
 local sound = audio.loadSound("Sounds/buddy.mp3")
-local soundChannel = audio.play(sound, {channel = 2, loops = -1})
+local soundChannel 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -183,8 +183,7 @@ function scene:create( event )
     muteButton.isVisible = false
     sceneGroup:insert(muteButton)
 
-
---creating mut button
+    --creating mut button
     unmuteButton = display.newImageRect("Images/unmuteButton.png", 90, 90)
     unmuteButton.x = 50
     unmuteButton.y = 40
@@ -214,6 +213,8 @@ function scene:show( event )
     elseif ( phase == "did" ) then
         muteButton:addEventListener("touch", Mute)
         unmuteButton:addEventListener("touch", Unmute )
+        soundChannel = audio.play(sound, {channel = 1, loops = -1})
+
         if(soundOn == true) then
             audio.resume(soundChannel)
             muteButton.isVisible = false
