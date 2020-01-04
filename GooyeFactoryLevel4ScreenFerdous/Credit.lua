@@ -8,7 +8,7 @@ local widget = require( "widget" )
 -- Naming Scene
 sceneName = "Credit"
 -- Creating Scene Object
-scene = composer.newScene( sceneName ) 
+local scene = composer.newScene( sceneName ) 
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------

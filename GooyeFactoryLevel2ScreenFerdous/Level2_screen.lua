@@ -9,7 +9,7 @@ local widget = require( "widget" )
 
 -- Name the Scene
 sceneName = "Level2_screen"
-scene = composer.newScene(sceneName)
+--scene = composer.newScene(sceneName)
 
 -----------------------------------------------------------------------------------------
 -- Create Scene Object
