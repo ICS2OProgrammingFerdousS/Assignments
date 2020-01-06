@@ -93,7 +93,12 @@ function scene:create( event )
     onRelease = GotoLevelScelect
     })
     sceneGroup:insert( noButton )
-
+    bakeText =  display.newImage("Images/CakeButton.png")
+    bakeText.x = 500
+    bakeText.y = 100
+    bakeText.width = 900
+    bakeText.height = 900
+    sceneGroup:insert( bakeText )
 
 
 end

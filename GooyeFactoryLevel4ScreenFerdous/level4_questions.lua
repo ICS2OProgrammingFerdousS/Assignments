@@ -322,7 +322,7 @@ local function DisplayQuestion()
             rootImage.isVisible = false
             PositionAnswers()
             --creating the question depending on the selcetion number
-            questionText.text = "In which form does water have a definite shape and volume?"
+            questionText.text = "In which form does water have a\n definite shape and volume?"
              --creating answer text from list it corispondes with the animals list
             answerText.text = "Ice"
                  --creating wrong answers
@@ -379,13 +379,13 @@ local function DisplayQuestion()
             rootImage.isVisible = false
             PositionAnswers()
             --creating the question depending on the selcetion number
-            questionText.text = "What part hold the plant in the\n ground and takes water from the soil?"
+            questionText.text = "What causes erosion?"
              --creating answer text from list it corispondes with the animals list
-            answerText.text = "Stem"
+            answerText.text = "Heat"
                  --creating wrong answers
-            wrongText1.text = "Flowers"
-            wrongText2.text = "Roots"
-            wrongText3.text = "Stem" 
+            wrongText1.text = "Cold"
+            wrongText2.text = "Sun And\n Water"
+            wrongText3.text = "Wind And\n Water" 
         elseif (randomQuestion == 16) then
             rootImage.isVisible = false
             PositionAnswers()
@@ -669,7 +669,7 @@ function scene:create( event )
     width = 150,
     height = 100,
     -- Setting Visual Properties
-     defaultFile = "Images/BackButtonUnPressedFerdous@2x.png",
+    defaultFile = "Images/BackButtonUnPressedFerdous@2x.png",
     overFile = "Images/BackButtonPressedFerdous@2x.png",
     -- Setting Functional Properties
     onRelease = BackTransition
