@@ -711,7 +711,7 @@ function scene:show( event )
         AddAnswerBoxEventListeners()
 
         -- playing sound 
-        backgroundSoundChannel = audio.play(backgroundSound, {channel = 4, loops = -1})  
+        backgroundSoundChannel = audio.play(backgroundSound, {channel = 52, loops = -1})  
         if(soundOn == true) then
             audio.resume(backgroundSoundChannel)
             muteButton.isVisible = false

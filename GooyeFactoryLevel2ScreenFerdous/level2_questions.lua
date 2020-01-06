@@ -538,7 +538,7 @@ function scene:show( event )
         -- start timer 
         startTimer()
         -- play the background sound
-        soundChannel = audio.play(sound, {channel = 5, loops = -1})
+        soundChannel = audio.play(sound, {channel = 55, loops = -1})
         if(soundOn == true) then
             audio.resume(soundChannel)
             muteButton.isVisible = false

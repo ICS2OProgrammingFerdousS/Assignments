@@ -83,7 +83,7 @@ function scene:create( event )
  -- BUTTON WIDGETS
 -------------------------------------------------------------------------------------
 -- Creating Back Button
-backButton = widget.newButton( 
+    backButton = widget.newButton( 
 { -- Setting Position
     x = display.contentWidth*1/8,
     y = display.contentHeight*9/10,
@@ -129,7 +129,7 @@ function scene:show( event )
         muteButton:addEventListener("touch", Mute)
         unmuteButton:addEventListener("touch", Unmute )
         -- display background sound
-        soundEffectChannel = audio.play(soundEffect, {channel = 2, loops = -1})
+        soundEffectChannel = audio.play(soundEffect, {channel = 59, loops = -1})
         if(soundOn == true) then
             audio.resume(soundEffectChannel)
             muteButton.isVisible = false

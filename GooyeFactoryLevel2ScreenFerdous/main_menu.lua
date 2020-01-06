@@ -128,40 +128,36 @@ function scene:create( event )
 
 
     -- Creating Play Button
-    playButton = widget.newButton( 
-        {   
-         -- Set its position on the screen relative to the screen size
-         x = display.contentWidth*6/8,
-         y = display.contentHeight*4/10,
-          -- Setting Dimensions
-         width = 150,
-         height = 70,
-         -- Insert the images here
-         defaultFile = "Images/PlayButtonUnpressedAlex@2x.png", 150, 100,
-         overFile = "Images/PlayButtonPressedAlex@2x.png", 150, 100,
-         --
-         -- When the button is released, call the Level1 screen transition function
-         onRelease = Level2ScreenTransition    
+    playButton = widget.newButton( {   
+    -- Set its position on the screen relative to the screen size
+    x = display.contentWidth*6/8,
+    y = display.contentHeight*4/10,
+    -- Setting Dimensions
+    width = 150,
+    height = 70,
+    -- Insert the images here
+    defaultFile = "Images/PlayButtonUnpressedAlex@2x.png", 150, 100,
+    overFile = "Images/PlayButtonPressedAlex@2x.png", 150, 100,
+    -- When the button is released, call the Level1 screen transition function
+    onRelease = Level2ScreenTransition    
  } )
     sceneGroup:insert( playButton )
 
     -----------------------------------------------------------------------------------------
 
     -- Creating Credits Button
-    creditsButton = widget.newButton( 
-        {
-        -- Set its position on the screen relative to the screen size
-        x = display.contentWidth*6/8,
-        y = display.contentHeight*6/10,
-         -- Setting Dimensions
-        width = 150,
-        height = 70,
-
-        -- Insert the images here
-        defaultFile = "Images/creditsButtonUnpressedAlex@2x.png", 150, 100,
-        overFile = "Images/creditsButtonPressedAlex@2x.png", 150, 100,
-        -- When the button is released, call the Credits transition function
-        onRelease = CreditsTransition
+    creditsButton = widget.newButton( {
+    -- Set its position on the screen relative to the screen size
+    x = display.contentWidth*6/8,
+    y = display.contentHeight*6/10,
+    -- Setting Dimensions
+    width = 150,
+    height = 70,
+    -- Insert the images here
+    defaultFile = "Images/creditsButtonUnpressedAlex@2x.png", 150, 100,
+    overFile = "Images/creditsButtonPressedAlex@2x.png", 150, 100,
+    -- When the button is released, call the Credits transition function
+    onRelease = CreditsTransition
 } ) 
     sceneGroup:insert( creditsButton )
 
@@ -171,16 +167,16 @@ function scene:create( event )
     instructionsButton = widget.newButton( 
         {
         -- Set its position on the screen relative to the screen size
-        x = display.contentWidth*6/8,
-        y = display.contentHeight*8/10,
-        -- Setting Dimensions
-        width = 150,
-        height = 70,
-        -- Insert the images here
-         defaultFile = "Images/InstructionsButtonUnpressedAlex@2x.png", 150, 100,
-        overFile = "Images/InstructionsButtonPressedAlex@2x.png", 150, 100,
-        -- When the button is released, call the Credits transition function
-        onRelease = gotoInstructions
+    x = display.contentWidth*6/8,
+    y = display.contentHeight*8/10,
+    -- Setting Dimensions
+    width = 150,
+    height = 70,
+    -- Insert the images here
+    defaultFile = "Images/InstructionsButtonUnpressedAlex@2x.png", 150, 100,
+    overFile = "Images/InstructionsButtonPressedAlex@2x.png", 150, 100,
+    -- When the button is released, call the Credits transition function
+    onRelease = gotoInstructions
 } ) 
     sceneGroup:insert( instructionsButton )
 
@@ -220,7 +216,7 @@ function scene:show( event )
         muteButton:addEventListener("touch", Mute)
         unmuteButton:addEventListener("touch", Unmute )    
         --play music
-        soundChannel = audio.play(sound, {channel = 6, loops = -1}) 
+        soundChannel = audio.play(sound, {channel = 51, loops = -1}) 
         if(soundOn == true) then
             audio.resume(soundChannel)
             muteButton.isVisible = false

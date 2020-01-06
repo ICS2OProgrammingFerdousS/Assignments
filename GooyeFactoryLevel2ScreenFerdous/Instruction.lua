@@ -132,7 +132,7 @@ function scene:show( event )
         muteButton:addEventListener("touch", Mute)
         unmuteButton:addEventListener("touch", Unmute )
         -- display background sound
-        soundEffectChannel = audio.play(soundEffect, {channel = 1, loops = -1})
+        soundEffectChannel = audio.play(soundEffect, {channel = 53, loops = -1})
         if(soundOn == true) then
             audio.resume(soundEffectChannel)
             muteButton.isVisible = false

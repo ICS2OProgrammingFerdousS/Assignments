@@ -124,18 +124,18 @@ function scene:create( event )
     -- Creating Play Button
     playButton = widget.newButton( 
         {   
-            -- Set its position on the screen relative to the screen size
-         x = display.contentWidth*6/8,
-         y = display.contentHeight*4/10,
-          -- Setting Dimensions
-         width = 150,
-         height = 70,
-         -- Insert the images here
-         defaultFile = "Images/PlayButtonUnpressedAlex@2x.png", 150, 100,
-         overFile = "Images/PlayButtonPressedAlex@2x.png", 150, 100,
+    -- Set its position on the screen relative to the screen size
+    x = display.contentWidth*6/8,
+    y = display.contentHeight*4/10,
+    -- Setting Dimensions
+    width = 150,
+    height = 70,
+    -- Insert the images here
+    defaultFile = "Images/PlayButtonUnpressedAlex@2x.png", 150, 100,
+    overFile = "Images/PlayButtonPressedAlex@2x.png", 150, 100,
          --
-         -- When the button is released, call the Level1 screen transition function
-         onRelease = Level2ScreenTransition    
+    -- When the button is released, call the Level1 screen transition function
+    onRelease = Level2ScreenTransition    
  } )
     sceneGroup:insert( playButton )
 
@@ -145,17 +145,16 @@ function scene:create( event )
     creditsButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
-        x = display.contentWidth*6/8,
-        y = display.contentHeight*6/10,
-         -- Setting Dimensions
-        width = 150,
-        height = 70,
-
-            -- Insert the images here
-        defaultFile = "Images/creditsButtonUnpressedAlex@2x.png", 150, 100,
-        overFile = "Images/creditsButtonPressedAlex@2x.png", 150, 100,
-        -- When the button is released, call the Credits transition function
-        onRelease = CreditsTransition
+    x = display.contentWidth*6/8,
+    y = display.contentHeight*6/10,
+    -- Setting Dimensions
+    width = 150,
+    height = 70,
+    -- Insert the images here
+    defaultFile = "Images/creditsButtonUnpressedAlex@2x.png", 150, 100,
+    overFile = "Images/creditsButtonPressedAlex@2x.png", 150, 100,
+    -- When the button is released, call the Credits transition function
+    onRelease = CreditsTransition
 } ) 
     sceneGroup:insert( creditsButton )
 
@@ -164,17 +163,17 @@ function scene:create( event )
     -- ADD INSTRUCTIONS BUTTON WIDGET
     instructionsButton = widget.newButton( 
         {
-        -- Set its position on the screen relative to the screen size
-        x = display.contentWidth*6/8,
-        y = display.contentHeight*8/10,
-        -- Setting Dimensions
-        width = 150,
-        height = 70,
-        -- Insert the images here
-         defaultFile = "Images/InstructionsButtonUnpressedAlex@2x.png", 150, 100,
-        overFile = "Images/InstructionsButtonPressedAlex@2x.png", 150, 100,
-        -- When the button is released, call the Credits transition function
-        onRelease = gotoInstructions
+    -- Set its position on the screen relative to the screen size
+    x = display.contentWidth*6/8,
+    y = display.contentHeight*8/10,
+    -- Setting Dimensions
+    width = 150,
+    height = 70,
+    -- Insert the images here
+    defaultFile = "Images/InstructionsButtonUnpressedAlex@2x.png", 150, 100,
+    overFile = "Images/InstructionsButtonPressedAlex@2x.png", 150, 100,
+    -- When the button is released, call the Credits transition function
+    onRelease = gotoInstructions
 } ) 
     sceneGroup:insert( instructionsButton )
  
@@ -217,7 +216,7 @@ function scene:show( event )
     elseif ( phase == "did" ) then
         muteButton:addEventListener("touch", Mute)
         unmuteButton:addEventListener("touch", Unmute )
-        soundChannel = audio.play(sound, {channel = 1, loops = -1})
+        soundChannel = audio.play(sound, {channel = 56, loops = -1})
 
         if(soundOn == true) then
             audio.resume(soundChannel)
