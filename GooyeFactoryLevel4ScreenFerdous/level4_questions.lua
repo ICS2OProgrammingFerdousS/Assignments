@@ -460,7 +460,7 @@ local function TouchListenerAnswer(touch)
         -- counting the right answer
         totalAnswer = totalAnswer + 1
         -- make condition for winning the game 
-        if(totalAnswer == 1)then
+        if(totalAnswer == 12)then
            yourcake()
         end 
     end
@@ -483,7 +483,7 @@ local function TouchListenerWrongAnswer(touch)
         --make the text Visible
         giveThenAnswer.isVisible = true
             numWrong = numWrong + 1
-            DisplayQuestion()
+            timer.performWithDelay(1500, DisplayQuestion)
             if(numWrong == 3) then
                 -- delaly for Displaying the you lose screen
                 timer.performWithDelay(1000, youLostScreen )
@@ -507,7 +507,7 @@ local function TouchListenerWrongAnswer2(touch)
     -- making the correct answer text Visible
         giveThenAnswer.isVisible = true
         numWrong = numWrong + 1
-        DisplayQuestion()
+        timer.performWithDelay(1500, DisplayQuestion)
         if(numWrong == 3) then
             -- delaly for Displaying the you lose screen
             timer.performWithDelay(1000, youLostScreen )
@@ -527,7 +527,7 @@ local function TouchListenerWrongAnswer3(touch)
         -- making the right answer text Visible
         giveThenAnswer.isVisible = true
         numWrong = numWrong + 1
-        DisplayQuestion()
+        timer.performWithDelay(1500, DisplayQuestion)
         if(numWrong == 3) then
         -- delaly for Displaying the you lose screen
             timer.performWithDelay(1000, youLostScreen )
