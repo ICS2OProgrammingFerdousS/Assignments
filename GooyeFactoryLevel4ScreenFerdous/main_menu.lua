@@ -18,6 +18,12 @@ local scene = composer.newScene( sceneName)
 sceneName = "main_menu"
 ---------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
+-- GLOBAL VARIABLES
+-----------------------------------------------------------------------------------------
+
+soundOn = true
+
+-----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
 
@@ -25,8 +31,9 @@ local bkg_image
 local playButton
 local creditsButton
 local instructionsButton
+local muteButton
+local unmuteButton
 
- soundOn = true
 
 --VARIABLES for questions 
 -----------------------------------------------------------------------------------------
@@ -216,13 +223,13 @@ function scene:show( event )
     elseif ( phase == "did" ) then
         muteButton:addEventListener("touch", Mute)
         unmuteButton:addEventListener("touch", Unmute )
-        soundChannel = audio.play(sound, {channel = 56, loops = -1})
+        soundChannel = audio.play(sound, {channel = 10, loops = -1})
 
         if(soundOn == true) then
             audio.resume(soundChannel)
             muteButton.isVisible = false
             unmuteButton.isVisible = true
-        else
+        else        
             audio.pause(soundChannel)
             muteButton.isVisible = true
             unmuteButton.isVisible = false

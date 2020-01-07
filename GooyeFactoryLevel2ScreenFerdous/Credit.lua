@@ -162,7 +162,7 @@ function scene:hide( event )
         muteButton:removeEventListener("touch", Mute)
         unmuteButton:removeEventListener("touch", Unmute )
        -- audio.stop(backgroundMusicChannel)
-       	backgroundMusicChannel = audio.stop()
+       	backgroundMusicChannel = audio.pause()
 
     end
 end 

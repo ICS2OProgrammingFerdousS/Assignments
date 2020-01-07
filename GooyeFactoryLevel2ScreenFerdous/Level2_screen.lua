@@ -742,7 +742,7 @@ function scene:hide( event )
         RemoveAnswerBoxEventListeners()
 
        
-        audio.stop(backgroundSoundChannel)
+        audio.pause(backgroundSoundChannel)
         readyImage.isVisible = false
         yesButton.isVisible = false
         backToMainMenu.x = 150

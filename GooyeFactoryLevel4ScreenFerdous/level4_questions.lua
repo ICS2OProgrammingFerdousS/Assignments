@@ -65,6 +65,9 @@ local secondsLeft =  60
 local clockText
 local countDownTimer
 
+local muteButton
+local unmuteButton
+
 -- background color
 display.setDefault("background", 0.9, 0.9, 0.5)
 
@@ -762,7 +765,7 @@ function scene:hide( event )
         -- reset scene after leave it 
             --composer.removeScene("level4_questions")
         -- Displaying the background sound
-        soundChannel = audio.stop()
+        soundChannel = audio.pause()
             --canceling the timer
         timer.cancel(countDownTimer)
         secondsLeft = totalSeconds
