@@ -460,7 +460,7 @@ local function TouchListenerAnswer(touch)
         -- counting the right answer
         totalAnswer = totalAnswer + 1
         -- make condition for winning the game 
-        if(totalAnswer == 13)then
+        if(totalAnswer == 1)then
            yourcake()
         end 
     end
