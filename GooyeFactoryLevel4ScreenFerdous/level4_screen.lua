@@ -763,7 +763,7 @@ function scene:hide( event )
         --removing Eventlisteners
         muteButton:removeEventListener("touch", Mute)
         unmuteButton:removeEventListener("touch", Unmute )
-        audio.pause(backgroundSoundChannel)
+        backgroundSoundChannel = audio.stop()
         RemoveAnswerBoxEventListeners()
         --canceling the timer
         timer.cancel(countDownTimer)

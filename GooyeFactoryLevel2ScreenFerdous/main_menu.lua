@@ -28,7 +28,8 @@ local bkg_image
 local playButton
 local creditsButton
 local instructionsButton
-
+local muteButton
+local unmuteButton
 -----------------------------------------------------------------------------------------
 -- LOCAL SOUNDS
 -----------------------------------------------------------------------------------------
@@ -216,7 +217,7 @@ function scene:show( event )
         muteButton:addEventListener("touch", Mute)
         unmuteButton:addEventListener("touch", Unmute )    
         --play music
-        soundChannel = audio.play(sound, {channel = 51, loops = -1}) 
+        soundChannel = audio.play(sound, {channel = 13, loops = -1}) 
         if(soundOn == true) then
             audio.resume(soundChannel)
             muteButton.isVisible = false
@@ -242,10 +243,10 @@ function scene:hide( event )
            
         
     elseif ( phase == "did" ) then
-        audio.pause(soundChannel)  
         --stop the music
         muteButton:removeEventListener("touch", Mute)
         unmuteButton:removeEventListener("touch", Unmute )
+        soundChannel = audio.stop()
     end
 end
 

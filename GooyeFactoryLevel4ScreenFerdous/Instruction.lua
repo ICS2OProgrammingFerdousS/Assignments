@@ -17,7 +17,8 @@ local backButton
 -- adding background sound
 local soundEffect = audio.loadSound("Sounds/sweet.mp3")
 local soundEffectChannel
-
+local unmuteButton
+local unmuteButton
 local transitionOption = ({
     effect="fromTop",
     time = 500
@@ -129,7 +130,7 @@ function scene:show( event )
         muteButton:addEventListener("touch", Mute)
         unmuteButton:addEventListener("touch", Unmute )
         -- display background sound
-        soundEffectChannel = audio.play(soundEffect, {channel = 59, loops = -1})
+        soundEffectChannel = audio.play(soundEffect, {channel = 11, loops = -1})
         if(soundOn == true) then
             audio.resume(soundEffectChannel)
             muteButton.isVisible = false

@@ -55,6 +55,8 @@ local wrongAnswer3
 local wrongAnswer4
 local scrollSpeed = 2
 
+local muteButton
+local unmuteButton
 --------------------------------------------------------------------------------------
 --set variables for making scene transition
 ------------------------------------------------------------------------------------------
@@ -711,7 +713,7 @@ function scene:show( event )
         AddAnswerBoxEventListeners()
 
         -- playing sound 
-        backgroundSoundChannel = audio.play(backgroundSound, {channel = 52, loops = -1})  
+        backgroundSoundChannel = audio.play(backgroundSound, {channel = 14, loops = -1})  
         if(soundOn == true) then
             audio.resume(backgroundSoundChannel)
             muteButton.isVisible = false
@@ -742,7 +744,7 @@ function scene:hide( event )
         RemoveAnswerBoxEventListeners()
 
        
-        audio.pause(backgroundSoundChannel)
+        backgroundSoundChannel = audio.stop()
         readyImage.isVisible = false
         yesButton.isVisible = false
         backToMainMenu.x = 150

@@ -195,7 +195,8 @@ function scene:show( event )
     -----------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
             -- display the background sound
-        youLostChannel = audio.play(youLost)     
+        youLostChannel = audio.play(youLost)  
+
     end
 
 end -- function scene:show( event )
@@ -212,6 +213,7 @@ function scene:hide( event )
     if ( phase == "will" ) then
 -----------------------------------------------------------------------------------------
     elseif ( phase == "did" ) then
+        
     end
 end 
 
