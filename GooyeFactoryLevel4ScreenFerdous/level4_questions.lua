@@ -350,11 +350,11 @@ local function DisplayQuestion()
             --creating the question depending on the selcetion number
             questionText.text = " Which group of animal does not have a backbone?"
              --creating answer text from list it corispondes with the animals list
-            answerText.text = "arachnid"
+            answerText.text = "Arachnid"
                  --creating wrong answers
-            wrongText1.text = "fish"
-            wrongText2.text = "bird"
-            wrongText3.text = "amphibian" 
+            wrongText1.text = "Fish"
+            wrongText2.text = "Bird"
+            wrongText3.text = "Amphibian" 
         elseif (randomQuestion == 13) then
             rootImage.isVisible = false
             PositionAnswers()
@@ -460,7 +460,7 @@ local function TouchListenerAnswer(touch)
         -- counting the right answer
         totalAnswer = totalAnswer + 1
         -- make condition for winning the game 
-        if(totalAnswer == 13)then
+        if(totalAnswer == 12)then
            yourcake()
         end 
     end
@@ -483,7 +483,7 @@ local function TouchListenerWrongAnswer(touch)
         --make the text Visible
         giveThenAnswer.isVisible = true
             numWrong = numWrong + 1
-            DisplayQuestion()
+            timer.performWithDelay(1500, DisplayQuestion)
             if(numWrong == 3) then
                 -- delaly for Displaying the you lose screen
                 timer.performWithDelay(1000, youLostScreen )
@@ -507,7 +507,7 @@ local function TouchListenerWrongAnswer2(touch)
     -- making the correct answer text Visible
         giveThenAnswer.isVisible = true
         numWrong = numWrong + 1
-        DisplayQuestion()
+        timer.performWithDelay(1500, DisplayQuestion)
         if(numWrong == 3) then
             -- delaly for Displaying the you lose screen
             timer.performWithDelay(1000, youLostScreen )
@@ -527,7 +527,7 @@ local function TouchListenerWrongAnswer3(touch)
         -- making the right answer text Visible
         giveThenAnswer.isVisible = true
         numWrong = numWrong + 1
-        DisplayQuestion()
+        timer.performWithDelay(1500, DisplayQuestion)
         if(numWrong == 3) then
         -- delaly for Displaying the you lose screen
             timer.performWithDelay(1000, youLostScreen )
@@ -730,7 +730,7 @@ function scene:show( event )
         -- start timer 
         startTimer()
         -- play the background sound
-        soundChannel = audio.play(sound, {channel = 58, loops = -1})
+        soundChannel = audio.play(sound, {channel = 11, loops = -1})
         if(soundOn == true) then
             audio.resume(soundChannel)
             muteButton.isVisible = false
@@ -765,7 +765,7 @@ function scene:hide( event )
         -- reset scene after leave it 
             --composer.removeScene("level4_questions")
         -- Displaying the background sound
-        soundChannel = audio.pause()
+        soundChannel = audio.stop()
             --canceling the timer
         timer.cancel(countDownTimer)
         secondsLeft = totalSeconds

@@ -26,6 +26,8 @@ local transitionOption =({
     effect="fromLeft",
     time = 500
 })
+local muteButton
+local unmuteButton
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -133,7 +135,7 @@ function scene:show( event )
         muteButton:addEventListener("touch", Mute)
         unmuteButton:addEventListener("touch", Unmute )
      --display backgroundMusic
-        backgroundMusicChannel = audio.play(backgroundMusic, {channel = 54, loops = -1})
+        backgroundMusicChannel = audio.play(backgroundMusic, {channel = 15, loops = -1})
         if(soundOn == true) then
             audio.resume(backgroundMusicChannel)
             muteButton.isVisible = false
@@ -162,7 +164,7 @@ function scene:hide( event )
         muteButton:removeEventListener("touch", Mute)
         unmuteButton:removeEventListener("touch", Unmute )
        -- audio.stop(backgroundMusicChannel)
-       	backgroundMusicChannel = audio.pause()
+       	backgroundMusicChannel = audio.stop()
 
     end
 end 

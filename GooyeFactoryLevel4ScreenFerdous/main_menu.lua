@@ -251,7 +251,7 @@ function scene:hide( event )
     elseif ( phase == "did" ) then
         muteButton:removeEventListener("touch", Mute)
         unmuteButton:removeEventListener("touch", Unmute )
-        audio.pause(soundChannel)           
+        soundChannel = audio.stop()
      end
 end 
 
