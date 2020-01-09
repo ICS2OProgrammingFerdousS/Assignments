@@ -704,6 +704,7 @@ function scene:show( event )
 
 -----------------------------------------------------------------------------------------
    elseif ( phase == "did" ) then
+        instructionText.isVisible = true
         yesButton.isVisible = false
         muteButton:addEventListener("touch", Mute)
         unmuteButton:addEventListener("touch", Unmute )
