@@ -165,53 +165,53 @@ local function PositionAnswers()
         wrongText3.y = Y2
 
         
-        elseif (answerPosition == 2) then
+    elseif (answerPosition == 2) then
 
-            answerText.x = X2
-            answerText.y = Y2
+        answerText.x = X2
+        answerText.y = Y2
+        
+        wrongText1.x = X1
+        wrongText1.y = Y1
             
-            wrongText1.x = X1
-            wrongText1.y = Y1
+        wrongText2.x = X2
+        wrongText2.y = Y1
             
-            wrongText2.x = X2
-            wrongText2.y = Y1
-
-            wrongText3.x = X1
-            wrongText3.y = Y2
+        wrongText3.x = X1
+        wrongText3.y = Y2
 
 
-        elseif (answerPosition == 3) then
+    elseif (answerPosition == 3) then
 
-            answerText.x = X2
-            answerText.y = Y1
+        answerText.x = X2
+        answerText.y = Y1
             
-            wrongText1.x = X1
-            wrongText1.y = Y2
+        wrongText1.x = X1
+        wrongText1.y = Y2
             
-            wrongText2.x = X1
-            wrongText2.y = Y1
+        wrongText2.x = X1
+        wrongText2.y = Y1
 
-            wrongText3.x = X2
-            wrongText3.y = Y2
+        wrongText3.x = X2
+        wrongText3.y = Y2
             
-    
-        elseif (answerPosition == 4) then
+    elseif (answerPosition == 4) then
 
-            answerText.x = X2
-            answerText.y = Y1
+        answerText.x = X2
+        answerText.y = Y1
             
-            wrongText1.x = X1
-            wrongText1.y = Y2
+        wrongText1.x = X1
+        wrongText1.y = Y2
             
-            wrongText2.x = X1
-            wrongText2.y = Y1
+        wrongText2.x = X1
+        wrongText2.y = Y1
 
-            wrongText3.x = X2
-            wrongText3.y = Y2
+        wrongText3.x = X2
+        wrongText3.y = Y2
             
     end
 end
 -- FUNCTION for Displaying Questions
+
 
 local function DisplayQuestion()
     local randomQuestion = math.random (1, 20)
@@ -225,227 +225,220 @@ local function DisplayQuestion()
         wrongText1.text = "Green"
         wrongText2.text = "Yellow"
         wrongText3.text = "Purple"
-        elseif (randomQuestion == 2) then
-            PositionAnswers()
-    --creating the question depending on the selcetion number
-            questionText.text = "What is this image of?"
-            rootImage.isVisible = true
-    --creating answer text from list it corispondes with the animals list
-            answerText.text = "Root"
-    
-            --creating wrong answers
-            wrongText1.text = "Leaves"
-            wrongText2.text = "Branch"
-            wrongText3.text = "Flower"
-        elseif (randomQuestion == 3) then
-            PositionAnswers()
-    --creating the question depending on the selcetion number
-            questionText.text = "What do plants need\n to grow?"
-            rootImage.isVisible = false
-    --creating answer text from list it corispondes with the animals list
-            answerText.text = "Water"
-    
-            --creating wrong answers
-            wrongText1.text = "Moonlight"
-            wrongText2.text = "Juice"
-            wrongText3.text = "Darkness"
+    elseif (randomQuestion == 2) then
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = "What is this image of?"
+        rootImage.isVisible = true
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Root"
+        --creating wrong answers
+        wrongText1.text = "Leaves"
+        wrongText2.text = "Branch"
+        wrongText3.text = "Flower"
+    elseif (randomQuestion == 3) then
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = "What do plants need\n to grow?"
+        rootImage.isVisible = false
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Water"
+        --creating wrong answers
+        wrongText1.text = "Moonlight"
+        wrongText2.text = "Juice"
+        wrongText3.text = "Darkness"
+    elseif (randomQuestion == 4) then
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = "What is the\n strongest shape?"
+        rootImage.isVisible = false
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Triangle"
+        --creating wrong answers
+        wrongText1.text = "Square"
+        wrongText2.text = "Circle"
+        wrongText3.text = "Star"
+    elseif (randomQuestion == 5) then
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = "What kind of trees\n have flowers on them?"
+        rootImage.isVisible = false
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Blossom tree"
+        --creating wrong answers
+        wrongText1.text = "Maple Trees"
+        wrongText2.text = "Oak Trees"
+        wrongText3.text = "Oval Trees"    
+    elseif (randomQuestion == 6) then
+        PositionAnswers()
+        rootImage.isVisible = false
+        --creating the question depending on the selcetion number
+        questionText.text = " Raissa will transfer the bowl of food\n to another place. Her action shows?"
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Motion "
+        --creating wrong answers
+        wrongText1.text = "Force"
+        wrongText2.text = "Pressure"
+        wrongText3.text = "Inertia"     
 
-        elseif (randomQuestion == 4) then
-            PositionAnswers()
-            --creating the question depending on the selcetion number
-            questionText.text = "What is the\n strongest shape?"
-            rootImage.isVisible = false
-            --creating answer text from list it corispondes with the animals list
-            answerText.text = "Triangle"
-            --creating wrong answers
-            wrongText1.text = "Square"
-            wrongText2.text = "Circle"
-            wrongText3.text = "Star"
-        elseif (randomQuestion == 5) then
-            PositionAnswers()
-            --creating the question depending on the selcetion number
-            questionText.text = "What kind of trees\n have flowers on them?"
-            rootImage.isVisible = false
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Blossom tree"
-                 --creating wrong answers
-            wrongText1.text = "Maple Trees"
-            wrongText2.text = "Oak Trees"
-            wrongText3.text = "Oval Trees"    
-        elseif (randomQuestion == 6) then
-            PositionAnswers()
-            rootImage.isVisible = false
+    elseif (randomQuestion == 7) then
+        PositionAnswers()
+        rootImage.isVisible = false
+        --creating the question depending on the selcetion number
+        questionText.text = "It is where the white part of the\n eye becomes bloodshot or sore?"
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Conjunctivitis"
+        --creating wrong answers
+        wrongText1.text = "Cataracts"
+        wrongText2.text = "Glaucoma"
+        wrongText3.text = "Strabismus"     
+    elseif (randomQuestion == 8) then
+        PositionAnswers()
+        rootImage.isVisible = false
+        --creating the question depending on the selcetion number
+        questionText.text = " True / False \n do you call the air around the Earth Atmosphere?"
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "True"
+        --creating wrong answers
+        wrongText1.text = "False"
+        wrongText2.text = ""
+        wrongText3.text = ""    
+    elseif (randomQuestion == 9) then
+        rootImage.isVisible = false
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = "Which of the following\n have different texture?"
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Hollow blocks"
+        --creating wrong answers
+        wrongText1.text = " Plastic cover"
+        wrongText2.text = " Satin cloth"
+        wrongText3.text = "Glass"      
+    elseif (randomQuestion == 10) then
+        rootImage.isVisible = false
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = "In which form does water have a\n definite shape and volume?"
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Ice"
+        --creating wrong answers
+        wrongText1.text = "Liquid water"
+        wrongText2.text = " Water vapor"
+        wrongText3.text = "clouds"   
+    elseif (randomQuestion == 11) then
+        rootImage.isVisible = false
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = "Plants need which of the following to live?"
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Air, Water"
+        --creating wrong answers
+        wrongText1.text = "Oxygen"
+        wrongText2.text = "Monnlight"
+        wrongText3.text = "Shade And Food" 
 
-            --creating the question depending on the selcetion number
-            questionText.text = " Raissa will transfer the bowl of food\n to another place. Her action shows?"
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Motion "
-                 --creating wrong answers
-            wrongText1.text = "Force"
-            wrongText2.text = "Pressure"
-            wrongText3.text = "Inertia"     
-
-        elseif (randomQuestion == 7) then
-            PositionAnswers()
-            rootImage.isVisible = false
-
-            --creating the question depending on the selcetion number
-            questionText.text = "It is where the white part of the\n eye becomes bloodshot or sore?"
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Conjunctivitis"
-                 --creating wrong answers
-            wrongText1.text = "Cataracts"
-            wrongText2.text = "Glaucoma"
-            wrongText3.text = "Strabismus"     
-        elseif (randomQuestion == 8) then
-            PositionAnswers()
-            rootImage.isVisible = false
-
-            --creating the question depending on the selcetion number
-            questionText.text = " True / False \n do you call the air around the Earth Atmosphere?"
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "True"
-                 --creating wrong answers
-            wrongText1.text = "False"
-            wrongText2.text = ""
-            wrongText3.text = ""    
-        elseif (randomQuestion == 9) then
-            rootImage.isVisible = false
-
-            PositionAnswers()
-            --creating the question depending on the selcetion number
-            questionText.text = "Which of the following\n have different texture?"
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Hollow blocks"
-                 --creating wrong answers
-            wrongText1.text = " Plastic cover"
-            wrongText2.text = " Satin cloth"
-            wrongText3.text = "Glass"      
-        elseif (randomQuestion == 10) then
-            rootImage.isVisible = false
-            PositionAnswers()
-            --creating the question depending on the selcetion number
-            questionText.text = "In which form does water have a\n definite shape and volume?"
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Ice"
-                 --creating wrong answers
-            wrongText1.text = "Liquid water"
-            wrongText2.text = " Water vapor"
-            wrongText3.text = "clouds"   
-        elseif (randomQuestion == 11) then
-            rootImage.isVisible = false
-            PositionAnswers()
-            --creating the question depending on the selcetion number
-            questionText.text = "Plants need which of the following to live?"
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Air, Water"
-                 --creating wrong answers
-            wrongText1.text = "Oxygen"
-            wrongText2.text = "Monnlight"
-            wrongText3.text = "Shade And Food" 
-
-        elseif (randomQuestion == 12) then
-            rootImage.isVisible = false
-            PositionAnswers()
-            --creating the question depending on the selcetion number
-            questionText.text = " Which group of animal does not have a backbone?"
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Arachnid"
-                 --creating wrong answers
-            wrongText1.text = "Fish"
-            wrongText2.text = "Bird"
-            wrongText3.text = "Amphibian" 
-        elseif (randomQuestion == 13) then
-            rootImage.isVisible = false
-            PositionAnswers()
-            --creating the question depending on the selcetion number
-            questionText.text = " Which planet is known as the red planet?"
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Mars"
-                 --creating wrong answers
-            wrongText1.text = "Earth"
-            wrongText2.text = "Venus"
-            wrongText3.text = "Jupiter" 
-
-        elseif (randomQuestion == 14) then
-            rootImage.isVisible = false
-            PositionAnswers()
-            --creating the question depending on the selcetion number
-            questionText.text = "What is the part of the plant that\n uses light to make food?"
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Leaves"
-                 --creating wrong answers
-            wrongText1.text = "Flowers"
-            wrongText2.text = "Roots"
-            wrongText3.text = "Stem" 
-        elseif (randomQuestion == 15) then
-            rootImage.isVisible = false
-            PositionAnswers()
-            --creating the question depending on the selcetion number
-            questionText.text = "What causes erosion?"
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Heat"
-                 --creating wrong answers
-            wrongText1.text = "Cold"
-            wrongText2.text = "Sun And\n Water"
-            wrongText3.text = "Wind And\n Water" 
-        elseif (randomQuestion == 16) then
-            rootImage.isVisible = false
-            PositionAnswers()
-            --creating the question depending on the selcetion number
-            questionText.text = "The plants that live in dry places Their roots are?."
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Long"
-                 --creating wrong answers
-            wrongText1.text = "Short"
-            wrongText2.text = "Small"
-            wrongText3.text = "None of them" 
-        elseif (randomQuestion == 17) then
-            rootImage.isVisible = false
-            PositionAnswers()
-            --creating the question depending on the selcetion number
-            questionText.text = "What do fishes use to breathe in water?"
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Gills"
-                 --creating wrong answers
-            wrongText1.text = "Lungs"
-            wrongText2.text = "Fins"
-            wrongText3.text = "Tail" 
-        elseif (randomQuestion == 18) then
-            rootImage.isVisible = false
-            PositionAnswers()
-            --creating the question depending on the selcetion number
-            questionText.text = "Which part of a plant holds it upright\n and moves it towards light?"
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Stem"
-                 --creating wrong answers
-            wrongText1.text = "Roots"
-            wrongText2.text = "Flower"
-            wrongText3.text = "Leaves" 
-        elseif (randomQuestion == 19) then
-            rootImage.isVisible = false
-            PositionAnswers()
-            --creating the question depending on the selcetion number
-            questionText.text = "What the All pushes and pulls called?"
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Force"
-                 --creating wrong answers
-            wrongText1.text = "Weight"
-            wrongText2.text = "Gravity"
-            wrongText3.text = "Energy" 
-        elseif (randomQuestion == 20) then
-            rootImage.isVisible = false
-            PositionAnswers()
-            --creating the question depending on the selcetion number
-            questionText.text = "What are the ends of magnets called?"
-             --creating answer text from list it corispondes with the animals list
-            answerText.text = "Poles"
-                 --creating wrong answers
-            wrongText1.text = "Equator"
-            wrongText2.text = "Circuits"
-            wrongText3.text = "Axis" 
-        end                      
+    elseif (randomQuestion == 12) then
+        rootImage.isVisible = false
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = " Which group of animal does not have a backbone?"
+         --creating answer text from list it corispondes with the animals list
+        answerText.text = "Arachnid"
+         --creating wrong answers
+        wrongText1.text = "Fish"
+        wrongText2.text = "Bird"
+        wrongText3.text = "Amphibian" 
+    elseif (randomQuestion == 13) then
+        rootImage.isVisible = false
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = " Which planet is known as the red planet?"
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Mars"
+        --creating wrong answers
+        wrongText1.text = "Earth"
+        wrongText2.text = "Venus"
+        wrongText3.text = "Jupiter" 
+    elseif (randomQuestion == 14) then
+        rootImage.isVisible = false
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = "What is the part of the plant that\n uses light to make food?"
+       --creating answer text from list it corispondes with the animals list
+        answerText.text = "Leaves"
+        --creating wrong answers
+        wrongText1.text = "Flowers"
+        wrongText2.text = "Roots"
+        wrongText3.text = "Stem" 
+    elseif (randomQuestion == 15) then
+        rootImage.isVisible = false
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = "What causes erosion?"
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Wind And\n Water"
+        --creating wrong answers
+        wrongText1.text = "Cold"
+        wrongText2.text = "Sun And\n Water"
+        wrongText3.text = "Heat" 
+    elseif (randomQuestion == 16) then
+        rootImage.isVisible = false
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = "The plants that live in dry places Their roots are?."
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Long"
+        --creating wrong answers
+        wrongText1.text = "Short"
+        wrongText2.text = "Small"
+        wrongText3.text = "None of them" 
+    elseif (randomQuestion == 17) then
+        rootImage.isVisible = false
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = "What do fishes use to breathe in water?"
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Gills"
+        --creating wrong answers
+        wrongText1.text = "Lungs"
+        wrongText2.text = "Fins"
+        wrongText3.text = "Tail" 
+    elseif (randomQuestion == 18) then
+        rootImage.isVisible = false
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = "Which part of a plant holds it upright\n and moves it towards light?"
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Stem"
+        --creating wrong answers
+        wrongText1.text = "Roots"
+        wrongText2.text = "Flower"
+        wrongText3.text = "Leaves" 
+    elseif (randomQuestion == 19) then
+        rootImage.isVisible = false
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = "What the All pushes and pulls called?"
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Force"
+        --creating wrong answers
+        wrongText1.text = "Weight"
+        wrongText2.text = "Gravity"
+        wrongText3.text = "Energy" 
+    elseif (randomQuestion == 20) then
+        rootImage.isVisible = false
+        PositionAnswers()
+        --creating the question depending on the selcetion number
+        questionText.text = "What are the ends of magnets called?"
+        --creating answer text from list it corispondes with the animals list
+        answerText.text = "Poles"
+        --creating wrong answers
+        wrongText1.text = "Equator"
+        wrongText2.text = "Circuits"
+        wrongText3.text = "Axis" 
+    end                      
 end
+
 
 
 
